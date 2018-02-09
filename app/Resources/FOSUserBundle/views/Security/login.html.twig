@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html action="{% block action %} {% endblock %}" environment={{ app.environment }}>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}MOTOGP - LOGIN{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+</head>
+<style>
+    .tcenter {
+        display:table;margin:auto;float:none
+    }
+</style>
+<body>
+{% block header %}
+
+{% endblock  %}
+{% block body %}
+    <br><br>
+    <div class="col-md-5 well tcenter form-group" style="">
+        <img class="tcenter" src="{{ asset('/bundles/motogp/img/logo.png')}}" />
+        <form class="form-group dtable" action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+            <div class="form-group col-md-12">
+                <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+            </div>
+
+
+            <div class="form-group col-md-12">
+                <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                <input class="form-control" type="password" id="password" name="_password" required="required" />
+            </div>
+
+            <div class="form group col-md-12">
+                <input class="btn btn-info" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+                <div class="pull-right" style="padding-top:.33em;">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+                </div>
+            </div>
+            <input type="hidden" name="_target_path" value="{{ url('sonata_admin_dashboard') }}" />
+        </form>
+
+        {% if error %}
+            <div class="alert alert-danger dtable col-md-12">
+                Nombre de usuario o contraseña incorrectos.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+</body>
+{% block javascripts %}{% endblock %}
+</html>

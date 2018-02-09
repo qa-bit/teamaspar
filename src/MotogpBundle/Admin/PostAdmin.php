@@ -60,10 +60,12 @@ class PostAdmin extends AbstractAdmin
                 ->with(null)
                         ->add('name')
                         ->add('nameEN')
-                        ->add('description', SimpleFormatterType::class, array(
-                            'format' => 'richhtml',
+                        ->add('description', 'ckeditor', array(
+                            'label' => 'Contenido'
                         ))
-                        ->add('descriptionEN')
+                        ->add('descriptionEN', 'ckeditor', array(
+                            'label' => 'Contenido Inglés'
+                        ))
                         ->add('modality', null,
                             ['required' => true]
                             )

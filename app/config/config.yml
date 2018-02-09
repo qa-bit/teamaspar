@@ -113,3 +113,11 @@ sonata_block:
         #    templates:
         #       - { name: 'Simple', template: '@AcmeDemo/Block/demo_simple.html.twig' }
         #       - { name: 'Big',    template: '@AcmeDemo/Block/demo_big.html.twig' }
+
+
+ivory_ck_editor:
+    configs:
+        my_config:
+            toolbar: [[ "Format", "Bold", "Italic", "Underline", "Strike", "size",'FontSize', 'TextColor', "Subscript", "Superscript", "-", "RemoveFormat", "NumberedList", "BulletedList", "-", "JustifyLeft","JustifyCenter","JustifyRight","JustifyBlock", "Outdent", "Indent", "-", "Blockquote" , "Link", "Unlink" ]]
+            language: 'en'
+            format_tags: 'p;h1;h2;h3;h4;div'
