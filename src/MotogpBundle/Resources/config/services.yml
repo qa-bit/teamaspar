@@ -3,54 +3,85 @@ services:
         class: MotogpBundle\Admin\PostAdmin
         arguments: [~, MotogpBundle\Entity\Post, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Post }
+            - { name: sonata.admin, manager_type: orm, group: Blog, label: Post }
         public: true
 
-    motogp.admin.category:
-        class: MotogpBundle\Admin\CategoryAdmin
-        arguments: [~, MotogpBundle\Entity\Category, SonataAdminBundle:CRUD]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Category }
-        public: true
 
-    motogp.admin.modality:
-        class: MotogpBundle\Admin\ModalityAdmin
-        arguments: [~, MotogpBundle\Entity\Modality, SonataAdminBundle:CRUD]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Modality }
-        public: true
 
     motogp.admin.video:
         class: MotogpBundle\Admin\VideoAdmin
         arguments: [~, MotogpBundle\Entity\Video, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Video }
-        public: true
-
-    motogp.admin.team_category:
-        class: MotogpBundle\Admin\TeamCategoryAdmin
-        arguments: [~, MotogpBundle\Entity\TeamCategory, SonataAdminBundle:CRUD]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: TeamCategory }
-        public: true
-
-    motogp.admin.team:
-        class: MotogpBundle\Admin\TeamAdmin
-        arguments: [~, MotogpBundle\Entity\Team, SonataAdminBundle:CRUD]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Team }
+            - { name: sonata.admin, manager_type: orm, group: Multimedia, label: Video }
         public: true
 
     motogp.admin.rider_team:
         class: MotogpBundle\Admin\RiderTeamAdmin
         arguments: [~, MotogpBundle\Entity\RiderTeam, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: RiderTeam }
+            - { name: sonata.admin, manager_type: orm, group: Equipo, label: Equipos }
         public: true
 
     motogp.admin.rider:
         class: MotogpBundle\Admin\RiderAdmin
         arguments: [~, MotogpBundle\Entity\Rider, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Rider }
+            - { name: sonata.admin, manager_type: orm, group: Equipo, label: Corredores }
+        public: true
+
+    motogp.admin.team:
+        class: MotogpBundle\Admin\TeamAdmin
+        arguments: [~, MotogpBundle\Entity\Team, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Equipo, label: Staff }
+        public: true
+
+    motogp.admin.category:
+        class: MotogpBundle\Admin\CategoryAdmin
+        arguments: [~, MotogpBundle\Entity\Category, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Categorías (Generales) }
+        public: true
+
+    motogp.admin.modality:
+        class: MotogpBundle\Admin\ModalityAdmin
+        arguments: [~, MotogpBundle\Entity\Modality, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Modality }
+        public: true
+
+
+    motogp.admin.team_category:
+        class: MotogpBundle\Admin\TeamCategoryAdmin
+        arguments: [~, MotogpBundle\Entity\TeamCategory, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Categorías staff }
+        public: true
+
+    motogp.admin.builder:
+        class: MotogpBundle\Admin\BuilderAdmin
+        arguments: [~, MotogpBundle\Entity\Builder, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Constructores }
+        public: true
+
+    motogp.admin.circuit:
+        class: MotogpBundle\Admin\CircuitAdmin
+        arguments: [~, MotogpBundle\Entity\Circuit, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Circuitos }
+        public: true
+
+    motogp.admin.season:
+        class: MotogpBundle\Admin\SeasonAdmin
+        arguments: [~, MotogpBundle\Entity\Season, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Temporadas }
+        public: true
+
+    motogp.admin.sponsor:
+        class: MotogpBundle\Admin\SponsorAdmin
+        arguments: [~, MotogpBundle\Entity\Sponsor, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Sponsors }
         public: true

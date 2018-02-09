@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new AppBundle\AppBundle(),
             new MotogpBundle\MotogpBundle(),
         ];

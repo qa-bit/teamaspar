@@ -1,9 +1,9 @@
-"Post List": Listado de posts
+"Post List": Listado de publicaciones
 "Post Create": Nuevo
 "Video List": Listado de vídeos
 "Video Create": Nuevo
-"Category": Categoría
-"Modality": Modalidad
+"Category": Categorías
+"Modality": Modalidades
 "Modality List": Listado de modalidades
 "Action": Acción
 "Created At": Fecha de creación
@@ -20,3 +20,10 @@
 "RiderTeam": Equipo corredores
 "Rider": Corredor
 "Surname": Apellido
+"Category List": Listado de categorías
+"Team Category List": "Listado de categorías (equipo)"
+"Rider Team": "Equipo corredores"
+"Rider Team Modality": "Modalidad"
+"Rider List": "Lista de corredores"
+"Post": "Publicaciónes"
+"Team Category": "Categoría (equipo)"

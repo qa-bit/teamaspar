@@ -17,20 +17,6 @@ class VideoAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('url')
-            ->add('urlEN')
-            ->add('type')
-            ->add('id')
-            ->add('name')
-            ->add('nameEN')
-            ->add('description')
-            ->add('descriptionEN')
-            ->add('seoTitle')
-            ->add('seoTitleEN')
-            ->add('seoKeywords')
-            ->add('seoKeywordsEN')
-            ->add('_order')
-            ->add('createdAt')
-            ->add('updatedAt')
         ;
     }
 
@@ -44,6 +30,7 @@ class VideoAdmin extends AbstractAdmin
             //->add('id')
             ->add('name')
             ->add('categories')
+            ->add('description')
             //->add('nameEN')
             //->add('description')
             //->add('descriptionEN')

@@ -1,8 +1,8 @@
 sonata_block:
-    blocks:
-        # enable the SonataAdminBundle block
-        sonata.admin.block.admin_list:
-            contexts: [admin]
+#    blocks:
+#        # enable the SonataAdminBundle block
+#        sonata.admin.block.admin_list:
+#            contexts: [admin]
 
 
 sonata_admin:
@@ -10,8 +10,10 @@ sonata_admin:
     title_logo: 'bundles/motogp/img/logo.png'
     templates:
             layout: MotogpBundle::standard_layout.html.twig
+            dashboard: MotogpBundle::dashboard.html.twig
 
-
+    dashboard:
+        groups:
 
 sonata_formatter:
     default_formatter: text
@@ -61,9 +63,9 @@ sonata_media:
     #    gallery: MyVendor\MediaBundle\Entity\Gallery
     #    gallery_has_media: MyVendor\MediaBundle\Entity\GalleryHasMedia
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr it is mandatory to choose one here
-    default_context: default # you need to set a context
+    default_context: imagenes # you need to set a context
     contexts:
-        default:  # the default context is mandatory
+        imagenes:  # the default context is mandatory
             providers:
                 - sonata.media.provider.image
             formats:
@@ -76,6 +78,6 @@ sonata_media:
 
     filesystem:
         local:
-            directory:  "%kernel.root_dir%/../public/uploads/media" #flex
-            #directory:  "%kernel.root_dir%/../web/uploads/media" #non-flex
+            #directory:  "%kernel.root_dir%/../public/uploads/media" #flex
+            directory:  "%kernel.root_dir%/../web/uploads/media" #non-flex
             create:     false

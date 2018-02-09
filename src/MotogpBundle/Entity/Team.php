@@ -4,7 +4,9 @@ namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
+use MotogpBundle\Entity\Traits\InRiderTeamTrait;
 use MotogpBundle\Entity\Traits\InTeamCategoryTrait;
+use MotogpBundle\Entity\Traits\HasMediaTrait;
 
 /**
  * Team
@@ -14,6 +16,6 @@ use MotogpBundle\Entity\Traits\InTeamCategoryTrait;
  */
 class Team
 {
-   use ContentTrait, InTeamCategoryTrait;
+   use ContentTrait, InTeamCategoryTrait, InRiderTeamTrait, HasMediaTrait;
 }
 

@@ -3,6 +3,7 @@
 namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MotogpBundle\Entity\Traits\ContentTrait;
 
 /**
  * Season
@@ -12,24 +13,53 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Season
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
+    use ContentTrait;
 
     /**
-     * Get id
+     * @var string
      *
-     * @return int
+     * @ORM\Column(type="date", nullable=true)
      */
-    public function getId()
+    private $start;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $end;
+
+    /**
+     * @return string
+     */
+    public function getStart()
     {
-        return $this->id;
+        return $this->start;
     }
+
+    /**
+     * @param string $start
+     */
+    public function setStart($start)
+    {
+        $this->start = $start;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnd()
+    {
+        return $this->end;
+    }
+
+    /**
+     * @param string $end
+     */
+    public function setEnd($end)
+    {
+        $this->end = $end;
+    }
+    
 }
 

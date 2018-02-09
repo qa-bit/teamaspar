@@ -4,6 +4,7 @@ namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
+use MotogpBundle\Entity\Traits\HasMediaTrait;
 
 /**
  * Sponsor
@@ -13,6 +14,29 @@ use MotogpBundle\Entity\Traits\ContentTrait;
  */
 class Sponsor
 {
-    use ContentTrait;
+    use ContentTrait, HasMediaTrait;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $webUrl;
+
+    /**
+     * @return string
+     */
+    public function getWebUrl()
+    {
+        return $this->webUrl;
+    }
+
+    /**
+     * @param string $webUrl
+     */
+    public function setWebUrl($webUrl)
+    {
+        $this->webUrl = $webUrl;
+    }
 }
 

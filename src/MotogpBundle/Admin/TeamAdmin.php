@@ -28,6 +28,7 @@ class TeamAdmin extends AbstractAdmin
         $listMapper
             ->add('name')
             ->add('description')
+            ->add('riderTeam')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -47,11 +48,17 @@ class TeamAdmin extends AbstractAdmin
             ->tab('Información')
             ->with(null)
             ->add('name')
-            ->add('teamCategory', null, [], ['btn_add' => true])
+            ->add('teamCategory', null, [], ['required' => true])
+            ->add('riderTeam', null, ['required'=>'true'], ['required' => true])
             ->add('description',null, array(
             ))
             ->add('descriptionEN')
             ->add('_order')
+            ->add('media', 'sonata_media_type', array(
+                'label' => 'Imágen de portada',
+                'provider' => 'sonata.media.provider.image',
+                'context'  => 'imagenes'
+            ))
             ->end()
             ->end()
             ->tab('SEO')

@@ -67,7 +67,9 @@ doctrine:
 #        auto_mapping: true
         entity_managers:
             default:
+                auto_mapping: true
                 mappings:
+                    #ApplicationSonataMediaBundle: ~
                     SonataMediaBundle: ~
 
 
@@ -102,9 +104,9 @@ sonata_block:
         sonata.block.service.rss:
 
         # Some specific block from the SonataMediaBundle
-        sonata.media.block.media:
-        sonata.media.block.gallery:
-        sonata.media.block.feature_media:
+#        sonata.media.block.media:
+#        sonata.media.block.gallery:
+#        sonata.media.block.feature_media:
 
         # Some block with different templates
         #acme.demo.block.demo:

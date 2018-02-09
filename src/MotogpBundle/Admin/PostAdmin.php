@@ -70,8 +70,20 @@ class PostAdmin extends AbstractAdmin
                         ->add('categories', 'sonata_type_model', [
                             'multiple' => true
                         ])
+
                         ->add('_order')
                     ->end()
+                ->end()
+            ->tab('Imágenes')
+                ->with(null)
+                ->add('media', 'sonata_media_type', array(
+                    'label' => 'Imágen de portada',
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'imagenes'
+                ))
+            ->add('gallery', null, ['label' => 'Galería'])
+
+                ->end()
                 ->end()
             ->tab('SEO')
                 ->with(null)

@@ -28,14 +28,9 @@ class RiderAdmin extends AbstractAdmin
         $listMapper
             //->add('id')
             ->add('name')
-            ->add('categories')
-            //->add('nameEN')
-            //->add('description')
-            //->add('descriptionEN')
-            //->add('seoTitle')
-            //->add('seoTitleEN')
-            //->add('seoKeywords')
-            //->add('seoKeywordsEN')
+            ->add('surname')
+            ->add('riderTeam')
+            ->add('riderTeam.modality')
             ->add('_order')
             ->add('createdAt')
             ->add('updatedAt')
@@ -62,6 +57,11 @@ class RiderAdmin extends AbstractAdmin
             ->add('riderTeam', null,
                 ['required' => true]
             )
+            ->add('media', 'sonata_media_type', array(
+                'label' => 'Imágen de portada',
+                'provider' => 'sonata.media.provider.image',
+                'context'  => 'imagenes'
+            ))
             ->add('_order')
             ->end()
             ->end()

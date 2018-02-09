@@ -28,6 +28,7 @@ class RiderTeamAdmin extends AbstractAdmin
         $listMapper
             //->add('id')
             ->add('name')
+            ->add('modality')
             //->add('nameEN')
             //->add('description')
             //->add('descriptionEN')
