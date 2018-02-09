@@ -1,0 +1,62 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block side_bar_after_nav %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <div class="form-group">
+
+    </div>
+    <p class="text-center"><a href="{{ path('fos_user_security_logout') }}">Salir</a></p>
+    <style>
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .box.box-primary {
+            border-top : none !important;
+        }
+
+        .nav-tabs-custom>.nav-tabs>li.active {
+            box-shadow: 0px -2px 8px #ccc;
+            border-top-color : white !important;
+        }
+
+        .skin-black .wrapper, .skin-black .main-sidebar, .skin-black .left-side {
+            background-color: #fbfbfb;
+            box-shadow: 8px 8px 10px #cccccc7a;
+        }
+
+        .box-footer {
+            display : none !important;
+        }
+
+        .skin-black .sidebar-menu>li:hover>a, .skin-black .sidebar-menu>li.active>a {
+            color: #2c3b41;
+            background: #ecf0f5;
+            border-left-color: #fff;
+            font-weight: bolder;
+        }
+
+        .info-box-icon.bg-aqua {
+            display : none;
+        }
+
+        .info-box-content {
+            padding: 5px 10px;
+            margin-left : 0;
+        }
+
+        .sonata-ba-list-field-header-batch, .sonata-ba-list-field-batch {
+            display:none;
+        }
+
+        .logo img {
+            display: inline;
+            padding-bottom: 4px;
+            max-height: 100%;
+            max-width: 95%;
+        }
+
+
+
+    </style>
+{% endblock %}

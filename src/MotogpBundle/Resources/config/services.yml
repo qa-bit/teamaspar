@@ -1,0 +1,56 @@
+services:
+    motogp.admin.post:
+        class: MotogpBundle\Admin\PostAdmin
+        arguments: [~, MotogpBundle\Entity\Post, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Post }
+        public: true
+
+    motogp.admin.category:
+        class: MotogpBundle\Admin\CategoryAdmin
+        arguments: [~, MotogpBundle\Entity\Category, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Category }
+        public: true
+
+    motogp.admin.modality:
+        class: MotogpBundle\Admin\ModalityAdmin
+        arguments: [~, MotogpBundle\Entity\Modality, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Modality }
+        public: true
+
+    motogp.admin.video:
+        class: MotogpBundle\Admin\VideoAdmin
+        arguments: [~, MotogpBundle\Entity\Video, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Video }
+        public: true
+
+    motogp.admin.team_category:
+        class: MotogpBundle\Admin\TeamCategoryAdmin
+        arguments: [~, MotogpBundle\Entity\TeamCategory, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TeamCategory }
+        public: true
+
+    motogp.admin.team:
+        class: MotogpBundle\Admin\TeamAdmin
+        arguments: [~, MotogpBundle\Entity\Team, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Team }
+        public: true
+
+    motogp.admin.rider_team:
+        class: MotogpBundle\Admin\RiderTeamAdmin
+        arguments: [~, MotogpBundle\Entity\RiderTeam, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: RiderTeam }
+        public: true
+
+    motogp.admin.rider:
+        class: MotogpBundle\Admin\RiderAdmin
+        arguments: [~, MotogpBundle\Entity\Rider, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Rider }
+        public: true
