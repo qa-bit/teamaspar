@@ -67,6 +67,7 @@ class VideoAdmin extends AbstractAdmin
             ->add('description')
             ->add('descriptionEN')
             ->add('categories', 'sonata_type_model', [
+                'label' => 'Tags',
                 'multiple' => true
             ])
             ->add('_order')

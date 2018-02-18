@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class TeamAdmin extends AbstractAdmin
+class MotoAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -16,7 +16,19 @@ class TeamAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('id')
             ->add('name')
+            ->add('nameEN')
+            ->add('builder')
+            ->add('description')
+            ->add('descriptionEN')
+            ->add('seoTitle')
+            ->add('seoTitleEN')
+            ->add('seoKeywords')
+            ->add('seoKeywordsEN')
+            ->add('_order')
+            ->add('createdAt')
+            ->add('updatedAt')
         ;
     }
 
@@ -26,9 +38,19 @@ class TeamAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('id')
             ->add('name')
+            ->add('nameEN')
             ->add('description')
-            ->add('riderTeam')
+
+            ->add('descriptionEN')
+            ->add('seoTitle')
+            ->add('seoTitleEN')
+            ->add('seoKeywords')
+            ->add('seoKeywordsEN')
+            ->add('_order')
+            ->add('createdAt')
+            ->add('updatedAt')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -45,31 +67,20 @@ class TeamAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->tab('Información')
-            ->with(null)
+            //->add('id')
             ->add('name')
-            ->add('teamCategory', null, ['required' => true])
-            ->add('riderTeam', null, ['required'=> false], ['required' => false ])
-            ->add('rider', null, ['required' => false], ['required' => false])
-            ->add('description',null, array(
-            ))
+            ->add('nameEN')
+            ->add('description')
             ->add('descriptionEN')
-            ->add('_order')
-            ->add('media', 'sonata_media_type', array(
-                'label' => 'Imágen de portada',
-                'provider' => 'sonata.media.provider.image',
-                'context'  => 'imagenes'
-            ))
-            ->end()
-            ->end()
-            ->tab('SEO')
-            ->with(null)
+            ->add('builder', null, ['required' => true])
             ->add('seoTitle')
             ->add('seoTitleEN')
             ->add('seoKeywords')
             ->add('seoKeywordsEN')
-            ->end()
-            ->end();
+            ->add('_order')
+//            ->add('createdAt')
+//            ->add('updatedAt')
+        ;
     }
 
     /**
@@ -78,18 +89,18 @@ class TeamAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
-            ->add('name')
-            ->add('nameEN')
-            ->add('description')
-            ->add('descriptionEN')
-            ->add('seoTitle')
-            ->add('seoTitleEN')
-            ->add('seoKeywords')
-            ->add('seoKeywordsEN')
-            ->add('_order')
-            ->add('createdAt')
-            ->add('updatedAt')
+//            ->add('id')
+//            ->add('name')
+//            ->add('nameEN')
+//            ->add('description')
+//            ->add('descriptionEN')
+//            ->add('seoTitle')
+//            ->add('seoTitleEN')
+//            ->add('seoKeywords')
+//            ->add('seoKeywordsEN')
+//            ->add('_order')
+//            ->add('createdAt')
+//            ->add('updatedAt')
         ;
     }
 }

@@ -54,6 +54,8 @@ class RiderAdmin extends AbstractAdmin
             ->with(null)
             ->add('name')
             ->add('surname')
+            ->add('birthDate', null, ['label' => 'Fecha de nacimiento'])
+            ->add('birthPlace', null, ['label' => 'Lugar de nacimiento'])
             ->add('riderTeam', null,
                 ['required' => true]
             )
@@ -65,6 +67,87 @@ class RiderAdmin extends AbstractAdmin
             ->add('_order')
             ->end()
             ->end()
+            ->tab('Currículum')
+                ->with(null)
+                ->add('firstRace', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primera carrera'])
+                    ->add('firstGrandPrix', null, [
+                        'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primer gran premio'])
+                ->add('firstVictory', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primera victoria'])
+                ->add('lastVictory', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Última victoria'])
+                ->add('firstPole', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primera Pole'])
+                ->add('firstFastLap', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primera vuelta rápida'])
+                ->add('firstPodium', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primer Podio'])
+                ->add('victorys', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Victorias'])
+                ->add('poles', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Podios'])
+                ->add('fastLaps', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Vueltas rápidas'])
+                ->add('bestGeneralResult', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Mejor resultado general'])
+                ->add('gpss', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Nº total de GPS disputados'])
+                ->add('victoryList', 'ckeditor', [
+                    'attr' => ['container_classes' => 'col-md-12'],
+                    'label' => 'Palmáres deportivo'])
+
+                ->add('firstRaceEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primera carrera (EN)'])
+                ->add('firstGrandPrixEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primer gran premio (EN)'])
+                ->add('firstVictoryEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primera victoria (EN)'])
+                ->add('lastVictoryEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Última victoria (EN)'])
+                ->add('firstPoleEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primera pole (EN)'])
+                ->add('firstFastLapEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primera vuelta rápida(EN)'])
+                ->add('firstPodiumEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Primer podio(EN)'])
+                ->add('victorysEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Victorias (EN)'])
+                ->add('polesEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Poles (EN)'])
+                ->add('fastLapsEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Vueltas rápidas(EN)'])
+                ->add('bestGeneralResultEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Mejor resultado general(EN)'])
+                ->add('gpssEN', null, [
+                    'attr' => ['container_classes' => 'col-md-6'],
+                    'label' => 'Nº total de GPS disputados (EN) '])
+                ->add('victoryListEN', 'ckeditor', ['label' => 'Palmarés deportivo (EN) '])
+                ->end()
+                ->end()
             ->tab('SEO')
             ->with(null)
             ->add('seoTitle')

@@ -40,7 +40,7 @@ services:
         class: MotogpBundle\Admin\CategoryAdmin
         arguments: [~, MotogpBundle\Entity\Category, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Categorías (Generales) }
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Tags }
         public: true
 
     motogp.admin.modality:
@@ -72,16 +72,45 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Configuración, label: Circuitos }
         public: true
 
-    motogp.admin.season:
-        class: MotogpBundle\Admin\SeasonAdmin
-        arguments: [~, MotogpBundle\Entity\Season, SonataAdminBundle:CRUD]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Temporadas }
-        public: true
-
     motogp.admin.sponsor:
         class: MotogpBundle\Admin\SponsorAdmin
         arguments: [~, MotogpBundle\Entity\Sponsor, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Configuración, label: Sponsors }
+        public: true
+
+    motogp.admin.moto:
+        class: MotogpBundle\Admin\MotoAdmin
+        arguments: [~, MotogpBundle\Entity\Moto, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Moto }
+        public: true
+
+    motogp.admin.race:
+        class: MotogpBundle\Admin\RaceAdmin
+        arguments: [~, MotogpBundle\Entity\Race, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Carreras, label: Carreras }
+        public: true
+
+    motogp.admin.season:
+            class: MotogpBundle\Admin\SeasonAdmin
+            arguments: [~, MotogpBundle\Entity\Season, SonataAdminBundle:CRUD]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Carreras, label: Temporadas }
+            public: true
+
+    motogp.admin.score:
+        class: MotogpBundle\Admin\ScoreAdmin
+        arguments: [~, MotogpBundle\Entity\Score, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Score, show_in_dashboard: false }
+        public: true
+
+
+    motogp.admin.post_media:
+        class: Application\Sonata\MediaBundle\Admin\PostMediaAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\PostMedia, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: PostMedia }
         public: true

@@ -69,7 +69,14 @@ class PostAdmin extends AbstractAdmin
                         ->add('modality', null,
                             ['required' => true]
                             )
+                        ->add('rider', null, ['required' => false])
+                        ->add('season', null, ['required' => true])
+                        ->add('circuit', null, [
+                            'label' => 'Circuito',
+                            'required' => false
+                        ])
                         ->add('categories', 'sonata_type_model', [
+                            'label' => 'Tags',
                             'multiple' => true
                         ])
 
@@ -83,7 +90,15 @@ class PostAdmin extends AbstractAdmin
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'imagenes'
                 ))
-            ->add('gallery', null, ['label' => 'Galería'])
+
+             ->add('medias', 'sonata_type_collection', array(), array(
+                 'edit' => 'inline',
+                 'inline' => 'table',
+                 'link_parameters' => array(
+                     'context' => 'imagenes',
+                     'provider' => 'sonata.media.provider.image'
+                 )
+             ))
 
                 ->end()
                 ->end()

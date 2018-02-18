@@ -29,7 +29,7 @@ trait HasMediaTrait {
     /**
      * @param MediaInterface $media
      */
-    public function setMedia(Media $media)
+    public function setMedia(MediaInterface $media)
     {
         $this->media = $media;
     }

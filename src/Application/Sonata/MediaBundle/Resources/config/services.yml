@@ -1,0 +1,7 @@
+services:
+    application_sonata_media.admin.post_media:
+        class: Application\Sonata\MediaBundle\Admin\PostMediaAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\PostMedia, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: PostMedia }
+        public: true

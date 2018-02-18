@@ -100,14 +100,14 @@ trait ContentTrait {
 
 
     /**
-     * @var string
+     * @var DateTime
      *
      * @ORM\Column(type="date", nullable=true)
      */
     private $createdAt;
 
     /**
-     * @var string
+     * @var DateTime
      *
      * @ORM\Column(type="date", nullable=true)
      */

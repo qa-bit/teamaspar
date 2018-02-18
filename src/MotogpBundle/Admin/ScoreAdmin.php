@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class SeasonAdmin extends AbstractAdmin
+class ScoreAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -16,7 +16,11 @@ class SeasonAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('race')
+            ->add('rider')
             ->add('name')
+            ->add('score')
+            ->add('time')
         ;
     }
 
@@ -27,9 +31,9 @@ class SeasonAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('name')
-            ->add('start', null, ['label' => 'Inicio'])
-            ->add('end', null, ['label' => 'Fin'])
-            ->add('circuits')
+            ->add('score')
+            ->add('race')
+            ->add('time')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -46,27 +50,11 @@ class SeasonAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('nameEN')
-//            ->add('description')
-//            ->add('descriptionEN')
-            ->add('start', null, ['label' => 'Inicio'])
-            ->add('end', null, ['label' => 'Fin'])
-            ->add('circuits', 'sonata_type_model', [
-                'multiple' => true,
-                'label' => 'Circuitos'
-            ],  [
-                    'btn_add' => true,
-                    'allow_add' => true
-                ]
-                )
-//            ->add('seoTitle')
-//            ->add('seoTitleEN')
-//            ->add('seoKeywords')
-//            ->add('seoKeywordsEN')
-            ->add('_order')
-//            ->add('createdAt')
-//            ->add('updatedAt')
+            ->add('rider', null, ['required' => true ])
+            ->add('score', null, ['required' => true] )
+            ->add('time', null, ['required' => true] )
+            //->add('race', null, ['required' => true ])
+            //->add('name','hidden')
         ;
     }
 
@@ -76,7 +64,20 @@ class SeasonAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
+            ->add('score')
+            ->add('time')
+            ->add('id')
             ->add('name')
+            ->add('nameEN')
+            ->add('description')
+            ->add('descriptionEN')
+            ->add('seoTitle')
+            ->add('seoTitleEN')
+            ->add('seoKeywords')
+            ->add('seoKeywordsEN')
+            ->add('_order')
+            ->add('createdAt')
+            ->add('updatedAt')
         ;
     }
 }

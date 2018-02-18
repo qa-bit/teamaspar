@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class TeamAdmin extends AbstractAdmin
+class RaceAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -17,6 +17,11 @@ class TeamAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
+            ->add('nameEN')
+            ->add('start')
+            ->add('end')
+            ->add('season')
+            ->add('circuit')
         ;
     }
 
@@ -27,8 +32,10 @@ class TeamAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('name')
-            ->add('description')
-            ->add('riderTeam')
+            ->add('season')
+            ->add('circuit')
+            ->add('start')
+            ->add('end')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -46,29 +53,24 @@ class TeamAdmin extends AbstractAdmin
     {
         $formMapper
             ->tab('Información')
-            ->with(null)
-            ->add('name')
-            ->add('teamCategory', null, ['required' => true])
-            ->add('riderTeam', null, ['required'=> false], ['required' => false ])
-            ->add('rider', null, ['required' => false], ['required' => false])
-            ->add('description',null, array(
-            ))
-            ->add('descriptionEN')
-            ->add('_order')
-            ->add('media', 'sonata_media_type', array(
-                'label' => 'Imágen de portada',
-                'provider' => 'sonata.media.provider.image',
-                'context'  => 'imagenes'
-            ))
-            ->end()
-            ->end()
-            ->tab('SEO')
-            ->with(null)
-            ->add('seoTitle')
-            ->add('seoTitleEN')
-            ->add('seoKeywords')
-            ->add('seoKeywordsEN')
-            ->end()
+                ->with(null)
+                    ->add('name')
+                    ->add('nameEN')
+                    ->add('start', null, [], ['container_class' => 'col-md-6'])
+                    ->add('end', null, [], ['container_classes' => 'col-md-6'])
+                    ->add('season', null, ['required' => true])
+                    ->add('circuit', null, ['required' => true])
+                    ->end()
+                ->end()
+            ->tab('Resultados')
+                ->with(null)
+                ->add('scores', 'sonata_type_collection', [],
+                    [
+                        'edit' => 'inline',
+                        'inline' => 'table'
+                    ]
+                    )
+                ->end()
             ->end();
     }
 
@@ -78,6 +80,9 @@ class TeamAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
+            ->add('start')
+            ->add('scores')
+            ->add('end')
             ->add('id')
             ->add('name')
             ->add('nameEN')
@@ -92,4 +97,17 @@ class TeamAdmin extends AbstractAdmin
             ->add('updatedAt')
         ;
     }
+
+    public function prePersist($object) {
+        foreach($object->getScores() as $score) {
+            $score->setRace($object);
+        }
+    }
+
+    public function preUpdate($object) {
+        foreach($object->getScores() as $score) {
+            $score->setRace($object);
+        }
+    }
+
 }

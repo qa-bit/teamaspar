@@ -116,8 +116,9 @@ sonata_block:
 
 
 ivory_ck_editor:
+    default_config: my_config
     configs:
         my_config:
             toolbar: [[ "Format", "Bold", "Italic", "Underline", "Strike", "size",'FontSize', 'TextColor', "Subscript", "Superscript", "-", "RemoveFormat", "NumberedList", "BulletedList", "-", "JustifyLeft","JustifyCenter","JustifyRight","JustifyBlock", "Outdent", "Indent", "-", "Blockquote" , "Link", "Unlink" ]]
-            language: 'en'
-            format_tags: 'p;h1;h2;h3;h4;div'
+            language: 'es'
+            format_tags: 'p;h1;h2;h3;h4;h5;h6;div'
