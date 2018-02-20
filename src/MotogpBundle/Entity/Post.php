@@ -11,6 +11,7 @@ use MotogpBundle\Entity\Traits\InModalityTrait;
 use MotogpBundle\Entity\Traits\HasMediaTrait;
 use MotogpBundle\Entity\Traits\InRiderTrait;
 use MotogpBundle\Entity\Traits\InSeasonTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Post
@@ -39,12 +40,9 @@ class Post
     }
 
     /**
-     * @var Media
+     * @var PostMedia
      *
-     * @ORM\OneToMany(targetEntity="Application\Sonata\MediaBundle\Entity\PostMedia", mappedBy="post")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="medias", referencedColumnName="id")
-     * })
+     * @ORM\OneToMany(targetEntity="Application\Sonata\MediaBundle\Entity\PostMedia", mappedBy="post", cascade={"all"}, orphanRemoval=true)
      */
     private $medias;
 
@@ -59,9 +57,9 @@ class Post
     /**
      * @param Media $medias
      */
-    public function setMedias($medias)
+    public function setMedia(PostMedia $media)
     {
-        $this->medias = $medias;
+        $this->medias = $media;
     }
 
     /**
@@ -69,6 +67,19 @@ class Post
      * @return $this
      */
     public function addMedia(PostMedia $media)
+    {
+        if (!$this->medias->contains($media)) {
+            $media->setPost($this);
+            $this->medias->add($media);
+        }
+    }
+
+
+    /**
+     * @param $category
+     * @return $this
+     */
+    public function addMedias(PostMedia $media)
     {
         if (!$this->medias->contains($media)) {
             $media->setPost($this);

@@ -24,23 +24,33 @@ class PostMedia extends BaseMedia
         $this->providerStatus = 1;
         $this->providerReference = "reference";
         $this->providerMetadata = [];
-        
+        $this->enabled = true;
         $this->name           = 'post-image-'.(new \DateTime())->format('ymdms');
-
-
-//        $media->setBinaryContent($url);
-//        $media->setProviderName('sonata.media.provider.image');
-//
-//        $this->getContainer()->get('sonata.media.manager.media')->save($media);
-//
-//        $instance->addMedia($media);
-
+        $this->featured = false;
     }
+
+
+    private $post;
 
     /**
      * @var int $id
      */
     protected $id;
+
+    /**
+     * @var string
+     */
+    private $uploadFile;
+
+    /**
+     * @var string
+     */
+    private $url;
+
+    /**
+     * @var boolean
+     */
+    private $featured;
 
 
     /**
@@ -53,15 +63,7 @@ class PostMedia extends BaseMedia
         return $this->id;
     }
 
-    /**
-     * @var Post
-     *
-     * @ORM\ManyToOne(targetEntity="Post", inversedBy="medias")
-     * @ORM\JoinColumns({
-     *     @ORM\JoinColumn(name="post", referencedColumnName="id")
-     * })
-     */
-    private $post;
+
 
     /**
      * @return Post
@@ -79,5 +81,52 @@ class PostMedia extends BaseMedia
         $this->post = $post;
     }
 
-    
+    /**
+     * @return string
+     */
+    public function getUploadFile()
+    {
+        return $this->uploadFile;
+    }
+
+    /**
+     * @param string $uploadFile
+     */
+    public function setUploadFile($uploadFile)
+    {
+        $this->uploadFile = $uploadFile;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isFeatured()
+    {
+        return $this->featured;
+    }
+
+    /**
+     * @param boolean $featured
+     */
+    public function setFeatured($featured)
+    {
+        $this->featured = $featured;
+    }
+
 }

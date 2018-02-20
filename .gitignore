@@ -17,3 +17,5 @@
 /web/bundles/
 .idea/*
 /web/uploads/media/*
+/src/MotogpBundle/Resources/public/vendor/*
+/web/uploads/

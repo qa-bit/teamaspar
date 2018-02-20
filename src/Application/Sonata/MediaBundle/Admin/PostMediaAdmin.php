@@ -50,27 +50,29 @@ class PostMediaAdmin extends AbstractAdmin
         $listMapper
 
             ->add('name')
-            ->add('description')
+            //->add('description')
             ->add('enabled')
-            ->add('providerName')
-            ->add('providerStatus')
+            //->add('providerName')
+            //->add('providerStatus')
             ->add('providerReference')
-            ->add('providerMetadata')
+            //->add('providerMetadata')
             ->add('width')
             ->add('height')
-            ->add('length')
-            ->add('contentType')
-            ->add('size')
-            ->add('copyright')
-            ->add('authorName')
-            ->add('context')
-            ->add('cdnIsFlushable')
-            ->add('cdnFlushIdentifier')
-            ->add('cdnFlushAt')
-            ->add('cdnStatus')
-            ->add('updatedAt')
-            ->add('createdAt')
-            ->add('id')
+            //->add('length')
+            //->add('contentType')
+            //->add('size')
+            //->add('copyright')
+            //->add('authorName')
+            //->add('context')
+                ->add('post')
+
+//            ->add('cdnIsFlushable')
+//            ->add('cdnFlushIdentifier')
+//            ->add('cdnFlushAt')
+//            ->add('cdnStatus')
+//            ->add('updatedAt')
+//            ->add('createdAt')
+//            ->add('id')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -86,21 +88,27 @@ class PostMediaAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+
+        $required = ($this->getSubject() === null || $this->getSubject()->getId() === null);
+
         $formMapper
-            ->add('name')
+            //->add('name')
+            //->add('description')
+            //->add('enabled')
+            //->add('providerName')
+            //->add('providerStatus')
             ->add('description')
-            ->add('enabled')
-            ->add('providerName')
-            ->add('providerStatus')
-            ->add('providerReference')
-            ->add('width')
-            ->add('height')
-            ->add('length')
-            ->add('contentType')
-            ->add('size')
-            ->add('uploadFile', FileType::class, ['mapped' => false])
-            ->add('authorName')
-            ->add('context')
+            ->add('url')
+            ->add('featured')
+            //->add('providerReference')
+            //->add('post', 'sonata_type_model')
+            //->add('width')
+            //->add('height')
+            //->add('length')
+            //->add('contentType')
+            ->add('uploadFile', 'text', ['required' => $required])
+            //->add('authorName')
+            //->add('context')
         ;
     }
 
@@ -137,24 +145,26 @@ class PostMediaAdmin extends AbstractAdmin
 
 
     public function saveHook($object) {
-        $uploadedFile = $this->getForm()->get('uploadFile')->getData();
-
-        if ($uploadedFile && ($path = $uploadedFile->getRealPath())) {
+        if ($object->getUploadFile()  && ($path = $object->getUploadFile())) {
             $media_sizes = getimagesize($path);
             $object->setWidth($media_sizes[0]);
             $object->setHeight($media_sizes[1]);
             $object->setBinaryContent($path);
-            //dump($object->getBox());
         }
+
+        return $object;
     }
 
+
+
     public function preUpdate($object) {
-        dump('preUpdate');
+        //dump('preUpdate');
         $this->saveHook($object);
     }
 
     public function prePersist($object) {
-        dump('prePersist');
+        //dump('postPersist');
         $this->saveHook($object);
     }
+
 }

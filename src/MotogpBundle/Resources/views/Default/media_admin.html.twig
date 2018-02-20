@@ -1,0 +1,45 @@
+<div id="post-medias" class="dropzone form-group" url="{{ oneup_uploader_endpoint('gallery') }}" multiple="true" maxfiles="8">
+    <div class="dz-default dz-message">
+        Pulsa aquí o arrastra una imagen
+    </div>
+</div>
+
+<div id="post-medias">
+    <div class="form-group">
+        {% set index = 0 %}
+        <div class="collection">
+            {% for media in form.vars.value %}
+                <div class="hidden collection-row well row col-md-12 form-group" path="{% path media, 'reference' %}" index="{{ index }}">
+                    <label>Descripción (ALT)</label>
+                    <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][description]" type="text" value="{{ media.description }}" />
+                    <label>Enlace</label>
+                    <input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][url]" type="text" value="{{ media.url }}" />
+                    {#<label>Destacada</label>#}
+                    {#<input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][featured]" type="checkbox" checked="{{ media.featured == true }}" />#}
+                </div>
+                {% set index = index + 1 %}
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+<div class="data-prototype" data-prototype='{% spaceless %}
+    <div class="hidden collection-row well row col-md-12 form-group" index="__index__">
+    <label>Descripción (ALT)</label>
+    <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[__index__][description]" type="text" />
+    <label>Enlace</label>
+    <input placeholder="Enlace" class="form-control" name="{{ form.vars.full_name }}[__index__][url]" type="text" />
+    {#<label>Destacada</label>#}
+    {#<input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[__index__][featured]" type="checkbox"/>#}
+    <input class="form-control uploadFile" name="{{ form.vars.full_name }}[__index__][uploadFile]" type="hidden"  />
+</div>
+{% endspaceless %}'>
+</div>
+
+
+
+<link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/dropzone/dist/min/basic.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/dropzone/dist/min/dropzone.min.css') }}" />
+<script src="{{ asset('bundles/motogp/vendor/node_modules/dropzone/dist/dropzone.js') }}"></script>
+<script src="{{ asset('bundles/motogp/js/admin/addMedia.js') }}"></script>

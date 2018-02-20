@@ -1,12 +1,16 @@
 services:
+    app.upload_listener:
+        class: AppBundle\EventListener\UploadListener
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
+
     motogp.admin.post:
         class: MotogpBundle\Admin\PostAdmin
         arguments: [~, MotogpBundle\Entity\Post, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Blog, label: Post }
         public: true
-
-
 
     motogp.admin.video:
         class: MotogpBundle\Admin\VideoAdmin

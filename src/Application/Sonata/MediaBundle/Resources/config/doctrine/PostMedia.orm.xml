@@ -17,5 +17,14 @@
             <generator strategy="AUTO"/>
         </id>
 
+        <field name="url" column="url" type="string" nullable="true"  />
+        <field name="featured" column="featured" type="boolean" nullable="true"  />
+
+        <many-to-one field="post" target-entity="MotogpBundle\Entity\Post">
+            <cascade>
+                <cascade-persist />
+            </cascade>
+        </many-to-one>
+
     </entity>
 </doctrine-mapping>

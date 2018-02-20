@@ -22,6 +22,10 @@ media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
 
+oneup_uploader:
+    resource: .
+    type: uploader
+
 _sonata_admin:
     resource: .
     type: sonata_admin

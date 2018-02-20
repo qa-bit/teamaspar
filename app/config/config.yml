@@ -122,3 +122,10 @@ ivory_ck_editor:
             toolbar: [[ "Format", "Bold", "Italic", "Underline", "Strike", "size",'FontSize', 'TextColor', "Subscript", "Superscript", "-", "RemoveFormat", "NumberedList", "BulletedList", "-", "JustifyLeft","JustifyCenter","JustifyRight","JustifyBlock", "Outdent", "Indent", "-", "Blockquote" , "Link", "Unlink" ]]
             language: 'es'
             format_tags: 'p;h1;h2;h3;h4;h5;h6;div'
+
+
+oneup_uploader:
+      mappings :
+         gallery :
+             frontend : dropzone
+             root_folder: true

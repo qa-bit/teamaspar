@@ -90,16 +90,12 @@ class PostAdmin extends AbstractAdmin
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'imagenes'
                 ))
-
-             ->add('medias', 'sonata_type_collection', array(), array(
-                 'edit' => 'inline',
-                 'inline' => 'table',
-                 'link_parameters' => array(
-                     'context' => 'imagenes',
-                     'provider' => 'sonata.media.provider.image'
-                 )
-             ))
-
+                ->add('medias', 'sonata_type_collection',[],
+                    [
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                    ]
+                    )
                 ->end()
                 ->end()
             ->tab('SEO')
@@ -132,5 +128,36 @@ class PostAdmin extends AbstractAdmin
             ->add('createdAt')
             ->add('updatedAt')
         ;
+    }
+
+
+    public function saveHook($object) {
+
+        $postMediaAdmin = $this
+            ->getConfigurationPool()
+            ->getAdminByAdminCode('motogp.admin.post_media');
+
+
+        foreach ($object->getMedias() as $m) {
+            $m->setPost($object);
+            $postMediaAdmin->saveHook($m);
+        }
+
+    }
+
+    public function preUpdate($object) {
+        $this->saveHook($object);
+    }
+
+    public function prePersist($object) {
+        $this->saveHook($object);
+    }
+
+    public function getFormTheme()
+    {
+        return array_merge(
+            parent::getFormTheme(),
+            array('MotogpBundle:Default:admin.theme.html.twig')
+        );
     }
 }
