@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
 use MotogpBundle\Entity\Modality;
-use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * ContentTrait
