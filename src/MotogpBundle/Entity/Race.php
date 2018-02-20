@@ -5,6 +5,7 @@ namespace MotogpBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
 use MotogpBundle\Entity\Traits\InCircuitTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
