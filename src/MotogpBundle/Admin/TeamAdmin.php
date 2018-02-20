@@ -2,6 +2,8 @@
 
 namespace MotogpBundle\Admin;
 
+use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
+use MotogpBundle\Entity\Traits\HasMediaGalleryTrait;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -10,6 +12,9 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class TeamAdmin extends AbstractAdmin
 {
+
+    use FeaturedMediaAdminTrait;
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -55,10 +60,9 @@ class TeamAdmin extends AbstractAdmin
             ))
             ->add('descriptionEN')
             ->add('_order')
-            ->add('media', 'sonata_media_type', array(
+            ->add('featuredMedia', 'sonata_type_admin', array(
                 'label' => 'Imágen de portada',
-                'provider' => 'sonata.media.provider.image',
-                'context'  => 'imagenes'
+                'required' => false,
             ))
             ->end()
             ->end()
@@ -92,4 +96,30 @@ class TeamAdmin extends AbstractAdmin
             ->add('updatedAt')
         ;
     }
+
+
+    public function saveHook($object) {
+
+        $this->saveFeaturedMedia($object);
+
+    }
+
+    public function preUpdate($object) {
+
+        $this->saveHook($object);
+    }
+
+    public function prePersist($object) {
+        $this->saveHook($object);
+    }
+
+    public function getFormTheme()
+    {
+        return array_merge(
+            parent::getFormTheme(),
+            array('MotogpBundle:Default:admin.theme.html.twig')
+        );
+    }
+
+
 }

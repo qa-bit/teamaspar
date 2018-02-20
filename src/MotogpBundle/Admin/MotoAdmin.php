@@ -42,15 +42,8 @@ class MotoAdmin extends AbstractAdmin
             ->add('name')
             ->add('nameEN')
             ->add('description')
-
             ->add('descriptionEN')
-            ->add('seoTitle')
-            ->add('seoTitleEN')
-            ->add('seoKeywords')
-            ->add('seoKeywordsEN')
             ->add('_order')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
