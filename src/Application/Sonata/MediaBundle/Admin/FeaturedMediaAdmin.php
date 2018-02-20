@@ -9,7 +9,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class PostMediaAdmin extends AbstractAdmin
+class FeaturedMediaAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -64,7 +64,7 @@ class PostMediaAdmin extends AbstractAdmin
             //->add('copyright')
             //->add('authorName')
             //->add('context')
-                ->add('post')
+
 
 //            ->add('cdnIsFlushable')
 //            ->add('cdnFlushIdentifier')
@@ -92,23 +92,11 @@ class PostMediaAdmin extends AbstractAdmin
         $required = ($this->getSubject() === null || $this->getSubject()->getId() === null);
 
         $formMapper
-            //->add('name')
-            //->add('description')
-            //->add('enabled')
-            //->add('providerName')
-            //->add('providerStatus')
             ->add('description')
             ->add('descriptionEN')
             ->add('url')
-            //->add('providerReference')
-            //->add('post', 'sonata_type_model')
-            //->add('width')
-            //->add('height')
-            //->add('length')
-            //->add('contentType')
             ->add('uploadFile', 'text', ['required' => $required])
-            //->add('authorName')
-            //->add('context')
+
         ;
     }
 
@@ -151,7 +139,6 @@ class PostMediaAdmin extends AbstractAdmin
             $object->setHeight($media_sizes[1]);
             $object->setBinaryContent($path);
         }
-
         return $object;
     }
 

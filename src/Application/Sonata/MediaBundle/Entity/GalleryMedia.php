@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * References:
  * @link http://www.doctrine-project.org/projects/orm/2.0/docs/reference/working-with-objects/en
  */
-class PostMedia extends BaseMedia
+class GalleryMedia extends BaseMedia
 {
 
     public function __construct()
@@ -25,7 +25,7 @@ class PostMedia extends BaseMedia
         $this->providerReference = "reference";
         $this->providerMetadata = [];
         $this->enabled = true;
-        $this->name           = 'post-image-'.(new \DateTime())->format('ymdms');
+        $this->name           = 'gallery-image-'.(new \DateTime())->format('ymdms');
         $this->featured = false;
     }
 
@@ -51,7 +51,6 @@ class PostMedia extends BaseMedia
      * @var string
      */
     private $descriptionEN;
-
 
     /**
      * @var integer
@@ -133,6 +132,22 @@ class PostMedia extends BaseMedia
     public function setDescriptionEN($descriptionEN)
     {
         $this->descriptionEN = $descriptionEN;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrder()
+    {
+        return $this->_order;
+    }
+
+    /**
+     * @param int $order
+     */
+    public function setOrder($order)
+    {
+        $this->_order = $order;
     }
     
 }

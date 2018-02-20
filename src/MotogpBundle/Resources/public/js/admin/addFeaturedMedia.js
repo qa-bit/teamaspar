@@ -1,39 +1,19 @@
 $(document).ready(function () {
-
-    Dropzone.autoDiscover = false;
-
-    var index = $('.collection .row').size();
-
-    var newMedia = function (imageUrl) {
-        var prototypeText = $('.data-prototype').attr('data-prototype').replace(/__index__/g, index);
-
-        var pt = $(prototypeText);
-
-        pt.find('.uploadFile').val(imageUrl);
-
-        $('.collection').append(pt);
-        index++;
-    };
-
-    //$('.add').click(newMedia);
-
-
-    $('.medias-dropzone').each(function () {
+    $('.featured-media-dropzone').each(function () {
 
         var url = $(this).attr('url');
-        var multiple = $(this).attr('multiple') === 'true';
-        var maxFiles = parseInt($(this).attr('maxfiles'));
+        var uploadFile = $('[data-field="uploadFile"]');
 
-        var inputs = $(this).parent().find('input');
+        var setImage = function (url) {
+            uploadFile.val(url);
+        };
 
-
-        var testImages = $(this).parent().find('.imgtest');
 
         var DZ = new Dropzone('#' + $(this).attr('id'), {
             url: url,
             timeout: 75000,
             uploadMultiple : false,
-            maxFiles: maxFiles,
+            maxFiles: 1,
             acceptedFiles: 'image/*',
             addRemoveLinks : true,
             dictDefaultMessage : "Arrastra imagenes aquí",
@@ -56,13 +36,10 @@ $(document).ready(function () {
 
                 this.on('addedfile', function (data, data2) {
 
-                    console.error('ADDEDFILE', data);
-
-                    $(data.previewElement).on('click', function () {
-                        $('.collection-row').addClass('hidden');
-                        $('.collection-row[index="'+ data.index + '"]').removeClass('hidden');
-                        $('.collection-row[index="'+ data.index + '"]').find('img').attr('src', data.dataURL)
-                    });
+                     $(data.previewElement).on('click', function () {
+                         $('.featured-media-description').removeClass('hidden');
+                         $('.featured-media-description').find('img').attr('src', data.dataURL);
+                     });
 
                     if (data.mock === true) {
                         this.files.push(data);
@@ -72,7 +49,8 @@ $(document).ready(function () {
                 });
 
                 this.on('removedfile', function (file, data) {
-                    $('.collection-row[index="'+ file.index +'"]').remove();
+                    uploadFile.val(null);
+                    $('.featured-media-description').addClass('hidden');
                 }) ;
 
                 this.on('maxfilesreached', function (file) {
@@ -83,8 +61,7 @@ $(document).ready(function () {
             success : function (file, data) {
                 if (typeof data.files.url != 'undefined')
                 {
-                    file.index = index;
-                    newMedia(data.files.url);
+                    setImage(data.files.url);
                 }
 
             },
@@ -93,42 +70,24 @@ $(document).ready(function () {
             }
         });
 
-        console.error('DZ', DZ);
 
-        var previous = $('.collection .row');
+        if ($('div[previous]').size()) {
 
-        if ( previous.size() ) {
-            var i = 0;
+            var previousValue = $('div[previous]').attr('previous');
 
-            previous.each(function () {
+            var mock = {'name': 'Foto de portada', size : null, mock : true};
 
-                var previousValue = $(this).attr('path');
 
-                if (previousValue) {
+            DZ.emit('addedfile', mock);
+            DZ.emit('thumbnail', mock, previousValue);
+            DZ.emit("complete",  mock);
 
-                    var mock = {'name': 'Foto' + i, size : null, index : i, mock : true};
 
-                    // console.error('index', mock.index);
+            DZ.emit('maxfilesreached', mock);
+            DZ.emit('maxfilesexceeded', mock);
 
-                    DZ.emit('addedfile', mock);
-                    DZ.emit('thumbnail', mock, previousValue);
-                    DZ.emit("complete",  mock);
-
-                    //console.error('maxfiles', DZ.options.maxFiles, i);
-
-                    if (DZ.options.maxFiles == i) {
-
-                        DZ.emit('maxfilesreached', mock);
-                        DZ.emit('maxfilesexceeded', mock);
-                    }
-                }
-
-                i++;
-            });
         }
 
 
     });
-
-
 });

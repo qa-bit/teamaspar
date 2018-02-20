@@ -17,5 +17,8 @@
             <generator strategy="AUTO"/>
         </id>
 
+        <field name="url" column="url" type="string" nullable="true"  />
+        <field name="descriptionEN" column="description_en" type="string" nullable="true"  />
+
     </entity>
 </doctrine-mapping>

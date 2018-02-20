@@ -82,6 +82,13 @@ swiftmailer:
     spool: { type: memory }
 
 
+assetic:
+    debug: '%kernel.debug%'
+    use_controller: true
+    filters:
+        scssphp:
+            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main

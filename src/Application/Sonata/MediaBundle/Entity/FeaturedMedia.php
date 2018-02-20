@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * References:
  * @link http://www.doctrine-project.org/projects/orm/2.0/docs/reference/working-with-objects/en
  */
-class PostMedia extends BaseMedia
+class FeaturedMedia extends BaseMedia
 {
 
     public function __construct()
@@ -30,7 +30,7 @@ class PostMedia extends BaseMedia
     }
 
 
-    private $owner;
+    private $post;
 
     /**
      * @var int $id
@@ -54,12 +54,6 @@ class PostMedia extends BaseMedia
 
 
     /**
-     * @var integer
-     */
-    private $_order;
-
-
-    /**
      * Get id.
      *
      * @return int $id
@@ -69,24 +63,7 @@ class PostMedia extends BaseMedia
         return $this->id;
     }
 
-
-
-    /**
-     * @return Post
-     */
-    public function getOwner()
-    {
-        return $this->owner;
-    }
-
-    /**
-     * @param Post $post
-     */
-    public function setOwner($owner)
-    {
-        $this->owner = $owner;
-    }
-
+    
     /**
      * @return string
      */

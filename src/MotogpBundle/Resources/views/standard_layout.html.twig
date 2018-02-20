@@ -74,3 +74,23 @@
 
     </style>
 {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets filter="scssphp" output="bundles/motogp/css/admin.css"
+    "bundles/motogp/scss/_variables.scss"
+    "bundles/motogp/scss/admin.scss"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/dropzone/dist/min/basic.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/dropzone/dist/min/dropzone.min.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/motogp/vendor/node_modules/dropzone/dist/dropzone.js') }}"></script>
+    <script>
+        Dropzone.autoDiscover = false;
+    </script>
+{% endblock %}

@@ -12,6 +12,13 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Blog, label: Post }
         public: true
 
+    motogp.admin.gallery:
+        class: MotogpBundle\Admin\GalleryAdmin
+        arguments: [~, MotogpBundle\Entity\Gallery, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Multimedia, label: Galerías }
+        public: true
+
     motogp.admin.video:
         class: MotogpBundle\Admin\VideoAdmin
         arguments: [~, MotogpBundle\Entity\Video, SonataAdminBundle:CRUD]
@@ -39,6 +46,20 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Equipo, label: Staff }
         public: true
+
+    motogp.admin.race:
+        class: MotogpBundle\Admin\RaceAdmin
+        arguments: [~, MotogpBundle\Entity\Race, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Carreras, label: Carreras }
+        public: true
+
+    motogp.admin.season:
+            class: MotogpBundle\Admin\SeasonAdmin
+            arguments: [~, MotogpBundle\Entity\Season, SonataAdminBundle:CRUD]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Carreras, label: Temporadas }
+            public: true
 
     motogp.admin.category:
         class: MotogpBundle\Admin\CategoryAdmin
@@ -90,19 +111,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Configuración, label: Moto }
         public: true
 
-    motogp.admin.race:
-        class: MotogpBundle\Admin\RaceAdmin
-        arguments: [~, MotogpBundle\Entity\Race, SonataAdminBundle:CRUD]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Carreras, label: Carreras }
-        public: true
 
-    motogp.admin.season:
-            class: MotogpBundle\Admin\SeasonAdmin
-            arguments: [~, MotogpBundle\Entity\Season, SonataAdminBundle:CRUD]
-            tags:
-                - { name: sonata.admin, manager_type: orm, group: Carreras, label: Temporadas }
-            public: true
 
     motogp.admin.score:
         class: MotogpBundle\Admin\ScoreAdmin
@@ -111,10 +120,23 @@ services:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Score, show_in_dashboard: false }
         public: true
 
-
     motogp.admin.post_media:
         class: Application\Sonata\MediaBundle\Admin\PostMediaAdmin
         arguments: [~, Application\Sonata\MediaBundle\Entity\PostMedia, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: PostMedia }
+            - { name: sonata.admin, manager_type: orm, group: admin, label: PostMedia, show_in_dashboard: false }
+        public: true
+
+    motogp.admin.gallery_media:
+        class: Application\Sonata\MediaBundle\Admin\GalleryMediaAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\GalleryMedia, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: GalleryMedia, show_in_dashboard: false }
+        public: true
+
+    motogp.admin.featured_media:
+        class: Application\Sonata\MediaBundle\Admin\FeaturedMediaAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\FeaturedMedia, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: FeaturedMedia, show_in_dashboard: false }
         public: true

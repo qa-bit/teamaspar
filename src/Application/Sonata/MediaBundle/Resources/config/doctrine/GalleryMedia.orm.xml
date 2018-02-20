@@ -9,8 +9,8 @@
             association mapping  : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en
     -->
     <entity
-        name="Application\Sonata\MediaBundle\Entity\PostMedia"
-        table="post_media__media"
+        name="Application\Sonata\MediaBundle\Entity\GalleryMedia"
+        table="gallery_media__media"
         >
 
         <id name="id" type="integer" column="id">
@@ -18,10 +18,10 @@
         </id>
 
         <field name="url" column="url" type="string" nullable="true"  />
-        <field name="_order" column="_order" type="integer" nullable="true"  />
         <field name="descriptionEN" column="description_en" type="string" nullable="true"  />
+        <field name="_order" column="_order" type="integer" nullable="true"  />
 
-        <many-to-one field="owner" target-entity="MotogpBundle\Entity\Post">
+        <many-to-one field="owner" target-entity="MotogpBundle\Entity\Gallery">
             <cascade>
                 <cascade-persist />
             </cascade>

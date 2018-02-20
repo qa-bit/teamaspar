@@ -11,7 +11,7 @@ use Sonata\FormatterBundle\Form\Type\SimpleFormatterType;
 use MotogpBundle\Admin\Media\HasMediasAdminTrait;
 use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
 
-class PostAdmin extends AbstractAdmin
+class GalleryAdmin extends AbstractAdmin
 {
 
 
@@ -24,6 +24,7 @@ class PostAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
+            ->add('modality')
         ;
     }
 
@@ -33,24 +34,12 @@ class PostAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            //->add('id')
             ->add('name')
+            ->add('modality')
             ->add('categories')
-            //->add('nameEN')
-            //->add('description')
-            //->add('descriptionEN')
-            //->add('seoTitle')
-            //->add('seoTitleEN')
-            //->add('seoKeywords')
-            //->add('seoKeywordsEN')
-            ->add('_order')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
-                    'delete' => array(),
+                    'edit' => array()
                 ),
             ))
         ;
@@ -64,37 +53,24 @@ class PostAdmin extends AbstractAdmin
         $formMapper
             ->tab('Información')
                 ->with(null)
-                        ->add('name')
+                        ->add('name',null, ['attr' => ['readonly' => true]])
                         ->add('nameEN')
-                        ->add('description', 'ckeditor', array(
-                            'label' => 'Contenido'
-                        ))
-                        ->add('descriptionEN', 'ckeditor', array(
-                            'label' => 'Contenido Inglés'
-                        ))
-                        ->add('modality', null,
-                            ['required' => true]
-                            )
-                        ->add('rider', null, ['required' => false])
-                        ->add('season', null, ['required' => true])
-                        ->add('circuit', null, [
-                            'label' => 'Circuito',
-                            'required' => false
-                        ])
+//                        ->add('modality', null,
+//                            [
+//                                'required' => true
+//                            ], [
+//                                'readonly' => true
+//                            ]
+//                            )
+//                        ->add('season', null, ['required' => true])
                         ->add('categories', 'sonata_type_model', [
                             'label' => 'Tags',
                             'multiple' => true
                         ])
-
-                        ->add('_order')
                     ->end()
                 ->end()
             ->tab('Imágenes')
                 ->with(null)
-                ->add('featuredMedia', 'sonata_type_admin', array(
-                    'label' => 'Imágen de portada',
-                    'required' => false,
-                ))
                 ->add('medias', 'sonata_type_collection',['label' => 'Imágenes',],
                     [
                         'edit' => 'inline',
@@ -109,6 +85,7 @@ class PostAdmin extends AbstractAdmin
                     ->add('seoTitleEN')
                     ->add('seoKeywords')
                     ->add('seoKeywordsEN')
+                    ->add('slug',null, ['attr' => ['readonly' => true]])
                 ->end()
             ->end()
         ;
@@ -139,7 +116,7 @@ class PostAdmin extends AbstractAdmin
 
     public function saveHook($object) {
 
-        $this->saveMedias($object, 'motogp.admin.post_media');
+        $this->saveMedias($object, 'motogp.admin.gallery_media');
         $this->saveFeaturedMedia($object);
 
     }

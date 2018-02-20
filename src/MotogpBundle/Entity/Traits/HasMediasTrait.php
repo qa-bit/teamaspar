@@ -8,7 +8,6 @@
 
 namespace MotogpBundle\Entity\Traits;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,7 +18,5 @@ use Application\Sonata\MediaBundle\Entity\Media;
  * ContentTrait
  */
 trait HasMediasTrait {
-
-  
 
 }

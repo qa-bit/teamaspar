@@ -16,18 +16,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Post
  *
- * @ORM\Table(name="post")
+ * @ORM\Table(name="gallery")
  * @ORM\Entity(repositoryClass="MotogpBundle\Repository\PostRepository")
  */
-class Post
+class Gallery
 {
     use
         ContentTrait,
         InCategoriesTrait,
         InModalityTrait,
         HasMediaTrait,
-        InRiderTrait,
-        InCircuitTrait,
         InSeasonTrait
     {
         InCategoriesTrait::__construct as inCategoriesTraitConstructor;
@@ -42,9 +40,16 @@ class Post
     /**
      * @var PostMedia
      *
-     * @ORM\OneToMany(targetEntity="Application\Sonata\MediaBundle\Entity\PostMedia", mappedBy="owner", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryMedia", mappedBy="owner", cascade={"all"}, orphanRemoval=true)
      */
     private $medias;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $slug;
 
     /**
      * @return Media
@@ -92,6 +97,22 @@ class Post
     {
         $this->categories->remove($category);
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
 }

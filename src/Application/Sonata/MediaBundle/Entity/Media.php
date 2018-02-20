@@ -19,6 +19,22 @@ class Media extends BaseMedia
      */
     protected $id;
 
+
+    /**
+     * @var string
+     */
+    private $uploadFile;
+
+    /**
+     * @var string
+     */
+    private $url;
+
+    /**
+     * @var string
+     */
+    private $descriptionEN;
+
     /**
      * Get id.
      *
@@ -28,4 +44,53 @@ class Media extends BaseMedia
     {
         return $this->id;
     }
+
+    /**
+     * @return string
+     */
+    public function getUploadFile()
+    {
+        return $this->uploadFile;
+    }
+
+    /**
+     * @param string $uploadFile
+     */
+    public function setUploadFile($uploadFile)
+    {
+        $this->uploadFile = $uploadFile;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescriptionEN()
+    {
+        return $this->descriptionEN;
+    }
+
+    /**
+     * @param string $descriptionEN
+     */
+    public function setDescriptionEN($descriptionEN)
+    {
+        $this->descriptionEN = $descriptionEN;
+    }
+    
 }

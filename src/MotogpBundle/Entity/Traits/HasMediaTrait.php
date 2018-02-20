@@ -9,11 +9,10 @@
 namespace MotogpBundle\Entity\Traits;
 
 
+use Application\Sonata\MediaBundle\Entity\FeaturedMedia;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
-use MotogpBundle\Entity\Modality;
-use Application\Sonata\MediaBundle\Entity\Media;
 
 /**
  * ContentTrait
@@ -21,25 +20,26 @@ use Application\Sonata\MediaBundle\Entity\Media;
 trait HasMediaTrait {
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\Media
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
+     * @var \Application\Sonata\MediaBundle\Entity\FeaturedMedia
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\FeaturedMedia", cascade={"persist"}, fetch="LAZY")
      */
-    protected $media;
+    protected $featuredMedia;
 
     /**
      * @param MediaInterface $media
      */
-    public function setMedia(MediaInterface $media)
+    public function setFeaturedMedia($featuredMedia)
     {
-        $this->media = $media;
+        $this->featuredMedia = $featuredMedia;
     }
 
     /**
      * @return MediaInterface
      */
-    public function getMedia()
+    public function getFeaturedMedia()
     {
-        return $this->media;
+        return $this->featuredMedia;
     }
+
 
 }
