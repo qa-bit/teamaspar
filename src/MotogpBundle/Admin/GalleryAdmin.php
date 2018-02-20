@@ -67,6 +67,7 @@ class GalleryAdmin extends AbstractAdmin
                             'label' => 'Tags',
                             'multiple' => true
                         ])
+                        ->add('circuit', 'sonata_type_model')
                     ->end()
                 ->end()
             ->tab('Imágenes')

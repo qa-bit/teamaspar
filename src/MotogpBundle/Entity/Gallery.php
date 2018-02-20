@@ -26,7 +26,8 @@ class Gallery
         InCategoriesTrait,
         InModalityTrait,
         HasMediaTrait,
-        InSeasonTrait
+        InSeasonTrait,
+        InCircuitTrait
     {
         InCategoriesTrait::__construct as inCategoriesTraitConstructor;
     }

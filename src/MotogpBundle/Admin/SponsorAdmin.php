@@ -2,6 +2,7 @@
 
 namespace MotogpBundle\Admin;
 
+use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -10,6 +11,8 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class SponsorAdmin extends AbstractAdmin
 {
+
+    use FeaturedMediaAdminTrait;
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -48,10 +51,9 @@ class SponsorAdmin extends AbstractAdmin
             ->add('name')
             ->add('description')
             ->add('descriptionEN')
-            ->add('media', 'sonata_media_type', array(
-                'label' => 'Logo',
-                'provider' => 'sonata.media.provider.image',
-                'context'  => 'imagenes'
+            ->add('featuredMedia', 'sonata_type_admin', array(
+                'label' => 'Imágen de portada',
+                'required' => false,
             ))
             ->add('webUrl')
             ->add('_order')
@@ -78,5 +80,28 @@ class SponsorAdmin extends AbstractAdmin
             ->add('createdAt')
             ->add('updatedAt')
         ;
+    }
+
+    public function saveHook($object) {
+
+        $this->saveFeaturedMedia($object);
+
+    }
+
+    public function preUpdate($object) {
+
+        $this->saveHook($object);
+    }
+
+    public function prePersist($object) {
+        $this->saveHook($object);
+    }
+
+    public function getFormTheme()
+    {
+        return array_merge(
+            parent::getFormTheme(),
+            array('MotogpBundle:Default:admin.theme.html.twig')
+        );
     }
 }
