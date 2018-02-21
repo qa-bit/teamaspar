@@ -61,7 +61,11 @@ class PostAdmin extends AbstractAdmin
                             [
                                 'required' => true,
                                 'label' => 'Fecha',
-                                'attr' => $mediumColumn
+                                'format'=>'dd/MM/yyyy',
+                                'attr' => array_merge($mediumColumn, ['data-date-format' => 'dd-mm-Y'])
+                            ],
+                            [
+                                'date-format' => 'D'
                             ]
                         )
                         ->add('modality', null,
