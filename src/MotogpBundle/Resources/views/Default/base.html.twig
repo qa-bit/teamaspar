@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+
+    {% if app.environment == 'dev' %}
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    {% endif %}
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"/>
+
+
+    {% stylesheets filter="scssphp" output="bundles/motogp/css/app.css"
+    "bundles/motogp/scss/_variables.scss"
+    "bundles/motogp/scss/main.scss"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('dmyhms') }}" />
+
+    {% endstylesheets %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/font-awesome/css/font-awesome.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/swiper/dist/css/swiper.min.css') }}" />
+    {% endblock %}
+    {% block meta %}
+    {% endblock %}
+</head>
+<body >
+{% block header %}
+    {% include "MotogpBundle:Default:header.html.twig" %}
+{% endblock  %}
+
+{% block afterheader %}
+{% endblock %}
+
+{% block body %}
+{% endblock %}
+</body>
+{% block javascripts %}
+    <script src="{{ asset('bundles/motogp/vendor/node_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/motogp/vendor/node_modules/jquery-lazy/jquery.lazy.min.js') }}"></script>
+    <script src="{{ asset('bundles/motogp/vendor/node_modules/swiper/dist/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('bundles/motogp/vendor/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/motogp/js/main.js') }}?v={{ "now" | date('dmyhms') }}"></script>
+{% endblock %}
+</html>
