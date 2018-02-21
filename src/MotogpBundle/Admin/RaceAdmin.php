@@ -60,8 +60,12 @@ class RaceAdmin extends AbstractAdmin
                     ->add('circuit', null, ['required' => true, 'attr' => $mediumColumn])
                     ->add('name')
                     ->add('nameEN')
-                    ->add('start', 'sonata_type_date_picker', ['attr' => $mediumColumn])
-                    ->add('end', 'sonata_type_date_picker', ['attr' => $mediumColumn])
+                    ->add('start', 'sonata_type_date_picker', [
+                        'format'=>'dd/MM/yyyy',
+                        'attr' => $mediumColumn])
+                    ->add('end', 'sonata_type_date_picker', [
+                        'format'=>'dd/MM/yyyy',
+                        'attr' => $mediumColumn])
 
                     ->end()
                 ->end()

@@ -49,8 +49,12 @@ class SeasonAdmin extends AbstractAdmin
         $formMapper
             ->add('name')
             ->add('nameEN')
-            ->add('start', 'sonata_type_date_picker', ['label' => 'Inicio', 'attr' => $mediumColumn] )
-            ->add('end', 'sonata_type_date_picker', ['label' => 'Fin', 'attr' => $mediumColumn] )
+            ->add('start', 'sonata_type_date_picker', [
+                'format'=>'dd/MM/yyyy',
+                'label' => 'Inicio', 'attr' => $mediumColumn] )
+            ->add('end', 'sonata_type_date_picker', [
+                'format'=>'dd/MM/yyyy',
+                'label' => 'Fin', 'attr' => $mediumColumn] )
             ->add('circuits', 'sonata_type_model', [
                 'multiple' => true,
                 'label' => 'Circuitos'
