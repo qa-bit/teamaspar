@@ -36,7 +36,7 @@ class GalleryAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('name')
-            ->add('modality')
+            ->add('circuit', null, ['label' => 'Circuito'])
             ->add('categories')
             ->add('_action', null, array(
                 'actions' => array(

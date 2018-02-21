@@ -31,6 +31,8 @@ class CircuitAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('name')
+            ->add('subtitle')
+            ->add('country')
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -47,6 +49,7 @@ class CircuitAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('name')
+            ->add('subtitle')
             ->add('country', CountryType::class, [
                 'preferred_choices' => ['ES']
             ])

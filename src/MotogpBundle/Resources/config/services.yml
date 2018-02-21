@@ -115,9 +115,8 @@ services:
         class: MotogpBundle\Admin\MotoAdmin
         arguments: [~, MotogpBundle\Entity\Moto, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Moto }
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Motos }
         public: true
-
 
 
     motogp.admin.score:

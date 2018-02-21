@@ -20,6 +20,7 @@
                             <input type="number" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][_order]" type="text" value="{{ media._order }}" />
                         </div>
                         <div class="col-xs-8">
+
                             <label>Descripción</label>
                             <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][description]" type="text" value="{{ media.description }}" />
                             <label>Descripción (Inglés)</label>
@@ -53,6 +54,7 @@
             <input type="number" class="form-control" name="{{ form.vars.full_name }}[__index__][_order]" type="text" />
         </div>
         <div class="col-xs-8">
+
             <label>Descripción </label>
             <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[__index__][description]" type="text" />
             <label>Descripción (Inglés)</label>
@@ -88,6 +90,8 @@
                             <input type="number" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][_order]" type="text" value="{{ media._order }}" />
                         </div>
                         <div class="col-xs-8">
+                            <label>Título</label>
+                            <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][title]" type="text" value="{{ media.title }}" />
                             <label>Descripción</label>
                             <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][description]" type="text" value="{{ media.description }}" />
                             <label>Descripción (Inglés)</label>
@@ -113,6 +117,8 @@
             <input type="number" class="form-control" name="{{ form.vars.full_name }}[__index__][_order]" type="text" />
         </div>
         <div class="col-xs-8">
+             <label>Título</label>
+            <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[__index__][title]" type="text" />
             <label>Descripción </label>
             <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[__index__][description]" type="text" />
             <label>Descripción (Inglés)</label>

@@ -24,6 +24,7 @@ class GalleryMediaAdmin extends PostMediaAdmin
             //->add('providerName')
             //->add('providerStatus')
             ->add('rider')
+            ->add('title')
         ;
     }
 

@@ -71,6 +71,11 @@ class GalleryMedia extends BaseMedia
     private $descriptionEN;
 
     /**
+     * @var string
+     */
+    private $title;
+
+    /**
      * @var integer
      */
     private $_order;
@@ -167,5 +172,22 @@ class GalleryMedia extends BaseMedia
     {
         $this->_order = $order;
     }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
     
+
 }
