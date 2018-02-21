@@ -1,39 +1,111 @@
-<div id="post-medias" class="dropzone form-group medias-dropzone" url="{{ oneup_uploader_endpoint('gallery') }}" multiple="true" maxfiles="8">
-    <div class="dz-default dz-message">
-        Pulsa aquí o arrastra imágenes
-    </div>
-</div>
 
-<div id="post-medias">
-    <div class="form-group">
-        {% set index = 0 %}
-        <div class="collection">
-            {% for media in form.vars.value %}
-                <div class="hidden collection-row well row col-md-12 form-group" path="{% path media, 'reference' %}" index="{{ index }}">
-                    <div class="col-xs-4">
-                        <img class="img img-responsive" src="{% path media, 'reference' %}"/>
-                        <label>Orden</label>
-                        <input type="number" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][_order]" type="text" value="{{ media._order }}" />
-                    </div>
-                    <div class="col-xs-8">
-                        <label>Descripción</label>
-                        <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][description]" type="text" value="{{ media.description }}" />
-                        <label>Descripción (Inglés)</label>
-                        <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][descriptionEN]" type="text" value="{{ media.descriptionEN }}" />
-                        <label>Enlace</label>
-                        <input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][url]" type="text" value="{{ media.url }}" />
-                    </div>
-                    {#<label>Destacada</label>#}
-                    {#<input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][featured]" type="checkbox" checked="{{ media.featured == true }}" />#}
-                </div>
-                {% set index = index + 1 %}
-            {% endfor %}
+{% if (sonata_admin.admin.code == 'motogp.admin.gallery') %}
+
+    {% set riders = sonata_admin.admin.getRiders() %}
+
+    <div id="post-medias" class="dropzone form-group medias-dropzone" url="{{ oneup_uploader_endpoint('gallery') }}" multiple="true" maxfiles="8">
+        <div class="dz-default dz-message">
+            Pulsa aquí o arrastra imágenes
         </div>
     </div>
+    <div id="post-medias">
+        <div class="form-group">
+            {% set index = 0 %}
+            <div class="collection">
+                {% for media in form.vars.value %}
+                    <div class="hidden collection-row well row col-md-12 form-group" path="{% path media, 'reference' %}" index="{{ index }}">
+                        <div class="col-xs-4">
+                            <img class="img img-responsive" src="{% path media, 'reference' %}"/>
+                            <label>Orden</label>
+                            <input type="number" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][_order]" type="text" value="{{ media._order }}" />
+                        </div>
+                        <div class="col-xs-8">
+                            <label>Descripción</label>
+                            <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][description]" type="text" value="{{ media.description }}" />
+                            <label>Descripción (Inglés)</label>
+                            <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][descriptionEN]" type="text" value="{{ media.descriptionEN }}" />
+                            <label>Enlace</label>
+                            <input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][url]" type="text" value="{{ media.url }}" />
+                            <label>Piloto</label>
+                            <select class="form-control" name="{{ form.vars.full_name }}[{{ index }}][rider]" type="text" value="{{ media.rider }}">
+                                {% for rider in riders %}
+                                    <option
+                                            {% if rider.id == media.rider.id %}selected {% endif %}
+                                            value="{{ rider.id }}">{{ rider.name }} {{ rider.surname }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        {#<label>Destacada</label>#}
+                        {#<input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][featured]" type="checkbox" checked="{{ media.featured == true }}" />#}
+                    </div>
+                    {% set index = index + 1 %}
+                {% endfor %}
+            </div>
+        </div>
 
-</div>
+    </div>
 
-<div class="data-prototype" data-prototype='{% spaceless %}
+    <div class="data-prototype" data-prototype='{% spaceless %}
+    <div class="hidden collection-row well row col-md-12 form-group" index="__index__">
+        <div class="col-xs-4">
+            <img class="img img-responsive" src="" />
+            <label>Orden</label>
+            <input type="number" class="form-control" name="{{ form.vars.full_name }}[__index__][_order]" type="text" />
+        </div>
+        <div class="col-xs-8">
+            <label>Descripción </label>
+            <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[__index__][description]" type="text" />
+            <label>Descripción (Inglés)</label>
+            <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[__index__][descriptionEN]" type="text" />
+            <label>Enlace</label>
+            <input placeholder="Enlace" class="form-control" name="{{ form.vars.full_name }}[__index__][url]" type="text" />
+            <input class="form-control uploadFile" name="{{ form.vars.full_name }}[__index__][uploadFile]" type="hidden"  />
+            <label>Piloto</label>
+             <select class="form-control" name="{{ form.vars.full_name }}[__index__][rider]" type="text">
+                                {% for rider in riders %}
+                                    <option  value="{{ rider.id }}">{{ rider.name }} {{ rider.surname }}</option>
+                                {% endfor %}
+                            </select>
+        </div>
+    </div>
+{% endspaceless %}'>
+    </div>
+{% else %}
+    <div id="post-medias" class="dropzone form-group medias-dropzone" url="{{ oneup_uploader_endpoint('gallery') }}" multiple="true" maxfiles="8">
+        <div class="dz-default dz-message">
+            Pulsa aquí o arrastra imágenes
+        </div>
+    </div>
+    <div id="post-medias">
+        <div class="form-group">
+            {% set index = 0 %}
+            <div class="collection">
+                {% for media in form.vars.value %}
+                    <div class="hidden collection-row well row col-md-12 form-group" path="{% path media, 'reference' %}" index="{{ index }}">
+                        <div class="col-xs-4">
+                            <img class="img img-responsive" src="{% path media, 'reference' %}"/>
+                            <label>Orden</label>
+                            <input type="number" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][_order]" type="text" value="{{ media._order }}" />
+                        </div>
+                        <div class="col-xs-8">
+                            <label>Descripción</label>
+                            <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][description]" type="text" value="{{ media.description }}" />
+                            <label>Descripción (Inglés)</label>
+                            <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][descriptionEN]" type="text" value="{{ media.descriptionEN }}" />
+                            <label>Enlace</label>
+                            <input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][url]" type="text" value="{{ media.url }}" />
+                        </div>
+                        {#<label>Destacada</label>#}
+                        {#<input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][featured]" type="checkbox" checked="{{ media.featured == true }}" />#}
+                    </div>
+                    {% set index = index + 1 %}
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="data-prototype" data-prototype='{% spaceless %}
     <div class="hidden collection-row well row col-md-12 form-group" index="__index__">
         <div class="col-xs-4">
             <img class="img img-responsive" src="" />
@@ -51,6 +123,7 @@
         </div>
     </div>
 {% endspaceless %}'>
-</div>
+    </div>
+{% endif %}
 
 <script src="{{ asset('bundles/motogp/js/admin/addMedia.js') }}"></script>

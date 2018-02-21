@@ -26,18 +26,9 @@ class RiderTeamAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            //->add('id')
             ->add('name')
             ->add('modality')
-            //->add('nameEN')
-            //->add('description')
-            //->add('descriptionEN')
-            //->add('seoTitle')
-            //->add('seoTitleEN')
-            //->add('seoKeywords')
-            //->add('seoKeywordsEN')
             ->add('_order')
-            ->add('createdAt')
             ->add('updatedAt')
             ->add('_action', null, array(
                 'actions' => array(

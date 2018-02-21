@@ -44,11 +44,10 @@ class PostAdmin extends AbstractAdmin
             //->add('seoKeywords')
             //->add('seoKeywordsEN')
             ->add('_order')
-            ->add('createdAt')
+            //->add('createdAt')
             ->add('updatedAt')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),

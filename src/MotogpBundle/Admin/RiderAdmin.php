@@ -37,8 +37,7 @@ class RiderAdmin extends AbstractAdmin
             ->add('riderTeam')
             ->add('riderTeam.modality')
             ->add('_order')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('moto')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -57,12 +56,17 @@ class RiderAdmin extends AbstractAdmin
         $formMapper
             ->tab('Información')
             ->with(null)
-            ->add('name')
-            ->add('surname')
-            ->add('birthDate', null, ['label' => 'Fecha de nacimiento'])
-            ->add('birthPlace', null, ['label' => 'Lugar de nacimiento'])
+            ->add('name', 'text', ['attr' => ['container_classes' => 'col-md-6'],])
+            ->add('surname', 'text',['attr' => ['container_classes' => 'col-md-6'],])
+            ->add('birthDate', null, ['label' => 'Fecha de nacimiento',
+                'attr' => ['container_classes' => 'col-md-6'],
+            ])
+            ->add('birthPlace', null, ['label' => 'Lugar de nacimiento',
+                'attr' => ['container_classes' => 'col-md-6'],
+            ])
+            ->add('moto', null, ['required' => true, 'attr' => ['container_classes' => 'col-md-6'],])
             ->add('riderTeam', null,
-                ['required' => true]
+                ['required' => true, 'attr' => ['container_classes' => 'col-md-6'],]
             )
 
             ->add('featuredMedia', 'sonata_type_admin', array(

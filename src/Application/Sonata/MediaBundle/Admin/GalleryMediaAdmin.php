@@ -12,4 +12,19 @@ use Application\Sonata\MediaBundle\Admin\PostMediaAdmin;
 
 class GalleryMediaAdmin extends PostMediaAdmin
 {
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+
+        parent::configureFormFields($formMapper);
+
+        $formMapper
+            //->add('name')
+            //->add('description')
+            //->add('enabled')
+            //->add('providerName')
+            //->add('providerStatus')
+            ->add('rider')
+        ;
+    }
+
 }

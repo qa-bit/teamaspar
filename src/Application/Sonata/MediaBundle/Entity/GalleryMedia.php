@@ -29,6 +29,24 @@ class GalleryMedia extends BaseMedia
         $this->featured = false;
     }
 
+    protected $rider;
+
+    /**
+     * @return mixed
+     */
+    public function getRider()
+    {
+        return $this->rider;
+    }
+
+    /**
+     * @param mixed $rider
+     */
+    public function setRider($rider)
+    {
+        $this->rider = $rider;
+    }
+
 
     private $owner;
 

@@ -11,6 +11,7 @@ use MotogpBundle\Entity\Traits\InModalityTrait;
 use MotogpBundle\Entity\Traits\HasMediaTrait;
 use MotogpBundle\Entity\Traits\InRiderTrait;
 use MotogpBundle\Entity\Traits\InSeasonTrait;
+use MotogpBundle\Entity\Traits\InRaceTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -27,7 +28,9 @@ class Gallery
         InModalityTrait,
         HasMediaTrait,
         InSeasonTrait,
-        InCircuitTrait
+        InCircuitTrait,
+        InRiderTrait,
+        InRaceTrait
     {
         InCategoriesTrait::__construct as inCategoriesTraitConstructor;
     }

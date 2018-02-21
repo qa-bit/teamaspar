@@ -8,6 +8,7 @@ use MotogpBundle\Entity\Traits\HasMediaTrait;
 use MotogpBundle\Entity\Traits\InModalityTrait;
 use MotogpBundle\Entity\Traits\InRiderTeamTrait;
 use MotogpBundle\Entity\Traits\InTeamCategoryTrait;
+use MotogpBundle\Entity\Traits\InMotoTrait;
 
 /**
  * Rider
@@ -17,7 +18,7 @@ use MotogpBundle\Entity\Traits\InTeamCategoryTrait;
  */
 class Rider
 {
-   use ContentTrait, InModalityTrait, InTeamCategoryTrait, InRiderTeamTrait, HasMediaTrait;
+   use ContentTrait, InModalityTrait, InTeamCategoryTrait, InRiderTeamTrait, HasMediaTrait, InMotoTrait;
 
 
    /**
@@ -249,6 +250,9 @@ class Rider
     * @ORM\OneToMany(targetEntity="Score", cascade={"persist"}, mappedBy="rider")
     */
    protected $scores;
+   
+   
+   
 
 
    /**

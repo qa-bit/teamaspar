@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\FormatterBundle\Form\Type\SimpleFormatterType;
 use MotogpBundle\Admin\Media\HasMediasAdminTrait;
 use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
+use MotogpBundle\Entity\Rider;
 
 class GalleryAdmin extends AbstractAdmin
 {
@@ -55,19 +56,16 @@ class GalleryAdmin extends AbstractAdmin
                 ->with(null)
                         ->add('name',null, ['attr' => ['readonly' => true]])
                         ->add('nameEN')
-//                        ->add('modality', null,
-//                            [
-//                                'required' => true
-//                            ], [
-//                                'readonly' => true
-//                            ]
-//                            )
-//                        ->add('season', null, ['required' => true])
                         ->add('categories', 'sonata_type_model', [
                             'label' => 'Tags',
                             'multiple' => true
                         ])
-                        ->add('circuit', 'sonata_type_model')
+                        ->add('circuit', null,
+                            [
+                                'label' => 'Circuito',
+                            ], ['btn_add' => false]
+                        )
+                        ->add('race', null, ['label' => 'Carrera'])
                     ->end()
                 ->end()
             ->tab('Imágenes')
@@ -137,5 +135,14 @@ class GalleryAdmin extends AbstractAdmin
             parent::getFormTheme(),
             array('MotogpBundle:Default:admin.theme.html.twig')
         );
+    }
+
+    public function getRiders() {
+        $container = $this->getConfigurationPool()->getContainer();
+        $em = $container->get('doctrine.orm.entity_manager');
+        $riders = $em->getRepository(Rider::class)->findAll();
+
+        return $riders;
+
     }
 }

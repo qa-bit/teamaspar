@@ -29,6 +29,7 @@ class VideoAdmin extends AbstractAdmin
         $listMapper
             //->add('id')
             ->add('name')
+            ->add('url')
             ->add('categories')
             ->add('description')
             //->add('nameEN')
@@ -39,11 +40,9 @@ class VideoAdmin extends AbstractAdmin
             //->add('seoKeywords')
             //->add('seoKeywordsEN')
             ->add('_order')
-            ->add('createdAt')
             ->add('updatedAt')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),
@@ -64,6 +63,7 @@ class VideoAdmin extends AbstractAdmin
             ->add('url')
             ->add('urlEN')
             ->add('type', null, ['attr' => ['value' => 'youtube']])
+            ->add('rider')
             ->add('description')
             ->add('descriptionEN')
             ->add('categories', 'sonata_type_model', [

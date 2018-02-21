@@ -12,20 +12,6 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Blog, label: Post }
         public: true
 
-    motogp.admin.gallery:
-        class: MotogpBundle\Admin\GalleryAdmin
-        arguments: [~, MotogpBundle\Entity\Gallery, SonataAdminBundle:CRUD]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Multimedia, label: Galerías }
-        public: true
-
-    motogp.admin.video:
-        class: MotogpBundle\Admin\VideoAdmin
-        arguments: [~, MotogpBundle\Entity\Video, SonataAdminBundle:CRUD]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Multimedia, label: Video }
-        public: true
-
     motogp.admin.rider_team:
         class: MotogpBundle\Admin\RiderTeamAdmin
         arguments: [~, MotogpBundle\Entity\RiderTeam, SonataAdminBundle:CRUD]
@@ -139,4 +125,18 @@ services:
         arguments: [~, Application\Sonata\MediaBundle\Entity\FeaturedMedia, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: FeaturedMedia, show_in_dashboard: false }
+        public: true
+
+    motogp.admin.gallery:
+        class: MotogpBundle\Admin\GalleryAdmin
+        arguments: [~, MotogpBundle\Entity\Gallery, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Multimedia, label: Galerías }
+        public: true
+
+    motogp.admin.video:
+        class: MotogpBundle\Admin\VideoAdmin
+        arguments: [~, MotogpBundle\Entity\Video, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Multimedia, label: Video }
         public: true

@@ -27,5 +27,11 @@
             </cascade>
         </many-to-one>
 
+        <many-to-one field="rider" target-entity="MotogpBundle\Entity\Rider" nullable="true">
+            <cascade>
+                <cascade-persist />
+            </cascade>
+        </many-to-one>
+
     </entity>
 </doctrine-mapping>
