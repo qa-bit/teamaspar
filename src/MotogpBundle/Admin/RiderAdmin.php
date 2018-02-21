@@ -57,7 +57,9 @@ class RiderAdmin extends AbstractAdmin
             ->with(null)
             ->add('name', 'text', ['attr' => ['container_classes' => 'col-md-6'],])
             ->add('surname', 'text',['attr' => ['container_classes' => 'col-md-6'],])
-            ->add('birthDate', 'sonata_type_date_picker', ['label' => 'Fecha de nacimiento',
+            ->add('birthDate', 'sonata_type_date_picker', [
+                'label' => 'Fecha de nacimiento',
+                'format'=>'dd/MM/yyyy',
                 'attr' => ['container_classes' => 'col-md-6'],
             ])
             ->add('birthPlace', null, ['label' => 'Lugar de nacimiento',
