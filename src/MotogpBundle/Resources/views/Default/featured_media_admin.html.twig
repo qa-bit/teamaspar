@@ -1,6 +1,6 @@
 {% set previous = null %}
 {% if form.vars.value is not null %}
-    <div previous="{% path form.vars.value, 'reference' %}"></div>
+    <div previous="{% path form.vars.value, 'icon' %}"></div>
 {% endif %}
 
 <div id="featured-medias" class="dropzone form-group featured-media-dropzone" url="{{ oneup_uploader_endpoint('gallery') }}" multiple="false" maxfiles="1">
