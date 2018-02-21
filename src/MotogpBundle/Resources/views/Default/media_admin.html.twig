@@ -81,7 +81,7 @@
             {% set index = 0 %}
             <div class="collection">
                 {% for media in form.vars.value %}
-                    <div class="hidden collection-row well row col-md-12 form-group" path="{% path media, 'reference' %}" index="{{ index }}">
+                    <div class="media-description hidden collection-row well row col-md-12 form-group" path="{% path media, 'reference' %}" index="{{ index }}">
                         <div class="col-xs-4">
                             <img class="img img-responsive" src="{% path media, 'reference' %}"/>
                             <label>Orden</label>

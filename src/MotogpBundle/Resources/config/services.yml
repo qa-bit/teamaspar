@@ -9,7 +9,7 @@ services:
         class: MotogpBundle\Admin\PostAdmin
         arguments: [~, MotogpBundle\Entity\Post, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Blog, label: Post }
+            - { name: sonata.admin, manager_type: orm, group: Blog, label: Publicaciones }
         public: true
 
     motogp.admin.rider_team:
@@ -133,6 +133,13 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Multimedia, label: Galerías }
         public: true
+
+    motogp.admin.slider:
+            class: MotogpBundle\Admin\SliderAdmin
+            arguments: [~, MotogpBundle\Entity\Gallery, SonataAdminBundle:CRUD]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Multimedia, label: Sliders }
+            public: true
 
     motogp.admin.video:
         class: MotogpBundle\Admin\VideoAdmin

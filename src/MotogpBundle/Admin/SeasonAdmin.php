@@ -27,12 +27,11 @@ class SeasonAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('name')
-            ->add('start', null, ['label' => 'Inicio'])
-            ->add('end', null, ['label' => 'Fin'])
+            ->add('start', null, ['label' => 'Inicio', 'format' => 'd-m-Y'])
+            ->add('end', null, ['label' => 'Fin', 'format' => 'd-m-Y'])
             ->add('circuits')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),
@@ -45,13 +44,13 @@ class SeasonAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $mediumColumn = ['container_classes' => 'col-md-6'];
+
         $formMapper
             ->add('name')
             ->add('nameEN')
-//            ->add('description')
-//            ->add('descriptionEN')
-            ->add('start', null, ['label' => 'Inicio'])
-            ->add('end', null, ['label' => 'Fin'])
+            ->add('start', 'sonata_type_date_picker', ['label' => 'Inicio', 'attr' => $mediumColumn] )
+            ->add('end', 'sonata_type_date_picker', ['label' => 'Fin', 'attr' => $mediumColumn] )
             ->add('circuits', 'sonata_type_model', [
                 'multiple' => true,
                 'label' => 'Circuitos'
@@ -64,7 +63,7 @@ class SeasonAdmin extends AbstractAdmin
 //            ->add('seoTitleEN')
 //            ->add('seoKeywords')
 //            ->add('seoKeywordsEN')
-            ->add('_order')
+
 //            ->add('createdAt')
 //            ->add('updatedAt')
         ;

@@ -49,22 +49,29 @@ class TeamAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $mediumColumn = ['container_classes' => 'col-md-6'];
         $formMapper
             ->tab('Información')
             ->with(null)
-            ->add('name')
-            ->add('teamCategory', null, ['required' => true])
-            ->add('riderTeam', null, ['required'=> false], ['required' => false ])
-            ->add('rider', null, ['required' => false], ['required' => false])
-            ->add('description',null, array(
+            ->add('name', null, ['label' => 'Nombre y apellidos'])
+            ->add('teamCategory', null, ['required' => true, 'attr' => $mediumColumn])
+            ->add('riderTeam', null, ['required' => false, 'attr' => $mediumColumn ])
+            ->add('rider', null,['required' => false, 'attr' => $mediumColumn])
+            ->add('_order', null, ['required' => false, 'attr' => $mediumColumn])
+            ->add('description','ckeditor', array(
             ))
-            ->add('descriptionEN')
-            ->add('_order')
-            ->add('featuredMedia', 'sonata_type_admin', array(
-                'label' => 'Imágen de portada',
-                'required' => false,
-            ))
+            ->add('descriptionEN', 'ckeditor')
+
+
             ->end()
+            ->end()
+            ->tab('Imágenes')
+                ->with(null)
+                    ->add('featuredMedia', 'sonata_type_admin', array(
+                        'label' => 'Imágen de portada',
+                        'required' => false,
+                    ))
+                    ->end()
             ->end()
             ->tab('SEO')
             ->with(null)

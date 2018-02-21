@@ -5,7 +5,7 @@
 "Category": Categorías
 "Modality": Modalidades
 "Modality List": Listado de modalidades
-"Action": Acción
+"Action": Acciones
 "Created At": Fecha de creación
 "Updated At": Fecha de actualización
 "Name": Nombre
@@ -25,7 +25,18 @@
 "Rider Team": "Equipo corredores"
 "Rider Team Modality": "Modalidad"
 "Rider List": "Lista de corredores"
-"Post": "Publicaciónes"
+"Post": "Publicaciones"
 "Team Category": "Categoría (equipo)"
 "Season": Temporada
 "Circuit": Circuito
+"Seo Title": Título
+"Seo Title E N": Título (Inglés)
+"Seo Keywords": Keywords
+"Seo Keywords E N": Keywords (Inglés)
+"Start": Inicio
+"End": Fin
+"Score": Puntuación
+"Time": Tiempo
+"Circuits": Circuitos
+"Country": País
+"Builder": Constructor

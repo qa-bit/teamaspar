@@ -37,6 +37,7 @@ class Post
     {
         $this->inCategoriesTraitConstructor();
         $this->medias = new ArrayCollection();
+        $this->publishedAt = new \DateTime();
     }
 
     /**
@@ -45,6 +46,14 @@ class Post
      * @ORM\OneToMany(targetEntity="Application\Sonata\MediaBundle\Entity\PostMedia", mappedBy="owner", cascade={"all"}, orphanRemoval=true)
      */
     private $medias;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $publishedAt;
 
     /**
      * @return Media
@@ -92,6 +101,24 @@ class Post
     {
         $this->categories->remove($category);
         return $this;
+    }
+
+    
+
+    /**
+     * @return \DateTime
+     */
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
+    }
+
+    /**
+     * @param \DateTime $publishedAt
+     */
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
     }
 
 }

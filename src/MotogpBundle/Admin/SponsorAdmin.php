@@ -49,8 +49,8 @@ class SponsorAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('name')
-            ->add('description')
-            ->add('descriptionEN')
+            ->add('description', 'ckeditor')
+            ->add('descriptionEN', 'ckeditor')
             ->add('featuredMedia', 'sonata_type_admin', array(
                 'label' => 'Imágen de portada',
                 'required' => false,

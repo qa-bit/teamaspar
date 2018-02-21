@@ -30,7 +30,6 @@ class TeamCategoryAdmin extends AbstractAdmin
             ->add('description')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),

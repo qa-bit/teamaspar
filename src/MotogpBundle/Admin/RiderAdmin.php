@@ -36,7 +36,6 @@ class RiderAdmin extends AbstractAdmin
             ->add('surname')
             ->add('riderTeam')
             ->add('riderTeam.modality')
-            ->add('_order')
             ->add('moto')
             ->add('_action', null, array(
                 'actions' => array(
@@ -58,7 +57,7 @@ class RiderAdmin extends AbstractAdmin
             ->with(null)
             ->add('name', 'text', ['attr' => ['container_classes' => 'col-md-6'],])
             ->add('surname', 'text',['attr' => ['container_classes' => 'col-md-6'],])
-            ->add('birthDate', null, ['label' => 'Fecha de nacimiento',
+            ->add('birthDate', 'sonata_type_date_picker', ['label' => 'Fecha de nacimiento',
                 'attr' => ['container_classes' => 'col-md-6'],
             ])
             ->add('birthPlace', null, ['label' => 'Lugar de nacimiento',
@@ -117,7 +116,9 @@ class RiderAdmin extends AbstractAdmin
                 'label' => 'Nº total de GPS disputados'])
             ->add('victoryList', 'ckeditor', [
                 'attr' => ['container_classes' => 'col-md-12'],
-                'label' => 'Palmáres deportivo'])
+                'label' => 'Palmáres deportivo',
+                'required' => false
+            ])
 
             ->add('firstRaceEN', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
@@ -155,7 +156,7 @@ class RiderAdmin extends AbstractAdmin
             ->add('gpssEN', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Nº total de GPS disputados (EN) '])
-            ->add('victoryListEN', 'ckeditor', ['label' => 'Palmarés deportivo (EN) '])
+            ->add('victoryListEN', 'ckeditor', ['label' => 'Palmarés deportivo (EN) ', 'required' => false])
             ->end()
             ->end()
             ->tab('SEO')

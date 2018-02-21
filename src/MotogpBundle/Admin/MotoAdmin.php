@@ -38,15 +38,11 @@ class MotoAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
             ->add('name')
-            ->add('nameEN')
-            ->add('description')
-            ->add('descriptionEN')
+            ->add('builder')
             ->add('_order')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),
@@ -60,17 +56,24 @@ class MotoAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            //->add('id')
-            ->add('name')
-            ->add('nameEN')
-            ->add('description')
-            ->add('descriptionEN')
-            ->add('builder', null, ['required' => true])
-            ->add('seoTitle')
-            ->add('seoTitleEN')
-            ->add('seoKeywords')
-            ->add('seoKeywordsEN')
-            ->add('_order')
+            ->tab('Información')
+                ->with(null)
+                ->add('builder', null, ['required' => true])
+                ->add('name')
+                ->add('nameEN')
+                ->add('description', 'ckeditor')
+                ->add('descriptionEN', 'ckeditor')
+                ->add('_order')
+            ->end()
+            ->end()
+            ->tab('Seo')
+            ->with(null)
+                ->add('seoTitle')
+                ->add('seoTitleEN')
+                ->add('seoKeywords')
+                ->add('seoKeywordsEN')
+            ->end()
+            ->end()
 //            ->add('createdAt')
 //            ->add('updatedAt')
         ;

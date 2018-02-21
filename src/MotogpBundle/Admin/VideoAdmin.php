@@ -55,17 +55,19 @@ class VideoAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $mediumColumn = ['container_classes' => 'col-md-6'];
+
         $formMapper
             ->tab('Información')
             ->with(null)
             ->add('name')
             ->add('nameEN')
-            ->add('url')
-            ->add('urlEN')
-            ->add('type', null, ['attr' => ['value' => 'youtube']])
-            ->add('rider')
-            ->add('description')
-            ->add('descriptionEN')
+            ->add('url', null, ['attr' => $mediumColumn])
+            ->add('urlEN', null, ['attr' => $mediumColumn])
+            ->add('type', null, ['attr' => array_merge(['value' => 'youtube'], $mediumColumn)])
+            ->add('rider', null, ['attr' => $mediumColumn])
+            ->add('description', 'ckeditor')
+            ->add('descriptionEN', 'ckeditor')
             ->add('categories', 'sonata_type_model', [
                 'label' => 'Tags',
                 'multiple' => true

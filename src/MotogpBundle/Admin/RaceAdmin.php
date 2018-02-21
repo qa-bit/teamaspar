@@ -34,11 +34,10 @@ class RaceAdmin extends AbstractAdmin
             ->add('name')
             ->add('season')
             ->add('circuit')
-            ->add('start')
-            ->add('end')
+            ->add('start', null, ['format' => 'd-m-Y'])
+            ->add('end', null, ['format' => 'd-m-Y'])
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),
@@ -51,15 +50,19 @@ class RaceAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+
+        $mediumColumn = ['container_classes' => 'col-md-6'];
+
         $formMapper
             ->tab('Información')
                 ->with(null)
+                    ->add('season', null, ['required' => true, 'attr' => $mediumColumn])
+                    ->add('circuit', null, ['required' => true, 'attr' => $mediumColumn])
                     ->add('name')
                     ->add('nameEN')
-                    ->add('start', null, [], ['container_class' => 'col-md-6'])
-                    ->add('end', null, [], ['container_classes' => 'col-md-6'])
-                    ->add('season', null, ['required' => true])
-                    ->add('circuit', null, ['required' => true])
+                    ->add('start', 'sonata_type_date_picker', ['attr' => $mediumColumn])
+                    ->add('end', 'sonata_type_date_picker', ['attr' => $mediumColumn])
+
                     ->end()
                 ->end()
             ->tab('Resultados')

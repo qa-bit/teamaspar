@@ -27,12 +27,9 @@ class RiderTeamAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('name')
-            ->add('modality')
-            ->add('_order')
-            ->add('updatedAt')
+            ->add('modality', null, ['label' => 'Modalidad'])
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),
@@ -50,10 +47,13 @@ class RiderTeamAdmin extends AbstractAdmin
             ->with(null)
             ->add('name')
             ->add('nameEN')
-            ->add('description')
-            ->add('descriptionEN')
+            ->add('description', 'ckeditor')
+            ->add('descriptionEN', 'ckeditor')
             ->add('modality', null,
-                ['required' => true]
+                [
+                    'required' => true,
+                    'label' => 'Modalidad'
+                ]
             )
             ->add('_order')
             ->end()

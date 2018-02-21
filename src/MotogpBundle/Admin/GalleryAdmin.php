@@ -54,7 +54,7 @@ class GalleryAdmin extends AbstractAdmin
         $formMapper
             ->tab('Información')
                 ->with(null)
-                        ->add('name',null, ['attr' => ['readonly' => true]])
+                        ->add('name')
                         ->add('nameEN')
                         ->add('categories', 'sonata_type_model', [
                             'label' => 'Tags',
@@ -144,5 +144,15 @@ class GalleryAdmin extends AbstractAdmin
 
         return $riders;
 
+    }
+
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        $query->andWhere(
+            $query->expr()->isNull($query->getRootAliases()[0] . '.slug')
+        );
+
+        return $query;
     }
 }

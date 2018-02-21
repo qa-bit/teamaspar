@@ -7,9 +7,13 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
 
 class CircuitAdmin extends AbstractAdmin
 {
+
+    use FeaturedMediaAdminTrait;
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -29,7 +33,6 @@ class CircuitAdmin extends AbstractAdmin
             ->add('name')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),
@@ -44,6 +47,13 @@ class CircuitAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('name')
+            ->add('country', CountryType::class, [
+                'preferred_choices' => ['ES']
+            ])
+            ->add('featuredMedia', 'sonata_type_admin', array(
+                'label' => 'Imágen de portada',
+                'required' => false,
+            ))
         ;
     }
 
@@ -56,4 +66,28 @@ class CircuitAdmin extends AbstractAdmin
             ->add('id')
         ;
     }
+
+    public function saveHook($object) {
+
+        $this->saveFeaturedMedia($object);
+
+    }
+
+    public function preUpdate($object) {
+
+        $this->saveHook($object);
+    }
+
+    public function prePersist($object) {
+        $this->saveHook($object);
+    }
+
+    public function getFormTheme()
+    {
+        return array_merge(
+            parent::getFormTheme(),
+            array('MotogpBundle:Default:admin.theme.html.twig')
+        );
+    }
+
 }

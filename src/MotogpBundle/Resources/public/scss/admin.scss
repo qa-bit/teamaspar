@@ -1,2 +1,54 @@
 @import "variables";
 @import "dropzone";
+
+.featured-media-description .well, .media-description {
+  background: white;
+  border-top: 0;
+  position: relative;
+  top: -.33em;
+  box-shadow: -1px 5px 18px 3px #b7b7b7;
+}
+
+.sticky-wrapper {
+  .navbar {
+    background : #564FC1;
+    a, a:hover, li a, li a:hover {
+      color : white;
+    }
+
+    .dropdown-menu li a {
+      color : black;
+    }
+  }
+}
+
+.btn-success {
+  background : $metronic_green;
+}
+
+.btn {
+  border-radius : 10px;
+  padding-left : 1em;
+  padding-right : 1em;
+  border : none !important;
+}
+
+.sonata-ba-list-field-header th {
+  padding : 2em !important;
+}
+
+.skin-black .sidebar-menu>li>.treeview-menu {
+  background : #ecf0f5;
+  a {
+    color : #444;
+  }
+}
+
+.skin-black .sidebar-menu>li.active  li.active {
+  background: rgba(0, 0, 0, 0.02);
+  font-weight: bold;
+}
+
+.nav.navbar-right.btn-group {
+  display : none;
+}

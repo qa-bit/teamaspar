@@ -33,19 +33,10 @@ class PostAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            //->add('id')
             ->add('name')
-            ->add('categories')
-            //->add('nameEN')
-            //->add('description')
-            //->add('descriptionEN')
-            //->add('seoTitle')
-            //->add('seoTitleEN')
-            //->add('seoKeywords')
-            //->add('seoKeywordsEN')
-            ->add('_order')
-            //->add('createdAt')
-            ->add('updatedAt')
+            ->add('modality', null, ['label' => 'Modalidad'])
+            ->add('categories', null, ['label' => 'Tags'])
+            ->add('publishedAt', 'date', ['label' => 'Fecha', 'format' => 'd-m-Y'])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -60,20 +51,35 @@ class PostAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+
+        $mediumColumn = ['container_classes' => 'col-md-6'];
+
         $formMapper
             ->tab('Información')
                 ->with(null)
-                        ->add('name')
-                        ->add('nameEN')
+                        ->add('publishedAt', 'sonata_type_date_picker',
+                            [
+                                'required' => true,
+                                'label' => 'Fecha',
+                                'attr' => $mediumColumn
+                            ]
+                        )
+                        ->add('modality', null,
+                            [
+                                'required' => true,
+                                'label' => 'Modalidad',
+                                'attr' => $mediumColumn
+                            ]
+                        )
+                        ->add('name', null, ['label' => 'Título'])
+                        ->add('nameEN', null, ['label' => 'Título (Inglés)'])
                         ->add('description', 'ckeditor', array(
                             'label' => 'Contenido'
                         ))
                         ->add('descriptionEN', 'ckeditor', array(
                             'label' => 'Contenido Inglés'
                         ))
-                        ->add('modality', null,
-                            ['required' => true]
-                            )
+
                         ->add('rider', null, ['required' => false])
                         ->add('season', null, ['required' => true])
                         ->add('circuit', null, [
@@ -85,7 +91,7 @@ class PostAdmin extends AbstractAdmin
                             'multiple' => true
                         ])
 
-                        ->add('_order')
+                        ->add('_order', 'hidden')
                     ->end()
                 ->end()
             ->tab('Imágenes')
