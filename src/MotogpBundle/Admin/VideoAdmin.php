@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use MotogpBundle\Entity\Rider;
 
 class VideoAdmin extends AbstractAdmin
 {
@@ -65,7 +66,20 @@ class VideoAdmin extends AbstractAdmin
             ->add('url', null, ['attr' => $mediumColumn])
             ->add('urlEN', null, ['attr' => $mediumColumn])
             ->add('type', null, ['attr' => array_merge(['value' => 'youtube'], $mediumColumn)])
-            ->add('rider', null, ['attr' => $mediumColumn])
+            ->add('rider', null,
+                [
+                    'class' => Rider::class,
+                    'query_builder' => function ($qb) {
+                        $b = $qb->createQueryBuilder('s')
+                            ->innerJoin('s.riderTeam', 'r')
+                            ->where('r.main IS NOT NULL');
+
+                        return $b;
+                    },
+                    'required' => true,
+                    'attr' => ['container_classes' => 'col-md-6']
+                ], ['admin_code' => 'motogp.admin.rider']
+            )
             ->add('description', 'ckeditor')
             ->add('descriptionEN', 'ckeditor')
             ->add('categories', 'sonata_type_model', [

@@ -23,5 +23,29 @@ class Team
        InRiderTeamTrait,
        InRiderTrait,
        HasMediaTrait;
+
+   /**
+    * @var string
+    *
+    * @ORM\Column(type="string", nullable=false)
+    */
+   private $country;
+
+   /**
+    * @return string
+    */
+   public function getCountry()
+   {
+      return $this->country;
+   }
+
+   /**
+    * @param string $country
+    */
+   public function setCountry($country)
+   {
+      $this->country = $country;
+   }
+   
 }
 

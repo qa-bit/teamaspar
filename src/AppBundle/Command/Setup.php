@@ -9,6 +9,7 @@
 
 namespace AppBundle\Command;
 
+use MotogpBundle\Entity\RiderTeam;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -49,8 +50,7 @@ class Setup extends ContainerAwareCommand
         }
 
         $em->flush();
-
-
+        
         foreach ($galleries as $g) {
             foreach ($modalities as $m) {
                 $mod = $em->getRepository(Modality::class)->findOneByName($m);
@@ -73,6 +73,20 @@ class Setup extends ContainerAwareCommand
 
         $em->flush();
 
+        $mt = $em->getRepository(RiderTeam::class)->findOneByMain(true);
+
+        if ($mt === null) {
+            $mt = new RiderTeam();
+
+            $mt->setName('Ángel Nieto Team');
+            $mt->setNameEN('Ángel Nieto Team');
+            $mt->setMain(true);
+
+            $em->persist($mt);
+
+            $em->flush();
+
+        }
 
     }
 }

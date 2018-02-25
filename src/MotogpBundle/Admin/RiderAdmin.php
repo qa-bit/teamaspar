@@ -3,11 +3,13 @@
 namespace MotogpBundle\Admin;
 
 use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
+use MotogpBundle\Entity\RiderTeam;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 
 class RiderAdmin extends AbstractAdmin
 {
@@ -34,8 +36,8 @@ class RiderAdmin extends AbstractAdmin
             //->add('id')
             ->add('name')
             ->add('surname')
-            ->add('riderTeam')
-            ->add('riderTeam.modality')
+            ->add('riderTeam', null, ['admin_code' => 'motogp.admin.rider_team'])
+            ->add('modality')
             ->add('moto')
             ->add('_action', null, array(
                 'actions' => array(
@@ -65,17 +67,33 @@ class RiderAdmin extends AbstractAdmin
             ->add('birthPlace', null, ['label' => 'Lugar de nacimiento',
                 'attr' => ['container_classes' => 'col-md-6'],
             ])
+            ->add('country', CountryType::class, ['label' => 'País',
+                'attr' => ['container_classes' => 'col-md-6'],
+            ])
+            ->add('modality', null, ['label' => 'Modalidad', 'required' => true, 'attr' => ['container_classes' => 'col-md-6']])
             ->add('moto', null, ['required' => true, 'attr' => ['container_classes' => 'col-md-6'],])
             ->add('riderTeam', null,
-                ['required' => true, 'attr' => ['container_classes' => 'col-md-6'],]
+                [
+                    'class' => RiderTeam::class,
+                    'query_builder' => function ($qb) {
+                        $b = $qb->createQueryBuilder('s')->where('s.main = :m')
+                            ->setParameter('m', '1')
+
+                        ;
+
+                       return $b;
+                    },
+                    'required' => true,
+                    'attr' => ['container_classes' => 'col-md-6']
+                ], ['admin_code' => 'motogp.admin.rider_team']
             )
+            ->add('_order', null, ['attr' => ['container_classes' => 'col-md-6']])
 
             ->add('featuredMedia', 'sonata_type_admin', array(
                 'label' => 'Imágen de portada',
                 'required' => false,
             ))
 
-            ->add('_order')
             ->end()
             ->end()
             ->tab('Currículum')
@@ -197,6 +215,7 @@ class RiderAdmin extends AbstractAdmin
     public function saveHook($object) {
         
         $this->saveFeaturedMedia($object);
+        $object->setExternal(false);
 
     }
 
@@ -216,4 +235,17 @@ class RiderAdmin extends AbstractAdmin
             array('MotogpBundle:Default:admin.theme.html.twig')
         );
     }
+
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        $query->innerJoin($query->getRootAliases()[0] . '.riderTeam', 'r')
+            ->andWhere('r.main = :m')
+            ->setParameter('m', '1');
+
+
+
+        return $query;
+    }
+
 }

@@ -140,7 +140,7 @@ class GalleryAdmin extends AbstractAdmin
     public function getRiders() {
         $container = $this->getConfigurationPool()->getContainer();
         $em = $container->get('doctrine.orm.entity_manager');
-        $riders = $em->getRepository(Rider::class)->findAll();
+        $riders = $em->getRepository(Rider::class)->findInternalRiders();
 
         return $riders;
 

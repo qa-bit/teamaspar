@@ -8,8 +8,14 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class RiderTeamAdmin extends AbstractAdmin
+class RiderTeamExternalAdmin extends AbstractAdmin
 {
+
+
+    protected $baseRoutePattern = 'riderteam-external-admin';
+    protected $baseRouteName = 'riderteam-external-admin';
+    protected $classNameLabel = "RiderTeam external";
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -90,9 +96,9 @@ class RiderTeamAdmin extends AbstractAdmin
     {
         $query = parent::createQuery($context);
         $query->andWhere(
-            $query->expr()->isNotNull($query->getRootAliases()[0] . '.main')
+            $query->expr()->isNull($query->getRootAliases()[0] . '.main')
         );
-        
+
         return $query;
     }
 

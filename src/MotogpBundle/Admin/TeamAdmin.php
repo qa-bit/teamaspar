@@ -9,6 +9,9 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use MotogpBundle\Entity\RiderTeam;
+use MotogpBundle\Entity\Rider;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 
 class TeamAdmin extends AbstractAdmin
 {
@@ -33,7 +36,6 @@ class TeamAdmin extends AbstractAdmin
         $listMapper
             ->add('name')
             ->add('description')
-            ->add('riderTeam')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -55,8 +57,38 @@ class TeamAdmin extends AbstractAdmin
             ->with(null)
             ->add('name', null, ['label' => 'Nombre y apellidos'])
             ->add('teamCategory', null, ['required' => true, 'attr' => $mediumColumn])
-            ->add('riderTeam', null, ['required' => false, 'attr' => $mediumColumn ])
-            ->add('rider', null,['required' => false, 'attr' => $mediumColumn])
+            ->add('country', CountryType::class, ['label' => 'País',
+                'attr' => ['container_classes' => 'col-md-6'],
+            ])
+            ->add('riderTeam', null,
+                [
+                    'class' => RiderTeam::class,
+                    'query_builder' => function ($qb) {
+                        $b = $qb->createQueryBuilder('s')->where('s.main = :m')
+                            ->setParameter('m', '1')
+
+                        ;
+
+                        return $b;
+                    },
+                    'required' => true,
+                    'attr' => ['container_classes' => 'hidden']
+                ], ['admin_code' => 'motogp.admin.rider_team']
+            )
+            ->add('rider', null,
+                [
+                    'class' => Rider::class,
+                    'query_builder' => function ($qb) {
+                        $b = $qb->createQueryBuilder('s')
+                            ->innerJoin('s.riderTeam', 'r')
+                            ->where('r.main IS NOT NULL');
+
+                        return $b;
+                    },
+                    'required' => true,
+                    'attr' => ['container_classes' => 'col-md-6']
+                ], ['admin_code' => 'motogp.admin.rider']
+            )
             ->add('_order', null, ['required' => false, 'attr' => $mediumColumn])
             ->add('description','ckeditor', array(
             ))

@@ -19,11 +19,26 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Equipo, label: Equipos }
         public: true
 
+    motogp.admin.rider_team_external:
+        class: MotogpBundle\Admin\RiderTeamExternalAdmin
+        arguments: [~, MotogpBundle\Entity\RiderTeam, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Equipo externo }
+        public: true
+
     motogp.admin.rider:
         class: MotogpBundle\Admin\RiderAdmin
         arguments: [~, MotogpBundle\Entity\Rider, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Equipo, label: Corredores }
+            - { name: sonata.admin, manager_type: orm, group: Equipo, label: Pilotos }
+        public: true
+
+
+    motogp.admin.rider_external:
+        class: MotogpBundle\Admin\RiderExternalAdmin
+        arguments: [~, MotogpBundle\Entity\Rider, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Piloto externo }
         public: true
 
     motogp.admin.team:
@@ -72,8 +87,7 @@ services:
         class: MotogpBundle\Admin\CategoryAdmin
         arguments: [~, MotogpBundle\Entity\Category, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Tags }
-        public: true
+            - { name: sonata.admin, manager_type: orm, group: Configuración, label: Tags, show_in_dashboard: false }
 
     motogp.admin.modality:
         class: MotogpBundle\Admin\ModalityAdmin

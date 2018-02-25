@@ -50,7 +50,7 @@ class ScoreAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('rider', null, ['required' => true ])
+            ->add('rider', null, ['required' => true], ['admin_code' => 'motogp.admin.rider'])
             ->add('score', null, ['required' => true] )
             ->add('time', null, ['required' => true] )
             //->add('race', null, ['required' => true ])

@@ -10,4 +10,13 @@ namespace MotogpBundle\Repository;
  */
 class RiderRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findInternalRiders()
+    {
+        return $this->createQueryBuilder('r')
+            ->innerJoin('r.riderTeam', 'rt')
+            ->where('rt.main IS NOT NULL')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

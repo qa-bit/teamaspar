@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\FormatterBundle\Form\Type\SimpleFormatterType;
 use MotogpBundle\Admin\Media\HasMediasAdminTrait;
 use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
+use MotogpBundle\Entity\Rider;
 
 class PostAdmin extends AbstractAdmin
 {
@@ -84,7 +85,20 @@ class PostAdmin extends AbstractAdmin
                             'label' => 'Contenido Inglés'
                         ))
 
-                        ->add('rider', null, ['required' => false])
+                        ->add('rider', null,
+                            [
+                                'class' => Rider::class,
+                                'query_builder' => function ($qb) {
+                                    $b = $qb->createQueryBuilder('s')
+                                        ->innerJoin('s.riderTeam', 'r')
+                                        ->where('r.main IS NOT NULL');
+
+                                    return $b;
+                                },
+                                'required' => true,
+                                'attr' => ['container_classes' => 'col-md-6']
+                            ], ['admin_code' => 'motogp.admin.rider']
+                        )
                         ->add('season', null, ['required' => true])
                         ->add('circuit', null, [
                             'label' => 'Circuito',

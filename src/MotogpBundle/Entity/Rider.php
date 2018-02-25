@@ -18,7 +18,13 @@ use MotogpBundle\Entity\Traits\InMotoTrait;
  */
 class Rider
 {
-   use ContentTrait, InModalityTrait, InTeamCategoryTrait, InRiderTeamTrait, HasMediaTrait, InMotoTrait;
+   use
+       ContentTrait,
+       InModalityTrait,
+       InTeamCategoryTrait,
+       InRiderTeamTrait,
+       HasMediaTrait,
+       InMotoTrait;
 
 
    /**
@@ -41,6 +47,13 @@ class Rider
     * @ORM\Column(type="string", nullable=true)
     */
    private $birthPlace;
+   
+   /**
+    * @var string
+    *
+    * @ORM\Column(type="string", nullable=false)
+    */
+   private $country;
 
 
    /**
@@ -250,9 +263,13 @@ class Rider
     * @ORM\OneToMany(targetEntity="Score", cascade={"persist"}, mappedBy="rider")
     */
    protected $scores;
-   
-   
-   
+
+
+   /**
+    * @var boolean
+    * @ORM\Column(type="boolean", nullable=true)
+    */
+   protected $external;
 
 
    /**
@@ -734,5 +751,39 @@ class Rider
    {
       $this->scores = $scores;
    }
+
+   /**
+    * @return boolean
+    */
+   public function isExternal()
+   {
+      return $this->external;
+   }
+
+   /**
+    * @param boolean $external
+    */
+   public function setExternal($external)
+   {
+      $this->external = $external;
+   }
+
+   /**
+    * @return string
+    */
+   public function getCountry()
+   {
+      return $this->country;
+   }
+
+   /**
+    * @param string $country
+    */
+   public function setCountry($country)
+   {
+      $this->country = $country;
+   }
+
+
 }
 
