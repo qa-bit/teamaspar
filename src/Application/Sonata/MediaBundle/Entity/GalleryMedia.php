@@ -19,7 +19,7 @@ class GalleryMedia extends BaseMedia
 
     public function __construct()
     {
-        $this->context        = 'imagenes';
+        $this->context        = 'gallery';
         $this->providerName   = 'sonata.media.provider.image';
         $this->providerStatus = 1;
         $this->providerReference = "reference";

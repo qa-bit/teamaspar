@@ -95,6 +95,7 @@ class FeaturedMediaAdmin extends AbstractAdmin
             ->add('description')
             ->add('descriptionEN')
             ->add('url')
+            ->add('enabled')
             ->add('uploadFile', 'text', ['required' => $required])
 
         ;
@@ -131,6 +132,10 @@ class FeaturedMediaAdmin extends AbstractAdmin
         ;
     }
 
+
+    public function deleteHook($object) {
+        $object = null;
+    }
 
     public function saveHook($object) {
         if ($object->getUploadFile()  && ($path = $object->getUploadFile())) {

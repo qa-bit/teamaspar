@@ -65,6 +65,50 @@ sonata_media:
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr it is mandatory to choose one here
     default_context: imagenes # you need to set a context
     contexts:
+        logo:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 100 , quality: 70}
+                icon: { width: 256, quality: 70}
+                big:   { width: 500 , quality: 70}
+                xlarge:   { width: 2600 , quality: 70}
+        featured:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 100 , quality: 70}
+                icon: { width: 256, quality: 70}
+                big:   { width: 500 , quality: 70}
+                xlarge:   { width: 2600 , quality: 70}
+
+        gallery:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 100 , quality: 70}
+                icon: { width: 256, quality: 70}
+                big:   { width: 500 , quality: 70}
+                xlarge:   { width: 2600 , quality: 70}
+
+        slider:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 100 , quality: 70}
+                icon: { width: 256, quality: 70}
+                big:   { width: 500 , quality: 70}
+                xlarge:   { width: 2600 , quality: 70}
+
+        post:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 100 , quality: 70}
+                icon: { width: 256, quality: 70}
+                big:   { width: 500 , quality: 70}
+                xlarge:   { width: 2600 , quality: 70}
+
         imagenes:  # the default context is mandatory
             providers:
                 - sonata.media.provider.image

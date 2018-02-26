@@ -81,7 +81,7 @@ class ContentAdmin extends AbstractAdmin
             ->add('media', 'sonata_media_type', array(
                 'label' => 'Imágen de portada',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'imagenes'
+                'context'  => 'featured'
             ))
             ->add('gallery', null, ['label' => 'Galería'])
 

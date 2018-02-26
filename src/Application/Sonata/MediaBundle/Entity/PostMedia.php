@@ -19,7 +19,7 @@ class PostMedia extends BaseMedia
 
     public function __construct()
     {
-        $this->context        = 'imagenes';
+        $this->context        = 'post';
         $this->providerName   = 'sonata.media.provider.image';
         $this->providerStatus = 1;
         $this->providerReference = "reference";
@@ -29,6 +29,11 @@ class PostMedia extends BaseMedia
         $this->featured = false;
     }
 
+
+    /**
+     * @var string
+     */
+    private $title;
 
     private $owner;
 
@@ -151,5 +156,20 @@ class PostMedia extends BaseMedia
         $this->_order = $order;
     }
 
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+    
 }

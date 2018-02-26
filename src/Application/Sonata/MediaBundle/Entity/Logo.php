@@ -19,7 +19,7 @@ class Logo extends BaseMedia
 
     public function __construct()
     {
-        $this->context        = 'imagenes';
+        $this->context        = 'logo';
         $this->providerName   = 'sonata.media.provider.image';
         $this->providerStatus = 1;
         $this->providerReference = "reference";
@@ -112,4 +112,20 @@ class Logo extends BaseMedia
         $this->descriptionEN = $descriptionEN;
     }
 
+    /**
+     * @return boolean
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param boolean $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+    
 }

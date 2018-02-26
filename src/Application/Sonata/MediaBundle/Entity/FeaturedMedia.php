@@ -19,7 +19,7 @@ class FeaturedMedia extends BaseMedia
 
     public function __construct()
     {
-        $this->context        = 'imagenes';
+        $this->context        = 'featured';
         $this->providerName   = 'sonata.media.provider.image';
         $this->providerStatus = 1;
         $this->providerReference = "reference";
@@ -110,6 +110,22 @@ class FeaturedMedia extends BaseMedia
     public function setDescriptionEN($descriptionEN)
     {
         $this->descriptionEN = $descriptionEN;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param boolean $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
     }
     
 }

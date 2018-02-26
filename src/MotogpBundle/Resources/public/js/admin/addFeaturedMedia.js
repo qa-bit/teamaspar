@@ -4,6 +4,8 @@ $(document).ready(function () {
 
         var url = $(this).attr('url');
         var uploadFile = $(this).parent().find('[data-field="uploadFile"]');
+        var _enabled = $(this).parent().find('[data-field="enabled"]');
+        var description = $(this).parent().find('.featured-media-description');
 
         var setImage = function (url) {
             uploadFile.val(url);
@@ -37,9 +39,11 @@ $(document).ready(function () {
 
                 this.on('addedfile', function (data, data2) {
 
+                    _enabled.prop('checked', true);
+
                      $(data.previewElement).on('click', function () {
-                         $(this).parent().find('.featured-media-description').removeClass('hidden');
-                         $(this).parent().find('.featured-media-description').find('img').attr('src', data.dataURL);
+                         description.removeClass('hidden');
+                         description.find('img').attr('src', data.dataURL);
                      });
 
                     if (data.mock === true) {
@@ -51,7 +55,8 @@ $(document).ready(function () {
 
                 this.on('removedfile', function (file, data) {
                     uploadFile.val(null);
-                    $('.featured-media-description').addClass('hidden');
+                    _enabled.prop('checked', false);
+                    //description.addClass('hidden');
                 }) ;
 
                 this.on('maxfilesreached', function (file) {
