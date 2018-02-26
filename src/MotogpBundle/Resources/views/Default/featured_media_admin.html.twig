@@ -1,30 +1,29 @@
 {% set previous = null %}
-{% if form.vars.value is not null %}
-    <div previous="{% path form.vars.value, 'icon' %}"></div>
-{% endif %}
-
-<div id="featured-medias" class="dropzone form-group featured-media-dropzone" url="{{ oneup_uploader_endpoint('gallery') }}" multiple="false" maxfiles="1">
-    <div class="dz-default dz-message">
-        Pulsa aquí o arrastra una imágen de portada
-    </div>
-</div>
-
-<div class="featured-media-description hidden">
-    <div class="well" style="display:table">
-        <div class="col-xs-4">
-            <img class="img img-responsive" src="{% if form.vars.value is not null %}{% path form.vars.value, 'reference' %}"
-        {% endif %}" alt="">
+<div>
+    {% if form.vars.value is not null %}
+        <div previous="{% path form.vars.value, 'icon' %}"></div>
+    {% endif %}
+    <div id="featured-{{ sonata_admin.name }}" class="dropzone form-group featured-media-dropzone" url="{{ oneup_uploader_endpoint('gallery') }}" multiple="false" maxfiles="1">
+        <div class="dz-default dz-message">
+            Pulsa aquí o arrastra {{ title }}
         </div>
-        <div class="col-xs-8">
-            <label>Descripción</label>
-            {{ form_widget(form.description, {'attr' : {'data-field' : 'description'}}) }}
-            <label>Descripción inglés</label>
-            {{ form_widget(form.descriptionEN, {'attr' : {'data-field' : 'descriptionEN'}}) }}
-            <div class="hidden">
-                {{ form_widget(form.uploadFile, {'attr' : {'data-field' : 'uploadFile'}}) }}
+    </div>
+
+    <div class="featured-media-description hidden">
+        <div class="well" style="display:table">
+            <div class="col-xs-4">
+                <img class="img img-responsive" src="{% if form.vars.value is not null %}{% path form.vars.value, 'reference' %}"
+                {% endif %}" alt="">
+            </div>
+            <div class="col-xs-8">
+                <label>Descripción</label>
+                {{ form_widget(form.description, {'attr' : {'data-field' : 'description'}}) }}
+                <label>Descripción inglés</label>
+                {{ form_widget(form.descriptionEN, {'attr' : {'data-field' : 'descriptionEN'}}) }}
+                <div class="hidden">
+                    {{ form_widget(form.uploadFile, {'attr' : {'data-field' : 'uploadFile'}}) }}
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<script src="{{ asset('bundles/motogp/js/admin/addFeaturedMedia.js') }}"></script>

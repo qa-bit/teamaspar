@@ -12,9 +12,14 @@
 {% block sonata_admin_orm_many_to_one_widget %}
     {% if sonata_admin.name == 'featuredMedia' %}
         <div id="featured-media">
-            {% include 'MotogpBundle:Default:featured_media_admin.html.twig' %}
+            {% include 'MotogpBundle:Default:featured_media_admin.html.twig' with {'title' : 'una imagen de portada'}%}
             {#{% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}#}
         </div>
+        {% elseif sonata_admin.name == 'logo' %}
+            <div id="logo">
+                {% include 'MotogpBundle:Default:featured_media_admin.html.twig' with {'title' : 'un logotipo'}%}
+                {#{% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}#}
+            </div>
         {% else %}
         {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}
     {% endif %}

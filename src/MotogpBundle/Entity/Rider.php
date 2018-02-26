@@ -9,6 +9,7 @@ use MotogpBundle\Entity\Traits\InModalityTrait;
 use MotogpBundle\Entity\Traits\InRiderTeamTrait;
 use MotogpBundle\Entity\Traits\InTeamCategoryTrait;
 use MotogpBundle\Entity\Traits\InMotoTrait;
+use MotogpBundle\Entity\Traits\HasLogoTrait;
 
 /**
  * Rider
@@ -24,6 +25,7 @@ class Rider
        InTeamCategoryTrait,
        InRiderTeamTrait,
        HasMediaTrait,
+       HasLogoTrait,
        InMotoTrait;
 
 

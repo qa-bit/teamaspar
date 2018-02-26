@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class RiderTeamAdmin extends AbstractAdmin
 {
@@ -29,8 +30,7 @@ class RiderTeamAdmin extends AbstractAdmin
             ->add('name')
             ->add('_action', null, array(
                 'actions' => array(
-                    'edit' => array(),
-                    'delete' => array(),
+                    'edit' => array()
                 ),
             ))
         ;
@@ -94,6 +94,13 @@ class RiderTeamAdmin extends AbstractAdmin
         );
         
         return $query;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection
+            ->remove('create')
+        ;
     }
 
 }

@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use MotogpBundle\Admin\Media\LogoAdminTrait;
 
 class RiderExternalAdmin extends AbstractAdmin
 {
@@ -17,7 +18,7 @@ class RiderExternalAdmin extends AbstractAdmin
     protected $baseRouteName = 'rider-external-admin';
     protected $classNameLabel = "Rider external";
     
-    use FeaturedMediaAdminTrait;
+    use FeaturedMediaAdminTrait, LogoAdminTrait;
 
     /**
      * @param DatagridMapper $datagridMapper
@@ -43,7 +44,6 @@ class RiderExternalAdmin extends AbstractAdmin
             ->add('moto')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),
@@ -81,15 +81,21 @@ class RiderExternalAdmin extends AbstractAdmin
                        return $b;
                     },
                     'required' => true,
-                    'attr' => ['container_classes' => 'col-md-6']
+                    'attr' => ['container_classes' => 'col-md-12']
                 ], ['admin_code' => 'motogp.admin.rider_team']
             )
-            ->add('_order', null, ['attr' => ['container_classes' => 'col-md-6']])
 
             ->add('featuredMedia', 'sonata_type_admin', array(
                 'label' => 'Imágen de portada',
                 'required' => false,
+                'attr' => ['container_classes' => 'clearfix col-md-6']
             ))
+            ->add('logo', 'sonata_type_admin', array(
+                'label' => 'Logotipo',
+                'required' => false,
+                'attr' => ['container_classes' => 'clearfix col-md-6']
+            ))
+            ->add('_order', null, ['attr' => ['container_classes' => 'col-md-12']])
 
             ->end()
             ->end()
@@ -210,10 +216,9 @@ class RiderExternalAdmin extends AbstractAdmin
 
 
     public function saveHook($object) {
-        
+        $this->saveLogo($object);
         $this->saveFeaturedMedia($object);
-        $object->setExternal(false);
-
+        $object->setExternal(true);
     }
 
     public function preUpdate($object) {

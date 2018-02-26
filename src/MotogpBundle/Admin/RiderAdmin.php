@@ -3,6 +3,7 @@
 namespace MotogpBundle\Admin;
 
 use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
+use MotogpBundle\Admin\Media\LogoAdminTrait;
 use MotogpBundle\Entity\RiderTeam;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -15,7 +16,7 @@ class RiderAdmin extends AbstractAdmin
 {
 
 
-    use FeaturedMediaAdminTrait;
+    use FeaturedMediaAdminTrait, LogoAdminTrait;
 
     /**
      * @param DatagridMapper $datagridMapper
@@ -41,7 +42,6 @@ class RiderAdmin extends AbstractAdmin
             ->add('moto')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),
@@ -87,12 +87,18 @@ class RiderAdmin extends AbstractAdmin
                     'attr' => ['container_classes' => 'col-md-6']
                 ], ['admin_code' => 'motogp.admin.rider_team']
             )
-            ->add('_order', null, ['attr' => ['container_classes' => 'col-md-6']])
 
             ->add('featuredMedia', 'sonata_type_admin', array(
                 'label' => 'Imágen de portada',
                 'required' => false,
+                'attr' => ['container_classes' => 'clearfix col-md-6']
             ))
+            ->add('logo', 'sonata_type_admin', array(
+                'label' => 'Logotipo',
+                'required' => false,
+                'attr' => ['container_classes' => 'clearfix col-md-6']
+            ))
+            ->add('_order', null, ['attr' => ['container_classes' => 'col-md-12']])
 
             ->end()
             ->end()
@@ -213,7 +219,7 @@ class RiderAdmin extends AbstractAdmin
 
 
     public function saveHook($object) {
-        
+        $this->saveLogo($object);
         $this->saveFeaturedMedia($object);
         $object->setExternal(false);
 

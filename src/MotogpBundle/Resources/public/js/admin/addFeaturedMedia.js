@@ -1,8 +1,9 @@
 $(document).ready(function () {
+
     $('.featured-media-dropzone').each(function () {
 
         var url = $(this).attr('url');
-        var uploadFile = $('[data-field="uploadFile"]');
+        var uploadFile = $(this).parent().find('[data-field="uploadFile"]');
 
         var setImage = function (url) {
             uploadFile.val(url);
@@ -37,8 +38,8 @@ $(document).ready(function () {
                 this.on('addedfile', function (data, data2) {
 
                      $(data.previewElement).on('click', function () {
-                         $('.featured-media-description').removeClass('hidden');
-                         $('.featured-media-description').find('img').attr('src', data.dataURL);
+                         $(this).parent().find('.featured-media-description').removeClass('hidden');
+                         $(this).parent().find('.featured-media-description').find('img').attr('src', data.dataURL);
                      });
 
                     if (data.mock === true) {
@@ -71,11 +72,14 @@ $(document).ready(function () {
         });
 
 
-        if ($('div[previous]').size()) {
 
-            var previousValue = $('div[previous]').attr('previous');
+        if ($(this).parent().find('div[previous]').size()) {
 
-            var mock = {'name': 'Foto de portada', size : null, mock : true};
+            var name = $(this).parent().attr('title');
+
+            var previousValue = $(this).parent().find('div[previous]').attr('previous');
+
+            var mock = {'name': name , size : null, mock : true};
 
 
             DZ.emit('addedfile', mock);
