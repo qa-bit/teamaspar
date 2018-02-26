@@ -27,7 +27,7 @@ class ModalityAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('name')
-            ->add('_order')
+            ->add('description')
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -43,21 +43,28 @@ class ModalityAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            //->add('id')
+           ->tab('Información')
+            ->with(null)
             ->add('name', null, [
                     'required' => true
                 ]
             )
             ->add('nameEN')
-            ->add('description')
-            ->add('descriptionEN')
+            ->add('description', 'ckeditor')
+            ->add('descriptionEN', 'ckeditor')
+            ->add('_order')
+            ->end()
+            ->end()
+            ->tab('SEO')
+            ->with(null)
             ->add('seoTitle')
             ->add('seoTitleEN')
             ->add('seoKeywords')
             ->add('seoKeywordsEN')
-            ->add('_order')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->end()
+            ->end()
+//            ->add('createdAt')
+//            ->add('updatedAt')
         ;
     }
 

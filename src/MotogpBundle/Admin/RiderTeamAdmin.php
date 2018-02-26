@@ -16,9 +16,7 @@ class RiderTeamAdmin extends AbstractAdmin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper
-            ->add('name')
-        ;
+
     }
 
     /**
@@ -27,7 +25,7 @@ class RiderTeamAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name')
+            ->add('name', null, ['label' => 'Equipo principal'])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array()

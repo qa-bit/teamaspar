@@ -31,7 +31,7 @@ class VideoAdmin extends AbstractAdmin
             //->add('id')
             ->add('name')
             ->add('url')
-            ->add('categories')
+            ->add('categories', null, ['label' => 'Tags'])
             ->add('description')
             //->add('nameEN')
             //->add('description')
@@ -40,8 +40,8 @@ class VideoAdmin extends AbstractAdmin
             //->add('seoTitleEN')
             //->add('seoKeywords')
             //->add('seoKeywordsEN')
-            ->add('_order')
-            ->add('updatedAt')
+//            ->add('_order')
+//            ->add('updatedAt')
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
