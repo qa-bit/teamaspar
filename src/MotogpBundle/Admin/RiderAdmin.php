@@ -72,6 +72,7 @@ class RiderAdmin extends AbstractAdmin
             ])
             ->add('modality', null, ['label' => 'Modalidad', 'required' => true, 'attr' => ['container_classes' => 'col-md-6']])
             ->add('moto', null, ['required' => true, 'attr' => ['container_classes' => 'col-md-6'],])
+            ->add('_order', null, ['attr' => ['container_classes' => 'col-md-6']])
             ->add('riderTeam', null,
                 [
                     'class' => RiderTeam::class,
@@ -84,7 +85,7 @@ class RiderAdmin extends AbstractAdmin
                        return $b;
                     },
                     'required' => true,
-                    'attr' => ['container_classes' => 'col-md-6']
+                    'attr' => ['container_classes' => 'hidden']
                 ], ['admin_code' => 'motogp.admin.rider_team']
             )
 
@@ -98,7 +99,7 @@ class RiderAdmin extends AbstractAdmin
                 'required' => false,
                 'attr' => ['container_classes' => 'clearfix col-md-6']
             ))
-            ->add('_order', null, ['attr' => ['container_classes' => 'col-md-12']])
+
 
             ->end()
             ->end()
