@@ -1,0 +1,51 @@
+.cover {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+.swiper-pagination {
+  display: table;
+  right: 2em;
+  left: auto !important;
+  width: auto !important;
+
+  .swiper-pagination-bullet {
+    width : .75em;
+    height: .75em;
+    margin-right : .1em;
+    background : black;
+    opacity : 1;
+    box-shadow : 0 0 .33em rgba(0,0,0,0.5);
+  }
+
+  .swiper-pagination-bullet-active {
+    background : $menu-golden;
+  }
+
+}
+
+.slider-caption {
+  bottom: 4%;
+  left : 10%;
+  position: absolute;
+
+  h2 {
+    text-transform: uppercase;
+    color : white;
+    text-shadow : 0 0 0.33em rgba(0, 0, 0, 0.9);
+    font-weight: bold;
+  }
+  label {
+    color : white;
+    text-transform: capitalize;
+    margin-bottom : 1em;
+    font-weight: normal;
+  }
+}
+
+.slider-modality {
+  img {
+    width: auto;
+    height : 4em;
+  }
+}

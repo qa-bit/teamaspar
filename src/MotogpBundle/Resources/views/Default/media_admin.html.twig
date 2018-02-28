@@ -29,10 +29,12 @@
                             <input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][url]" type="text" value="{{ media.url }}" />
                             <label>Piloto</label>
                             <select class="form-control" name="{{ form.vars.full_name }}[{{ index }}][rider]" type="text" value="{{ media.rider }}">
+                                <option value="">-</option>
                                 {% for rider in riders %}
                                     <option
-                                            {% if rider.id == media.rider.id %}selected {% endif %}
-                                            value="{{ rider.id }}">{{ rider.name }} {{ rider.surname }}</option>
+                                            {% if rider is not null and media.rider is not null and rider.id == media.rider.id %}selected {% endif %}
+                                            value="{{ rider.id }}">{{ rider.name }} {{ rider.surname }}
+                                    </option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -64,6 +66,7 @@
             <input class="form-control uploadFile" name="{{ form.vars.full_name }}[__index__][uploadFile]" type="hidden"  />
             <label>Piloto</label>
              <select class="form-control" name="{{ form.vars.full_name }}[__index__][rider]" type="text">
+                            <option value="">-</option>
                                 {% for rider in riders %}
                                     <option  value="{{ rider.id }}">{{ rider.name }} {{ rider.surname }}</option>
                                 {% endfor %}

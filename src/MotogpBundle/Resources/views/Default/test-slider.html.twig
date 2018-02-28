@@ -1,19 +1,28 @@
 <section id="slider-inicio" class="clearfix">
-    <div id="swiper-inicio" class="swiper-container" style="width:100%; height : 33em">
+    <div id="swiper-inicio" class="swiper-container" style="width:100%; height : 75vh">
         <div class="swiper-wrapper">
             {% for m in gallery.medias %}
                     <div
-                            class="swiper-slide dark lazy contain"
+                            href="{{ m.url ? m.url : '#' }}"
+                            class="swiper-slide dark lazy cover"
                             data-src="{% path m, 'xlarge' %}"
                             aria-role="img"
                             title="{{ m.name }}"
                             arial-label="{{ m.name }}"
                     >
+                        {% if m.title %}
+                            <div class="slider-caption">
+                                <h2>{{ m.title }}</h2>
+                                <label>{{ m.description }}</label>
+                                <div class="slider-modality">
+                                    <img src="{{ asset('/bundles/motogp/img/assets/logowhite-motogp.png') }}" alt="">
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
             {% endfor %}
+
         </div>
-    </div>
-    <div class="paginator">
-        <div id="swiper-celebraciones-pagination" class="swiper-pagination"></div>
+        <div id="sw" class="swiper-pagination"></div>
     </div>
 </section>

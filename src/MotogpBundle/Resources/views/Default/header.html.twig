@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav id="header" class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -8,13 +8,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">LOGO</a>
+            <a class="navbar-brand" href="#">
+                <img  class="img img-responsive" src="{{ asset('/bundles/motogp/img/branding.png')}}" alt="" />
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="modality-list">
+                <li><a href="#"><img class="current" src="{{ asset('/bundles/motogp/img/assets/motogp.png')}}" alt="" /></a></li>
+                <li><a href="#"><img src="{{ asset('/bundles/motogp/img/assets/moto3.png')}}" alt="" /></a></li>
+                <li><a href="#"><img src="{{ asset('/bundles/motogp/img/assets/fimjr.png')}}" alt="" /></a></li>
+            </ul>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Noticias <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Noticias <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Imágenes</a></li>
                 <li><a href="#">Vídeos</a></li>
                 <li><a href="#">Ducati</a></li>
@@ -23,6 +30,23 @@
                 <li><a href="#">Sponsor</a></li>
                 <li><a href="#">Registro</a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+        <div class="header-options">
+            <ul class="lang-selector">
+                <li class="">
+                    <img src="{{ asset('/bundles/motogp/img/assets/lang_es.png')}}" alt="" />
+                </li>
+                <li class="">
+                    <img src="{{ asset('/bundles/motogp/img/assets/lang_en.png')}}" alt="" />
+                </li>
+            </ul>
+            <ul class="social-links">
+                <img src="{{ asset('/bundles/motogp/img/assets/social_networks.png')}}" alt="" />
+                {#<li><i class="fa fa-facebook"></i></li>#}
+                {#<li><i class="fa fa-twitter"></i></li>#}
+                {#<li><i class="fa fa-instagram"></i></li>#}
+                {#<li><i class="fa fa-youtube"></i></li>#}
+            </ul>
+        </div>
+    </div>
 </nav>

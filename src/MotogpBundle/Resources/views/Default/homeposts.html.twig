@@ -1,0 +1,13 @@
+<div class="homeposts col-xs-12">
+    {% for p in posts %}
+        {% if loop.index < 5  %}
+            {% include "MotogpBundle:Default:homepost.html.twig" with {'post' : p} %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="w100">
+        <div class="see-more tcenter">
+            <img src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" />
+        </div>
+    </div>
+</div>

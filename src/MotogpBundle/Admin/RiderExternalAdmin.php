@@ -64,6 +64,7 @@ class RiderExternalAdmin extends AbstractAdmin
             ->add('birthDate', 'sonata_type_date_picker', [
                 'label' => 'Fecha de nacimiento',
                 'format'=>'dd/MM/yyyy',
+                'required' => false,
                 'attr' => ['container_classes' => 'col-md-6'],
             ])
             ->add('birthPlace', null, ['label' => 'Lugar de nacimiento',

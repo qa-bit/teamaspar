@@ -105,6 +105,8 @@ class RiderAdmin extends AbstractAdmin
             ->end()
             ->tab('Currículum')
             ->with(null)
+            ->add('description', 'ckeditor', ['label' => 'Biografía'])
+            ->add('descriptionEN', 'ckeditor', ['label' => 'Biografía (Inglés)'])
             ->add('firstRace', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Primera carrera'])

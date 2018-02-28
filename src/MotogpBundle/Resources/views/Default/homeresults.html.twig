@@ -1,0 +1,42 @@
+<div class="col-xs-12 col-md-6 homeresult">
+    <div>
+        <h5 class="title">CLASIFICACIÓN GENERAL</h5>
+        <div class="sep"></div>
+        <table class="results">
+            {% set l = 1 %}
+            {% for s in scores %}
+                {% if loop.index < 12 and s.race is not null and s.rider is not null and s.rider.moto is not null%}
+                    <tr>
+                        <td class="score-index">{{ l }}</td>
+                        <td class="score-rider">{{ s.rider.name | truncate(1, false, '.') }} {{ s.rider.surName | upper}} </td>
+                        <td class="score-circuit">{{ s.race.circuit.name | truncate(7, false,'') }}</td>
+                        <td class="score-rider-moto">{{ s.rider.moto.builder.name }}</td>
+                        <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
+                    </tr>
+                    {% set l = l + 1 %}
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<div class="col-xs-12 col-md-6 homeresult">
+    <div>
+        <h5 class="title">CLASIFICACIÓN EQUIPOS</h5>
+        <div class="sep"></div>
+        <table class="results">
+            {% set l = 1 %}
+            {% for s in scores %}
+                {% if loop.index < 12 and s.race is not null and s.rider is not null and s.rider.moto is not null%}
+                    <tr>
+                        <td class="score-index">{{ l }}</td>
+                        <td class="score-rider">{{ s.rider.name | truncate(1, false, '.') }} {{ s.rider.surName | upper}} </td>
+                        <td class="score-circuit">{{ s.race.circuit.name | truncate(7, false,'') }}</td>
+                        <td class="score-rider-moto">{{ s.rider.moto.builder.name }}</td>
+                        <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
+                    </tr>
+                    {% set l = l + 1 %}
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+</div>

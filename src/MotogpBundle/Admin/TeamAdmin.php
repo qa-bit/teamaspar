@@ -52,6 +52,8 @@ class TeamAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $mediumColumn = ['container_classes' => 'col-md-6'];
+
+
         $formMapper
             ->tab('Información')
             ->with(null)
@@ -71,12 +73,15 @@ class TeamAdmin extends AbstractAdmin
 
                         return $b;
                     },
-                    'required' => true,
+                    'required' => false,
                     'attr' => ['container_classes' => 'hidden']
-                ], ['admin_code' => 'motogp.admin.rider_team']
+                ], ['admin_code' => 'motogp.admin.rider_team', 'required' => false]
             )
             ->add('rider', null,
                 [
+                    'label' => 'Equipo/Piloto',
+                    'empty_data'  => null,
+                    'placeholder' => " - Equipo",
                     'class' => Rider::class,
                     'query_builder' => function ($qb) {
                         $b = $qb->createQueryBuilder('s')
@@ -85,7 +90,7 @@ class TeamAdmin extends AbstractAdmin
 
                         return $b;
                     },
-                    'required' => true,
+                    'required' => false,
                     'attr' => ['container_classes' => 'col-md-6']
                 ], ['admin_code' => 'motogp.admin.rider']
             )

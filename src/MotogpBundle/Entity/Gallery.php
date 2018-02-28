@@ -18,7 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Post
  *
  * @ORM\Table(name="gallery")
- * @ORM\Entity(repositoryClass="MotogpBundle\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass="MotogpBundle\Repository\GalleryRepository")
  */
 class Gallery
 {

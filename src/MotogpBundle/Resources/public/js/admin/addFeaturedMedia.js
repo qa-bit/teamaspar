@@ -56,7 +56,7 @@ $(document).ready(function () {
                 this.on('removedfile', function (file, data) {
                     uploadFile.val(null);
                     _enabled.prop('checked', false);
-                    //description.addClass('hidden');
+                    description.addClass('hidden');
                 }) ;
 
                 this.on('maxfilesreached', function (file) {

@@ -8,6 +8,12 @@
     {% endif %}
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"/>
 
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/font-awesome/css/font-awesome.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/swiper/dist/css/swiper.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/motogp/css/fonts/fontfaces.css') }}" />
+    {% endblock %}
 
     {% stylesheets filter="scssphp" output="bundles/motogp/css/app.css"
     "bundles/motogp/scss/_variables.scss"
@@ -16,11 +22,7 @@
     <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('dmyhms') }}" />
 
     {% endstylesheets %}
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/font-awesome/css/font-awesome.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/swiper/dist/css/swiper.min.css') }}" />
-    {% endblock %}
+
     {% block meta %}
     {% endblock %}
 </head>

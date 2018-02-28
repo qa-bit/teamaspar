@@ -1,5 +1,6 @@
 {% extends "MotogpBundle:Default:base.html.twig" %}
 {% block body %}
     {{ parent() }}
-    {#{% include "MotogpBundle:Default:test-slider.html.twig" with {'gallery' : index_gallery} %}#}
+    {% include "MotogpBundle:Default:test-slider.html.twig" with {'gallery' : index_gallery} %}
+    {% include "MotogpBundle:Default:homeblock.html.twig" with {'posts' : posts} %}
 {% endblock %}

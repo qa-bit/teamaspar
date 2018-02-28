@@ -785,6 +785,7 @@ class Rider
    {
       $this->country = $country;
    }
+   
 
 
 }

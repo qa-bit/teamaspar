@@ -4,12 +4,7 @@ $(document).ready(function () {
         lazyImages : function () {
 
             var nodes = $('.lazy');
-
-            var showBody = function () {
-                $('body').css({'opacity' : 1, 'overflow' : 'auto'});
-            };
-
-
+            
             if (nodes.length) {
                 nodes.Lazy({
                     scrollDirection: 'vertical',
@@ -23,11 +18,9 @@ $(document).ready(function () {
                         el.addClass('loaded').removeClass('loading');
                     }
                 }).delay(300).queue(function (next) {
-                    showBody();
                     next()
                 });
-            } else
-                showBody();
+            }
         },
         swiper : function () {
             window.swipers = {};
@@ -37,20 +30,27 @@ $(document).ready(function () {
 
                 var id = $(this).attr('id');
                 var paginationId = $(this).parent().find('.swiper-pagination').attr('id');
-
-                if (typeof paginationId == 'undefined')
-                    return;
-
-
                 var autoplay = $(this).attr('data-autoplay');
 
+                var prevPage = $('<div><img src="/bundles/motogp/img/assets/prev.png" /></div>');
+                var nextPage = $('<div><img src="/bundles/motogp/img/assets/next.png" /></div>');
+
+                prevPage.attr('id', paginationId + '-left').addClass('page-lr page-l');
+                nextPage.attr('id', paginationId + '-right').addClass('page-lr page-r');
+
+                $('#' + paginationId).parent().append(prevPage);
+                $('#' + paginationId).parent().append(nextPage);
+
                 swipers[id] = new Swiper('#' + id, {
+                    pagination: '#' + paginationId,
                     paginationClickable: true,
                     preloadImages: false,
                     lazyLoading: true,
                     loop: false,
                     effect: 'fade',
-                    autoplay : autoplay ? autoplay : null
+                    autoplay : autoplay ? autoplay : null,
+                    nextButton: '#' + paginationId + '-right',
+                    prevButton: '#' + paginationId + '-left'
                 });
 
 
@@ -64,9 +64,11 @@ $(document).ready(function () {
 
             });
 
+            /*
             $('.swiper-pagination-bullet').each(function () {
                 $(this).append('<div></div>');
             });
+            */
 
 
         },

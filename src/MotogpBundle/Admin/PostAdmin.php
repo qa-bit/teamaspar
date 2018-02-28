@@ -87,6 +87,9 @@ class PostAdmin extends AbstractAdmin
 
                         ->add('rider', null,
                             [
+                                'label' => 'Pertenece a',
+                                'empty_data'  => null,
+                                'placeholder' => " - General",
                                 'class' => Rider::class,
                                 'query_builder' => function ($qb) {
                                     $b = $qb->createQueryBuilder('s')
@@ -95,18 +98,24 @@ class PostAdmin extends AbstractAdmin
 
                                     return $b;
                                 },
-                                'required' => true,
+                                'required' => false,
                                 'attr' => ['container_classes' => 'col-md-6']
                             ], ['admin_code' => 'motogp.admin.rider']
                         )
-                        ->add('season', null, ['required' => true])
+                        ->add('season', null,
+                            [
+                                'required' => true,
+                                'attr' => ['container_classes' => 'col-md-6']
+                            ])
                         ->add('circuit', null, [
                             'label' => 'Circuito',
+                            'attr' => ['container_classes' => 'col-md-6'],
                             'required' => false
                         ])
                         ->add('categories', 'sonata_type_model', [
                             'label' => 'Tags',
-                            'multiple' => true
+                            'multiple' => true,
+                            'attr' => ['container_classes' => 'col-md-6']
                         ])
 
                         ->add('_order', 'hidden')
@@ -124,6 +133,20 @@ class PostAdmin extends AbstractAdmin
                         'inline' => 'table',
                     ]
                     )
+                ->add('galleries',null, [
+                    'label' => 'Galerías',
+                    'multiple' => true,
+                    'required' => false,
+                    'query_builder' => function ($qb) {
+                        $b = $qb->createQueryBuilder('s')
+                            ->where('s.slug is NULL');
+
+                        return $b;
+                    },
+                    'attr' => ['container_classes' => 'col-md-12']
+                ], [
+                    'admin_code' => 'motogp.admin.gallery'
+                ])
                 ->end()
                 ->end()
             ->tab('SEO')

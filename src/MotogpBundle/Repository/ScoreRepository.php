@@ -10,4 +10,8 @@ namespace MotogpBundle\Repository;
  */
 class ScoreRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        return $this->findBy(array(), array('score' => 'DESC'));
+    }
 }

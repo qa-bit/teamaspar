@@ -74,7 +74,7 @@ services:
         class: MotogpBundle\Admin\VideoAdmin
         arguments: [~, MotogpBundle\Entity\Video, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Multimedia, label: Video }
+            - { name: sonata.admin, manager_type: orm, group: Multimedia, label: Vídeos }
         public: true
 
 

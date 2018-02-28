@@ -49,6 +49,12 @@ class Post
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="Gallery", cascade={"persist"}, orphanRemoval=true)
+     */
+    protected $galleries;
+
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(type="date", nullable=true)
@@ -119,6 +125,25 @@ class Post
     public function setPublishedAt($publishedAt)
     {
         $this->publishedAt = $publishedAt;
+    }
+
+
+    public function getGalleries()
+    {
+        return $this->galleries;
+    }
+
+    public function addGallery($gallery)
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries->add($gallery);
+        }
+    }
+    
+    public function removeGallery($gallery)
+    {
+        $this->galleries->remove($gallery);
+        return $this;
     }
 
 }

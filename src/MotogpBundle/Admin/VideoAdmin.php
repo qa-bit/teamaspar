@@ -65,9 +65,13 @@ class VideoAdmin extends AbstractAdmin
             ->add('nameEN')
             ->add('url', null, ['attr' => $mediumColumn])
             ->add('urlEN', null, ['attr' => $mediumColumn])
-            ->add('type', null, ['attr' => array_merge(['value' => 'youtube'], $mediumColumn)])
+            ->add('description', 'ckeditor')
+            ->add('descriptionEN', 'ckeditor')
             ->add('rider', null,
                 [
+                    'label' => 'Pertenece a',
+                    'empty_data'  => null,
+                    'placeholder' => " - General",
                     'class' => Rider::class,
                     'query_builder' => function ($qb) {
                         $b = $qb->createQueryBuilder('s')
@@ -76,15 +80,24 @@ class VideoAdmin extends AbstractAdmin
 
                         return $b;
                     },
-                    'required' => true,
+                    'required' => false,
                     'attr' => ['container_classes' => 'col-md-6']
                 ], ['admin_code' => 'motogp.admin.rider']
             )
-            ->add('description', 'ckeditor')
-            ->add('descriptionEN', 'ckeditor')
+            ->add('season', null,
+                [
+                    'required' => true,
+                    'attr' => ['container_classes' => 'col-md-6']
+                ])
+            ->add('circuit', null, [
+                'label' => 'Circuito',
+                'attr' => ['container_classes' => 'col-md-6'],
+                'required' => false
+            ])
             ->add('categories', 'sonata_type_model', [
                 'label' => 'Tags',
-                'multiple' => true
+                'multiple' => true,
+                'attr' => ['container_classes' => 'col-md-6']
             ])
             ->add('_order')
             ->end()

@@ -1,0 +1,14 @@
+<div class="homeblock" style="background:url('{{ asset('bundles/motogp/img/assets/fondo_humo.jpg') }}')">
+    <div class="home-block-white" style="background:url('{{ asset('bundles/motogp/img/assets/fondo_blanco.jpg') }}')">
+        {% include "MotogpBundle:Default:homeposts.html.twig" with {'posts' : posts} %}
+        {% include "MotogpBundle:Default:homegalleries.html.twig" with {'sliders' : posts} %}
+
+        <div class="homevideo col-xs-12 col-md-6">
+            {% include "MotogpBundle:Default:homevideo.html.twig" with {'video' : video} %}
+        </div>
+
+        <div class="homeresults col-xs-12 col-md-6">
+            {% include "MotogpBundle:Default:homeresults.html.twig" %}
+        </div>
+    </div>
+</div>

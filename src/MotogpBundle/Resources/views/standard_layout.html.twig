@@ -5,7 +5,14 @@
     <div class="form-group">
 
     </div>
-    <p class="text-center"><a href="{{ path('fos_user_security_logout') }}">Salir</a></p>
+    <div class="col-md-12">
+        <div class="col-xs-3">
+            <a target="_blank" href="{{ path('index') }}"><i class="fa fa-home"></i></a>
+        </div>
+        <div class="col-xs-3">
+            <a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i></a>
+        </div>
+    </div>
     <style>
 
         body {
@@ -93,5 +100,5 @@
     <script>
         Dropzone.autoDiscover = false;
     </script>
-    <script src="{{ asset('bundles/motogp/js/admin/addFeaturedMedia.js') }}"></script>
+    <script src="{{ asset('bundles/motogp/js/admin/addFeaturedMedia.js') }}?v={{ "now" | date('dmyhs') }}"></script>
 {% endblock %}

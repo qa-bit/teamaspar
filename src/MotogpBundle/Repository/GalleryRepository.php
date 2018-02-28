@@ -10,4 +10,12 @@ namespace MotogpBundle\Repository;
  */
 class GalleryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getGalleries()
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.slug IS NULL')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

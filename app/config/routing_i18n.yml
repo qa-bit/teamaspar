@@ -1,0 +1,3 @@
+index:
+    locales: { "es": "/es", "en": "/en" }
+    defaults: { _controller: MotogpBundle:Public:index}

@@ -1,0 +1,218 @@
+$homepost-height : 14em;
+
+
+.homeblock {
+  background-repeat: repeat-y !important;
+  background-size : cover;
+  padding : 0 6em;
+  .home-block-white {
+    background-repeat : repeat-y !important;
+    background-size : cover;
+    width : 100%;
+    display: table;
+    padding : 4em 2em;
+  }
+
+  .homeposts {
+    .homepost {
+      padding: 0 .33em;
+      .homepost-inner {
+        height: $homepost-height;
+        min-height: $homepost-height;
+        margin-bottom: 1em;
+      }
+
+      &:hover {
+        cursor : pointer;
+      }
+    }
+
+    .homepost-image {
+      background-size: cover !important;
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      height: $homepost-height;
+      padding: 0;
+      filter: saturate(0);
+      transition : filter .33s;
+
+      &:hover{
+        filter: saturate(1);
+        transition : filter .33s;
+      }
+    }
+
+    .homepost-content {
+      height: $homepost-height;
+      .post-content {
+        height: 6em;
+        line-height: 1.1em;
+      }
+
+      .sep {
+        width: 2em;
+        border-bottom: 2px solid;
+        margin-bottom: 8px;
+        display: table;
+        height: 4px;
+      }
+    }
+
+    .homepost:nth-child(2), .homepost:nth-child(3) {
+      .sep {
+        border-color : $menu-golden;
+      }
+      .homepost-content {
+        color: white;
+        background: #3a393c; /* Old browsers */
+        background: -moz-radial-gradient(center, ellipse cover, #3a393c 0%, #1d1a1e 100%); /* FF3.6-15 */
+        background: -webkit-radial-gradient(center, ellipse cover, #3a393c 0%, #1d1a1e 100%); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at center, #3a393c 0%, #1d1a1e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3a393c', endColorstr='#1d1a1e', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+      }
+    }
+
+    .homepost:nth-child(1), .homepost:nth-child(4) {
+      .sep {
+        border-color : white;
+      }
+      .homepost-content {
+        color: black;
+        background: $menu-golden;
+      }
+    }
+
+    .homepost-inner {
+      box-shadow : 0px 0px 16px rgba(0, 0, 0, 0.7);
+    }
+
+    .see-more {
+      padding : 1em 0;
+      padding-bottom : 2em;
+      img {
+        opacity : 1;
+        transition: all .33s;
+        &:hover {
+          opacity: .75;
+          cursor: pointer;
+          transition: all .33s;
+        }
+      }
+    }
+  }
+
+
+  .homegalleries {
+    height : $homepost-height;
+    margin-bottom : 4em;
+    .homegallery {
+      padding: 0 .33em;
+      height : $homepost-height;
+
+
+      .homegallery-inner {
+        box-shadow : 0 0 16px rgba(0, 0, 0, 0.7);
+      }
+
+      .swiper-pagination {
+        display: none;
+      }
+
+      .swiper-container {
+        overflow : visible !important;
+      }
+
+
+      .page-l, .page-r {
+        opacity : .5;
+        &:hover {
+          opacity :1;
+          cursor : pointer;
+
+        }
+      }
+
+      .page-l {
+        width: auto;
+        display: table;
+        position: absolute;
+        bottom: -3em;
+        left : 0;
+      }
+
+      .page-r {
+        width: auto;
+        display: table;
+        position: absolute;
+        bottom: -3em;
+        right : 0;
+      }
+
+    }
+  }
+
+
+  .homevideo {
+    padding : 1em;
+    iframe {
+      height : 18em;
+      width : 100%;
+      box-shadow : 0 0 16px rgba(0, 0, 0, 0.65);
+    }
+  }
+
+  .homeresults {
+    padding : .33em;
+    .homeresult {
+      padding : 0;
+      &:nth-child(1) {
+        padding-right : .2em;
+      }
+      &:nth-child(2) {
+        padding-left : .2em;
+      }
+      >div {
+
+        .sep {
+          border-bottom : 2px solid $menu-golden;
+          width : 2em;
+          margin : auto;
+          display : table;
+          height : auto;
+        }
+
+        box-shadow : 0 0 16px black;
+        background-position : 0 40% !important;
+        height: 18em;
+        background: url('/bundles/motogp/img/assets/fondo_humo.jpg');
+        .title {
+          color: white;
+          padding: .33em;
+          text-align: center;
+          padding-top: 1em;
+          font-size : .8em;
+        }
+      }
+
+
+      table.results {
+        color: white;
+        font-size: 0.5em;
+        width: 90%;
+        margin : 1em auto;
+        display: table;
+        tr {
+          padding : 0 1em;
+        }
+        td {
+          padding : .33em;
+          border-bottom : 1px solid #ccc;
+        }
+
+        .score-rider, .score-points {
+          color : $menu-golden;
+        }
+      }
+    }
+  }
+}

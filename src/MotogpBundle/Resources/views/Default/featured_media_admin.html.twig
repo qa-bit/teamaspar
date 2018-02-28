@@ -20,7 +20,9 @@
                 {{ form_widget(form.description, {'attr' : {'data-field' : 'description'}}) }}
                 <label>Descripción inglés</label>
                 {{ form_widget(form.descriptionEN, {'attr' : {'data-field' : 'descriptionEN'}}) }}
-                {{ form_widget(form.enabled, {'attr' : {'data-field' : 'enabled'}}) }}
+                <div class="hidden">
+                    {{ form_widget(form.enabled, {'attr' : {'data-field' : 'enabled'}}) }}
+                </div>
                 <div class="hidden">
                     {{ form_widget(form.uploadFile, {'attr' : {'data-field' : 'uploadFile'}}) }}
                 </div>

@@ -11,6 +11,7 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = [
+            new BeSimple\I18nRoutingBundle\BeSimpleI18nRoutingBundle(),
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
