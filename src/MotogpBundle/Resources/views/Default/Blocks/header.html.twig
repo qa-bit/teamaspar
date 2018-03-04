@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ url('index') }}">
                 <img  class="img img-responsive" src="{{ asset('/bundles/motogp/img/branding.png')}}" alt="" />
             </a>
         </div>
@@ -22,13 +22,13 @@
                 <li><a href="#"><img src="{{ asset('/bundles/motogp/img/assets/fimjr.png')}}" alt="" /></a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="#">{{ "news" | trans }} <span class="sr-only">(current)</span></a></li>
+                <li><a href="{{ url('posts') }}">{{ "news" | trans }} <span class="sr-only">(current)</span></a></li>
                 <li><a href="{{ url('images') }}">{{ "images" | trans }}</a></li>
-                <li><a href="#">{{ "videos" | trans }}</a></li>
-                <li><a href="#">Ducati</a></li>
-                <li><a href="#">{{ "riders" | trans }}</a></li>
+                <li><a href="{{ url('videos') }}">{{ "videos" | trans }}</a></li>
+                <li><a href="{{ url('motos') }}">Ducati</a></li>
+                <li><a href="{{ url('riders') }}">{{ "riders" | trans }}</a></li>
                 <li><a href="#">Team-staff</a></li>
-                <li><a href="#">Sponsor</a></li>
+                <li><a href="{{ url('sponsors') }}">Sponsor</a></li>
                 <li><a href="#">{{ "register" | trans }}</a></li>
             </ul>
         </div>

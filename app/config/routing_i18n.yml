@@ -1,7 +1,31 @@
 index:
     locales: { "es": "/es", "en": "/en" }
-    defaults: { _controller: MotogpBundle:Public:index}
+    defaults: { _controller: MotogpBundle:Public:index }
 
 images:
     locales: { "es": "/es/imagenes", "en": "/en/images" }
-    defaults: { _controller: MotogpBundle:Public:images}
+    defaults: { _controller: MotogpBundle:Public:images }
+
+videos:
+    locales: { "es": "/es/videos", "en": "/en/videos" }
+    defaults: { _controller: MotogpBundle:Public:videos }
+
+motos:
+    locales: { "es": "/es/ducati", "en": "/en/ducati" }
+    defaults: { _controller: MotogpBundle:Public:motos }
+
+riders:
+    locales: { "es": "/es/pilotos", "en": "/en/riders" }
+    defaults: { _controller: MotogpBundle:Public:riders }
+
+sponsors:
+    locales: { "es": "/es/sponsor", "en": "/en/sponsor" }
+    defaults: { _controller: MotogpBundle:Public:sponsor }
+
+posts:
+    locales: { "es": "/es/noticias", "en": "/en/news" }
+    defaults: { _controller: MotogpBundle:Public:posts }
+
+post:
+    locales: { "es": "/es/noticias/{id}", "en": "/en/news/{id}" }
+    defaults: { _controller: MotogpBundle:Public:post}

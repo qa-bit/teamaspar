@@ -9,8 +9,8 @@ sonata_admin:
     title: 'Angel Nieto MOTOGP'
     title_logo: 'bundles/motogp/img/logo.png'
     templates:
-            layout: MotogpBundle::standard_layout.html.twig
-            dashboard: MotogpBundle::dashboard.html.twig
+            layout: MotogpBundle:Admin:standard_layout.html.twig
+            dashboard: MotogpBundle:Admin:dashboard.html.twig
 
     dashboard:
         groups:

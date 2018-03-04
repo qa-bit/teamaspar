@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/swiper/dist/css/swiper.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/css/jquery.fancybox.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/fonts/fontfaces.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/lazyyt.css') }}" />
     {% endblock %}
 
     {% stylesheets filter="scssphp" output="bundles/motogp/css/app.css"
@@ -31,7 +32,7 @@
 </head>
 <body >
 {% block header %}
-    {% include "MotogpBundle:Default:header.html.twig" %}
+    {% include "MotogpBundle:Default:Blocks/header.html.twig" %}
 {% endblock  %}
 
 {% block afterheader %}
@@ -47,6 +48,7 @@
     <script src="{{ asset('/bundles/motogp/vendor/node_modules/swiper/dist/js/swiper.min.js') }}"></script>
     <script src="{{ asset('/bundles/motogp/vendor/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/js/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/js/lazyyt.js') }}"></script>
     <script src="{{ asset('/bundles/motogp/js/main.js') }}?v={{ "now" | date('dmyhms') }}"></script>
 {% endblock %}
 </html>

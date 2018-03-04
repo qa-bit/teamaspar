@@ -10,7 +10,7 @@ use MotogpBundle\Entity\Traits\InRiderTrait;
 use MotogpBundle\Entity\Traits\InSeasonTrait;
 
 /**
- * Video
+ * Videos
  *
  * @ORM\Table(name="video")
  * @ORM\Entity(repositoryClass="MotogpBundle\Repository\VideoRepository")
@@ -44,7 +44,7 @@ class Video
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
 
@@ -111,6 +111,16 @@ class Video
     public function setUrlEN($urlEN)
     {
         $this->urlEN = $urlEN;
+    }
+
+
+    public function extractUrl() {
+        preg_match('/\?v=.+$/', $this->url, $matches);
+
+        if (count($matches))
+            return str_replace('?v=', '', $matches[0]);
+
+        return '';
     }
     
 }

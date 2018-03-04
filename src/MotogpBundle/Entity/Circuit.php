@@ -40,6 +40,14 @@ class Circuit
      */
     private $galleries;
 
+
+    /**
+     * @var Gallery
+     *
+     * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Post", mappedBy="circuit", cascade={"all"}, orphanRemoval=true)
+     */
+    private $posts;
+
     /**
      * @return string
      */
@@ -99,5 +107,34 @@ class Circuit
             $this->galleries->add($gallery);
         }
     }
+
+    /**
+     * @param $category
+     * @return $this
+     */
+    public function addPost($post)
+    {
+        if (!$this->posts->contains($post)) {
+            $post->setCircuit($this);
+            $this->posts->add($post);
+        }
+    }
+
+    /**
+     * @return \MotogpBundle\Entity\Gallery
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param \MotogpBundle\Entity\Gallery $posts
+     */
+    public function setPosts($posts)
+    {
+        $this->posts = $posts;
+    }
+    
     
 }

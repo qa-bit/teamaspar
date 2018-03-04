@@ -7,20 +7,19 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Symfony\Component\Form\Extension\Core\Type\CountryType;
-use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
 
-class CircuitAdmin extends AbstractAdmin
+class TrackRecordAdmin extends AbstractAdmin
 {
-
-    use FeaturedMediaAdminTrait;
     /**
      * @param DatagridMapper $datagridMapper
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
+            ->add('id')
+            ->add('year')
+            ->add('description')
+            ->add('descriptionEN')
         ;
     }
 
@@ -30,11 +29,13 @@ class CircuitAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name')
-            ->add('subtitle')
-            ->add('country')
+            ->add('id')
+            ->add('year')
+            ->add('description')
+            ->add('descriptionEN')
             ->add('_action', null, array(
                 'actions' => array(
+                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),
@@ -48,15 +49,11 @@ class CircuitAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('subtitle')
-            ->add('country', CountryType::class, [
-                'preferred_choices' => ['ES']
+            ->add('year', 'text', [
+                'label' => "Año",
             ])
-            ->add('featuredMedia', 'sonata_type_admin', array(
-                'label' => 'Imágen de portada',
-                'required' => false,
-            ))
+            ->add('description', null, ['label' => 'Descripción'])
+            ->add('descriptionEN', null, ['label' => 'Descripción (Inglés)'])
         ;
     }
 
@@ -67,30 +64,9 @@ class CircuitAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('id')
+            ->add('year')
+            ->add('description')
+            ->add('descriptionEN')
         ;
     }
-
-    public function saveHook($object) {
-
-        $this->saveFeaturedMedia($object);
-
-    }
-
-    public function preUpdate($object) {
-
-        $this->saveHook($object);
-    }
-
-    public function prePersist($object) {
-        $this->saveHook($object);
-    }
-
-    public function getFormTheme()
-    {
-        return array_merge(
-            parent::getFormTheme(),
-            array('MotogpBundle:Admin:admin.theme.html.twig')
-        );
-    }
-
 }

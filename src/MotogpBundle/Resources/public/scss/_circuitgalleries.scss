@@ -1,8 +1,6 @@
 .circuit-galleries {
-  background:url('/bundles/motogp/img/assets/fondo_blanco.jpg');
   background-size : cover !important;
   background-repeat : repeat-y;
-  padding : 2em 8em;
   width : 100%;
   display : table;
 
@@ -26,6 +24,8 @@
     padding-left : .33em;
     padding-right : .33em;
     margin-bottom : .66em;
+
+    min-height : 32em;
 
     h3 {
       font-weight: 900;

@@ -180,3 +180,9 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Configuración, label: Equipo }
         public: true
 
+    motogp.admin.track_record:
+        class: MotogpBundle\Admin\TrackRecordAdmin
+        arguments: [~, MotogpBundle\Entity\TrackRecord, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TrackRecord, show_in_dashboard: false }
+        public: true

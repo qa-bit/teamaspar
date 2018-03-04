@@ -97,11 +97,22 @@ $(document).ready(function () {
             );
 
         },
+        lazyYt : function () {
+            $('.lazyYT').lazyYT();
+        },
+        links : function () {
+          $('.link').on('click', function () {
+              var lnk = $(this).attr('href');
+              window.location = lnk;
+          })
+        },
         init : function () {
             this.lazyImages();
             this.swiper();
             this.upArrow();
             this.fancy();
+            this.lazyYt();
+            this.links();
         }
     };
     home.init();

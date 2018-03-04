@@ -1,0 +1,37 @@
+.rider-description {
+  .info {
+    border-bottom : 1px solid $menu-golden;
+  }
+
+  .rider-name {
+    padding : 3em 4em;
+  }
+
+  span.title {
+    font-weight: bold;
+    color : $menu-golden;
+  }
+}
+
+.track-records {
+  padding : 2em;
+  border-top : 1px solid $menu-golden;
+  display:table;
+  width:100%;
+
+  ul {
+    list-style-type : none;
+  }
+}
+
+
+.rider-featured-image {
+  width : auto;
+  height : 28em;
+  margin-right : 2em;
+}
+
+
+.rider-biografy {
+  padding : 2em;
+}

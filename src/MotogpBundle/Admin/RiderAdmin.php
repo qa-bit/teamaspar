@@ -62,8 +62,9 @@ class RiderAdmin extends AbstractAdmin
         $formMapper
             ->tab('Información')
             ->with(null)
-            ->add('name', 'text', ['attr' => ['container_classes' => 'col-md-6'],])
-            ->add('surname', 'text',['attr' => ['container_classes' => 'col-md-6'],])
+            ->add('name', 'text', ['attr' => ['container_classes' => 'col-md-5'],])
+            ->add('surname', 'text',['attr' => ['container_classes' => 'col-md-5'],])
+            ->add('number', 'number',['attr' => ['container_classes' => 'col-md-2'],])
             ->add('birthDate', 'sonata_type_date_picker', [
                 'label' => 'Fecha de nacimiento',
                 'format'=>'dd/MM/yyyy',
@@ -101,7 +102,7 @@ class RiderAdmin extends AbstractAdmin
             
             ->end()
             ->end()
-            ->tab('Currículum')
+            ->tab('Biografía')
             ->with(null)
             ->add('description', 'ckeditor', ['label' => 'Biografía'])
             ->add('descriptionEN', 'ckeditor', ['label' => 'Biografía (Inglés)'])
@@ -126,6 +127,9 @@ class RiderAdmin extends AbstractAdmin
             ->add('firstPodium', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Primer Podio'])
+            ->add('podiums', null, [
+                'attr' => ['container_classes' => 'col-md-6'],
+                'label' => 'Podios'])
             ->add('victorys', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Victorias'])
@@ -141,11 +145,12 @@ class RiderAdmin extends AbstractAdmin
             ->add('gpss', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Nº total de GPS disputados'])
-            ->add('victoryList', 'ckeditor', [
-                'attr' => ['container_classes' => 'col-md-12'],
-                'label' => 'Palmáres deportivo',
-                'required' => false
-            ])
+//            ->add('victoryList', 'ckeditor', [
+//                'attr' => ['container_classes' => 'col-md-12'],
+//                'label' => 'Palmáres deportivo',
+//                'required' => false
+//            ])
+
 
             ->add('firstRaceEN', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
@@ -168,6 +173,9 @@ class RiderAdmin extends AbstractAdmin
             ->add('firstPodiumEN', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Primer podio(EN)'])
+            ->add('podiumsEN', null, [
+                'attr' => ['container_classes' => 'col-md-6'],
+                'label' => 'Podios (EN)'])
             ->add('victorysEN', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Victorias (EN)'])
@@ -183,7 +191,20 @@ class RiderAdmin extends AbstractAdmin
             ->add('gpssEN', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Nº total de GPS disputados (EN) '])
-            ->add('victoryListEN', 'ckeditor', ['label' => 'Palmarés deportivo (EN) ', 'required' => false])
+//            ->add('victoryListEN', 'ckeditor', ['label' => 'Palmarés deportivo (EN) ', 'required' => false])
+            ->end()
+            ->end()
+            ->tab('Palmarés')
+            ->with(null)
+            ->add('records','sonata_type_collection',
+                [
+                    'label' => 'Palmarés',
+                ],
+                [
+                    'edit' => 'inline',
+                    'inline' => 'table'
+                ]
+            )
             ->end()
             ->end()
             ->tab('Imágenes')
@@ -211,6 +232,9 @@ class RiderAdmin extends AbstractAdmin
             ->add('seoTitleEN')
             ->add('seoKeywords')
             ->add('seoKeywordsEN')
+            ->add('facebook')
+            ->add('twitter')
+            ->add('instagram')
             ->end()
             ->end()
         ;
@@ -244,6 +268,11 @@ class RiderAdmin extends AbstractAdmin
         $this->saveHomeImage($object);
         $object->setExternal(false);
 
+
+        foreach ($object->getRecords() as $r) {
+            $r->setRider($object);
+        }
+
     }
 
     public function preUpdate($object) {
@@ -259,7 +288,7 @@ class RiderAdmin extends AbstractAdmin
     {
         return array_merge(
             parent::getFormTheme(),
-            array('MotogpBundle:Default:admin.theme.html.twig')
+            array('MotogpBundle:Admin:admin.theme.html.twig')
         );
     }
 

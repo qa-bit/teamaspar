@@ -1,7 +1,7 @@
 <div class="homeposts col-xs-12">
     {% for p in posts %}
         {% if loop.index < 5  %}
-            {% include "MotogpBundle:Default:homepost.html.twig" with {'post' : p} %}
+            {% include "MotogpBundle:Default:Home/homepost.html.twig" with {'post' : p} %}
         {% endif %}
     {% endfor %}
 

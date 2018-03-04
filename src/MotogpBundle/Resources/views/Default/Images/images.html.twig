@@ -1,0 +1,20 @@
+{% extends "MotogpBundle:Default:base.html.twig" %}
+{% block body %}
+    {{ parent() }}
+    {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}
+    <div class="smoke-background">
+        <div class="white-background">
+            <div class="circuit-galleries">
+
+                {% for p in range(1,6) %}
+                    {% for c in circuits %}
+                        {% if c.galleries | length %}
+                            {% include "MotogpBundle:Default:Galleries/circuit-gallery.html.twig" with {'circuit' : c} %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% include 'MotogpBundle:Default:footer.html.twig' %}
+{% endblock %}

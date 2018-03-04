@@ -1,0 +1,38 @@
+{% extends "MotogpBundle:Default:base.html.twig" %}
+{% block body %}
+    {{ parent() }}
+
+    <section id="slider-motos" class="clearfix">
+        <div id="swiper-inicio" class="swiper-container" style="width:100%; height : 75vh">
+            <div class="swiper-wrapper">
+                {% for m in gallery.medias %}
+                    <div
+                            class="swiper-slide dark lazy cover"
+                            data-src="{{ asset('/bundles/motogp/img/assets/motos_ducati.jpg') }}"
+                            aria-role="img"
+                    >
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    <div class="smoke-background">
+        <div class="white-background motos-wrapper">
+            <div class="w100 motos-description">
+                <div class="col-xs-12 col-md-6">
+                    {% include "MotogpBundle:StaticContent:moto_a.html.twig" %}
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    {% include "MotogpBundle:StaticContent:moto_b.html.twig" %}
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <img class="moto-sponsor" src="{{ asset('/bundles/motogp/img/assets/logo_ducati.png') }}" alt="">
+            </div>
+        </div>
+    </div>
+    {% include 'MotogpBundle:Default:Motos/motos-gallery.html.twig' with {'gallery' : gallery} %}
+    {% include 'MotogpBundle:Default:footer.html.twig' %}
+{% endblock %}

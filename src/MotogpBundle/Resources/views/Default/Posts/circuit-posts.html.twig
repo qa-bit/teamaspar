@@ -1,0 +1,23 @@
+<div class="circuit-gallery col-xs-12 col-md-4">
+    <div class="circuit-gallery-inner">
+        <div class="w100 circuit-gallery-featured" style="background:url('{% path circuit.featuredMedia, 'big' %}');">
+        </div>
+        <div class="col-xs-12 col-md-6 circuit-gallery-description">
+            <h6>{{ circuit.name | truncate(80, true, '...')}}</h6>
+            <div class="sep"></div>
+            <h3>{{ circuit.subtitle }}</h3>
+            <div class="toggle-galleries">
+                <img class="tcenter" src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="circuit-galleries-list">
+        <ul>
+            {% for p in circuit.posts %}
+                <li>
+                    <a href="{{ url('post', {'id' : p.id}) }}">{{ p.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

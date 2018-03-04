@@ -235,7 +235,7 @@ class RiderExternalAdmin extends AbstractAdmin
     {
         return array_merge(
             parent::getFormTheme(),
-            array('MotogpBundle:Default:admin.theme.html.twig')
+            array('MotogpBundle:Admin:admin.theme.html.twig')
         );
     }
 

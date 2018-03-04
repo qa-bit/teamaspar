@@ -11,6 +11,7 @@ use MotogpBundle\Entity\Traits\InTeamCategoryTrait;
 use MotogpBundle\Entity\Traits\InMotoTrait;
 use MotogpBundle\Entity\Traits\HasLogoTrait;
 use MotogpBundle\Entity\Traits\HasHomeImageTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Rider
@@ -34,7 +35,21 @@ class Rider
    public function __construct()
    {
       $this->showInHome = false;
+      $this->records = new ArrayCollection();
    }
+
+   /**
+    * @ORM\OneToMany(targetEntity="TrackRecord", cascade={"all"}, mappedBy="rider")
+    * @ORM\OrderBy({"year" = "ASC"})
+    */
+   protected $records;
+
+
+   /**
+    * @var integer
+    * @ORM\Column(type="integer", nullable=true)
+    */
+   private $number;
 
    /**
     * @var string
@@ -134,7 +149,22 @@ class Rider
     *
     * @ORM\Column(type="string", nullable=true)
     */
+   private $podiums;
+
+   /**
+    * @var string
+    *
+    * @ORM\Column(type="string", nullable=true)
+    */
+   private $podiumsEN;
+
+   /**
+    * @var string
+    *
+    * @ORM\Column(type="string", nullable=true)
+    */
    private $poles;
+
 
    /**
     * @var string
@@ -286,6 +316,25 @@ class Rider
     * @ORM\Column(type="boolean", nullable=true)
     */
    protected $showInHome;
+
+   /**
+    * @var string
+    * @ORM\Column(type="string", nullable=true)
+    */
+   protected $facebook;
+
+   /**
+    * @var string
+    * @ORM\Column(type="string", nullable=true)
+    */
+   protected $twitter;
+
+
+   /**
+    * @var string
+    * @ORM\Column(type="string", nullable=true)
+    */
+   protected $instagram;
 
    /**
     * @return string
@@ -814,8 +863,157 @@ class Rider
    {
       $this->showInHome = $showInHome;
    }
-   
 
+   /**
+    * @return string
+    */
+   public function getFacebook()
+   {
+      return $this->facebook;
+   }
+
+   /**
+    * @param string $facebook
+    */
+   public function setFacebook($facebook)
+   {
+      $this->facebook = $facebook;
+   }
+
+   /**
+    * @return string
+    */
+   public function getTwitter()
+   {
+      return $this->twitter;
+   }
+
+   /**
+    * @param string $twitter
+    */
+   public function setTwitter($twitter)
+   {
+      $this->twitter = $twitter;
+   }
+
+   /**
+    * @return string
+    */
+   public function getInstagram()
+   {
+      return $this->instagram;
+   }
+
+   /**
+    * @param string $instagram
+    */
+   public function setInstagram($instagram)
+   {
+      $this->instagram = $instagram;
+   }
+
+   /**
+    * @return mixed
+    */
+   public function getRecords()
+   {
+      return $this->records;
+   }
+
+   /**
+    * @param mixed $records
+    */
+   public function setRecords($records)
+   {
+      $this->records = $records;
+   }
+
+   /**
+    * @param $score
+    * @return $this
+    */
+   public function addRecord($record)
+   {
+
+
+      if ( $this->records !== null && !$this->records->contains($record) ) {
+         $record->setRider($this);
+         $this->records->add($record);
+      }
+
+      return $this;
+   }
+
+   /**
+    * @return int
+    */
+   public function getNumber()
+   {
+      return $this->number;
+   }
+
+   /**
+    * @param int $number
+    */
+   public function setNumber($number)
+   {
+      $this->number = $number;
+   }
+
+   /**
+    * @return string
+    */
+   public function getPodiums()
+   {
+      return $this->podiums;
+   }
+
+   /**
+    * @param string $podiums
+    */
+   public function setPodiums($podiums)
+   {
+      $this->podiums = $podiums;
+   }
+
+   /**
+    * @return string
+    */
+   public function getPodiumsEN()
+   {
+      return $this->podiumsEN;
+   }
+
+   /**
+    * @param string $podiumsEN
+    */
+   public function setPodiumsEN($podiumsEN)
+   {
+      $this->podiumsEN = $podiumsEN;
+   }
+
+   public function getAge() {
+
+      if (!$this->getBirthDate())
+         return null;
+
+      $d1 = new \DateTime();
+
+      $diff = $this->birthDate->diff($d1);
+
+      return $diff->y;
+
+   }
+
+   public function getGroupedRecords() {
+      $r = [];
+
+      foreach ($this->records as $record){
+         $r[$record->getYear()][] = $record;
+      }
+      
+      return $r;
+   }
 
 }
 

@@ -146,4 +146,11 @@ class Post
         return $this;
     }
 
+    public function getfMedias() {
+        if (count($this->medias))
+            return $this->medias;
+
+        return [$this->featuredMedia];
+    }
+
 }

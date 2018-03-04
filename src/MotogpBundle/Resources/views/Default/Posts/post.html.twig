@@ -1,0 +1,23 @@
+{% extends "MotogpBundle:Default:base.html.twig" %}
+{% block body %}
+    {{ parent() }}
+
+    <div class="smoke-background">
+        <div class="white-background motos-wrapper">
+            {% include "MotogpBundle:Default:Posts/post-gallery.html.twig" with {'post' : post }%}
+            <div style="margin-top:4em;">
+                {% if post.circuit  %}
+                    <h6 style="color:grey"><b>{{ post.circuit.name }}</b></h6>
+                {% endif %}
+                <h4><b>{{ post.name }}</b></h4>
+
+                <div class="w100 form-group">
+                    {{ post.description | raw }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {% include 'MotogpBundle:Default:footer.html.twig' %}
+{% endblock %}

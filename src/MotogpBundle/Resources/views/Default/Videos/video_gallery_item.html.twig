@@ -1,0 +1,10 @@
+{% set url = video.extractUrl() %}
+{% if url != '' %}
+    <div class="video-gallery-item">
+        <div class="lazyYT" data-youtube-id="{{ url }}" ></div>
+        <div class="col-xs-12 text-center video-description">
+            <p class="header"><b>{{ video.circuit.name ?? video.name}}</b></p>
+            <p> {{ video.name }}</p>
+        </div>
+    </div>
+{% endif %}

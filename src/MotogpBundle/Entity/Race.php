@@ -36,8 +36,7 @@ class Race
      * @ORM\ManyToOne(targetEntity="Season", cascade={"persist"}, inversedBy="races")
      */
     protected $season;
-
-
+    
     /**
      * @ORM\OneToMany(targetEntity="Score", cascade={"persist"}, mappedBy="race")
      */

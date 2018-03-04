@@ -1,7 +1,7 @@
 <div class="homegalleries col-xs-12">
     {% for g in galleries %}
         {% if loop.index < 3  %}
-            {% include "MotogpBundle:Default:homegallery.html.twig" with {'g' : g } %}
+            {% include "MotogpBundle:Default:Home/homegallery.html.twig" with {'g' : g } %}
         {% endif %}
     {% endfor %}
 </div>

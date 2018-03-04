@@ -42,3 +42,18 @@ body {
     cursor : pointer;
   }
 }
+
+
+.smoke-background {
+  background: url('/bundles/motogp/img/assets/fondo_humo.jpg');
+  background-size : cover !important;
+  padding : 0 9vw;
+}
+
+.white-background {
+  background: url(/bundles/motogp/img/assets/fondo_blanco.jpg);
+  padding : 3em;
+  width : 100%;
+  max-width : 100%;
+  display : table;
+}
