@@ -10,4 +10,23 @@ namespace MotogpBundle\Repository;
  */
 class SponsorRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findColor()
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.bn != true')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findBN()
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.bn = true')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }

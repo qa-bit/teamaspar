@@ -35,11 +35,16 @@
     text-shadow : 0 0 0.33em rgba(0, 0, 0, 0.9);
     font-weight: bold;
   }
+
   label {
     color : white;
     text-transform: capitalize;
     margin-bottom : 1em;
     font-weight: normal;
+  }
+
+  h2 a, label a {
+    color : white !important;
   }
 }
 

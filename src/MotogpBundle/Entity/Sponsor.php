@@ -38,5 +38,27 @@ class Sponsor
     {
         $this->webUrl = $webUrl;
     }
+
+    /**
+     * @var boolean;
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    public $bn;
+
+    /**
+     * @return boolean
+     */
+    public function isBn()
+    {
+        return $this->bn;
+    }
+
+    /**
+     * @param boolean $bn
+     */
+    public function setBn($bn)
+    {
+        $this->bn = $bn;
+    }
 }
 

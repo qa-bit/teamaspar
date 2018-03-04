@@ -1,0 +1,106 @@
+.homemotos {
+  width : 100%;
+  display : table;
+
+  .homemoto-logo {
+    width : auto;
+    display : table;
+    margin : auto;
+
+    img {
+      top : 1.8em;
+      height: 2em;
+      width: auto;
+      position : relative;
+    }
+  }
+
+  .homemoto {
+    float : left;
+    width : 50%;
+  }
+
+
+  .homemoto-lines {
+    position: absolute;
+
+    top: 20%;
+    height: 44%;
+    width: 50%;
+    z-index: 0;
+  }
+
+  .homemoto-lines-left {
+    right: 0;
+    border-right: 1px solid #9D9D9D;
+    border-top : 1px solid #9B910B;
+    div.bottom {
+      border-bottom : 1px solid #8D0B52;
+      height : 1em;
+      position : absolute;
+      right : 0;
+      bottom : 0;
+      width: 30%;
+    }
+
+    .top {
+      border-right : 1px solid #9B910B;
+      position : absolute;
+      height : 10%;
+      top : -10%;
+      .circle {
+        background: #d42180;
+        width: .3em;
+        height: .3em;
+        position: absolute;
+        top: 0;
+        left: -0.1em;
+        border-radius: 100%;
+      }
+    }
+
+  }
+
+  .homemoto-lines-right {
+    left : 0;
+    width : 48%;
+    border-top : 1px solid #93161E;
+    div.bottom {
+      border-bottom : 1px solid #1B416A;
+      height : 1em;
+      position : absolute;
+      left : 0;
+      bottom : 0;
+      width: 30%;
+    }
+
+    .top {
+      border-right : 1px solid #93161E;
+      position : absolute;
+      height : 10%;
+      top : -10%;
+      right : 0;
+      .circle {
+        background: #1B416A;
+        width: .3em;
+        height: .3em;
+        position: absolute;
+        top: 0;
+        left: -0.1em;
+        border-radius: 100%;
+      }
+    }
+
+  }
+
+  .homemoto-link {
+    float : left;
+    width : 50%;
+    display : table;
+    padding : 1em;
+    img {
+      height : 1.5em;
+    }
+  }
+
+}

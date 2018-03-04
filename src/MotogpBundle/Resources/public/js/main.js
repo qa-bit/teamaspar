@@ -4,7 +4,7 @@ $(document).ready(function () {
         lazyImages : function () {
 
             var nodes = $('.lazy');
-            
+
             if (nodes.length) {
                 nodes.Lazy({
                     scrollDirection: 'vertical',
@@ -65,16 +65,43 @@ $(document).ready(function () {
             });
 
             /*
-            $('.swiper-pagination-bullet').each(function () {
-                $(this).append('<div></div>');
-            });
-            */
+             $('.swiper-pagination-bullet').each(function () {
+             $(this).append('<div></div>');
+             });
+             */
 
+
+        },
+        upArrow : function () {
+            $('.up-arrow').on('click', function (e) {
+                e.preventDefault();
+                try {
+                    $('html,body').animate(
+                        {
+                            scrollTop: 0
+                        },
+                        1200);
+                } catch (e) {
+                    console.error(e);
+                }
+            } );
+        },
+        fancy : function () {
+            $('.fancybox').fancybox();
+            $('.fancytrigger').click(
+                function () {
+                    var $rel = $(this).attr('rel');
+                    console.error($rel);
+                    $('.fancybox[rel="'+ $rel + '"]').eq(0).trigger('click');
+                }
+            );
 
         },
         init : function () {
             this.lazyImages();
             this.swiper();
+            this.upArrow();
+            this.fancy();
         }
     };
     home.init();

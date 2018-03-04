@@ -1,0 +1,14 @@
+{% trans_default_domain 'footer' %}
+<footer>
+    <div class="footer-upper">
+        <ul>
+            <li><a href="#">{{ "terms_and_conditions" | trans }}</a></li>
+            <li><a href="#">{{ "privacy_policy" | trans }}</a></li>
+            <li><a href="#">{{ "cookies_policy" | trans }}</a></li>
+            <li><a href="#">{{ "contact" | trans }}</a></li>
+        </ul>
+    </div>
+    <div class="footer-bottom">
+        <img class="footer-logo" src="{{ asset('/bundles/motogp/img/assets/logo_footer.png') }}"/>
+    </div>
+</footer>

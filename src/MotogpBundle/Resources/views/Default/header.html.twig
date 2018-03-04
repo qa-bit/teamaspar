@@ -1,3 +1,4 @@
+{% trans_default_domain 'topmenu' %}
 <nav id="header" class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -21,14 +22,14 @@
                 <li><a href="#"><img src="{{ asset('/bundles/motogp/img/assets/fimjr.png')}}" alt="" /></a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="#">Noticias <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Imágenes</a></li>
-                <li><a href="#">Vídeos</a></li>
+                <li><a href="#">{{ "news" | trans }} <span class="sr-only">(current)</span></a></li>
+                <li><a href="{{ url('images') }}">{{ "images" | trans }}</a></li>
+                <li><a href="#">{{ "videos" | trans }}</a></li>
                 <li><a href="#">Ducati</a></li>
-                <li><a href="#">Pilotos</a></li>
+                <li><a href="#">{{ "riders" | trans }}</a></li>
                 <li><a href="#">Team-staff</a></li>
                 <li><a href="#">Sponsor</a></li>
-                <li><a href="#">Registro</a></li>
+                <li><a href="#">{{ "register" | trans }}</a></li>
             </ul>
         </div>
         <div class="header-options">

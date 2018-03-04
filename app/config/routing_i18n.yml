@@ -1,3 +1,7 @@
 index:
     locales: { "es": "/es", "en": "/en" }
     defaults: { _controller: MotogpBundle:Public:index}
+
+images:
+    locales: { "es": "/es/imagenes", "en": "/en/images" }
+    defaults: { _controller: MotogpBundle:Public:images}

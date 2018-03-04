@@ -1,0 +1,112 @@
+.circuit-galleries {
+  background:url('/bundles/motogp/img/assets/fondo_blanco.jpg');
+  background-size : cover !important;
+  background-repeat : repeat-y;
+  padding : 2em 8em;
+  width : 100%;
+  display : table;
+
+  .circuit-gallery-featured {
+    background: url(/uploads/media/featured/0001/01/thumb_27_featured_big.jpeg);
+    height: 12em;
+    background-position: center center;
+    background-size : cover !important;
+  }
+
+  .circuit-gallery-description {
+    width : 100%;
+    padding : 1em;
+    background : black;
+    text-align : center;
+  }
+
+
+  .circuit-gallery {
+
+    padding-left : .33em;
+    padding-right : .33em;
+    margin-bottom : .66em;
+
+    h3 {
+      font-weight: 900;
+      font-style: italic;
+      margin-top : .11em;
+      font-family: 'Mark-Bold-Italic', sans-serif;
+      font-size : 2.5em;
+    }
+
+    .sep {
+      width : 3em;
+      margin:auto;
+      display: table;
+    }
+
+    &:nth-child(odd) .circuit-gallery-description {
+
+      h6 {
+        color : $menu-golden;
+      }
+
+      h3 {
+        color : #D9DADC;
+      }
+
+      .sep {
+        border-bottom : 1px solid white;
+      }
+
+      background: #3a393c; /* Old browsers */
+      background: -moz-radial-gradient(center, ellipse cover, #3a393c 0%, #1d1a1e 100%); /* FF3.6-15 */
+      background: -webkit-radial-gradient(center, ellipse cover, #3a393c 0%, #1d1a1e 100%); /* Chrome10-25,Safari5.1-6 */
+      background: radial-gradient(ellipse at center, #3a393c 0%, #1d1a1e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3a393c', endColorstr='#1d1a1e', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+    }
+
+    &:nth-child(even) .circuit-gallery-description {
+      background: #d5b468;
+
+
+      h6 {
+        color : white;
+      }
+
+      h3 {
+        color : #3C3C3E;
+      }
+
+      .sep {
+        border-bottom : 1px solid white;
+      }
+
+    }
+  }
+
+  .circuit-galleries-list {
+    ul {
+      margin : 0;
+      padding:0;
+      list-style-type: none;
+      width : 100%;
+      li {
+        padding : .33em 0;
+        color : black;
+        width : 100%;
+        border-bottom : 1px solid white;
+        text-align : center;
+
+        &:hover {
+          cursor : pointer;
+        }
+
+        &:nth-child(odd) {
+          background : #C6C7C9;
+        }
+
+        &:nth-child(even) {
+          background: #9D9EA0;
+        }
+      }
+    }
+  }
+
+}

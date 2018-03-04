@@ -1,3 +1,5 @@
+@import "typo";
+
 .w100 {
   width : 100%;
 }
@@ -8,7 +10,35 @@
   margin: auto;
 }
 
+.relative {
+  position : relative;
+}
+
+.absolute {
+  position : absolute;
+}
 
 body {
   font-family: 'Mark', sans-serif;
+}
+
+.moto-bg {
+  position: relative;
+  display: table;
+  height: 1px;
+  width: 100%;
+  img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 76em;
+    z-index: 9;
+    height: 31em;
+  }
+}
+
+.up-arrow {
+  &:hover {
+    cursor : pointer;
+  }
 }

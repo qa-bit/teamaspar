@@ -6,13 +6,16 @@
     {% if app.environment == 'dev' %}
         <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     {% endif %}
+
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
 
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/font-awesome/css/font-awesome.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/motogp/vendor/node_modules/swiper/dist/css/swiper.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/motogp/css/fonts/fontfaces.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/font-awesome/css/font-awesome.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/swiper/dist/css/swiper.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/css/jquery.fancybox.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/fonts/fontfaces.css') }}" />
     {% endblock %}
 
     {% stylesheets filter="scssphp" output="bundles/motogp/css/app.css"
@@ -38,10 +41,12 @@
 {% endblock %}
 </body>
 {% block javascripts %}
-    <script src="{{ asset('bundles/motogp/vendor/node_modules/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('bundles/motogp/vendor/node_modules/jquery-lazy/jquery.lazy.min.js') }}"></script>
-    <script src="{{ asset('bundles/motogp/vendor/node_modules/swiper/dist/js/swiper.min.js') }}"></script>
-    <script src="{{ asset('bundles/motogp/vendor/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('bundles/motogp/js/main.js') }}?v={{ "now" | date('dmyhms') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/jquery.scrollto/jquery.scrollTo.min.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/jquery-lazy/jquery.lazy.min.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/swiper/dist/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/js/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/js/main.js') }}?v={{ "now" | date('dmyhms') }}"></script>
 {% endblock %}
 </html>

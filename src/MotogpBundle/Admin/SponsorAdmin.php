@@ -32,6 +32,7 @@ class SponsorAdmin extends AbstractAdmin
         $listMapper
             ->add('name')
             ->add('webUrl')
+
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -56,6 +57,7 @@ class SponsorAdmin extends AbstractAdmin
             ))
             ->add('webUrl')
             ->add('_order')
+            ->add('bn', 'checkbox', ['label' => 'B/N', 'required' => false ])
         ;
     }
 

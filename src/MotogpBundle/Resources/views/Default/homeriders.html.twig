@@ -1,0 +1,53 @@
+<div class="home-riders">
+    <div class="col-xs-3 tcenter">
+        <img class="img img-responsive powered-by" src="{{ asset('/bundles/motogp/img/assets/logo_ducati.png') }}" />
+    </div>
+
+    {% if homeRiders | length >= 2 %}
+        <div class="home-rider home-rider-1 relative">
+            <img src="{% path homeRiders[0].homeImage, 'big' %}" />
+            <div class="vertical-separator">
+                <span class="circle"></span>
+                <span class="circle circle-bottom"></span>
+            </div>
+            <div class="horizontal-separator-left">
+                <span class="circle"></span>
+            </div>
+        </div>
+
+        <div class="home-rider home-rider-2 relative">
+            <img src="{% path homeRiders[1].homeImage, 'big' %}" />
+            <div class="vertical-separator-right">
+                <span class="circle"></span>
+            </div>
+            <div class="horizontal-separator-right">
+                <span class="circle"></span>
+            </div>
+        </div>
+        <div class="home-rider-info-wrapper">
+            <div class="home-rider-info home-rider-info-left">
+                <h4 class="name">{{ homeRiders[0].name }}</h4>
+                <h4 class="surname">{{ homeRiders[0].surname }}</h4>
+                <div class="social-rider">
+                    <img src="{{ asset('/bundles/motogp/img/assets/social_riders.png') }}" alt="">
+                </div>
+            </div>
+            <div class="home-rider-info home-rider-info-right">
+                <h4 class="name">{{ homeRiders[1].name }}</h4>
+                <h4 class="surname">{{ homeRiders[1].surname }}</h4>
+                <div class="social-rider">
+                    <img src="{{ asset('/bundles/motogp/img/assets/social_riders.png') }}" alt="">
+                </div>
+            </div>
+            <div class="shadow"></div>
+        </div>
+
+        <div class="home-rider-link">
+            <img class="tcenter" src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" alt="">
+        </div>
+        <div class="home-rider-link">
+            <img class="tcenter" src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" alt="">
+        </div>
+    {% endif %}
+
+</div>

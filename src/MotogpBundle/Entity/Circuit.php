@@ -4,7 +4,9 @@ namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
+use MotogpBundle\Entity\Traits\HasMediaGalleryTrait;
 use MotogpBundle\Entity\Traits\HasMediaTrait;
+use MotogpBundle\Entity\Gallery;
 
 /**
  * Circuit
@@ -14,7 +16,7 @@ use MotogpBundle\Entity\Traits\HasMediaTrait;
  */
 class Circuit
 {
-    use ContentTrait, HasMediaTrait;
+    use ContentTrait, HasMediaTrait, HasMediaGalleryTrait;
 
     /**
      * @var string
@@ -29,6 +31,14 @@ class Circuit
      * @ORM\Column(type="string", nullable=false)
      */
     private $country;
+
+
+    /**
+     * @var Gallery
+     *
+     * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Gallery", mappedBy="circuit", cascade={"all"}, orphanRemoval=true)
+     */
+    private $galleries;
 
     /**
      * @return string
@@ -60,6 +70,34 @@ class Circuit
     public function setCountry($country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * @return \MotogpBundle\Entity\Gallery
+     */
+    public function getGalleries()
+    {
+        return $this->galleries;
+    }
+
+    /**
+     * @param \MotogpBundle\Entity\Gallery $galleries
+     */
+    public function setGalleries($galleries)
+    {
+        $this->galleries = $galleries;
+    }
+
+    /**
+     * @param $category
+     * @return $this
+     */
+    public function addGallery($gallery)
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $gallery->setGallery($this);
+            $this->galleries->add($gallery);
+        }
     }
     
 }

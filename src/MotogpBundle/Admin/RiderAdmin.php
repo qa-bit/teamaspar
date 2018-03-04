@@ -3,6 +3,7 @@
 namespace MotogpBundle\Admin;
 
 use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
+use MotogpBundle\Admin\Media\HomeImageAdminTrait;
 use MotogpBundle\Admin\Media\LogoAdminTrait;
 use MotogpBundle\Entity\RiderTeam;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
@@ -16,7 +17,7 @@ class RiderAdmin extends AbstractAdmin
 {
 
 
-    use FeaturedMediaAdminTrait, LogoAdminTrait;
+    use FeaturedMediaAdminTrait, LogoAdminTrait, HomeImageAdminTrait;
 
     /**
      * @param DatagridMapper $datagridMapper
@@ -37,9 +38,10 @@ class RiderAdmin extends AbstractAdmin
             //->add('id')
             ->add('name')
             ->add('surname')
-            ->add('riderTeam', null, ['admin_code' => 'motogp.admin.rider_team'])
             ->add('modality')
             ->add('moto')
+            ->add('order', null, array('editable' => true))
+            ->add('showInHome', null, array('editable' => true, 'label' => 'Mostrar en inicio'))
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -54,6 +56,9 @@ class RiderAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+
+
+
         $formMapper
             ->tab('Información')
             ->with(null)
@@ -73,6 +78,11 @@ class RiderAdmin extends AbstractAdmin
             ->add('modality', null, ['label' => 'Modalidad', 'required' => true, 'attr' => ['container_classes' => 'col-md-6']])
             ->add('moto', null, ['required' => true, 'attr' => ['container_classes' => 'col-md-6'],])
             ->add('_order', null, ['attr' => ['container_classes' => 'col-md-6']])
+            ->add('showInHome', 'checkbox', [
+                'label' => 'Mostrar en inicio',
+                'required' => false,
+                'attr' => ['container_classes' => 'col-md-6'
+                ]])
             ->add('riderTeam', null,
                 [
                     'class' => RiderTeam::class,
@@ -88,19 +98,7 @@ class RiderAdmin extends AbstractAdmin
                     'attr' => ['container_classes' => 'hidden']
                 ], ['admin_code' => 'motogp.admin.rider_team']
             )
-
-            ->add('featuredMedia', 'sonata_type_admin', array(
-                'label' => 'Imágen de portada',
-                'required' => false,
-                'attr' => ['container_classes' => 'clearfix col-md-6']
-            ))
-            ->add('logo', 'sonata_type_admin', array(
-                'label' => 'Logotipo',
-                'required' => false,
-                'attr' => ['container_classes' => 'clearfix col-md-6']
-            ))
-
-
+            
             ->end()
             ->end()
             ->tab('Currículum')
@@ -188,6 +186,25 @@ class RiderAdmin extends AbstractAdmin
             ->add('victoryListEN', 'ckeditor', ['label' => 'Palmarés deportivo (EN) ', 'required' => false])
             ->end()
             ->end()
+            ->tab('Imágenes')
+            ->with(null)
+                ->add('featuredMedia', 'sonata_type_admin', array(
+                    'label' => 'Imágen de portada',
+                    'required' => false,
+                    'attr' => ['container_classes' => 'clearfix col-md-6']
+                ))
+                ->add('homeImage', 'sonata_type_admin', array(
+                    'label' => 'Imágen home',
+                    'required' => false,
+                    'attr' => ['container_classes' => 'clearfix col-md-6']
+                ))
+                ->add('logo', 'sonata_type_admin', array(
+                    'label' => 'Logotipo',
+                    'required' => false,
+                    'attr' => ['container_classes' => 'clearfix col-md-6']
+                ))
+            ->end()
+            ->end()
             ->tab('SEO')
             ->with(null)
             ->add('seoTitle')
@@ -224,6 +241,7 @@ class RiderAdmin extends AbstractAdmin
     public function saveHook($object) {
         $this->saveLogo($object);
         $this->saveFeaturedMedia($object);
+        $this->saveHomeImage($object);
         $object->setExternal(false);
 
     }

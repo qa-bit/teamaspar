@@ -21,8 +21,7 @@ use Application\Sonata\MediaBundle\Entity\Media;
 trait HasMediaGalleryTrait {
 
     /**
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery",mappedBy="ad",cascade={"persist"})
-     * @ORM\JoinColumn(name="gallery", referencedColumnName="id",nullable=true)
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery", mappedBy="",cascade={"persist"})
      */
     private $gallery;
 

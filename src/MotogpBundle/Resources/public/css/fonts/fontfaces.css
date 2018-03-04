@@ -136,21 +136,13 @@
     /*font-style: italic;*/
 /*}*/
 
-/*@font-face {*/
-    /*font-family: 'Mark';*/
-    /*src: url('Mark-Thin.woff2') format('woff2'),*/
-    /*url('Mark-Thin.woff') format('woff');*/
-    /*font-weight: 100;*/
-    /*font-style: normal;*/
-/*}*/
 
-/*@font-face {*/
-    /*font-family: 'Mark';*/
-    /*src: url('Mark-Bold-Italic.woff2') format('woff2'),*/
-    /*url('Mark-Bold-Italic.woff') format('woff');*/
-    /*font-weight: bold;*/
-    /*font-style: italic;*/
-/*}*/
+
+@font-face {
+    font-family: 'Mark-Bold-Italic';
+    src: url('Mark-Bold-Italic.woff2') format('woff2'),
+    url('Mark-Bold-Italic.woff') format('woff');
+}
 
 @font-face {
     font-family: 'Mark';
@@ -175,3 +167,9 @@
     /*font-weight: normal;*/
     /*font-style: normal;*/
 /*}*/
+
+@font-face {
+    font-family: 'MarkLight';
+    src: url('Mark-Thin.woff2') format('woff2'),
+    url('Mark-Thin.woff') format('woff');
+}

@@ -3,15 +3,17 @@ $homepost-height : 14em;
 
 .homeblock {
   background-repeat: repeat-y !important;
-  background-size : cover;
-  padding : 0 6em;
+  background-size: cover !important;
+  width: 100%;
+  padding:0 6em;
+  padding-bottom : 22em;
   .home-block-white {
-    background-repeat : repeat-y !important;
-    background-size : cover;
-    width : 100%;
-    max-width:100%;
-    display:table;
-    padding : 4em 2em;
+    background-repeat: repeat-y !important;
+    background-size: cover !important;
+    width: 100%;
+    max-width: 100%;
+    display: table;
+    padding: 4em 2em;
   }
 
   .homeposts {
@@ -217,3 +219,21 @@ $homepost-height : 14em;
     }
   }
 }
+
+.section-separator {
+  padding : 2em 0;
+  width : 4em;
+  border-bottom : 2px solid $menu-golden;
+  margin : auto;
+  display : table;
+}
+
+.homebottom {
+  position : absolute;
+  left : 0;
+}
+
+@import "socialmedia";
+@import "homeriders";
+@import "homemotos";
+@import "homesponsors";

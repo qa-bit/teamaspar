@@ -19,4 +19,14 @@ class RiderRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
             ;
     }
+
+    public function findHomeRiders()
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.showInHome = true')
+            ->orderBy('r._order','ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

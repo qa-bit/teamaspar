@@ -3,7 +3,6 @@
         <div class="swiper-wrapper">
             {% for m in gallery.medias %}
                     <div
-                            href="{{ m.url ? m.url : '#' }}"
                             class="swiper-slide dark lazy cover"
                             data-src="{% path m, 'xlarge' %}"
                             aria-role="img"
@@ -12,8 +11,16 @@
                     >
                         {% if m.title %}
                             <div class="slider-caption">
-                                <h2>{{ m.title }}</h2>
-                                <label>{{ m.description }}</label>
+                                <h2>
+                                    <a href="{{ m.url ? m.url : '#' }}" target="_blank">
+                                        {{ m.title }}
+                                    </a>
+                                </h2>
+                                <label>
+                                    <a href="{{ m.url ? m.url : '#' }}" target="_blank">
+                                        {{ m.description }}
+                                    </a>
+                                </label>
                                 <div class="slider-modality">
                                     <img src="{{ asset('/bundles/motogp/img/assets/logowhite-motogp.png') }}" alt="">
                                 </div>

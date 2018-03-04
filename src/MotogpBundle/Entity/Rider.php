@@ -10,6 +10,7 @@ use MotogpBundle\Entity\Traits\InRiderTeamTrait;
 use MotogpBundle\Entity\Traits\InTeamCategoryTrait;
 use MotogpBundle\Entity\Traits\InMotoTrait;
 use MotogpBundle\Entity\Traits\HasLogoTrait;
+use MotogpBundle\Entity\Traits\HasHomeImageTrait;
 
 /**
  * Rider
@@ -26,8 +27,14 @@ class Rider
        InRiderTeamTrait,
        HasMediaTrait,
        HasLogoTrait,
+       HasHomeImageTrait,
        InMotoTrait;
 
+
+   public function __construct()
+   {
+      $this->showInHome = false;
+   }
 
    /**
     * @var string
@@ -273,6 +280,12 @@ class Rider
     */
    protected $external;
 
+
+   /**
+    * @var boolean
+    * @ORM\Column(type="boolean", nullable=true)
+    */
+   protected $showInHome;
 
    /**
     * @return string
@@ -784,6 +797,22 @@ class Rider
    public function setCountry($country)
    {
       $this->country = $country;
+   }
+
+   /**
+    * @return boolean
+    */
+   public function isShowInHome()
+   {
+      return $this->showInHome;
+   }
+
+   /**
+    * @param boolean $showInHome
+    */
+   public function setShowInHome($showInHome)
+   {
+      $this->showInHome = $showInHome;
    }
    
 

@@ -1,0 +1,49 @@
+.homesponsors {
+  padding : 2em 0;
+
+  .sponsor1 {
+    width : 80%;
+  }
+
+  .sponsor-logo {
+    padding : 2em;
+    img {
+      height: 4em;
+      width: auto;
+    }
+
+    a {
+      display : inline-table;
+    }
+  }
+
+  .sponsor-logo.color {
+    text-align : right;
+    img {
+      filter : saturate(1);
+      transition : filter .33s;
+      &:hover {
+        filter: saturate(0);
+        transition : filter .33s;
+      }
+    }
+  }
+
+  .sponsor-logo.bn {
+    text-align : left;
+    img {
+      filter : saturate(0);
+      transition : filter .33s;
+      &:hover {
+        filter: saturate(1);
+        transition : filter .33s;
+      }
+    }
+  }
+
+  .social-bottom {
+    margin : 2em auto;
+    height: 2em;
+  }
+
+}
