@@ -32,13 +32,15 @@
             <div id="chart" class="form-group">
                 <h3 class="text-center">{{ "organization_chart" | trans }}</h3>
                 {% for m in team.staffMembers %}
-                    <div class="col-md-12 col-xs-4">
+                    <div class="col-xs-12 col-md-4">
                         <div class="col-xs-12 form-group">
                             <img class="img img-responsive" src="{%  path m.featuredMedia, 'big' %}" alt="">
                         </div>
-                        <h5>{{ m.name }}</h5>
-                        <label for="">{{ m.teamCategory.name }}</label>
-                        <img src="{{ asset('/bundles/motogp/img/assets/flags/' ~ (m.country | lower) ~ '.png') }}" />
+                        <h5 class="text-center">{{ m.name }}</h5>
+                        <label class="text-center" for="">{{ m.teamCategory.name }}</label>
+                        <div class="col-xs-12">
+                            <img class="tcenter" src="{{ asset('/bundles/motogp/img/assets/flags/' ~ (m.country | lower) ~ '.png') }}" />
+                        </div>
                     </div>
                 {% endfor %}
             </div>
