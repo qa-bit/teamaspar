@@ -4,4 +4,9 @@
             {% include "MotogpBundle:Default:Home/homegallery.html.twig" with {'g' : g } %}
         {% endif %}
     {% endfor %}
+    <div class="w100">
+        <div class="see-more tcenter">
+            <img class="link" href={{ url('images') }} src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" />
+        </div>
+    </div>
 </div>

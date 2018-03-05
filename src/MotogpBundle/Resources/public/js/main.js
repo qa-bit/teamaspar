@@ -64,12 +64,11 @@ $(document).ready(function () {
 
             });
 
-            /*
-             $('.swiper-pagination-bullet').each(function () {
-             $(this).append('<div></div>');
-             });
-             */
+            $('.slider-bottom-arrow img').click(function () {
+                var $next = $('.top-slider').next().eq(0);
 
+                $(window).scrollTo($next, 1000);
+            });
 
         },
         upArrow : function () {
@@ -101,10 +100,15 @@ $(document).ready(function () {
             $('.lazyYT').lazyYT();
         },
         links : function () {
-          $('.link').on('click', function () {
-              var lnk = $(this).attr('href');
-              window.location = lnk;
-          })
+            $('.link').on('click', function () {
+                var lnk = $(this).attr('href');
+                if ($(this).attr('blank') != undefined) {
+                    var win = window.open(lnk, '_blank');
+                    win.focus();
+                } else {
+                    window.location = lnk;
+                }
+            })
         },
         init : function () {
             this.lazyImages();

@@ -1,0 +1,36 @@
+.team-staff-menu {
+  background: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+  padding: 1em 0;
+  position: absolute;
+  top: 6.5em;
+  z-index: 99999999;
+  width: 100%;
+  ul {
+    display:table;
+    margin : auto;
+    float : none;
+
+    list-style-type: none;
+    li {
+      display : inline;
+      padding : 1em;
+      a {
+        font-weight : bolder;
+        color : #646567;
+        transition : color .33s;
+        text-transform : uppercase;
+        &:hover {
+          color : $menu-golden;
+          transition : color .33s;
+          text-decoration : none;
+        }
+      }
+      a:active {
+        color : white;
+        transition : color .33s;
+        border-bottom : 1px solid white;
+      }
+    }
+  }
+}

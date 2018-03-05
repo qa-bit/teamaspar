@@ -2,6 +2,10 @@ index:
     locales: { "es": "/es", "en": "/en" }
     defaults: { _controller: MotogpBundle:Public:index }
 
+motogp_public_index:
+    locales: { "es": "/es", "en": "/en" }
+    defaults: { _controller: MotogpBundle:Public:index }
+
 images:
     locales: { "es": "/es/imagenes", "en": "/en/images" }
     defaults: { _controller: MotogpBundle:Public:images }
@@ -29,3 +33,7 @@ posts:
 post:
     locales: { "es": "/es/noticias/{id}", "en": "/en/news/{id}" }
     defaults: { _controller: MotogpBundle:Public:post}
+
+team_staff:
+    locales: { "es": "/es/equipo", "en": "/en/team-staff" }
+    defaults: { _controller: MotogpBundle:Public:team}

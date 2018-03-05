@@ -27,7 +27,7 @@
                 <li><a href="{{ url('videos') }}">{{ "videos" | trans }}</a></li>
                 <li><a href="{{ url('motos') }}">Ducati</a></li>
                 <li><a href="{{ url('riders') }}">{{ "riders" | trans }}</a></li>
-                <li><a href="#">Team-staff</a></li>
+                <li><a href="{{ url('team_staff') }}">Team-staff</a></li>
                 <li><a href="{{ url('sponsors') }}">Sponsor</a></li>
                 <li><a href="#">{{ "register" | trans }}</a></li>
             </ul>
@@ -35,18 +35,34 @@
         <div class="header-options">
             <ul class="lang-selector">
                 <li class="">
-                    <img src="{{ asset('/bundles/motogp/img/assets/lang_es.png')}}" alt="" />
+                    <img class="link" href="{{ enURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_en.png')}}" alt="" />
                 </li>
                 <li class="">
-                    <img src="{{ asset('/bundles/motogp/img/assets/lang_en.png')}}" alt="" />
+                    <img class="link" href="{{ esURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_es.png')}}" alt="" />
                 </li>
             </ul>
             <ul class="social-links">
-                <img src="{{ asset('/bundles/motogp/img/assets/social_networks.png')}}" alt="" />
-                {#<li><i class="fa fa-facebook"></i></li>#}
-                {#<li><i class="fa fa-twitter"></i></li>#}
-                {#<li><i class="fa fa-instagram"></i></li>#}
-                {#<li><i class="fa fa-youtube"></i></li>#}
+                {#<img src="{{ asset('/bundles/motogp/img/assets/social_networks.png')}}" alt="" />#}
+                <li>
+                    <a href="{{ team.facebook }}" target="_blank">
+                        <img src="{{ asset('/bundles/motogp/img/assets/social_facebook.png') }}" alt="" />
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ team.twitter }}" target="_blank">
+                        <img src="{{ asset('/bundles/motogp/img/assets/social_twitter.png') }}" alt="" />
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ team.instagram }}" target="_blank">
+                        <img src="{{ asset('/bundles/motogp/img/assets/social_instagram.png') }}" alt="" />
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ team.youtube }}" target="_blank">
+                        <img src="{{ asset('/bundles/motogp/img/assets/social_youtube.png') }}" alt="" />
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

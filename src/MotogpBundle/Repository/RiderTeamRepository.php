@@ -10,4 +10,13 @@ namespace MotogpBundle\Repository;
  */
 class RiderTeamRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findMain()
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.main = true')
+            ->orderBy('r._order','ASC')
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
 }

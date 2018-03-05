@@ -44,6 +44,11 @@
   .social-bottom {
     margin : 2em auto;
     height: 2em;
+    img {
+      display : inline;
+      height : 2em;
+      margin : auto 1em;
+    }
   }
 
 }

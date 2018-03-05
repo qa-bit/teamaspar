@@ -12,11 +12,22 @@ use MotogpBundle\Entity\Score;
 use MotogpBundle\Entity\Video;
 use MotogpBundle\Entity\Sponsor;
 use MotogpBundle\Entity\Circuit;
+use MotogpBundle\Entity\RiderTeam;
+
 use Symfony\Component\HttpFoundation\Request;
 
 
 class PublicController extends Controller
 {
+
+    private function getMainTeam($modality = null) {
+
+        $em = $this->getDoctrine()->getManager();
+        $team  = $em->getRepository(RiderTeam::class)->findMain();
+
+        return $team;
+    }
+
     /**
      * @Route("/")
      */
@@ -54,6 +65,7 @@ class PublicController extends Controller
                     'homeRiders' => $homeRiders,
                     'bnSponsors' => $bnSponsors,
                     'colorSponsors' => $colorSponsors,
+                    'team' => $this->getMainTeam()
                 ]
             );
         }
@@ -84,7 +96,7 @@ class PublicController extends Controller
                 [
                     'gallery' => $gallery,
                     'circuits' => $circuits,
-         //           'galleries' => $galleries,
+                    'team' => $this->getMainTeam()
                 ]
             );
         }
@@ -112,6 +124,7 @@ class PublicController extends Controller
                 [
                     'gallery' => $gallery,
                     'videos' => $videos,
+                    'team' => $this->getMainTeam()
                 ]
             );
         }
@@ -136,6 +149,7 @@ class PublicController extends Controller
                 'MotogpBundle:Default:Motos/motos.html.twig',
                 [
                     'gallery' => $gallery,
+                    'team' => $this->getMainTeam()
                 ]
             );
         }
@@ -162,7 +176,8 @@ class PublicController extends Controller
                 'MotogpBundle:Default:Riders/riders.html.twig',
                 [
                     'gallery' => $gallery,
-                    'riders' => $riders
+                    'riders' => $riders,
+                    'team' => $this->getMainTeam()
 
                 ]
             );
@@ -186,7 +201,8 @@ class PublicController extends Controller
             return $this->render(
                 'MotogpBundle:Default:Sponsor/sponsor.html.twig',
                 [
-                    'gallery' => $gallery
+                    'gallery' => $gallery,
+                    'team' => $this->getMainTeam()
                 ]
             );
         }
@@ -216,7 +232,8 @@ class PublicController extends Controller
                 'MotogpBundle:Default:Posts/posts.html.twig',
                 [
                     'gallery' => $gallery,
-                    'circuits' => $circuits
+                    'circuits' => $circuits,
+                    'team' => $this->getMainTeam()
                 ]
             );
         }
@@ -236,7 +253,37 @@ class PublicController extends Controller
             return $this->render(
                 'MotogpBundle:Default:Posts/post.html.twig',
                 [
-                    'post' => $post
+                    'post' => $post,
+                    'team' => $this->getMainTeam()
+                ]
+            );
+        }
+        else
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+    }
+
+    /**
+     * @Route("/team_staff")
+     */
+    public function teamAction()
+    {
+
+
+        $em = $this->getDoctrine()->getManager();
+
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('staff_moto_gp');
+
+        $riders = $em->getRepository(Rider::class)->findHomeRiders();
+
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->render(
+                'MotogpBundle:Default:Team/team-staff.html.twig',
+                [
+                    'gallery' => $gallery,
+                    'team' => $this->getMainTeam(),
+                    'riders' => $riders
                 ]
             );
         }

@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% set locale = app.request.locale  ? app.request.locale : ( app.request.cookies.get('LC') ?  app.request.cookies.get('LC') : 'es' ) %}
+    {% set params = {} %}
+    {% set currentRoute = app.request.get('_route') %}
+    {%  for key, value in app.request.attributes.get('_route_params') %}
+        {% if key != '_locale' %}
+            {% set params = params | merge({(key) : (value)}) %}
+        {% endif %}
+    {% endfor %}
+    {% set esURL = url(currentRoute, {'locale': 'es'} | merge(params)) %}
+    {% set enURL = url(currentRoute, {'locale': 'en'} | merge(params)) %}
+
     <meta charset="UTF-8" />
 
     {% if app.environment == 'dev' %}

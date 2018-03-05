@@ -54,3 +54,29 @@
     height : 4em;
   }
 }
+
+
+.slider-bottom-arrow {
+  img {
+    position: absolute;
+    bottom: 2em;
+    height: 5em;
+    z-index: 9;
+    left: 47vw;
+    &:hover {
+      cursor : pointer;
+    }
+  }
+}
+
+.page-lr {
+  width: 7em;
+}
+
+.page-l {
+  padding-left: 2em;
+}
+
+.page-r {
+  padding-right : 2em;
+}

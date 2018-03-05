@@ -107,7 +107,7 @@ $homepost-height : 14em;
 
   .homegalleries {
     height : $homepost-height;
-    margin-bottom : 4em;
+    margin-bottom : 6em;
     .homegallery {
       padding: 0 .33em;
       height : $homepost-height;
@@ -152,6 +152,12 @@ $homepost-height : 14em;
       }
 
     }
+
+    .see-more {
+      position: relative;
+      top: .66em;
+    }
+
   }
 
 

@@ -12,6 +12,18 @@
   .social-media-icons {
     img {
       height: 2.5em;
+      margin-right : 1em;
     }
   }
+}
+
+.social-media-widgets {
+  background: #f7f7f7;
+  height: auto;
+  >div {
+    float: left;
+    margin-right : 3em;
+  }
+  display : table;
+  margin : 2em auto;
 }
