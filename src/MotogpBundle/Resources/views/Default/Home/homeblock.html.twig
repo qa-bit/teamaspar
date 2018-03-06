@@ -1,36 +1,38 @@
 <div class="moto-bg">
     <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral.png') }}" />
 </div>
-<div class="homeblock" style="background:url('{{ asset('bundles/motogp/img/assets/fondo_humo.jpg') }}')">
-    <div class="home-block-white" style="background:url('{{ asset('bundles/motogp/img/assets/fondo_blanco.jpg') }}')">
+<div class="homeblock col-xs-12" style="background:url('{{ asset('bundles/motogp/img/assets/fondo_humo.jpg') }}')">
+    <div class="home-block-wrapper col-xs-12" >
+        <div class="home-block-white col-xs-12" style="background:url('{{ asset('bundles/motogp/img/assets/fondo_blanco.jpg') }}')">
 
-        {% include "MotogpBundle:Default:Home/homeposts.html.twig" with {'posts' : posts} %}
-        {% include "MotogpBundle:Default:Home/homegalleries.html.twig" with {'sliders' : posts} %}
+            {% include "MotogpBundle:Default:Home/homeposts.html.twig" with {'posts' : posts} %}
+            {% include "MotogpBundle:Default:Home/homegalleries.html.twig" with {'sliders' : posts} %}
 
-        <div class="homevideo col-xs-12 col-md-6">
-            {% include "MotogpBundle:Default:Home/homevideo.html.twig" with {'video' : video} %}
-        </div>
+            <div class="homevideo col-xs-12 col-md-6">
+                {% include "MotogpBundle:Default:Home/homevideo.html.twig" with {'video' : video} %}
+            </div>
 
-        <div class="homeresults col-xs-12 col-md-6">
-            {% include "MotogpBundle:Default:Home/homeresults.html.twig" %}
-        </div>
+            <div class="homeresults col-xs-12 col-md-6">
+                {% include "MotogpBundle:Default:Home/homeresults.html.twig" %}
+            </div>
 
-        <div class="col-xs-12">
-            <div class="section-separator"></div>
-        </div>
-        <div class="col-xs-12">
-            {% include "MotogpBundle:Default:Blocks/social-media-wall.html.twig" %}
-        </div>
-        <div class="col-xs-12">
-            {% include "MotogpBundle:Default:Home/homeriders.html.twig" %}
+            <div class="col-xs-12">
+                <div class="section-separator"></div>
+            </div>
+            <div class="col-xs-12">
+                {% include "MotogpBundle:Default:Blocks/social-media-wall.html.twig" %}
+            </div>
+            <div class="col-xs-12">
+                {% include "MotogpBundle:Default:Home/homeriders.html.twig" %}
+            </div>
         </div>
     </div>
-    <div class="homebottom">
+    <div class="homebottom relative">
         {% include "MotogpBundle:Default:Home/homemotos.html.twig" %}
-        <div class="col-xs-12">
+        <div class="col-xs-12 bg-white">
             <div class="section-separator" style="margin-bottom:2em"></div>
         </div>
-        {% include "MotogpBundle:Default:Home/homesponsors.html.twig" %}
-        {% include "MotogpBundle:Default:footer.html.twig" %}
     </div>
 </div>
+{% include "MotogpBundle:Default:Home/homesponsors.html.twig" %}
+{% include "MotogpBundle:Default:footer.html.twig" %}

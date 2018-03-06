@@ -1,6 +1,5 @@
 .homemotos {
   width : 100%;
-  display : table;
 
   .homemoto-logo {
     width : auto;
@@ -101,6 +100,11 @@
     img {
       height : 1.5em;
     }
+  }
+
+  .homemoto-img {
+    width : 100%;
+    max-width : 100%;
   }
 
 }

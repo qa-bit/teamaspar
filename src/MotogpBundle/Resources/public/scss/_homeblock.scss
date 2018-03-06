@@ -5,15 +5,23 @@ $homepost-height : 14em;
   background-repeat: repeat-y !important;
   background-size: cover !important;
   width: 100%;
-  padding:0 6vw;
-  padding-bottom : 22em;
+  padding-left : 0;
+  padding-right : 0;
+
+  .home-block-wrapper {
+    width: 100%;
+    max-width: 100%;
+    height:auto;
+    position:relative;
+    min-height : 100%;
+    padding : 0 4em;
+  }
+
   .home-block-white {
+    padding: 4em 2em;
     background-repeat: repeat-y !important;
     background-size: cover !important;
-    width: 94vw;
-    max-width: 94vw;
-    display: table;
-    padding: 4em 2em;
+    padding-bottom : 8em;
   }
 
   .homeposts {
@@ -234,9 +242,8 @@ $homepost-height : 14em;
   display : table;
 }
 
-.homebottom {
-  position : absolute;
-  left : 0;
+.bg-white {
+  background : white;
 }
 
 @import "socialmedia";
