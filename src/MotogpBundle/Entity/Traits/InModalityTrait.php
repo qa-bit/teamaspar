@@ -21,6 +21,7 @@ trait InModalityTrait {
 
     /**
      * @ORM\ManyToOne(targetEntity="Modality", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $modality;
 

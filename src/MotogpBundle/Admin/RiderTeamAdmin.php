@@ -100,8 +100,10 @@ class RiderTeamAdmin extends AbstractAdmin
 
     protected function configureRoutes(RouteCollection $collection)
     {
+        
         $collection
             ->remove('create')
+            ->remove('delete')
         ;
     }
 

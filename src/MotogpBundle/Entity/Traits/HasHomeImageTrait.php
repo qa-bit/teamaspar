@@ -22,6 +22,7 @@ trait HasHomeImageTrait {
     /**
      * @var \Application\Sonata\MediaBundle\Entity\FeaturedMedia
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\HomeImage", cascade={"persist"}, fetch="LAZY")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $homeImage;
 

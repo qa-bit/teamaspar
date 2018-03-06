@@ -38,7 +38,7 @@ class Race
     protected $season;
     
     /**
-     * @ORM\OneToMany(targetEntity="Score", cascade={"persist"}, mappedBy="race")
+     * @ORM\OneToMany(targetEntity="Score", cascade={"all"}, mappedBy="race", orphanRemoval=true)
      */
     protected $scores;
 

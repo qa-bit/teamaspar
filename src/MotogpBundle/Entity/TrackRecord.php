@@ -42,6 +42,7 @@ class TrackRecord
 
     /**
      * @ORM\ManyToOne(targetEntity="Rider", cascade={"persist"}, inversedBy="records")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $rider;
 

@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class RiderTeamExternalAdmin extends AbstractAdmin
 {
@@ -100,6 +101,20 @@ class RiderTeamExternalAdmin extends AbstractAdmin
         );
 
         return $query;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+       
+        
+
+        if (!$this->isGranted('ROLE_SUPER_ADMIN'))
+        {
+            $collection
+                ->remove('create')
+                ->remove('delete')
+            ;
+        }
     }
 
 }

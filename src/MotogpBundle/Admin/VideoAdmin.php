@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use MotogpBundle\Entity\Rider;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class VideoAdmin extends AbstractAdmin
 {

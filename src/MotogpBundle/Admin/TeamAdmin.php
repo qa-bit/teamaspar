@@ -59,6 +59,7 @@ class TeamAdmin extends AbstractAdmin
             ->with(null)
             ->add('name', null, ['label' => 'Nombre y apellidos'])
             ->add('teamCategory', null, ['required' => true, 'attr' => $mediumColumn])
+            ->add('modality', null, ['attr' => ['container_classes' => 'col-md-6']])
             ->add('country', CountryType::class, ['label' => 'País',
                 'attr' => ['container_classes' => 'col-md-6'],
             ])
@@ -164,6 +165,8 @@ class TeamAdmin extends AbstractAdmin
             array('MotogpBundle:Admin:admin.theme.html.twig')
         );
     }
+    
+    
 
 
 }

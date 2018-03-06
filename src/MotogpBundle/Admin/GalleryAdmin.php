@@ -40,7 +40,8 @@ class GalleryAdmin extends AbstractAdmin
             ->add('categories')
             ->add('_action', null, array(
                 'actions' => array(
-                    'edit' => array()
+                    'edit' => array(),
+                    'delete' => array()
                 ),
             ))
         ;

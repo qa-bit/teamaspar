@@ -9,7 +9,7 @@ services:
         class: MotogpBundle\Admin\PostAdmin
         arguments: [~, MotogpBundle\Entity\Post, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Blog, label: Publicaciones }
+            - { name: sonata.admin, manager_type: orm, group: Blog, label: Publicaciones, on_top: true }
         public: true
 
     motogp.admin.rider:
@@ -182,6 +182,7 @@ services:
     motogp.admin.rider_team:
         class: MotogpBundle\Admin\RiderTeamAdmin
         arguments: [~, MotogpBundle\Entity\RiderTeam, SonataAdminBundle:CRUD]
+        roles: [ROLE_SUPER_ADMIN]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Configuración, label: Equipo }
         public: true

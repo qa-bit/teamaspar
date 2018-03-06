@@ -29,11 +29,13 @@ class Score
 
     /**
      * @ORM\ManyToOne(targetEntity="Race", cascade={"persist"}, inversedBy="scores")
+     * @ORM\JoinColumn(onDelete="CASCADE")*
      */
     protected $race;
 
     /**
      * @ORM\ManyToOne(targetEntity="Rider", cascade={"persist"}, inversedBy="scores")
+     * @ORM\JoinColumn(onDelete="CASCADE")*
      */
     protected $rider;
 

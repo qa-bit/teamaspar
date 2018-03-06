@@ -39,7 +39,7 @@ class Rider
    }
 
    /**
-    * @ORM\OneToMany(targetEntity="TrackRecord", cascade={"all"}, mappedBy="rider")
+    * @ORM\OneToMany(targetEntity="TrackRecord", cascade={"all"}, mappedBy="rider", orphanRemoval=true)
     * @ORM\OrderBy({"year" = "ASC"})
     */
    protected $records;
@@ -299,7 +299,7 @@ class Rider
 
 
    /**
-    * @ORM\OneToMany(targetEntity="Score", cascade={"persist"}, mappedBy="rider")
+    * @ORM\OneToMany(targetEntity="Score", cascade={"all"}, mappedBy="rider", orphanRemoval=true)
     */
    protected $scores;
 
@@ -1013,6 +1013,12 @@ class Rider
       }
       
       return $r;
+   }
+
+
+   public function __toString()
+   {
+      return $this->name.' '.$this->surname;
    }
 
 }

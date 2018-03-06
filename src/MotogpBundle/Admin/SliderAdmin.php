@@ -78,9 +78,13 @@ class SliderAdmin extends GalleryAdmin
 
     protected function configureRoutes(RouteCollection $collection)
     {
-        $collection
-            ->remove('create')
-        ;
+        $isSuperAdmin = $this->isGranted('ROLE_SUPER_ADMIN');
+
+        //if (!$isSuperAdmin) {
+            $collection
+                ->remove('create')
+                ->remove('delete');
+        //}
     }
 
 }

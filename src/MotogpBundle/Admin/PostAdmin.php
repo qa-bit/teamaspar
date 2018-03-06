@@ -11,6 +11,7 @@ use Sonata\FormatterBundle\Form\Type\SimpleFormatterType;
 use MotogpBundle\Admin\Media\HasMediasAdminTrait;
 use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
 use MotogpBundle\Entity\Rider;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class PostAdmin extends AbstractAdmin
 {

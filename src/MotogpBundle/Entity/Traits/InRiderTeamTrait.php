@@ -21,6 +21,7 @@ trait InRiderTeamTrait {
 
     /**
      * @ORM\ManyToOne(targetEntity="RiderTeam", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $riderTeam;
 

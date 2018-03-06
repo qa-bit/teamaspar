@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class CircuitAdmin extends AbstractAdmin
 {

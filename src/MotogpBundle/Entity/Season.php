@@ -37,7 +37,7 @@ class Season
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Race", mappedBy="seasons", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Race", mappedBy="season", cascade={"persist"}, orphanRemoval=true)
      */
     protected $races;
 

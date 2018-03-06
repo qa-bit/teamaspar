@@ -22,6 +22,7 @@ trait HasLogoTrait {
     /**
      * @var \Application\Sonata\MediaBundle\Entity\FeaturedMedia
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Logo", cascade={"persist"}, fetch="LAZY")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $logo;
 

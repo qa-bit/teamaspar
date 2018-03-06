@@ -26,12 +26,14 @@
             <cascade>
                 <cascade-persist />
             </cascade>
+            <join-column nullable="true" on-delete="CASCADE" />
         </many-to-one>
 
         <many-to-one field="rider" target-entity="MotogpBundle\Entity\Rider" nullable="true">
             <cascade>
                 <cascade-persist />
             </cascade>
+            <join-column nullable="true" on-delete="CASCADE" />
         </many-to-one>
 
     </entity>

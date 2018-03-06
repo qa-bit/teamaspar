@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use MotogpBundle\Admin\Media\LogoAdminTrait;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class RiderExternalAdmin extends AbstractAdmin
 {

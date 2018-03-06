@@ -19,6 +19,7 @@ class Moto
     /**
      * @var Builder
      * @ORM\ManyToOne(targetEntity="Builder", cascade={"persist"}, inversedBy="motos")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $builder;
 

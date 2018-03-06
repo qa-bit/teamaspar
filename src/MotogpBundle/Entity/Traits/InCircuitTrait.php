@@ -19,6 +19,7 @@ trait InCircuitTrait {
 
     /**
      * @ORM\ManyToOne(targetEntity="Circuit", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $circuit;
 

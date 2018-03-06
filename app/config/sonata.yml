@@ -14,6 +14,53 @@ sonata_admin:
 
     dashboard:
         groups:
+            blog:
+                label: Blog
+                items:
+                    - motogp.admin.post
+            team:
+                label: Equipo
+                items:
+                    - motogp.admin.rider
+                    - motogp.admin.rider_external
+            staff:
+                label: Staff
+                items:
+                    - motogp.admin.team
+                    - motogp.admin.team_category
+            races:
+                label: Carreras
+                items:
+                    - motogp.admin.race
+                    - motogp.admin.season
+            multim:
+                label: Multimedia
+                items:
+                    - motogp.admin.gallery
+                    - motogp.admin.slider
+                    - motogp.admin.video
+            newsletters:
+                label: Newsletters
+                items:
+                    - motogp.admin.customer
+                    - motogp.admin.category
+            config:
+                label: Configuración
+                items:
+                    - motogp.admin.rider_team_external
+                    - motogp.admin.category
+                    - motogp.admin.modality
+                    - motogp.admin.builder
+                    - motogp.admin.circuit
+                    - motogp.admin.sponsor
+                    - motogp.admin.moto
+                roles: [ROLE_SUPER_ADMIN]
+
+            newsletterss:
+                label: Newsletters
+                items:
+                    - motogp.admin.customer
+                    - motogp.admin.category
 
 sonata_formatter:
     default_formatter: text
