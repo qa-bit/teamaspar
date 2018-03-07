@@ -41,7 +41,7 @@ class PublicController extends Controller
 
         $galleries = $em->getRepository(Gallery::class)->getGalleries();
 
-        $posts  = $em->getRepository(Post::class)->findAll();
+        $posts  = $em->getRepository(Post::class)->getLast();
 
         $video = $em->getRepository(Video::class)->findOneById(1);
 
@@ -52,7 +52,7 @@ class PublicController extends Controller
         $colorSponsors = $em->getRepository(Sponsor::class)->findColor();
 
         $bnSponsors = $em->getRepository(Sponsor::class)->findBn();
-        
+
 
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {

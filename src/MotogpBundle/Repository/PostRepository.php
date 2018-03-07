@@ -10,4 +10,8 @@ namespace MotogpBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getLast()
+    {
+        return $this->findBy(array(), array('publishedAt' => 'DESC'));
+    }
 }
