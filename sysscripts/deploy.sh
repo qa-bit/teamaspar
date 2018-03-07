@@ -4,4 +4,5 @@ bin/console ca:cl --env=dev &&
 bin/console ca:cl --env=prod &&
 chmod -R 777 var/cache &&
 chmod -R 777 var/logs &&
-chmod -R 777 web/uploads/
+chmod -R 777 web/uploads/ &&
+sh install_front_deps.sh
