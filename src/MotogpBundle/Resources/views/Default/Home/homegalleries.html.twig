@@ -4,8 +4,12 @@
     {% for rider in homeRiders %}
         {% if loop.index < 3  %}
 
-            {% set g = [rider.previewImage] %}
-            
+            {% set g = [] %}
+
+            {% if rider.previewImage is not null %}
+                {% set g = g | merge([rider.previewImage]) %}
+            {% endif %}
+
             {% for gl in galleries %}
                 {% for m in gl.medias %}
                     {% if m.rider is not null and m.rider.id == rider.id %}
