@@ -22,7 +22,8 @@
 
 {% for g in circuit.galleries %}
     {% for i in g.medias %}
-        <a class="fancybox" rel="gallery-{{ g.id }}" href="{% path i, 'xlarge' %}" title="{{ i.description }}">
+        <a class="fancybox hidden" rel="gallery-{{ g.id }}" href="{% path i, 'xlarge' %}" title="{{ i.description }}">
+            <img src="{% path i, 'big' %}" />
         </a>
     {% endfor %}
 {% endfor %}
