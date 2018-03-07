@@ -13,6 +13,8 @@ use MotogpBundle\Entity\Video;
 use MotogpBundle\Entity\Sponsor;
 use MotogpBundle\Entity\Circuit;
 use MotogpBundle\Entity\RiderTeam;
+use MotogpBundle\Entity\Team;
+use MotogpBundle\Entity\TeamCategory;
 
 
 use Symfony\Component\HttpFoundation\Request;
@@ -182,6 +184,7 @@ class PublicController extends Controller
         $riders = $em->getRepository(Rider::class)->findHomeRiders();
 
 
+
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
                 'MotogpBundle:Default:Riders/riders.html.twig',
@@ -301,6 +304,10 @@ class PublicController extends Controller
 
         $riders = $em->getRepository(Rider::class)->findHomeRiders();
 
+        $staff = $em->getRepository(Team::class)->findAll();
+
+        $teamCategories = $em->getRepository(TeamCategory::class)->findBy(array(), array('_order' => 'DESC'));
+
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
@@ -308,7 +315,9 @@ class PublicController extends Controller
                 [
                     'gallery' => $gallery,
                     'team' => $this->getMainTeam(),
-                    'riders' => $riders
+                    'riders' => $riders,
+                    'staff' => $staff,
+                    'teamCategories' => $teamCategories
                 ]
             );
         }

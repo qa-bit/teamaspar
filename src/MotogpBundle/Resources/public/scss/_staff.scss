@@ -34,3 +34,72 @@
     }
   }
 }
+
+
+#riders {
+  padding-top : 2em;
+  background : url('/bundles/motogp/img/assets/fondo_humo.jpg');
+  background-repeat : no-repeat !important;
+  background-size : cover !important;
+
+  .rider-logo {
+    height : 4em;
+    width : auto;
+  }
+
+  .rider-name, .rider-surname {
+    font-size : 2.33em;
+    font-weight : bolder;
+    text-shadow : .11em .11em .11em rgba(0, 0, 0, 0.33);
+    padding : .5em .11em;
+  }
+
+  .rider-name {
+    color : white;
+  }
+
+  .rider-surname {
+    color : $menu-golden;
+  }
+
+  .rider-image-wrapper {
+    border-bottom : 1px solid $menu-golden;
+  }
+
+  .rider-wrapper {
+    padding-top : 2em;
+  }
+
+}
+
+.staff-member {
+
+  width : 24%;
+  float : left;
+  margin-right : 1em;
+  margin-top : 2em;
+  margin-bottom : 2em;
+
+  .staff-member-img-wrapp {
+    height : 12em;
+  }
+
+  .staff-member-image {
+    height : 100%;
+    width : auto;
+    display: table;
+    margin:auto;
+  }
+
+  h4 {
+    color : $menu-golden;
+    font-weight : bold;
+    text-align : center;
+  }
+
+  h5 {
+    color : white;
+    text-align: center;
+  }
+
+}

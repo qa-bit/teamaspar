@@ -48,6 +48,14 @@ class Rider
 
 
    /**
+    * @var Team
+    *
+    * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Team", mappedBy="rider", cascade={"all"}, orphanRemoval=true)
+    */
+   private $staffMembers;
+
+
+   /**
     * @var integer
     * @ORM\Column(type="integer", nullable=true)
     */
@@ -1015,6 +1023,34 @@ class Rider
       }
       
       return $r;
+   }
+
+   /**
+    * @param $team
+    * @return $this
+    */
+   public function addStaffMember($team)
+   {
+      if (!$this->staffMembers->contains($team)) {
+         $team->setRider($this);
+         $this->staffMembers->add($team);
+      }
+   }
+
+   /**
+    * @return Team
+    */
+   public function getStaffMembers()
+   {
+      return $this->staffMembers;
+   }
+
+   /**
+    * @param Team $staffMembers
+    */
+   public function setStaffMembers($staffMembers)
+   {
+      $this->staffMembers = $staffMembers;
    }
 
 

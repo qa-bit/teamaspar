@@ -14,38 +14,70 @@
     </div>
     {% include  "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery }%}
 
-    <div class="smoke-background">
+    <div class="">
+
         <div class="white-background motos-wrapper">
             <div id="history" class="form-group">
-                <h3 class="text-center">{{ "history" | trans }}</h3>
+                <h3 class="text-center"><b>{{ "history" | trans }}</b></h3>
                 <div>
                     {{ team.history | raw }}
                 </div>
             </div>
+        </div>
 
+        <div id="riders" class="col-xs-12">
             {% for r in riders %}
-                <div id="#rider-{{ r.id }}">
-                    <h3 class="text-center">{{ r.name }} {{ r.surname }}</h3>
+                <div class="col-xs-12 rider-wrapper" id="#rider-{{ r.id }}">
+                    <div class="col-xs-12">
+                        <img class="rider-logo tcenter" src="{% path r.logo, 'big' %}" alt="" />
+                    </div>
+                    <div class="col-xs-12 text-center">
+                        <span class="rider-name">{{ r.name }}</span><span class="rider-surname">{{ r.surname }}</span>
+                    </div>
+                    <div class="col-xs-12 rider-image-wrapper">
+                        <img class="rider-image tcenter" src="{% path r.featuredMedia, 'big' %}" alt="" />
+                    </div>
+                    <div class="rider-staff-members col-xs-12 col-md-10 tcenter">
+                        {% for t in r.staffMembers %}
+                            <div class="staff-member">
+                                <div class="staff-member-img-wrapp">
+                                    <img class="staff-member-image" src="{% path t.featuredMedia, 'big' %}" />
+                                </div>
+                                <h4>{{ t.name }}</h4>
+                                <h5>{{ t.teamCategory.name }}</h5>
+                                <div class="col-xs-12">
+                                    <img class="tcenter" src="{{ asset('/bundles/motogp/img/assets/flags/' ~ (t.country | lower) ~ '.png') }}" />
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="chart" class="form-group">
+            <h3 class="text-center">{{ "organization_chart" | trans }}</h3>
+            {% for tc in teamCategories %}
+                <div class="team-categories">
+                    {% for t in staff %}
+                        {% if t.teamCategory.id == tc.id and t.rider is null %}
+                            <div class="staff-member">
+                                <div class="staff-member-img-wrapp">
+                                    <img class="staff-member-image" src="{% path t.featuredMedia, 'big' %}" />
+                                </div>
+                                <h4>{{ t.name }}</h4>
+                                <h5>{{ t.teamCategory.name }}</h5>
+                                <div class="col-xs-12">
+                                    <img class="tcenter" src="{{ asset('/bundles/motogp/img/assets/flags/' ~ (t.country | lower) ~ '.png') }}" />
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             {% endfor %}
 
-            <div id="chart" class="form-group">
-                <h3 class="text-center">{{ "organization_chart" | trans }}</h3>
-                {% for m in team.staffMembers %}
-                    <div class="col-xs-12 col-md-4">
-                        <div class="col-xs-12 form-group">
-                            <img class="img img-responsive" src="{%  path m.featuredMedia, 'big' %}" alt="">
-                        </div>
-                        <h5 class="text-center">{{ m.name }}</h5>
-                        <label class="text-center" for="">{{ m.teamCategory.name }}</label>
-                        <div class="col-xs-12">
-                            <img class="tcenter" src="{{ asset('/bundles/motogp/img/assets/flags/' ~ (m.country | lower) ~ '.png') }}" />
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-
         </div>
+
     </div>
 
     {% include 'MotogpBundle:Default:footer.html.twig' %}
