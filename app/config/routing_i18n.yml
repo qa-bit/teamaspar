@@ -19,7 +19,7 @@ motos:
     defaults: { _controller: MotogpBundle:Public:motos }
 
 riders:
-    locales: { "es": "/es/pilotos", "en": "/en/riders" }
+    locales: { "es": "/es/piloto/{id}", "en": "/en/rider/{id}" }
     defaults: { _controller: MotogpBundle:Public:riders }
 
 sponsors:

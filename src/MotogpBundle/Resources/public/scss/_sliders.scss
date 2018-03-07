@@ -26,7 +26,7 @@
 
 .slider-caption {
   bottom: 4%;
-  left : 10%;
+  left : 5%;
   position: absolute;
 
   h2 {
@@ -34,6 +34,8 @@
     color : white;
     text-shadow : 0 0 0.33em rgba(0, 0, 0, 0.9);
     font-weight: bold;
+    font-size : 3em;
+    margin-bottom : 0;
   }
 
   label {
@@ -59,10 +61,10 @@
 .slider-bottom-arrow {
   img {
     position: absolute;
-    bottom: 2em;
-    height: 5em;
+    bottom: 1em;
+    height: 3em;
     z-index: 9;
-    left: 47vw;
+    left: 48vw;
     &:hover {
       cursor : pointer;
     }

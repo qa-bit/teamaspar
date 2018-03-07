@@ -8,7 +8,7 @@
             <div class="post-content">
                 {{ post.description | striptags | truncate(140, true, '...')|raw|nl2br }}
             </div>
-            <p>{{ post.publishedAt | date('d.M.Y') }}</p>
+            <p class="date">{{ post.publishedAt | date('d.m.Y') }}</p>
         </div>
     </div>
 </div>

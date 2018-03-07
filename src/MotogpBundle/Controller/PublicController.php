@@ -14,6 +14,7 @@ use MotogpBundle\Entity\Sponsor;
 use MotogpBundle\Entity\Circuit;
 use MotogpBundle\Entity\RiderTeam;
 
+
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -51,8 +52,8 @@ class PublicController extends Controller
         $colorSponsors = $em->getRepository(Sponsor::class)->findColor();
 
         $bnSponsors = $em->getRepository(Sponsor::class)->findBn();
-        
-        
+
+
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
                 'MotogpBundle:Default:index.html.twig',
@@ -63,6 +64,7 @@ class PublicController extends Controller
                     'video' => $video,
                     'scores' => $scores,
                     'homeRiders' => $homeRiders,
+                    'riders' => $homeRiders,
                     'bnSponsors' => $bnSponsors,
                     'colorSponsors' => $colorSponsors,
                     'team' => $this->getMainTeam()
@@ -88,7 +90,7 @@ class PublicController extends Controller
        // $galleries = $em->getRepository(Gallery::class)->getGalleries();
 
         $circuits = $em->getRepository(Circuit::class)->findAll();
-
+        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
@@ -96,6 +98,7 @@ class PublicController extends Controller
                 [
                     'gallery' => $gallery,
                     'circuits' => $circuits,
+                    'riders' => $homeRiders,
                     'team' => $this->getMainTeam()
                 ]
             );
@@ -116,6 +119,8 @@ class PublicController extends Controller
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('videos_moto_gp');
         
         $videos = $em->getRepository(Video::class)->findAll();
+        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+
 
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
@@ -124,6 +129,7 @@ class PublicController extends Controller
                 [
                     'gallery' => $gallery,
                     'videos' => $videos,
+                    'riders' => $homeRiders,
                     'team' => $this->getMainTeam()
                 ]
             );
@@ -143,12 +149,14 @@ class PublicController extends Controller
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('motos_moto_gp');
 
+        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
                 'MotogpBundle:Default:Motos/motos.html.twig',
                 [
                     'gallery' => $gallery,
+                    'riders' => $homeRiders,
                     'team' => $this->getMainTeam()
                 ]
             );
@@ -161,12 +169,14 @@ class PublicController extends Controller
     /**
      * @Route("/pilotos")
      */
-    public function ridersAction()
+    public function ridersAction(Request $request, Rider $rider)
     {
 
         $em = $this->getDoctrine()->getManager();
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('riders_moto_gp');
+
+        $galleries  = $em->getRepository(Gallery::class)->findAll();
 
         $riders = $em->getRepository(Rider::class)->findHomeRiders();
 
@@ -176,7 +186,9 @@ class PublicController extends Controller
                 'MotogpBundle:Default:Riders/riders.html.twig',
                 [
                     'gallery' => $gallery,
+                    'galleries' => $galleries,
                     'riders' => $riders,
+                    'rider' => $rider,
                     'team' => $this->getMainTeam()
 
                 ]
@@ -194,15 +206,21 @@ class PublicController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('sponsor_moto_gp');
+        $colorSponsors = $em->getRepository(Sponsor::class)->findColor();
+
+        $bnSponsors = $em->getRepository(Sponsor::class)->findBn();
+
+        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
 
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
                 'MotogpBundle:Default:Sponsor/sponsor.html.twig',
                 [
-                    'gallery' => $gallery,
-                    'team' => $this->getMainTeam()
+                    'team' => $this->getMainTeam(),
+                    'colorSponsors' => $colorSponsors,
+                    'bnSponsors' => $bnSponsors,
+                    'riders' => $homeRiders
                 ]
             );
         }
@@ -226,6 +244,7 @@ class PublicController extends Controller
 
         $circuits = $em->getRepository(Circuit::class)->findAll();
 
+        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
@@ -233,7 +252,8 @@ class PublicController extends Controller
                 [
                     'gallery' => $gallery,
                     'circuits' => $circuits,
-                    'team' => $this->getMainTeam()
+                    'team' => $this->getMainTeam(),
+                    'riders' => $homeRiders
                 ]
             );
         }
@@ -248,12 +268,16 @@ class PublicController extends Controller
      */
     public function postAction(Request $request, Post $post)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
                 'MotogpBundle:Default:Posts/post.html.twig',
                 [
                     'post' => $post,
+                    'riders' => $homeRiders,
                     'team' => $this->getMainTeam()
                 ]
             );

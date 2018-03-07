@@ -19,6 +19,7 @@
         </ul>
     </div>
 </div>
+
 {% for g in circuit.galleries %}
     {% for i in g.medias %}
         <a class="fancybox" rel="gallery-{{ g.id }}" href="{% path i, 'xlarge' %}" title="{{ i.description }}">

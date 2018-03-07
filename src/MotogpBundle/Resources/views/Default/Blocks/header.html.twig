@@ -26,7 +26,19 @@
                 <li><a href="{{ url('images') }}">{{ "images" | trans }}</a></li>
                 <li><a href="{{ url('videos') }}">{{ "videos" | trans }}</a></li>
                 <li><a href="{{ url('motos') }}">Ducati</a></li>
-                <li><a href="{{ url('riders') }}">{{ "riders" | trans }}</a></li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ "riders" | trans }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for r in riders %}
+                            <a class="dropdown-item" href="{{ url('riders', {'id' : r.id}) }}">{{ r.name }}&nbsp;{{ r.surname }}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+
+
                 <li><a href="{{ url('team_staff') }}">Team-staff</a></li>
                 <li><a href="{{ url('sponsors') }}">Sponsor</a></li>
                 <li><a href="#">{{ "register" | trans }}</a></li>

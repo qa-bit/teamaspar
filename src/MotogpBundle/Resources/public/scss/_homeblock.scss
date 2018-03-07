@@ -4,6 +4,7 @@ $homepost-height : 14em;
 .homeblock {
   background-repeat: repeat-y !important;
   background-size: cover !important;
+  background-position : 50% 50% !important;
   width: 100%;
   padding-left : 0;
   padding-right : 0;
@@ -14,7 +15,7 @@ $homepost-height : 14em;
     height:auto;
     position:relative;
     min-height : 100%;
-    padding : 0 4em;
+    padding : 0 8em;
   }
 
   .home-block-white {
@@ -54,10 +55,27 @@ $homepost-height : 14em;
     }
 
     .homepost-content {
+      padding : 1em 2em;
+
+      p.date, .post-content { font-size : .9em}
+
+      p.date { color : white !important;}
+
+      h4 {
+        font-size : 1.1em;
+        height : 3.2em;
+        max-height: 3.2em;
+        min-height : 3.2em;
+        overflow: hidden;
+      }
+
       height: $homepost-height;
       .post-content {
         height: 6em;
         line-height: 1.1em;
+        min-height: 6em;
+        max-height: 6em;
+        overflow: hidden;
       }
 
       .sep {
@@ -179,7 +197,7 @@ $homepost-height : 14em;
   }
 
   .homeresults {
-    padding : .33em;
+    padding : 1em;
     .homeresult {
       padding : 0;
       &:nth-child(1) {
@@ -189,7 +207,7 @@ $homepost-height : 14em;
         padding-left : .2em;
       }
       >div {
-
+        border: 1px solid transparent;
         .sep {
           border-bottom : 2px solid $menu-golden;
           width : 2em;
@@ -226,7 +244,7 @@ $homepost-height : 14em;
           border-bottom : 1px solid #ccc;
         }
 
-        .score-rider, .score-points {
+        .score-rider, .score-score {
           color : $menu-golden;
         }
       }
@@ -244,6 +262,11 @@ $homepost-height : 14em;
 
 .bg-white {
   background : white;
+}
+
+.homebottom {
+  display:table;
+  width: 100%;
 }
 
 @import "socialmedia";

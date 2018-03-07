@@ -9,7 +9,7 @@
                     <tr>
                         <td class="score-index">{{ l }}</td>
                         <td class="score-rider">{{ s.rider.name | truncate(1, false, '.') }} {{ s.rider.surName | upper}} </td>
-                        <td class="score-circuit">{{ s.race.circuit.name | truncate(7, false,'') }}</td>
+                        <td class="score-circuit">{{ s.race.circuit.name | truncate(7, false,'') | upper}}</td>
                         <td class="score-rider-moto">{{ s.rider.moto.builder.name }}</td>
                         <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
                     </tr>
