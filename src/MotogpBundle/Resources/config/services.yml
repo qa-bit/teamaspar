@@ -179,6 +179,13 @@ services:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Logo, show_in_dashboard: false}
         public: true
 
+    motogp.admin.previewimage:
+        class: Application\Sonata\MediaBundle\Admin\PreviewImageAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\PreviewImage, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Logo, show_in_dashboard: false}
+        public: true
+
     motogp.admin.rider_team:
         class: MotogpBundle\Admin\RiderTeamAdmin
         arguments: [~, MotogpBundle\Entity\RiderTeam, SonataAdminBundle:CRUD]

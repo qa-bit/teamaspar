@@ -1,7 +1,20 @@
 <div class="homegalleries col-xs-12">
-    {% for g in galleries %}
+
+
+    {% for rider in homeRiders %}
         {% if loop.index < 3  %}
-            {% include "MotogpBundle:Default:Home/homegallery.html.twig" with {'g' : g } %}
+
+            {% set g = [rider.previewImage] %}
+            
+            {% for gl in galleries %}
+                {% for m in gl.medias %}
+                    {% if m.rider is not null and m.rider.id == rider.id %}
+                        {% set g = g | merge([m]) %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
+            {% include "MotogpBundle:Default:Home/homegallery.html.twig" with {'g' : g, 'index' : loop.index } %}
         {% endif %}
     {% endfor %}
     <div class="w100">

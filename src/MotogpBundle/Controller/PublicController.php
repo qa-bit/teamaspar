@@ -52,6 +52,7 @@ class PublicController extends Controller
         $colorSponsors = $em->getRepository(Sponsor::class)->findColor();
 
         $bnSponsors = $em->getRepository(Sponsor::class)->findBn();
+        
 
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {

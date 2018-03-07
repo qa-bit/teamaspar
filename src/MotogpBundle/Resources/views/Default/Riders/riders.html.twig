@@ -89,12 +89,15 @@
     {% set g = [] %}
     {% for gl in galleries %}
         {% for m in gl.medias %}
-            {% if m.rider is not null %}
+            {% if m.rider is not null and m.rider.id == r.id %}
                 {% set g = g | merge([m]) %}
             {% endif %}
         {% endfor %}
     {% endfor %}
 
-    {% include 'MotogpBundle:Default:Riders/rider-gallery.html.twig' with {'gallery' : g} %}
+    {% if g | length %}
+        {% include 'MotogpBundle:Default:Riders/rider-gallery.html.twig' with {'gallery' : g} %}
+    {% endif %}
+
     {% include 'MotogpBundle:Default:footer.html.twig' %}
 {% endblock %}

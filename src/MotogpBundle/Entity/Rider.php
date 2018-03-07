@@ -11,6 +11,7 @@ use MotogpBundle\Entity\Traits\InTeamCategoryTrait;
 use MotogpBundle\Entity\Traits\InMotoTrait;
 use MotogpBundle\Entity\Traits\HasLogoTrait;
 use MotogpBundle\Entity\Traits\HasHomeImageTrait;
+use MotogpBundle\Entity\Traits\HasPreviewImageTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -29,6 +30,7 @@ class Rider
        HasMediaTrait,
        HasLogoTrait,
        HasHomeImageTrait,
+       HasPreviewImageTrait,
        InMotoTrait;
 
 

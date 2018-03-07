@@ -25,6 +25,11 @@
                 {% include 'MotogpBundle:Admin:featured_media_admin.html.twig' with {'title' : 'una imagen para el home'}%}
                 {#{% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}#}
             </div>
+        {% elseif sonata_admin.name == 'previewImage' %}
+        <div id="logo">
+            {% include 'MotogpBundle:Admin:featured_media_admin.html.twig' with {'title' : 'una imagen para galerias home'}%}
+            {#{% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}#}
+        </div>
         {% else %}
         {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}
     {% endif %}
