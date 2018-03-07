@@ -36,7 +36,7 @@ class TeamAdmin extends AbstractAdmin
         $listMapper
             ->add('name')
             ->add('country')
-            ->add('teamCategory')
+            ->add('teamCategory', null, array('editable' => true))
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),

@@ -40,6 +40,8 @@ class Rider
       $this->records = new ArrayCollection();
    }
 
+   
+
    /**
     * @ORM\OneToMany(targetEntity="TrackRecord", cascade={"all"}, mappedBy="rider", orphanRemoval=true)
     * @ORM\OrderBy({"year" = "ASC"})

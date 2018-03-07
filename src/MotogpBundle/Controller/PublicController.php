@@ -306,7 +306,7 @@ class PublicController extends Controller
 
         $staff = $em->getRepository(Team::class)->findAll();
 
-        $teamCategories = $em->getRepository(TeamCategory::class)->findBy(array(), array('_order' => 'DESC'));
+        $teamCategories = $em->getRepository(TeamCategory::class)->findBy(array(), array('_order' => 'ASC'));
 
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {

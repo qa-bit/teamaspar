@@ -29,6 +29,7 @@ class TeamCategoryAdmin extends AbstractAdmin
         $listMapper
             ->add('name')
             ->add('description')
+            ->add('order', null, array('editable' => true))
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
