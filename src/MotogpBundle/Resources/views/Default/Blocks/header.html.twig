@@ -23,7 +23,7 @@
                 <li><a href="#"><img src="{{ asset('/bundles/motogp/img/assets/fimjr.png')}}" alt="" /></a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a class="{{ route == 'posts' ? 'active' : '' }}" href="{{ url('posts') }}">{{ "news" | trans }}</a></li>
+                <li><a class="{{ (route == 'posts' or route == 'post') ? 'active' : '' }}" href="{{ url('posts') }}">{{ "news" | trans }}</a></li>
                 <li><a class="{{ route == 'images' ? 'active' : '' }}" href="{{ url('images') }}">{{ "images" | trans }}</a></li>
                 <li><a class="{{ route == 'videos' ? 'active' : '' }}" href="{{ url('videos') }}">{{ "videos" | trans }}</a></li>
                 <li><a class="{{ route == 'motos' ? 'active' : '' }}" href="{{ url('motos') }}">Ducati</a></li>

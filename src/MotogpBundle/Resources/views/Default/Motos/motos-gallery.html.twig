@@ -1,6 +1,6 @@
 <div class="motos-gallery">
     {% for m in gallery.medias %}
-        <div class="motos-gallery-item">
+        <div class="motos-gallery-item mgi-{{ loop.index }}" block="{{ loop.index % 4 }}" notfirstrow="{{ loop.index >= 5 }}">
             <div class="relative" style="background:url('{% path m, 'big' %}');height:14em">
                 <a class="fancybox" rel="motos" href="{% path m, 'xlarge' %}" title="{{ m.description }}">
                 </a>

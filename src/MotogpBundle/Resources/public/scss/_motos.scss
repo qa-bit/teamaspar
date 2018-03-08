@@ -3,8 +3,6 @@
 }
 
 .motos-description {
-
-
   .moto-description {
     padding: 1em 6em;
   }
@@ -97,4 +95,19 @@
   padding-bottom : 4em;
   width : 100%;
   display : table;
+}
+
+.motos-gallery-item {
+  border : none !important;
+  padding : 0;
+}
+
+.motos-gallery-item[notfirstrow="1"] {
+  padding-top : .3em;
+}
+
+.motos-gallery-item {
+  &[block="1"], &[block="2"], &[block="3"] {
+    padding-right : .33em;
+  }
 }
