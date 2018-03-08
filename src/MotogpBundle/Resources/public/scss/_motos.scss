@@ -4,6 +4,22 @@
 
 .motos-description {
 
+
+  .moto-description {
+    padding: 1em 6em;
+  }
+
+  .moto-description-separator {
+    position : absolute;
+    height : 100%;
+    right: 5em;
+    img {
+      position : absolute;
+      height : 100%;
+      width : auto;
+    }
+  }
+
   text-align: center;
 
   p {
@@ -45,7 +61,7 @@
 .motos-gallery-item {
   width : 25%;
   float : left;
-  padding : .25em;
+  padding : .1em;
   &:nth-child(4n) {
     padding-left : 0;
   }
@@ -78,8 +94,7 @@
 }
 
 .motos-gallery {
-  padding-bottom : 8em;
+  padding-bottom : 4em;
   width : 100%;
-  height : 8em;
   display : table;
 }

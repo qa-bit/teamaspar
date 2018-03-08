@@ -124,7 +124,21 @@ $(document).ready(function () {
                 }
             })
         },
+        toggleNews : function () {
+            $('.circuit-galleries-list').hide();
+
+            $('.toggler').click(function () {
+                if ($(this).hasClass('closed')){
+                    $(this).removeClass('closed').addClass('opened');
+                } else {
+                    $(this).removeClass('opened').addClass('closed');
+                }
+
+                $(this).parent().parent().parent().parent().find('.circuit-galleries-list').toggle();
+            })
+        },
         init : function () {
+            this.toggleNews();
             this.lazyImages();
             this.swiper();
             this.upArrow();

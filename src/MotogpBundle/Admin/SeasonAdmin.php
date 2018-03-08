@@ -31,6 +31,7 @@ class SeasonAdmin extends AbstractAdmin
             ->add('start', null, ['label' => 'Inicio', 'format' => 'd-m-Y'])
             ->add('end', null, ['label' => 'Fin', 'format' => 'd-m-Y'])
             ->add('circuits')
+            ->add('current')
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -64,13 +65,7 @@ class SeasonAdmin extends AbstractAdmin
                     'allow_add' => true
                 ]
                 )
-//            ->add('seoTitle')
-//            ->add('seoTitleEN')
-//            ->add('seoKeywords')
-//            ->add('seoKeywordsEN')
-
-//            ->add('createdAt')
-//            ->add('updatedAt')
+            ->add('current')
         ;
     }
 

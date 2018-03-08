@@ -5,16 +5,39 @@
     <div class="smoke-background">
         <div class="white-background">
             <div class="circuit-galleries">
+                {% set cpost = [] %}
 
-                {% for p in range(1,6) %}
-                    {% for c in circuits %}
-                        {% if c.galleries | length %}
-                            {% include "MotogpBundle:Default:Posts/circuit-posts.html.twig" with {'circuit' : c} %}
-                        {% endif %}
-                    {% endfor %}
+                {% for c in circuits %}
+                    {% if c.posts is not empty %}
+                        {% set cpost = cpost | merge([c]) %}
+                    {% endif %}
                 {% endfor %}
+
+                {% for c in cpost %}
+                    {% if loop.index == 1 or (loop.index % 4  == 0)%}
+                        <div class="row col-xs-12">
+                    {% endif %}
+
+                    {% if c.galleries | length %}
+                        {% include "MotogpBundle:Default:Posts/circuit-posts.html.twig" with {'circuit' : c} %}
+                    {% endif %}
+
+                    {% if (loop.index % 4  == 3 ) %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <br><br>
+            <div class="text-center col-xs-12">
+                <img src="{{ asset('/bundles/motogp/img/assets/up.png') }}" alt="" class="up-arrow">
             </div>
         </div>
     </div>
+    </div>
     {% include 'MotogpBundle:Default:footer.html.twig' %}
+    <div class="relative">
+        <div class="moto-bg moto-bg-footer">
+            <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral.png') }}" style="position:absolute!important"/>
+        </div>
+    </div>
 {% endblock %}

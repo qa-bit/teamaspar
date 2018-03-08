@@ -27,12 +27,23 @@
 
     min-height : 27em;
 
+
+    .trow {
+      display:table;
+      margin : auto;
+    }
+
     h3 {
       font-weight: 900;
       font-style: italic;
-      margin-top : .11em;
+      margin-top: 0.11em;
       font-family: 'Mark-Bold-Italic', sans-serif;
-      font-size : 2.5em;
+      font-size: 2em;
+      height: 4em;
+      /* border: 1px solid red; */
+      display: table-cell;
+      vertical-align: middle;
+      width: 100%;
     }
 
     .sep {
@@ -63,7 +74,12 @@
     }
 
     &:nth-child(even) .circuit-gallery-description {
-      background: #d5b468;
+
+      background: rgb(211,177,103); /* Old browsers */
+      background: -moz-radial-gradient(center, ellipse cover, rgba(211,177,103,1) 0%, rgba(162,121,77,1) 100%); /* FF3.6-15 */
+      background: -webkit-radial-gradient(center, ellipse cover, rgba(211,177,103,1) 0%,rgba(162,121,77,1) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: radial-gradient(ellipse at center, rgba(211,177,103,1) 0%,rgba(162,121,77,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3b167', endColorstr='#a2794d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
 
       h6 {
@@ -88,6 +104,9 @@
       list-style-type: none;
       width : 100%;
       li {
+
+        a { color : black !important;}
+
         padding : .33em 0;
         color : black;
         width : 100%;
@@ -109,4 +128,26 @@
     }
   }
 
+}
+
+.toggle-galleries {
+  .toggler {
+    width : 3em;
+    height : 3em;
+    margin : auto;
+    display: table;
+    float :none;
+    background-repeat : no-repeat !important;
+    background-size : 100% 100% !important;
+    &.closed {
+      background : url('/bundles/motogp/img/assets/show_more.png');
+    }
+    &.opened {
+      background : url('/bundles/motogp/img/assets/show_less.png');
+    }
+
+    &:hover{
+      cursor : pointer;
+    }
+  }
 }

@@ -1,4 +1,5 @@
 {% trans_default_domain 'topmenu' %}
+{% set route = app.request.get('_route') %}
 <nav id="header" class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -22,13 +23,13 @@
                 <li><a href="#"><img src="{{ asset('/bundles/motogp/img/assets/fimjr.png')}}" alt="" /></a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="{{ url('posts') }}">{{ "news" | trans }} <span class="sr-only">(current)</span></a></li>
-                <li><a href="{{ url('images') }}">{{ "images" | trans }}</a></li>
-                <li><a href="{{ url('videos') }}">{{ "videos" | trans }}</a></li>
-                <li><a href="{{ url('motos') }}">Ducati</a></li>
+                <li><a class="{{ route == 'posts' ? 'active' : '' }}" href="{{ url('posts') }}">{{ "news" | trans }}</a></li>
+                <li><a class="{{ route == 'images' ? 'active' : '' }}" href="{{ url('images') }}">{{ "images" | trans }}</a></li>
+                <li><a class="{{ route == 'videos' ? 'active' : '' }}" href="{{ url('videos') }}">{{ "videos" | trans }}</a></li>
+                <li><a class="{{ route == 'motos' ? 'active' : '' }}" href="{{ url('motos') }}">Ducati</a></li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="{{ route == 'riders' ? 'active' : '' }} nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ "riders" | trans }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -39,9 +40,9 @@
                 </li>
 
 
-                <li><a href="{{ url('team_staff') }}">Team-staff</a></li>
-                <li><a href="{{ url('sponsors') }}">Sponsor</a></li>
-                <li><a href="#">{{ "register" | trans }}</a></li>
+                <li><a class="{{ route == 'team_staff' ? 'active' : '' }}" href="{{ url('team_staff') }}">Team-staff</a></li>
+                <li><a class="{{ route == 'sponsors' ? 'active' : '' }}"   href="{{ url('sponsors') }}">Sponsor</a></li>
+                <li><a class="{{ route == 'register' ? 'active' : '' }}"   href="#">{{ "register" | trans }}</a></li>
             </ul>
         </div>
         <div class="header-options">

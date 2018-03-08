@@ -23,6 +23,10 @@
         color : grey !important;
         transition : all .33s;
       }
+
+      &.active {
+        color : $menu-golden !important;
+      }
     }
     &:not(:last-child) a {
       border-right : 1px solid $menu-golden;

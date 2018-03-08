@@ -43,6 +43,12 @@ class Season
 
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $current;
+
+    /**
      * @return string
      */
     public function getStart()
@@ -140,6 +146,24 @@ class Season
         $this->races->remove($race);
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCurrent()
+    {
+        return $this->current;
+    }
+
+    /**
+     * @param mixed $current
+     */
+    public function setCurrent($current)
+    {
+        $this->current = $current;
+    }
+
+
 
 }
 

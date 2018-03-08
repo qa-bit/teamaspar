@@ -61,3 +61,22 @@ body {
 .link:hover {
   cursor : pointer;
 }
+
+.moto-bg-footer {
+  display: block;
+  height: 1px;
+  width: auto;
+  right: 0;
+  position: absolute;
+  img {
+    bottom : 0 !important;
+    top : auto !important;
+    position : static !important;
+  }
+}
+
+.moto-bg-motos {
+  img {
+    top: auto !important;
+  }
+}

@@ -3,12 +3,12 @@
     {{ parent() }}
 
     <section id="slider-motos" class="clearfix top-slider">
-        <div id="swiper-inicio" class="swiper-container" style="width:100%; height : 75vh">
+        <div id="swiper-inicio" class="swiper-container" style="width:100%;height:49vw" auto-height="true">
             <div class="swiper-wrapper">
                 {% for m in gallery.medias %}
                     <div
                             class="swiper-slide dark lazy cover"
-                            data-src="{{ asset('/bundles/motogp/img/assets/motos_ducati1.png') }}"
+                            data-src="{{ asset('/bundles/motogp/img/assets/motos_ducativ4.jpg') }}"
                             aria-role="img"
                     >
                     </div>
@@ -24,18 +24,31 @@
     <div class="smoke-background">
         <div class="white-background motos-wrapper">
             <div class="w100 motos-description">
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-md-6 moto-description relative">
+                    <div class="moto-description-separator">
+                        <img class="" src="{{ asset('/bundles/motogp/img/assets/ducati_sep.png') }}" alt="">
+                    </div>
                     {% include "MotogpBundle:StaticContent:moto_a.html.twig" %}
                 </div>
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-md-6 moto-description">
                     {% include "MotogpBundle:StaticContent:moto_b.html.twig" %}
                 </div>
             </div>
-            <div class="col-xs-12">
-                <img class="moto-sponsor" src="{{ asset('/bundles/motogp/img/assets/logo_ducati.png') }}" alt="">
-            </div>
+
+
         </div>
     </div>
+
+    <div class="relative">
+        <div class="moto-bg moto-bg-motos">
+            <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral.png') }}" />
+        </div>
+    </div>
+
     {% include 'MotogpBundle:Default:Motos/motos-gallery.html.twig' with {'gallery' : gallery} %}
+    <div class="text-center">
+        <img src="{{ asset('/bundles/motogp/img/assets/up.png') }}" alt="" class="up-arrow">
+        <br/><br/>
+    </div>
     {% include 'MotogpBundle:Default:footer.html.twig' %}
 {% endblock %}

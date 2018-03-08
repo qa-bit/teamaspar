@@ -6,13 +6,17 @@
     <div class="smoke-background">
         <div class="white-background">
             <div class="video-gallery">
-                {% for p in range(1,6) %}
-                    {% for v in videos %}
-                        {% include "MotogpBundle:Default:Videos/video_gallery_item.html.twig" with {'video' : v } %}
-                    {% endfor %}
+                {% for v in videos %}
+                    {% include "MotogpBundle:Default:Videos/video_gallery_item.html.twig" with {'video' : v } %}
                 {% endfor %}
+            </div>
+            <div class="text-center">
+                <img src="{{ asset('/bundles/motogp/img/assets/up.png') }}" alt="" class="up-arrow">
             </div>
         </div>
     </div>
     {% include 'MotogpBundle:Default:footer.html.twig' %}
+    <div class="moto-bg moto-bg-footer">
+        <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral.png') }}" />
+    </div>
 {% endblock %}

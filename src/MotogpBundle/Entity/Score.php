@@ -48,11 +48,27 @@ class Score
 
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    protected $time;
+    protected $timeMinutes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+
+    protected $timeSeconds;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $timeMilliSeconds;
+
 
     /**
      * @return mixed
@@ -103,19 +119,51 @@ class Score
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getTime()
+    public function getTimeMinutes()
     {
-        return $this->time;
+        return $this->timeMinutes;
     }
 
     /**
-     * @param string $time
+     * @param int $timeMinutes
      */
-    public function setTime($time)
+    public function setTimeMinutes($timeMinutes)
     {
-        $this->time = $time;
+        $this->timeMinutes = $timeMinutes;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimeSeconds()
+    {
+        return $this->timeSeconds;
+    }
+
+    /**
+     * @param int $timeSeconds
+     */
+    public function setTimeSeconds($timeSeconds)
+    {
+        $this->timeSeconds = $timeSeconds;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimeMilliseconds()
+    {
+        return $this->timeMilliSeconds;
+    }
+
+    /**
+     * @param int $timeMilliseconds
+     */
+    public function setTimeMilliSeconds($timeMilliSeconds)
+    {
+        $this->timeMilliSeconds = $timeMilliSeconds;
     }
 
 }
