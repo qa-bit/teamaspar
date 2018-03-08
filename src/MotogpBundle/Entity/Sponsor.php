@@ -5,6 +5,7 @@ namespace MotogpBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
 use MotogpBundle\Entity\Traits\HasMediaTrait;
+use MotogpBundle\Entity\Traits\InModalityTrait;
 
 /**
  * Sponsor
@@ -14,7 +15,7 @@ use MotogpBundle\Entity\Traits\HasMediaTrait;
  */
 class Sponsor
 {
-    use ContentTrait, HasMediaTrait;
+    use ContentTrait, HasMediaTrait, InModalityTrait;
 
     /**
      * @var string
@@ -59,6 +60,14 @@ class Sponsor
     public function setBn($bn)
     {
         $this->bn = $bn;
+    }
+
+    public function getGallery() {
+        $g = new \stdClass();
+
+        $g->medias = [$this->featuredMedia];
+
+        return $g;
     }
 }
 

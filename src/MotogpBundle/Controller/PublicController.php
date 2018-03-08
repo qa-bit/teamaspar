@@ -203,10 +203,37 @@ class PublicController extends Controller
 
     }
 
+
+
     /**
-     * @Route("/sponsor")
+     * @Route("/pilotos")
      */
-    public function sponsorAction() {
+    public function sponsorAction(Request $request, Sponsor $sponsor)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->render(
+                'MotogpBundle:Default:Sponsor/sponsor_landpage.html.twig',
+                [
+                    'sponsor' => $sponsor,
+                    'riders' => $homeRiders,
+                    'team' => $this->getMainTeam()
+
+                ]
+            );
+        }
+        else
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+    }
+
+    /**
+     * @Route("/sponsors")
+     */
+    public function sponsorsAction() {
 
         $em = $this->getDoctrine()->getManager();
 

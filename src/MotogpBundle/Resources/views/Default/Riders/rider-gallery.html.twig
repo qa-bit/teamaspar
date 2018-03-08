@@ -1,9 +1,9 @@
 <div class="motos-gallery">
     {% for m in g %}
         <div class="motos-gallery-item">
-            <div class="relative" style="background:url('{% path m, 'big' %}');height:14em">
+            <div class="relative" style="background:url('{% path m, 'big' %}');height:14em" block="{{ loop.index % 4 }}" notfirstrow="{{ loop.index >= 5 }}">
                 <a class="fancybox" rel="motos" href="{% path m, 'xlarge' %}" title="{{ m.description }}">
-                    <img src="{% path m, 'big' %}" alt="" />
+                    <img class="img img-responsive" src="{% path m, 'big' %}" alt="" />
                 </a>
             </div>
         </div>

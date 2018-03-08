@@ -15,8 +15,12 @@
             </div>
         </div>
     </div>
+
     {% include 'MotogpBundle:Default:footer.html.twig' %}
-    <div class="moto-bg moto-bg-footer">
-        <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral.png') }}" />
+    <div class="relative">
+        <div class="moto-bg moto-bg-footer">
+            <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral.png') }}" style="position:absolute !important"/>
+        </div>
     </div>
+
 {% endblock %}

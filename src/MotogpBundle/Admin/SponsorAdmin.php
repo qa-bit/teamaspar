@@ -52,6 +52,7 @@ class SponsorAdmin extends AbstractAdmin
             ->add('name')
             ->add('description', 'ckeditor')
             ->add('descriptionEN', 'ckeditor')
+            ->add('modality', null, ['required' => true])
             ->add('featuredMedia', 'sonata_type_admin', array(
                 'label' => 'Imágen de portada',
                 'required' => false,
