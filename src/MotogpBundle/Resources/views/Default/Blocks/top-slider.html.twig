@@ -1,39 +1,41 @@
-<section id="slider-inicio" class="clearfix top-slider">
-    <div id="swiper-inicio" class="swiper-container" style="width:100%; height : 75vh">
-        <div class="swiper-wrapper">
-            {% for m in gallery.medias %}
-                <div
-                        class="swiper-slide dark lazy cover"
-                        data-src="{% path m, 'xlarge' %}"
-                        aria-role="img"
-                        title="{{ m.name }}"
-                        arial-label="{{ m.name }}"
-                >
+{% if gallery is not null  %}
+    <section id="slider-inicio" class="clearfix top-slider">
+        <div id="swiper-inicio" class="swiper-container" style="width:100%; height : 75vh">
+            <div class="swiper-wrapper">
+                {% for m in gallery.medias %}
+                    <div
+                            class="swiper-slide dark lazy cover"
+                            data-src="{% path m, 'xlarge' %}"
+                            aria-role="img"
+                            title="{{ m.name }}"
+                            arial-label="{{ m.name }}"
+                    >
 
-                    <div class="slider-caption">
-                        {% if m.title %}
-                            <h2>
-                                <a href="{{ m.url ? m.url : '#' }}" target="_blank">
-                                    {{ m.title }}
-                                </a>
-                            </h2>
-                            <label>
-                                <a href="{{ m.url ? m.url : '#' }}" target="_blank">
-                                    {{ m.description }}
-                                </a>
-                            </label>
-                        {% endif %}
-                        <div class="slider-modality">
-                            <img src="{{ asset('/bundles/motogp/img/assets/logowhite-motogp.png') }}" alt="">
+                        <div class="slider-caption">
+                            {% if m.title %}
+                                <h2>
+                                    <a href="{{ m.url ? m.url : '#' }}" target="_blank">
+                                        {{ m.title }}
+                                    </a>
+                                </h2>
+                                <label>
+                                    <a href="{{ m.url ? m.url : '#' }}" target="_blank">
+                                        {{ m.description }}
+                                    </a>
+                                </label>
+                            {% endif %}
+                            <div class="slider-modality">
+                                <img src="{{ asset('/bundles/motogp/img/assets/logowhite-motogp.png') }}" alt="">
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
 
+            </div>
+            <div id="sw" class="swiper-pagination"></div>
         </div>
-        <div id="sw" class="swiper-pagination"></div>
-    </div>
-    <div class="slider-bottom-arrow relative">
-        <img src="{{ asset('/bundles/motogp/img/assets/down.png') }}" alt="">
-    </div>
-</section>
+        <div class="slider-bottom-arrow relative">
+            <img src="{{ asset('/bundles/motogp/img/assets/down.png') }}" alt="">
+        </div>
+    </section>
+{% endif %}

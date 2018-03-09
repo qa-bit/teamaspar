@@ -41,3 +41,7 @@ post:
 team_staff:
     locales: { "es": "/es/equipo", "en": "/en/team-staff" }
     defaults: { _controller: MotogpBundle:Public:team}
+
+public_contact:
+    locales: { "en": "/en/contact", "es": "/es/contacto" }
+    defaults: { _controller: MotogpBundle:Contact:contactForm}
