@@ -60,6 +60,7 @@
   width : 25%;
   float : left;
   padding : .1em;
+  overflow: hidden;
   &:nth-child(4n) {
     padding-left : 0;
   }

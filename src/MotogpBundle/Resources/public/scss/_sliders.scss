@@ -90,3 +90,27 @@
     background-size : 100% !important;
   }
 }
+
+#fancybox-thumbs {
+  ul {
+    width: auto !important;
+    margin: auto !important;
+    display: table !important;
+    float: none !important;
+    text-align: center !important;
+    left: 0 !important;
+     li {
+       margin-right : .33em;
+       margin-bottom : .33em;
+       a {
+         width : 4em !important;
+         height : 4em !important;
+         img {
+           width : 4em !important;
+           height : 4em !important;
+           left : 0 !important;
+         }
+       }
+     }
+  }
+}

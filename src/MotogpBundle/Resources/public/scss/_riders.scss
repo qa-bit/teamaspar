@@ -15,7 +15,7 @@
 
 .track-records {
   padding : 2em;
-  border-top : 1px solid $menu-golden;
+  border-bottom : 1px solid $menu-golden;
   display:table;
   width:100%;
 
@@ -32,4 +32,27 @@
 
 .rider-biografy {
   padding : 2em;
+  >div {
+    padding : 0 3.3em;
+  }
+}
+
+.right-arrow {
+  color : $menu-golden;
+  font-size: .5em;
+  margin-right: .3em;
+  position: relative;
+  top: -.33em;
+}
+
+.rider-records, .rider-info {
+  list-style-type: none;
+  li:before {
+    content: "·";
+    font-size: 2em;
+    vertical-align: middle;
+    line-height: 0;
+    position: relative;
+    top: -.1em;
+  }
 }

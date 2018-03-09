@@ -40,6 +40,13 @@ class Post
         $this->publishedAt = new \DateTime();
     }
 
+
+    /**
+     * @var integer
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $circuitOrder;
+
     /**
      * @var PostMedia
      *
@@ -151,6 +158,22 @@ class Post
     public function setGallery($gallery)
     {
         $this->gallery = $gallery;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCircuitOrder()
+    {
+        return $this->circuitOrder;
+    }
+
+    /**
+     * @param int $circuitOrder
+     */
+    public function setCircuitOrder($circuitOrder)
+    {
+        $this->circuitOrder = $circuitOrder;
     }
     
 }

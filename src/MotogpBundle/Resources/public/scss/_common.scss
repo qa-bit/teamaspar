@@ -80,3 +80,14 @@ body {
     top: auto !important;
   }
 }
+
+.col-nopad {
+  padding-left : 0;
+  padding-right : 0;
+}
+
+.bg-w100 {
+  background-size: auto 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}

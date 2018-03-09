@@ -55,6 +55,13 @@ class Gallery
      */
     private $slug;
 
+
+    /**
+     * @var integer
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $circuitOrder;
+
     /**
      * @return Media
      */
@@ -119,4 +126,20 @@ class Gallery
         $this->slug = $slug;
     }
 
+    /**
+     * @return int
+     */
+    public function getCircuitOrder()
+    {
+        return $this->circuitOrder;
+    }
+
+    /**
+     * @param int $circuitOrder
+     */
+    public function setCircuitOrder($circuitOrder)
+    {
+        $this->circuitOrder = $circuitOrder;
+    }
+    
 }
