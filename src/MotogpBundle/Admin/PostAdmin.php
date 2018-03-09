@@ -119,7 +119,7 @@ class PostAdmin extends AbstractAdmin
                             'attr' => ['container_classes' => 'col-md-6']
                         ])
 
-                        ->add('_order', 'hidden')
+                        ->add('_order', null, ['attr' => ['container_classes' => 'col-md-6']])
                     ->end()
                 ->end()
             ->tab('Imágenes')
