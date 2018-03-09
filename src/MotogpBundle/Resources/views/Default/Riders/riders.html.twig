@@ -17,7 +17,9 @@
 {% block body %}
     {{ parent() }}
 
-    {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery } %}
+    {% if rider.medias is not null and rider.medias | length %}
+        {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : rider } %}
+    {% endif %}
 
     <div class="smoke-background">
         <div class="white-background">

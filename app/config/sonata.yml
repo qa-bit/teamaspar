@@ -118,7 +118,8 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 icon: { width: 256, quality: 70}
-                big:   { width: 500 , quality: 70}
+                medium:   { width: 500 , quality: 70}
+                big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
         featured:  # the default context is mandatory
             providers:
@@ -126,7 +127,8 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 icon: { width: 256, quality: 70}
-                big:   { width: 500 , quality: 70}
+                medium:   { width: 500 , quality: 70}
+                big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
 
         gallery:  # the default context is mandatory
@@ -135,7 +137,8 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 icon: { width: 256, quality: 70}
-                big:   { width: 500 , quality: 70}
+                medium:   { width: 500 , quality: 70}
+                big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
 
         slider:  # the default context is mandatory
@@ -144,7 +147,8 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 icon: { width: 256, quality: 70}
-                big:   { width: 500 , quality: 70}
+                medium:   { width: 500 , quality: 70}
+                big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
 
         post:  # the default context is mandatory
@@ -153,8 +157,19 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 icon: { width: 256, quality: 70}
-                big:   { width: 500 , quality: 70}
+                medium:   { width: 500 , quality: 70}
+                big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
+                
+        rider:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 100 , quality: 70}
+                icon: { width: 256, quality: 70}
+                medium:   { width: 500 , quality: 70}
+                big:   { width: 1280 , quality: 70}
+                xlarge:   { width: 2600 , quality: 70}                
 
         imagenes:  # the default context is mandatory
             providers:
@@ -162,7 +177,8 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 icon: { width: 256, quality: 70}
-                big:   { width: 500 , quality: 70}
+                medium:   { width: 500 , quality: 70}
+                big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
 
         homeimage:  # the default context is mandatory
@@ -171,7 +187,8 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 icon: { width: 256, quality: 70}
-                big:   { width: 500 , quality: 70}
+                medium:   { width: 500 , quality: 70}
+                big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
 
         previewimage:  # the default context is mandatory
@@ -180,7 +197,8 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 icon: { width: 256, quality: 70}
-                big:   { width: 500 , quality: 70}
+                medium:   { width: 500 , quality: 70}
+                big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
 
     cdn:

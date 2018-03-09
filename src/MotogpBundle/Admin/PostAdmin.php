@@ -134,9 +134,9 @@ class PostAdmin extends AbstractAdmin
                         'inline' => 'table',
                     ]
                     )
-                ->add('galleries',null, [
-                    'label' => 'Galerías',
-                    'multiple' => true,
+                ->add('gallery', null, [
+                    'label' => 'Galería',
+                    'multiple' => false,
                     'required' => false,
                     'query_builder' => function ($qb) {
                         $b = $qb->createQueryBuilder('s')

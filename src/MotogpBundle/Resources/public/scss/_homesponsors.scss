@@ -6,6 +6,7 @@
   }
 
   .sponsor-logo {
+    text-align : center;
     padding : 2em;
     img {
       height: 4em;
@@ -18,7 +19,6 @@
   }
 
   .sponsor-logo.color {
-    text-align : right;
     img {
       filter : saturate(1);
       transition : filter .33s;
@@ -30,7 +30,6 @@
   }
 
   .sponsor-logo.bn {
-    text-align : left;
     img {
       filter : saturate(0);
       transition : filter .33s;

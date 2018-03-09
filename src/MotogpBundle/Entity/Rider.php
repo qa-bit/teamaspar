@@ -12,6 +12,7 @@ use MotogpBundle\Entity\Traits\InMotoTrait;
 use MotogpBundle\Entity\Traits\HasLogoTrait;
 use MotogpBundle\Entity\Traits\HasHomeImageTrait;
 use MotogpBundle\Entity\Traits\HasPreviewImageTrait;
+use Application\Sonata\MediaBundle\Entity\RiderMedia;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -38,8 +39,16 @@ class Rider
    {
       $this->showInHome = false;
       $this->records = new ArrayCollection();
+      $this->medias = new ArrayCollection();
    }
 
+
+   /**
+    * @var RiderMedia
+    *
+    * @ORM\OneToMany(targetEntity="Application\Sonata\MediaBundle\Entity\RiderMedia", mappedBy="owner", cascade={"all"}, orphanRemoval=true)
+    */
+   private $medias;
    
 
    /**
@@ -47,6 +56,9 @@ class Rider
     * @ORM\OrderBy({"year" = "ASC"})
     */
    protected $records;
+
+
+
 
 
    /**
@@ -309,7 +321,6 @@ class Rider
    private $victoryListEN;
 
 
-
    /**
     * @ORM\OneToMany(targetEntity="Score", cascade={"all"}, mappedBy="rider", orphanRemoval=true)
     */
@@ -354,6 +365,47 @@ class Rider
    public function getSurname()
    {
       return $this->surname;
+   }
+
+   /**
+    * @return Media
+    */
+   public function getMedias()
+   {
+      return $this->medias;
+   }
+
+   /**
+    * @param Media $medias
+    */
+   public function setMedia(RiderMedia $media)
+   {
+      $this->medias = $media;
+   }
+
+   /**
+    * @param $category
+    * @return $this
+    */
+   public function addMedia($media)
+   {
+      if (!$this->medias->contains($media)) {
+         $media->setOwner($this);
+         $this->medias->add($media);
+      }
+   }
+
+
+   /**
+    * @param $category
+    * @return $this
+    */
+   public function addMedias($media)
+   {
+      if (!$this->medias->contains($media)) {
+         $media->setOwner($this);
+         $this->medias->add($media);
+      }
    }
 
    /**

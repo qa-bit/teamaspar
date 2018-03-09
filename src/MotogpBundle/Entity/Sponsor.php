@@ -4,6 +4,7 @@ namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
+use MotogpBundle\Entity\Traits\HasLogoTrait;
 use MotogpBundle\Entity\Traits\HasMediaTrait;
 use MotogpBundle\Entity\Traits\InModalityTrait;
 
@@ -15,7 +16,7 @@ use MotogpBundle\Entity\Traits\InModalityTrait;
  */
 class Sponsor
 {
-    use ContentTrait, HasMediaTrait, InModalityTrait;
+    use ContentTrait, HasMediaTrait, InModalityTrait, HasLogoTrait;
 
     /**
      * @var string

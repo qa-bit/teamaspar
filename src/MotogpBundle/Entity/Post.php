@@ -49,9 +49,9 @@ class Post
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="Gallery", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\ManyToOne(targetEntity="Gallery", cascade={"persist"})
      */
-    protected $galleries;
+    protected $gallery;
 
 
     /**
@@ -128,23 +128,7 @@ class Post
     }
 
 
-    public function getGalleries()
-    {
-        return $this->galleries;
-    }
 
-    public function addGallery($gallery)
-    {
-        if (!$this->galleries->contains($gallery)) {
-            $this->galleries->add($gallery);
-        }
-    }
-    
-    public function removeGallery($gallery)
-    {
-        $this->galleries->remove($gallery);
-        return $this;
-    }
 
     public function getfMedias() {
         if (count($this->medias))
@@ -153,4 +137,20 @@ class Post
         return [$this->featuredMedia];
     }
 
+    /**
+     * @return mixed
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
+
+    /**
+     * @param mixed $gallery
+     */
+    public function setGallery($gallery)
+    {
+        $this->gallery = $gallery;
+    }
+    
 }

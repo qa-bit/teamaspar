@@ -1,8 +1,8 @@
 .navbar-brand {
-  width: 9em;
+  width: 14em;
   position: absolute;
-  bottom: .5em;
-  left: 3em;
+  bottom: 2em;
+  left: 4em;
 }
 
 .navbar-nav {
@@ -89,6 +89,7 @@
     clear:both;
     display: table;
     margin: auto;
+    margin-right : 0;
     list-style-type: none;
 
     li {

@@ -5,3 +5,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: PostMedia }
         public: true
+
+    application_sonata_media.admin.rider_media:
+        class: Application\Sonata\MediaBundle\Admin\RiderMediaAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\RiderMedia, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: RiderMedia }
+        public: true

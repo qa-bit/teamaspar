@@ -8,12 +8,13 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use MotogpBundle\Admin\Media\LogoAdminTrait;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 class SponsorAdmin extends AbstractAdmin
 {
 
-    use FeaturedMediaAdminTrait;
+    use FeaturedMediaAdminTrait, LogoAdminTrait;
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -53,6 +54,10 @@ class SponsorAdmin extends AbstractAdmin
             ->add('description', 'ckeditor')
             ->add('descriptionEN', 'ckeditor')
             ->add('modality', null, ['required' => true])
+            ->add('logo', 'sonata_type_admin', array(
+                'label' => 'Logo',
+                'required' => false,
+            ))
             ->add('featuredMedia', 'sonata_type_admin', array(
                 'label' => 'Imágen de portada',
                 'required' => false,
@@ -88,6 +93,7 @@ class SponsorAdmin extends AbstractAdmin
     public function saveHook($object) {
 
         $this->saveFeaturedMedia($object);
+        $this->saveLogo($object);
 
     }
 

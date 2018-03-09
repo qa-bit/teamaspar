@@ -1,7 +1,7 @@
 {% set previous = null %}
 <div>
     {% if form.vars.value is not null and form.vars.value.enabled %}
-        <div previous="{% path form.vars.value, 'icon' %}"></div>
+        <div previous="{% path form.vars.value, 'icon' %}?v={{ "now" | date('d-m-y-his') }}"></div>
     {% endif %}
     <div id="featured-{{ sonata_admin.name }}" class="dropzone form-group featured-media-dropzone" url="{{ oneup_uploader_endpoint('gallery') }}" multiple="false" maxfiles="1">
         <div class="dz-default dz-message">
@@ -12,8 +12,7 @@
     <div class="featured-media-description hidden">
         <div class="well" style="display:table">
             <div class="col-xs-4">
-                <img class="img img-responsive" src="{% if form.vars.value is not null %}{% path form.vars.value, 'reference' %}"
-                {% endif %}" alt="">
+                <img class="img img-responsive" src="{% if form.vars.value is not null %}{% path form.vars.value, 'reference' %}?v={{ "now" | date('d-m-y-his') }}"{% endif %}" alt="">
             </div>
             <div class="col-xs-8">
                 <label>Descripción</label>

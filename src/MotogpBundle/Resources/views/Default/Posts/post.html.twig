@@ -3,7 +3,13 @@
     {{ parent() }}
     <div class="smoke-background col-xs-12 post">
         <div class="white-background col-xs-12" style="display:block">
-            {% include "MotogpBundle:Default:Posts/post-gallery.html.twig" with {'post' : post }%}
+            {% if post.featuredMedia %}
+                <div class="post-featured-image">
+                    <img src="{%  path post.featuredMedia, 'xlarge'  %}" />
+                </div>
+            {% endif %}
+
+            {#{% include "MotogpBundle:Default:Posts/post-gallery.html.twig" with {'post' : post }%}#}
             <div style="margin-top:4em;">
                 {% if post.circuit  %}
                     <h6 style="color:grey"><b>{{ post.circuit.name }}</b></h6>
@@ -15,10 +21,24 @@
                 </div>
             </div>
             <br/><br/>
-            {% include "MotogpBundle:Default:Posts/post-galleries.html.twig" with {'post' : post }%}
+            {#{% include "MotogpBundle:Default:Posts/post-galleries.html.twig" with {'post' : post }%}#}
         </div>
-
     </div>
 
+    {% set g = post %}
+
+
+    {% if post.gallery is not empty %}
+        {% set g = post.gallery %}
+    {% endif %}
+
+    {% if g is not null and g is not empty and g.medias is not null and g.medias is not empty %}
+        {% include 'MotogpBundle:Default:Motos/motos-gallery.html.twig' with {'gallery' : g} %}
+    {% endif %}
+
+    <div class="text-center">
+        <img src="{{ asset('/bundles/motogp/img/assets/up.png') }}" alt="" class="up-arrow">
+        <br/><br/>
+    </div>
     {% include 'MotogpBundle:Default:footer.html.twig' %}
 {% endblock %}

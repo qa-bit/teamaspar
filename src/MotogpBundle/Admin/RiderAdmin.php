@@ -3,6 +3,7 @@
 namespace MotogpBundle\Admin;
 
 use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
+use MotogpBundle\Admin\Media\HasMediasAdminTrait;
 use MotogpBundle\Admin\Media\HomeImageAdminTrait;
 use MotogpBundle\Admin\Media\LogoAdminTrait;
 use MotogpBundle\Admin\Media\PreviewImageAdminTrait;
@@ -19,7 +20,7 @@ class RiderAdmin extends AbstractAdmin
 {
 
 
-    use FeaturedMediaAdminTrait, LogoAdminTrait, HomeImageAdminTrait, PreviewImageAdminTrait;
+    use HasMediasAdminTrait, FeaturedMediaAdminTrait, LogoAdminTrait, HomeImageAdminTrait, PreviewImageAdminTrait;
 
     /**
      * @param DatagridMapper $datagridMapper
@@ -231,6 +232,12 @@ class RiderAdmin extends AbstractAdmin
                     'required' => false,
                     'attr' => ['container_classes' => 'clearfix col-md-6']
                 ))
+                ->add('medias', 'sonata_type_collection',['label' => 'Imágenes (slider)',],
+                    [
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                    ]
+                )
             ->end()
             ->end()
             ->tab('SEO')
@@ -270,6 +277,8 @@ class RiderAdmin extends AbstractAdmin
 
 
     public function saveHook($object) {
+
+        $this->saveMedias($object, 'motogp.admin.rider_media');
         $this->saveLogo($object);
         $this->saveFeaturedMedia($object);
         $this->saveHomeImage($object);
