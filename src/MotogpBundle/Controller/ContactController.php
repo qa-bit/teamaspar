@@ -33,13 +33,10 @@ class ContactController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $em = $this->getDoctrine()->getManager();
-
-        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('contact_moto_gp');
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('contacto_moto_gp');
 
         $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
 
-        
         $ct = new Contact();
 
         $form = $this->createForm('MotogpBundle\Form\ContactType', $ct);
@@ -55,6 +52,7 @@ class ContactController extends Controller
                 'phone' => $ct->getPhone(),
                 'address' => $ct->getAddress(),
                 'postcode' => $ct->getPostcode(),
+                'subject' => $ct->getSubject(),
                 'comments' => $ct->getComments(),
                 'email' => $ct->getEmail(),
             );
@@ -69,7 +67,7 @@ class ContactController extends Controller
                 ->setTo($mail)
                 ->setReplyTo($data['email'])
                 ->setContentType("text/html")
-                ->setBody($this->renderView('Default/email.html.twig',$data,'text/html'));
+                ->setBody($this->renderView('MotogpBundle:Default:Contact/contact-email.html.twig',$data,'text/html'));
 
 
             $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
@@ -86,26 +84,41 @@ class ContactController extends Controller
         }
 
 
-        return $this->render('MotogpBundle:Public/Contact:contact-form.html.twig', array(
+        return $this->render('MotogpBundle:Default/Contact:contact-form.html.twig', array(
 
             'form' => $form->createView(),
+            'riders' => $homeRiders,
+            'gallery' => $gallery,
+            'team' => $this->getMainTeam()
         ));
     }
 
 
-//    /**
-//     * Displays a form to edit an existing hotele entity.
-//     * @I18nRoute({ "en": "/en/contact/success", "fr": "/fr/contact/success", "es": "/es/contacto/enviado" }, name="public_contact_success")
-//     * @Method({"GET", "POST"})
-//     */
-//    public function contactFormSuccessAction(Request $request) {
-//
-//        $em = $this->getDoctrine()->getManager();
-//        $hoteles = $em->getRepository('UseradminBundle:Hoteles')->findAll();
-//
-//        return $this->render('UseradminBundle:Public/Contact:contact-form-success.html.twig', array(
-//            'hoteles' => $hoteles
-//        ));
-//    }
+    private function getMainTeam($modality = null) {
+
+        $em = $this->getDoctrine()->getManager();
+        $team  = $em->getRepository(RiderTeam::class)->findMain();
+
+        return $team;
+    }
+
+
+
+    public function contactFormSuccessAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
+
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('contacto_moto_gp');
+
+        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+
+
+        return $this->render('MotogpBundle:Default/Contact:contact-success.html.twig', array(
+            'riders' => $homeRiders,
+            'gallery' => $gallery,
+            'team' => $this->getMainTeam()
+        ));
+    }
 
 }

@@ -1,0 +1,36 @@
+{#<row>#}
+    {#<columns small=12" large="6">#}
+        {#<b>Nombre:</b><br> {{ name }} {{ surname }}#}
+    {#</columns>#}
+    {#<columns small=12" large="6">#}
+        {#<b>Dirección:</b><br> {{ address }}, {{ postcode }}#}
+    {#</columns>#}
+    {#<columns small=12" large="6">#}
+        {#<b>Email:</b><br> {{ email }}#}
+    {#</columns>#}
+    {#<columns small=12" large="6">#}
+        {#<b>Teléfono:</b><br> {{ phone }}#}
+    {#</columns>#}
+{#</row>#}
+{#<row>#}
+    {#<columns small=12" large="12">#}
+        {#<b>Mensaje:</b><br> {{ comments }}#}
+    {#</columns>#}
+{#</row>#}
+{% trans_default_domain 'contact_email' %}
+
+<div>
+    <h4>{{ "contact_form" | trans }}</h4>
+    <ul>
+        <li><b>{{ "name" | trans }}</b>:{{ name }}</li>
+        <li><b>{{ "phone" | trans }}</b>:{{ phone }}</li>
+        <li><b>{{ "email" | trans }}</b>:{{ subject }}</li>
+        <li><b>{{ "subject" | trans }}</b>:{{ name }}</li>
+    </ul>
+    <div>
+        <h5>{{ "message" | trans }}</h5>
+        <div>
+            {{ comments }}
+        </div>
+    </div>
+</div>

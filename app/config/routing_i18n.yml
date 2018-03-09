@@ -45,3 +45,7 @@ team_staff:
 public_contact:
     locales: { "en": "/en/contact", "es": "/es/contacto" }
     defaults: { _controller: MotogpBundle:Contact:contactForm}
+
+public_contact_success:
+    locales: { "en": "/en/contact/success", "es": "/es/contacto/enviado" }
+    defaults: { _controller: MotogpBundle:Contact:contactFormSuccess}

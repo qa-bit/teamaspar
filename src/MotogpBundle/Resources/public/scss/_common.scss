@@ -91,3 +91,14 @@ body {
   background-position: center center !important;
   background-repeat: no-repeat !important;
 }
+
+.btn-info {
+  background : $menu-golden;
+  transition : background .33s;
+  border : 1px solid $menu-grey;
+  &:hover {
+    transition : all .33s;
+    background : $menu-grey;
+    border : 1px solid transparent;
+  }
+}

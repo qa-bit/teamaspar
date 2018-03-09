@@ -1,0 +1,18 @@
+{% trans_default_domain 'contact' %}
+{% extends "MotogpBundle:Default:base.html.twig" %}
+{% block body %}
+    {{ parent() }}
+    {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}
+    <div class="smoke-background">
+        <div class="white-background motos-wrapper">
+            <div class="w100">
+                <div class="col-xs-12 col-md-9 tcenter section">
+                    <h1>{{ "contact_success_title" | trans}}</h1>
+                    <p>{{ "contact_success_text1" | trans }}</p>
+                    <p>{{ "contact_success_text2" | trans }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'MotogpBundle:Default:footer.html.twig' %}
+{% endblock %}

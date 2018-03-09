@@ -1,6 +1,6 @@
 <?php
 
-namespace UseradminBundle\Entity;
+namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -69,6 +69,12 @@ class Contact
      * @ORM\Column(name="comments", type="string", length=2048)
      */
     private $comments;
+
+    /**
+     * @var string
+     * @ORM\Column(name="subject", type="string")
+     */
+    private $subject;
 
 
 
@@ -225,7 +231,7 @@ class Contact
     {
         return $this->comments;
     }
-    
+
     /**
      * @return string
      */
@@ -244,5 +250,21 @@ class Contact
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    /**
+     * @param string $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+    
 }
 
