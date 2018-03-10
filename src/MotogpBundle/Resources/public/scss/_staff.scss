@@ -88,12 +88,13 @@ body[team-staff] {
 
   width : 24%;
   float : left;
-  margin-right : 1em;
+  margin-right : 1%;
   margin-top : .5em;
   margin-bottom : 2em;
 
   .staff-member-img-wrapp {
     height : 12em;
+    overflow : hidden;
   }
 
   .staff-member-image {

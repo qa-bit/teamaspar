@@ -25,6 +25,14 @@ class Sponsor
      */
     private $webUrl;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $webUrlEN;
+
     /**
      * @return string
      */
@@ -70,5 +78,23 @@ class Sponsor
 
         return $g;
     }
+
+    /**
+     * @return string
+     */
+    public function getWebUrlEN()
+    {
+        return $this->webUrlEN;
+    }
+
+    /**
+     * @param string $webUrlEN
+     */
+    public function setWebUrlEN($webUrlEN)
+    {
+        $this->webUrlEN = $webUrlEN;
+    }
+
+    
 }
 

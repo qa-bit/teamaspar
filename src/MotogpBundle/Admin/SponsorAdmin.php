@@ -63,6 +63,7 @@ class SponsorAdmin extends AbstractAdmin
                 'required' => false,
             ))
             ->add('webUrl')
+            ->add('webUrlEN')
             ->add('_order')
             ->add('bn', 'checkbox', ['label' => 'B/N', 'required' => false ])
         ;

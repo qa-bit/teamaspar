@@ -13,6 +13,9 @@
             <div class="w100 rider-description">
                 {{ sponsor.description | raw}}
             </div>
+            <div class="col-xs-12 text-center">
+                <a target="_blank" href="{{ sponsor.webUrl }}"><i class="fa fa-link"></i>&nbsp;{{ sponsor.name }}</a>
+            </div>
         </div>
     </div>
     {% include 'MotogpBundle:Default:footer.html.twig' %}
