@@ -10,4 +10,15 @@ namespace MotogpBundle\Repository;
  */
 class TeamRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllInModality($modality)
+    {
+
+        return $this->createQueryBuilder('s')
+            ->join('s.modalities', 'm')
+            ->where('m.id = :modality')
+            ->setParameter('modality', $modality->getId())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

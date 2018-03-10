@@ -16,7 +16,9 @@
     <div class="circuit-galleries-list">
         <ul>
             {% for g in circuit.galleries %}
-                <li class="fancytrigger" rel="gallery-{{ g.id }}">{{ g.name }}</li>
+                {% if g.modality.slug == modality.slug %}
+                    <li class="fancytrigger" rel="gallery-{{ g.id }}">{{ g.name }}</li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>
@@ -24,8 +26,10 @@
 
 {% for g in circuit.galleries %}
     {% for i in g.medias %}
-        <a class="fancybox hidden" rel="gallery-{{ g.id }}" href="{% path i, 'xlarge' %}" title="{{ i.description }}">
-            <img src="{% path i, 'big' %}" />
-        </a>
+        {% if g.modality.slug == modality.slug %}
+            <a class="fancybox hidden" rel="gallery-{{ g.id }}" href="{% path i, 'xlarge' %}" title="{{ i.description }}">
+                <img src="{% path i, 'big' %}" />
+            </a>
+        {% endif %}
     {% endfor %}
 {% endfor %}

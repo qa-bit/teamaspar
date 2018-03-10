@@ -14,4 +14,23 @@ class ScoreRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->findBy(array(), array('publishedAt' => 'DESC'));
     }
+
+    public function getLastByModality($modality) {
+
+        return $this->createQueryBuilder('s')
+            ->leftJoin('s.race', 'r')
+            ->where('r.modality = :modality')
+            ->setParameter('modality', $modality->getId())
+            ->getQuery()
+            ->getResult()
+            ;
+
+
+//        ->leftJoin('doc.uploadedBy', 'u')
+//            ->where('doc.company = :company')
+//            ->andWhere('u.deletedAt IS NULL')
+//            ->andWhere('doc.deletedAt IS NULL')
+//            ->andWhere('doc.type IN (:types)')
+    }
+
 }

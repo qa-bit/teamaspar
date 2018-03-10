@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('index') }}">
+            <a class="navbar-brand" href="{{ url('index', {'modality': modality.slug}) }}">
                 <img  class="img img-responsive" src="{{ asset('/bundles/motogp/img/branding.png')}}" alt="" />
             </a>
         </div>
@@ -18,15 +18,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="modality-list">
-                <li><a href="#"><img class="current" src="{{ asset('/bundles/motogp/img/assets/motogp.png')}}" alt="" /></a></li>
-                <li><a href="#"><img src="{{ asset('/bundles/motogp/img/assets/moto3.png')}}" alt="" /></a></li>
-                <li><a href="#"><img src="{{ asset('/bundles/motogp/img/assets/fimjr.png')}}" alt="" /></a></li>
+                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-gp'}) }}"><img {% if modality.slug == 'moto-gp' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/assets/motogp.png')}}" alt="" /></a></li>
+                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}"><img {% if modality.slug == 'moto-3' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/assets/moto3.png?v=2')}}" alt="" /></a></li>
+                {#<li><a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}"><img {% if modality.slug == 'fim-jr' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/assets/fimjr.png')}}" alt="" /></a></li>#}
             </ul>
             <ul class="nav navbar-nav">
-                <li><a class="{{ (route == 'posts' or route == 'post') ? 'active' : '' }}" href="{{ url('posts') }}">{{ "news" | trans }}</a></li>
-                <li><a class="{{ route == 'images' ? 'active' : '' }}" href="{{ url('images') }}">{{ "images" | trans }}</a></li>
-                <li><a class="{{ route == 'videos' ? 'active' : '' }}" href="{{ url('videos') }}">{{ "videos" | trans }}</a></li>
-                <li><a class="{{ route == 'motos' ? 'active' : '' }}" href="{{ url('motos') }}">Ducati</a></li>
+                <li><a class="{{ (route == 'posts' or route == 'post') ? 'active' : '' }}" href="{{ url('posts', {'modality': modality.slug}) }}">{{ "news" | trans }}</a></li>
+                <li><a class="{{ route == 'images' ? 'active' : '' }}" href="{{ url('images', {'modality': modality.slug}) }}">{{ "images" | trans }}</a></li>
+                <li><a class="{{ route == 'videos' ? 'active' : '' }}" href="{{ url('videos', {'modality': modality.slug}) }}">{{ "videos" | trans }}</a></li>
+                <li><a class="{{ route == 'motos' ? 'active' : '' }}" href="{{ url('motos', {'modality': modality.slug}) }}">ducati</a></li>
 
                 <li class="nav-item dropdown">
                     <a class="{{ route == 'riders' ? 'active' : '' }} nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -34,14 +34,14 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for r in riders %}
-                            <a class="dropdown-item" href="{{ url('riders', {'id' : r.id}) }}">{{ r.name }}&nbsp;{{ r.surname }}</a>
+                            <a class="dropdown-item" href="{{ url('riders', {'id' : r.id, 'modality' : modality.slug}) }}">{{ r.name }}&nbsp;{{ r.surname }}</a>
                         {% endfor %}
                     </div>
                 </li>
 
 
-                <li><a class="{{ route == 'team_staff' ? 'active' : '' }}" href="{{ url('team_staff') }}">Team-staff</a></li>
-                <li><a class="{{ route == 'sponsors' ? 'active' : '' }}"   href="{{ url('sponsors') }}">Sponsors</a></li>
+                <li><a class="{{ route == 'team_staff' ? 'active' : '' }}" href="{{ url('team_staff', {'modality': modality.slug}) }}">Team-staff</a></li>
+                <li><a class="{{ route == 'sponsors' ? 'active' : '' }}"   href="{{ url('sponsors', {'modality': modality.slug}) }}">Sponsors</a></li>
                 <li><a class="{{ route == 'register' ? 'active' : '' }}"   href="#">{{ "register" | trans }}</a></li>
             </ul>
         </div>

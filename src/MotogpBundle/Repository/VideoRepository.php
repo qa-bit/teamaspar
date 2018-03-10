@@ -10,4 +10,24 @@ namespace MotogpBundle\Repository;
  */
 class VideoRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getLastInModality($modality)
+    {
+        return $this->createQueryBuilder('v')
+            ->where('v.modality = :modality')
+            ->setParameter('modality', $modality->getId())
+            ->getQuery()
+            ->getOneOrNullResult();
+            ;
+    }
+
+    public function getAllInModality($modality)
+    {
+        return $this->createQueryBuilder('v')
+            ->where('v.modality = :modality')
+            ->setParameter('modality', $modality->getId())
+            ->getQuery()
+            ->getResult();
+        ;
+    }
+
 }

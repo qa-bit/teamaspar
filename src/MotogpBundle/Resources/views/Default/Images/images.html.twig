@@ -5,7 +5,6 @@
     <div class="smoke-background">
         <div class="white-background">
             <div class="circuit-galleries">
-
                 {% for c in circuits %}
                     {% if c.galleries | length %}
                         {% include "MotogpBundle:Default:Galleries/circuit-gallery.html.twig" with {'circuit' : c} %}

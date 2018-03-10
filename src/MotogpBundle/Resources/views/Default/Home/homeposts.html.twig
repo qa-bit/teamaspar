@@ -1,13 +1,13 @@
 <div class="homeposts col-xs-12">
     {% for p in posts %}
         {% if loop.index < 5  %}
-            {% include "MotogpBundle:Default:Home/homepost.html.twig" with {'post' : p} %}
+            {% include "MotogpBundle:Default:Home/homepost.html.twig" with {'post' : p } %}
         {% endif %}
     {% endfor %}
 
-    <div class="w100">
+    <div class="w100" style="clear:both">
         <div class="see-more tcenter">
-            <img class="link" href={{ url('posts') }} src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" />
+            <img class="link" href={{ url('posts', {'modality' : modality.slug }) }} src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" />
         </div>
     </div>
 </div>

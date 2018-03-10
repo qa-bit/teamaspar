@@ -14,4 +14,15 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->findBy(array(), array('publishedAt' => 'DESC'));
     }
+
+    public function getLastInModality($modality)
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.modality = :modality')
+            ->setParameter('modality', $modality->getId())
+            ->orderBy('g.publishedAt')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

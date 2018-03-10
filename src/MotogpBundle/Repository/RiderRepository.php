@@ -29,4 +29,17 @@ class RiderRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
             ;
     }
+
+    public function getHomeRidersInModality($modality)
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.showInHome = true')
+            ->andWhere('r.modality = :modality')
+            ->setParameter('modality', $modality->getId())
+            ->orderBy('r._order','ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    
 }

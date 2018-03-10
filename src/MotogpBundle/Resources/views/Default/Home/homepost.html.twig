@@ -1,5 +1,5 @@
 <div class="homepost col-xs-12 col-md-6">
-    <div class="homepost-inner link" href="{{ url('post', {'id' : post.id}) }}">
+    <div class="homepost-inner link" href="{{ url('post', {'id' : post.id, 'modality': modality.slug}) }}">
         <div class="col-xs-12 col-md-6 homepost-image" style="background:url('{% path post.featuredMedia, 'big' %}');">
         </div>
         <div class="col-xs-12 col-md-6 homepost-content">

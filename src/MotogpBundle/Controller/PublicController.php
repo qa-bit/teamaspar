@@ -31,29 +31,40 @@ class PublicController extends Controller
         return $team;
     }
 
+
+
+
     /**
      * @Route("/")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+
+        $modalitySlug = $request->get('modality');
+
+        if (!$modalitySlug) {
+            return $this->redirectToRoute('index', array('locale' => 'es', 'modality' => 'moto-gp'), 301);
+        }
 
         $em = $this->getDoctrine()->getManager();
 
-        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('inicio_moto_gp');
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('inicio_'.str_replace('-', '_',  $modalitySlug));
 
         $galleries = $em->getRepository(Gallery::class)->getGalleries();
 
-        $posts  = $em->getRepository(Post::class)->getLast();
+        $posts  = $em->getRepository(Post::class)->getLastInModality($modality);
 
-        $video = $em->getRepository(Video::class)->findOneById(1);
+        $video = $em->getRepository(Video::class)->getLastInModality($modality);
 
-        $scores = $em->getRepository(Score::class)->findAll();
+        $scores = $em->getRepository(Score::class)->getLastByModality($modality);
 
-        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
-        $colorSponsors = $em->getRepository(Sponsor::class)->findColor();
+        $colorSponsors = $em->getRepository(Sponsor::class)->getColorByModality($modality);
 
-        $bnSponsors = $em->getRepository(Sponsor::class)->findBn();
+        $bnSponsors = $em->getRepository(Sponsor::class)->getBNByModality($modality);
 
 
 
@@ -70,6 +81,7 @@ class PublicController extends Controller
                     'riders' => $homeRiders,
                     'bnSponsors' => $bnSponsors,
                     'colorSponsors' => $colorSponsors,
+                    'modality' => $modality,
                     'team' => $this->getMainTeam()
                 ]
             );
@@ -83,17 +95,21 @@ class PublicController extends Controller
     /**
      * @Route("/images")
      */
-    public function imagesAction()
+    public function imagesAction(Request $request)
     {
+
+        $modalitySlug = $request->get('modality');
 
         $em = $this->getDoctrine()->getManager();
 
-        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('imagenes_moto_gp');
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
 
-       // $galleries = $em->getRepository(Gallery::class)->getGalleries();
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
-        $circuits = $em->getRepository(Circuit::class)->findAll();
-        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('imagenes_'.str_replace('-', '_',  $modalitySlug));
+
+        $circuits = $em->getRepository(Circuit::class)->getCircuitsWithGalleryInModality($modality);
+
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
@@ -102,6 +118,7 @@ class PublicController extends Controller
                     'gallery' => $gallery,
                     'circuits' => $circuits,
                     'riders' => $homeRiders,
+                    'modality' => $modality,
                     'team' => $this->getMainTeam()
                 ]
             );
@@ -114,15 +131,20 @@ class PublicController extends Controller
     /**
      * @Route("/videos")
      */
-    public function videosAction()
+    public function videosAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
 
-        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('videos_moto_gp');
+        $modalitySlug = $request->get('modality');
+
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('videos_'.str_replace('-', '_',  $modalitySlug));
         
-        $videos = $em->getRepository(Video::class)->findAll();
-        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+        $videos = $em->getRepository(Video::class)->getAllInModality($modality);
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
 
 
@@ -133,6 +155,7 @@ class PublicController extends Controller
                     'gallery' => $gallery,
                     'videos' => $videos,
                     'riders' => $homeRiders,
+                    'modality' => $modality,
                     'team' => $this->getMainTeam()
                 ]
             );
@@ -145,14 +168,19 @@ class PublicController extends Controller
     /**
      * @Route("/motos")
      */
-    public function motosAction()
+    public function motosAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
 
-        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('motos_moto_gp');
+        $modalitySlug = $request->get('modality');
 
-        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('motos_'.str_replace('-', '_',  $modalitySlug));
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
@@ -160,6 +188,7 @@ class PublicController extends Controller
                 [
                     'gallery' => $gallery,
                     'riders' => $homeRiders,
+                    'modality' => $modality,
                     'team' => $this->getMainTeam()
                 ]
             );
@@ -177,11 +206,15 @@ class PublicController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('riders_moto_gp');
+        $modalitySlug = $request->get('modality');
+
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('riders_'.str_replace('-', '_',  $modalitySlug));
 
         $galleries  = $em->getRepository(Gallery::class)->findAll();
 
-        $riders = $em->getRepository(Rider::class)->findHomeRiders();
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
 
 
@@ -191,8 +224,9 @@ class PublicController extends Controller
                 [
                     'gallery' => $gallery,
                     'galleries' => $galleries,
-                    'riders' => $riders,
+                    'riders' => $homeRiders,
                     'rider' => $rider,
+                    'modality' => $modality,
                     'team' => $this->getMainTeam()
 
                 ]
@@ -211,8 +245,14 @@ class PublicController extends Controller
     public function sponsorAction(Request $request, Sponsor $sponsor)
     {
 
+        $modalitySlug = $request->get('modality');
+
         $em = $this->getDoctrine()->getManager();
-        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
@@ -220,6 +260,7 @@ class PublicController extends Controller
                 [
                     'sponsor' => $sponsor,
                     'riders' => $homeRiders,
+                    'modality' => $modality,
                     'team' => $this->getMainTeam()
 
                 ]
@@ -233,15 +274,19 @@ class PublicController extends Controller
     /**
      * @Route("/sponsors")
      */
-    public function sponsorsAction() {
+    public function sponsorsAction(Request $request) {
 
         $em = $this->getDoctrine()->getManager();
 
-        $colorSponsors = $em->getRepository(Sponsor::class)->findColor();
+        $modalitySlug = $request->get('modality');
 
-        $bnSponsors = $em->getRepository(Sponsor::class)->findBn();
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
 
-        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
+        $colorSponsors = $em->getRepository(Sponsor::class)->getColorByModality($modality);
+
+        $bnSponsors = $em->getRepository(Sponsor::class)->getBNByModality($modality);
 
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
@@ -251,7 +296,8 @@ class PublicController extends Controller
                     'team' => $this->getMainTeam(),
                     'colorSponsors' => $colorSponsors,
                     'bnSponsors' => $bnSponsors,
-                    'riders' => $homeRiders
+                    'riders' => $homeRiders,
+                    'modality' => $modality
                 ]
             );
         }
@@ -264,18 +310,20 @@ class PublicController extends Controller
     /**
      * @Route("/posts")
      */
-    public function postsAction()
+    public function postsAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
 
-        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('noticias_moto_gp');
+        $modalitySlug = $request->get('modality');
 
-        // $galleries = $em->getRepository(Gallery::class)->getGalleries();
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
 
-        $circuits = $em->getRepository(Circuit::class)->findAll();
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('noticias_'.str_replace('-', '_',  $modalitySlug));
 
-        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
+        $circuits = $em->getRepository(Circuit::class)->getCircuitsWithPostsInModality($modality);
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
@@ -283,6 +331,7 @@ class PublicController extends Controller
                 [
                     'gallery' => $gallery,
                     'circuits' => $circuits,
+                    'modality' => $modality,
                     'team' => $this->getMainTeam(),
                     'riders' => $homeRiders
                 ]
@@ -301,7 +350,11 @@ class PublicController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+        $modalitySlug = $request->get('modality');
+
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
@@ -309,7 +362,8 @@ class PublicController extends Controller
                 [
                     'post' => $post,
                     'riders' => $homeRiders,
-                    'team' => $this->getMainTeam()
+                    'team' => $this->getMainTeam(),
+                    'modality' => $modality
                 ]
             );
         }
@@ -321,17 +375,21 @@ class PublicController extends Controller
     /**
      * @Route("/team_staff")
      */
-    public function teamAction()
+    public function teamAction(Request $request)
     {
 
 
+        $modalitySlug = $request->get('modality');
+
         $em = $this->getDoctrine()->getManager();
 
-        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('staff_moto_gp');
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
 
-        $riders = $em->getRepository(Rider::class)->findHomeRiders();
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('staff_'.str_replace('-', '_',  $modalitySlug));
 
-        $staff = $em->getRepository(Team::class)->findAll();
+        $riders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
+        $staff = $em->getRepository(Team::class)->getAllInModality($modality);
 
         $teamCategories = $em->getRepository(TeamCategory::class)->findBy(array(), array('_order' => 'ASC'));
 
@@ -344,7 +402,8 @@ class PublicController extends Controller
                     'team' => $this->getMainTeam(),
                     'riders' => $riders,
                     'staff' => $staff,
-                    'teamCategories' => $teamCategories
+                    'teamCategories' => $teamCategories,
+                    'modality' => $modality
                 ]
             );
         }

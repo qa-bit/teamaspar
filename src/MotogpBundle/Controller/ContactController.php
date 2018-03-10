@@ -33,9 +33,13 @@ class ContactController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('contacto_moto_gp');
+        $modalitySlug = $request->get('modality');
 
-        $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('contacto_'.str_replace('-', '_',  $modalitySlug));
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
         $ct = new Contact();
 
@@ -80,7 +84,7 @@ class ContactController extends Controller
             $spool->flushQueue($transport);
 
 
-            return $this->redirectToRoute('public_contact_success');
+            return $this->redirectToRoute('public_contact_success', ['modality' => $modalitySlug]);
         }
 
 
@@ -89,6 +93,7 @@ class ContactController extends Controller
             'form' => $form->createView(),
             'riders' => $homeRiders,
             'gallery' => $gallery,
+            'modality' => $modality,
             'team' => $this->getMainTeam()
         ));
     }
@@ -106,10 +111,13 @@ class ContactController extends Controller
 
     public function contactFormSuccessAction(Request $request) {
 
-        $em = $this->getDoctrine()->getManager();
+        $modalitySlug = $request->get('modality');
+
         $em = $this->getDoctrine()->getManager();
 
-        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('contacto_moto_gp');
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('contacto_'.str_replace('-', '_',  $modalitySlug));
 
         $homeRiders = $em->getRepository(Rider::class)->findHomeRiders();
 
@@ -117,6 +125,7 @@ class ContactController extends Controller
         return $this->render('MotogpBundle:Default/Contact:contact-success.html.twig', array(
             'riders' => $homeRiders,
             'gallery' => $gallery,
+            'modality' => $modality,
             'team' => $this->getMainTeam()
         ));
     }

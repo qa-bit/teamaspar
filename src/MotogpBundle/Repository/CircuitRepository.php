@@ -10,4 +10,29 @@ namespace MotogpBundle\Repository;
  */
 class CircuitRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getCircuitsWithGalleryInModality($modality)
+    {
+
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.galleries', 'g')
+            ->where('g.modality = :modality')
+            ->setParameter('modality', $modality->getId())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+    public function getCircuitsWithPostsInModality($modality)
+    {
+
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.posts', 'g')
+            ->where('g.modality = :modality')
+            ->setParameter('modality', $modality->getId())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

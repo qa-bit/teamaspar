@@ -9,8 +9,8 @@
             {% set params = params | merge({(key) : (value)}) %}
         {% endif %}
     {% endfor %}
-    {% set esURL = url(currentRoute, {'locale': 'es'} | merge(params)) %}
-    {% set enURL = url(currentRoute, {'locale': 'en'} | merge(params)) %}
+    {% set esURL = url(currentRoute, {'locale': 'es', 'modality' : modality.slug } | merge(params)) %}
+    {% set enURL = url(currentRoute, {'locale': 'en', 'modality' : modality.slug } | merge(params)) %}
 
     <meta charset="UTF-8" />
 

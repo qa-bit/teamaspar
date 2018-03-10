@@ -34,6 +34,7 @@ class VideoAdmin extends AbstractAdmin
             ->add('url')
             ->add('categories', null, ['label' => 'Tags'])
             ->add('description')
+            ->add('modality')
             //->add('nameEN')
             //->add('description')
             //->add('descriptionEN')
@@ -68,6 +69,7 @@ class VideoAdmin extends AbstractAdmin
             ->add('urlEN', null, ['attr' => $mediumColumn])
             ->add('description', 'ckeditor')
             ->add('descriptionEN', 'ckeditor')
+            ->add('modality')
             ->add('rider', null,
                 [
                     'label' => 'Pertenece a',

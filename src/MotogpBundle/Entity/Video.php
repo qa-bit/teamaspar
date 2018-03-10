@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
 use MotogpBundle\Entity\Traits\InCategoriesTrait;
 use MotogpBundle\Entity\Traits\InCircuitTrait;
+use MotogpBundle\Entity\Traits\InModalityTrait;
 use MotogpBundle\Entity\Traits\InRiderTrait;
 use MotogpBundle\Entity\Traits\InSeasonTrait;
 
@@ -18,7 +19,7 @@ use MotogpBundle\Entity\Traits\InSeasonTrait;
 class Video
 {
 
-    use ContentTrait, InCategoriesTrait, InRiderTrait, InSeasonTrait, InCircuitTrait {
+    use ContentTrait, InCategoriesTrait, InRiderTrait, InSeasonTrait, InCircuitTrait, InModalityTrait {
         InCategoriesTrait::__construct as inCategoriesTraitConstructor;
     }
 

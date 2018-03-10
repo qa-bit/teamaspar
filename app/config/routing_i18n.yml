@@ -1,51 +1,51 @@
 index:
-    locales: { "es": "/es", "en": "/en" }
+    locales: { "es": "/es/{modality}", "en": "/en/{modality}" }
     defaults: { _controller: MotogpBundle:Public:index }
 
 motogp_public_index:
-    locales: { "es": "/es", "en": "/en" }
+    locales: { "es": "/es/{modality}", "en": "/en/{modality}" }
     defaults: { _controller: MotogpBundle:Public:index }
 
 images:
-    locales: { "es": "/es/imagenes", "en": "/en/images" }
+    locales: { "es": "/es/{modality}/imagenes", "en": "/en/{modality}/images" }
     defaults: { _controller: MotogpBundle:Public:images }
 
 videos:
-    locales: { "es": "/es/videos", "en": "/en/videos" }
+    locales: { "es": "/es/{modality}/videos", "en": "/en/{modality}/videos" }
     defaults: { _controller: MotogpBundle:Public:videos }
 
 motos:
-    locales: { "es": "/es/ducati", "en": "/en/ducati" }
+    locales: { "es": "/es/{modality}/motos", "en": "/en/{modality}/motos" }
     defaults: { _controller: MotogpBundle:Public:motos }
 
 riders:
-    locales: { "es": "/es/piloto/{id}", "en": "/en/rider/{id}" }
+    locales: { "es": "/es/{modality}/piloto/{id}", "en": "/en/{modality}/rider/{id}" }
     defaults: { _controller: MotogpBundle:Public:riders }
 
 sponsors:
-    locales: { "es": "/es/sponsors", "en": "/en/sponsors" }
+    locales: { "es": "/es/{modality}/sponsors", "en": "/en/{modality}/sponsors" }
     defaults: { _controller: MotogpBundle:Public:sponsors }
 
 sponsor:
-    locales: { "es": "/es/sponsor/{id}", "en": "/en/sponsor/{id}" }
+    locales: { "es": "/es/{modality}/sponsor/{id}", "en": "/en/{modality}/sponsor/{id}" }
     defaults: { _controller: MotogpBundle:Public:sponsor }
 
 posts:
-    locales: { "es": "/es/noticias", "en": "/en/news" }
+    locales: { "es": "/es/{modality}/noticias", "en": "/en/{modality}/news" }
     defaults: { _controller: MotogpBundle:Public:posts }
 
 post:
-    locales: { "es": "/es/noticias/{id}", "en": "/en/news/{id}" }
+    locales: { "es": "/es/{modality}/noticias/{id}", "en": "/en/{modality}/news/{id}" }
     defaults: { _controller: MotogpBundle:Public:post}
 
 team_staff:
-    locales: { "es": "/es/equipo", "en": "/en/team-staff" }
+    locales: { "es": "/es/{modality}/equipo", "en": "/en/{modality}/team-staff" }
     defaults: { _controller: MotogpBundle:Public:team}
 
 public_contact:
-    locales: { "en": "/en/contact", "es": "/es/contacto" }
+    locales: { "en": "/en/{modality}/contact", "es": "/es/{modality}/contacto" }
     defaults: { _controller: MotogpBundle:Contact:contactForm}
 
 public_contact_success:
-    locales: { "en": "/en/contact/success", "es": "/es/contacto/enviado" }
+    locales: { "en": "/en/{modality}/contact/success", "es": "/es/{modality}/contacto/enviado" }
     defaults: { _controller: MotogpBundle:Contact:contactFormSuccess}

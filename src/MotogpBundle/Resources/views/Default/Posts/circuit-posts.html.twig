@@ -16,9 +16,11 @@
     <div class="circuit-galleries-list">
         <ul>
             {% for p in circuit.posts %}
-                <li>
-                    <a href="{{ url('post', {'id' : p.id}) }}">{{ p.name }}</a>
-                </li>
+                {% if p.modality.id == modality.id %}
+                    <li>
+                        <a href="{{ url('post', {'id' : p.id, 'modality' : modality.slug }) }}">{{ p.name }}</a>
+                    </li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>

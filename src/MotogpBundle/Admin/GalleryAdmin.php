@@ -38,6 +38,7 @@ class GalleryAdmin extends AbstractAdmin
             ->add('name')
             ->add('circuit', null, ['label' => 'Circuito'])
             ->add('categories')
+            ->add('modality')
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -67,6 +68,7 @@ class GalleryAdmin extends AbstractAdmin
                             ], ['btn_add' => false]
                         )
                         ->add('race', null, ['label' => 'Carrera'])
+                        ->add('modality')
                     ->end()
                 ->end()
             ->tab('Imágenes')

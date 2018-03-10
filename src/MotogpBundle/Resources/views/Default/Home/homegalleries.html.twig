@@ -23,7 +23,7 @@
     {% endfor %}
     <div class="w100">
         <div class="see-more tcenter">
-            <img class="link" href={{ url('images') }} src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" />
+            <img class="link" href={{ url('images', {'modality' : modality.slug }) }} src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" />
         </div>
     </div>
 </div>

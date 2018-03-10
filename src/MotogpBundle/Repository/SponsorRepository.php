@@ -29,4 +29,30 @@ class SponsorRepository extends \Doctrine\ORM\EntityRepository
             ;
     }
 
+
+    public function getColorByModality($modality)
+    {
+
+        return $this->createQueryBuilder('s')
+            ->join('s.modalities', 'm')
+            ->where('m.id = :modality')
+            ->andWhere('s.bn != true')
+            ->setParameter('modality', $modality->getId())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function getBNByModality($modality)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.modalities', 'm')
+            ->where('m.id = :modality')
+            ->andWhere('s.bn = true')
+            ->setParameter('modality', $modality->getId())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }

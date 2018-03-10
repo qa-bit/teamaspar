@@ -34,6 +34,7 @@ class SponsorAdmin extends AbstractAdmin
         $listMapper
             ->add('name')
             ->add('webUrl')
+            ->add('modalities')
 
             ->add('_action', null, array(
                 'actions' => array(
@@ -53,7 +54,7 @@ class SponsorAdmin extends AbstractAdmin
             ->add('name')
             ->add('description', 'ckeditor')
             ->add('descriptionEN', 'ckeditor')
-            ->add('modality', null, ['required' => true])
+            ->add('modalities', null, ['required' => true])
             ->add('logo', 'sonata_type_admin', array(
                 'label' => 'Logo',
                 'required' => false,
