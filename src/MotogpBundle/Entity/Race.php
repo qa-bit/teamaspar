@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
 use MotogpBundle\Entity\Traits\InCircuitTrait;
 use Doctrine\Common\Collections\ArrayCollection;
+use MotogpBundle\Entity\Traits\InModalityTrait;
 
 
 /**
@@ -16,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Race
 {
-    use ContentTrait, InCircuitTrait;
+    use ContentTrait, InCircuitTrait, InModalityTrait;
 
     /**
      * @var \DateTime

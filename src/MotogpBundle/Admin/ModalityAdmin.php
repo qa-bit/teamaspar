@@ -89,4 +89,14 @@ class ModalityAdmin extends AbstractAdmin
             ->add('updatedAt')
         ;
     }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+
+        //if (!$isSuperAdmin) {
+        $collection
+            ->remove('create')
+            ->remove('delete');
+        //}
+    }
 }

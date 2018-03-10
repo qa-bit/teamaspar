@@ -35,18 +35,31 @@ class Setup extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
 
-        $modalities = ['Moto GP', 'Moto 3', 'Campeonato españa'];
+        $modalities = [
+            'Moto GP',
+            'Moto 3',
+            'FIM-JR'
+        ];
+
+        $slugs = ['moto-gp', 'moto-3', 'fim-jr'];
 
         $galleries =  ['inicio', 'contacto', 'noticias', 'videos', 'imagenes', 'motos', 'staff', 'sponsor', 'riders', 'register'];
-        
-        foreach ($modalities as $m){
-            $old = $em->getRepository(Modality::class)->findOneByName($m);
+
+
+        $index = 0;
+
+        foreach ($slugs as $m){
+
+            $old = $em->getRepository(Modality::class)->findOneBySlug($m);
 
             if ($old === null) {
                 $new = new Modality();
-                $new->setName($m);
+                $new->setSlug($m);
+                $new->setName($modalities[$index]);
                 $em->persist($new);
             }
+
+            $index++;
         }
 
         $em->flush();

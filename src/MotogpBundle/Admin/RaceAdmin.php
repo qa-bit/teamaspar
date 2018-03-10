@@ -35,6 +35,7 @@ class RaceAdmin extends AbstractAdmin
             ->add('name')
             ->add('season')
             ->add('circuit')
+            ->add('modality')
             ->add('start', null, ['format' => 'd-m-Y'])
             ->add('end', null, ['format' => 'd-m-Y'])
             ->add('_action', null, array(
@@ -59,6 +60,7 @@ class RaceAdmin extends AbstractAdmin
                 ->with(null)
                     ->add('season', null, ['required' => true, 'attr' => $mediumColumn])
                     ->add('circuit', null, ['required' => true, 'attr' => $mediumColumn])
+                    ->add('modality', null, ['required' => true, 'attr' => $mediumColumn])
                     ->add('name')
                     ->add('nameEN')
                     ->add('start', 'sonata_type_date_picker', [

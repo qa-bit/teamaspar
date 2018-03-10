@@ -40,6 +40,16 @@ class Modality
      */
     private $youtube;
 
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @var string
+     */
+    private $slug;
+
+
+
+
     /**
      * @return string
      */
@@ -103,4 +113,21 @@ class Modality
     {
         $this->youtube = $youtube;
     }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+    
 }

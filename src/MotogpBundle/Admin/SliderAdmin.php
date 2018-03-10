@@ -28,6 +28,23 @@ class SliderAdmin extends GalleryAdmin
         ;
     }
 
+    /**
+     * @param ListMapper $listMapper
+     */
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->add('name')
+            ->add('modality')
+            ->add('_action', null, array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array()
+                ),
+            ))
+        ;
+    }
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
