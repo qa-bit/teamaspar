@@ -37,7 +37,7 @@ class Setup extends ContainerAwareCommand
 
         $modalities = ['Moto GP', 'Moto 3', 'Campeonato españa'];
 
-        $galleries =  ['inicio', 'contacto', 'noticias', 'videos', 'imagenes', 'motos', 'staff', 'sponsor', 'riders'];
+        $galleries =  ['inicio', 'contacto', 'noticias', 'videos', 'imagenes', 'motos', 'staff', 'sponsor', 'riders', 'register'];
         
         foreach ($modalities as $m){
             $old = $em->getRepository(Modality::class)->findOneByName($m);

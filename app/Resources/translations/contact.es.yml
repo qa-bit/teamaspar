@@ -1,0 +1,10 @@
+contact_form: Formulario de contacto
+name: Nombre
+email: Email
+subject: Asunto
+phone: Teléfono
+message: Mensaje
+send: Enviar
+contact_success_title: Mensaje enviado con éxito
+contact_success_text1: Gracias por contactar con nosotros
+contact_success_text2: Nos pondremos en contacto con usted lo antes posible

@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/swiper/dist/css/swiper.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/css/jquery.fancybox.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/helpers/css/jquery.fancybox-thumbs.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/jquery-cookiebar/jquery.cookiebar.css') }}">
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/fonts/fontfaces.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/lazyyt.css') }}" />
     {% endblock %}
@@ -61,8 +62,21 @@
     <script src="{{ asset('/bundles/motogp/vendor/node_modules/swiper/dist/js/swiper.min.js') }}"></script>
     <script src="{{ asset('/bundles/motogp/vendor/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/js/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/js/jquery.cookiebar.js') }}"></script>
     <script src="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/helpers/js/jquery.fancybox-thumbs.js') }}"></script>
     <script src="{{ asset('/bundles/motogp/js/lazyyt.js') }}"></script>
     <script src="{{ asset('/bundles/motogp/js/main.js') }}?v={{ "now" | date('d-m-y-h-i-s') }}"></script>
 {% endblock %}
+<div class="cookie-message">
+    <div class="locale-es">
+        <div class="col-xs-11">
+            {{ "cookies.message" | trans }}
+            <a href="">{{ "cookies.here" | trans }}</a>
+            {#<a href="{{ url('cookies_info') }}">{{ "cookies.here" | trans }}</a>#}
+        </div>
+        <div class="col-xs-1">
+            <i class="pull-right fa fa-times my-close-button"></i>
+        </div>
+    </div>
+</div>
 </html>

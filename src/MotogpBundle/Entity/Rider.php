@@ -57,10 +57,7 @@ class Rider
     */
    protected $records;
 
-
-
-
-
+   
    /**
     * @var Team
     *

@@ -21,7 +21,7 @@ class ContactType extends AbstractType
             ->add('name' ,'text', array('required' => true))
             //->add('surname' ,'text', array('required' => false))
             ->add('phone' ,'text', array('required' => true))
-            ->add('email' ,'text', array('required' => true))
+            ->add('email' ,'email', array('required' => true))
             //->add('postcode' ,'text', array('required' => true))
             ->add('subject' ,'text', array('required' => true))
             //->add('address' ,'text', array('required' => true))

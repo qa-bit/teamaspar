@@ -17,7 +17,7 @@
         {#<b>Mensaje:</b><br> {{ comments }}#}
     {#</columns>#}
 {#</row>#}
-{% trans_default_domain 'contact_email' %}
+{% trans_default_domain 'contact' %}
 
 <div>
     <h4>{{ "contact_form" | trans }}</h4>
@@ -34,3 +34,5 @@
         </div>
     </div>
 </div>
+<br><br>
+<img src="{{ app.request.getSchemeAndHttpHost() ~ asset('/bundles/motogp/img/branding.png') }}" />

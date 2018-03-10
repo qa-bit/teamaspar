@@ -1,6 +1,12 @@
 $(document).ready(function () {
 
     var home = {
+        cookies : function () {
+            $(document).ready(function() {
+                $('.cookie-message').cookieBar({ closeButton : '.my-close-button', hideOnClose: false });
+                $('.cookie-message').on('cookieBar-close', function() { $(this).slideUp(); });
+            });
+        },
         lazyImages : function () {
 
             var nodes = $('.lazy');
@@ -138,6 +144,7 @@ $(document).ready(function () {
             })
         },
         init : function () {
+            this.cookies();
             this.toggleNews();
             this.lazyImages();
             this.swiper();
