@@ -35,6 +35,8 @@ class PostMedia extends BaseMedia
      */
     private $title;
 
+    private $titleEN;
+
     private $owner;
 
     /**
@@ -171,5 +173,23 @@ class PostMedia extends BaseMedia
     {
         $this->title = $title;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTitleEN()
+    {
+        return $this->titleEN;
+    }
+
+    /**
+     * @param mixed $titleEN
+     */
+    public function setTitleEN($titleEN)
+    {
+        $this->titleEN = $titleEN;
+    }
+
+
     
 }

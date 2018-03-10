@@ -25,6 +25,14 @@ class Circuit
      */
     private $subtitle;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $subtitleEN;
+
     /**
      * @var string
      *
@@ -134,6 +142,22 @@ class Circuit
     public function setPosts($posts)
     {
         $this->posts = $posts;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubtitleEN()
+    {
+        return $this->subtitleEN;
+    }
+
+    /**
+     * @param string $subtitleEN
+     */
+    public function setSubtitleEN($subtitleEN)
+    {
+        $this->subtitleEN = $subtitleEN;
     }
     
     

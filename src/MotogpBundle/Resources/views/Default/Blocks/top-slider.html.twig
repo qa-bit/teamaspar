@@ -8,20 +8,20 @@
                                 class="swiper-slide dark lazy cover"
                                 data-src="{% path m, 'xlarge' %}"
                                 aria-role="img"
-                                title="{{ m.name }}"
-                                arial-label="{{ m.name }}"
+                                title="{{ locale == 'es' ? m.name : m.nameEN}}"
+                                arial-label="{{ locale == 'es' ? m.name : m.nameEN }}"
                         >
 
                             <div class="slider-caption">
                                 {% if m.title %}
                                     <h2>
                                         <a href="{{ m.url ? m.url : '#' }}" target="_blank">
-                                            {{ m.title }}
+                                            {{ locale == 'es' ? m.title : m.titleEN }}
                                         </a>
                                     </h2>
                                     <label>
                                         <a href="{{ m.url ? m.url : '#' }}" target="_blank">
-                                            {{ m.description }}
+                                            {{ locale == 'es'  ? m.description : m.descriptionEN }}
                                         </a>
                                     </label>
                                 {% endif %}

@@ -1,0 +1,9 @@
+<div class="col-xs-12 col-md-6 moto-description relative">
+    <div class="moto-description-separator">
+        <img class="" src="{{ asset('/bundles/motogp/img/assets/ducati_sep.png') }}" alt="">
+    </div>
+    {% include "MotogpBundle:StaticContent:moto_a_" ~ modality.slug ~ "_" ~ locale ~ ".html.twig" %}
+</div>
+<div class="col-xs-12 col-md-6 moto-description">
+    {% include "MotogpBundle:StaticContent:moto_b_" ~ modality.slug ~ "_" ~ locale ~ ".html.twig" %}
+</div>

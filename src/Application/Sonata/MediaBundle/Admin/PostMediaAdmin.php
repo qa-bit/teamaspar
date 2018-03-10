@@ -99,6 +99,7 @@ class PostMediaAdmin extends AbstractAdmin
             //->add('providerStatus')
 
             ->add('title')
+            ->add('titleEN')
             ->add('description')
             ->add('descriptionEN')
             ->add('url')

@@ -138,7 +138,7 @@ class RiderAdmin extends AbstractAdmin
                 'label' => 'Victorias'])
             ->add('poles', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
-                'label' => 'Podios'])
+                'label' => 'Poles'])
             ->add('fastLaps', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Vueltas rápidas'])

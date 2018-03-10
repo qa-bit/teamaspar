@@ -31,7 +31,7 @@
                             <div class="section-separator" style="margin-bottom:2em;padding:.5em 0"></div>
                         </div>
                         <div style="padding: 3.5em">
-                            {{ team.history | raw }}
+                            {{ locale == 'es' ? (team.history | raw ) : (team.historyEN | raw )}}
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                                 <img class="staff-member-image" src="{% path t.featuredMedia, 'big' %}" />
                             </div>
                             <h4>{{ t.name }}</h4>
-                            <h5>{{ t.teamCategory.name }}</h5>
+                            <h5>{{ locale == 'es' ? t.teamCategory.name : t.teamCategory.nameEN }}</h5>
                             <div class="col-xs-12">
                                 <img class="tcenter" src="{{ asset('/bundles/motogp/img/assets/flags/' ~ (t.country | lower) ~ '.png') }}" />
                             </div>
@@ -83,7 +83,7 @@
                                                 <img class="staff-member-image" src="{% path t.featuredMedia, 'big' %}" />
                                             </div>
                                             <h4>{{ t.name }}</h4>
-                                            <h5>{{ t.teamCategory.name }}</h5>
+                                            <h5>{{ locale == 'es' ? t.teamCategory.name : t.teamCategory.nameEN }}</h5>
                                             <div class="col-xs-12">
                                                 <img class="tcenter" src="{{ asset('/bundles/motogp/img/assets/flags/' ~ (t.country | lower) ~ '.png') }}" />
                                             </div>

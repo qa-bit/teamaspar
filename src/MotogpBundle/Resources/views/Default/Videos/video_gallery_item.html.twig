@@ -1,10 +1,10 @@
-{% set url = video.extractUrl() %}
+{% set url = video.extractUrl(locale) %}
 {% if url != '' %}
     <div class="video-gallery-item">
         <div class="lazyYT" data-youtube-id="{{ url }}" ></div>
         <div class="col-xs-12 text-center video-description">
-            <p class="header"><b>{{ video.circuit.name ?? video.name}}</b></p>
-            <p> {{ video.name }}</p>
+            <p class="header"><b>{{ locale == 'es' ? (video.circuit.name ?? video.name) : (video.circuit.nameEN ?? video.nameEN) }}</b></p>
+            <p> {{ locale == 'es' ? video.name : video.nameEN }}</p>
         </div>
     </div>
 {% endif %}

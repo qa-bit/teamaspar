@@ -1,5 +1,5 @@
 {% if video is not null %}
-    {% set url = video.extractUrl() %}
+    {% set url = video.extractUrl(locale) %}
     {% if url != '' %}
         <iframe src="https://www.youtube.com/embed/{{ url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     {% endif %}

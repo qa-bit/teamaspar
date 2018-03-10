@@ -3,10 +3,10 @@
         <div class="w100 circuit-gallery-featured" style="background:url('{% path circuit.featuredMedia, 'big' %}');">
         </div>
         <div class="col-xs-12 col-md-6 circuit-gallery-description">
-            <h6>{{ circuit.name | truncate(80, true, '...')}}</h6>
+            <h6>{{ (locale == 'es' ? circuit.name : circuit.nameEN )| truncate(80, true, '...')}}</h6>
             <div class="sep"></div>
             <div class="trow">
-                <h3>{{ circuit.subtitle }}</h3>
+                <h3>{{ locale == 'es' ? circuit.subtitle : circuit.subtitleEN }}</h3>
             </div>
             <div class="toggle-galleries">
                 <div class="toggler closed"></div>
@@ -18,7 +18,11 @@
             {% for p in circuit.posts %}
                 {% if p.modality.id == modality.id %}
                     <li>
-                        <a href="{{ url('post', {'id' : p.id, 'modality' : modality.slug }) }}">{{ p.name }}</a>
+                        <a href="{{ url('post', {'id' : p.id, 'modality' : modality.slug }) }}">
+                            {% spaceless %}
+                                {{ locale == 'es' ? p.name  : p.nameEN }}
+                            {% endspaceless %}
+                        </a>
                     </li>
                 {% endif %}
             {% endfor %}

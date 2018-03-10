@@ -2,8 +2,10 @@
 
 {% set r = rider %}
 
-{% macro list_isset(r, field) %}
-    {% if attribute(r, field) %}
+{% macro list_isset(locale, r, field) %}
+    {% set f = (locale == 'es' ? field : (field ~ 'EN')) %}
+
+    {% if attribute(r, f) %}
         <li>
             <span class="title">{{ field | trans }}:</span>
             <span>{{ attribute(r, field) }}</span>
@@ -38,20 +40,20 @@
                                         <span class="title">{{ 'birthDate' | trans }}:</span>
                                         <span>{{ r.birthDate | date('d/m/Y') }} - {{ r.birthPlace }} -  {{  r.country }} {{ 'age' | trans }}: {{ r.getAge() }} </span>
                                     </li>
-                                    {{ forms.list_isset(r, 'firstRace') }}
-                                    {{ forms.list_isset(r, 'firstGrandPrix') }}
-                                    {{ forms.list_isset(r, 'firstVictory') }}
-                                    {{ forms.list_isset(r, 'lastVictory') }}
-                                    {{ forms.list_isset(r, 'firstPole') }}
-                                    {{ forms.list_isset(r, 'firstFastLap') }}
-                                    {{ forms.list_isset(r, 'firstPodium') }}
-                                    {{ forms.list_isset(r, 'victorys') }}
-                                    {{ forms.list_isset(r, 'podiums') }}
-                                    {{ forms.list_isset(r, 'poles') }}
-                                    {{ forms.list_isset(r, 'firstRace') }}
-                                    {{ forms.list_isset(r, 'fastLaps') }}
-                                    {{ forms.list_isset(r, 'bestGeneralResult') }}
-                                    {{ forms.list_isset(r, 'gpss') }}
+                                    {{ forms.list_isset(locale, r, 'firstRace') }}
+                                    {{ forms.list_isset(locale, r, 'firstGrandPrix') }}
+                                    {{ forms.list_isset(locale, r, 'firstVictory') }}
+                                    {{ forms.list_isset(locale, r, 'lastVictory') }}
+                                    {{ forms.list_isset(locale, r, 'firstPole') }}
+                                    {{ forms.list_isset(locale, r, 'firstFastLap') }}
+                                    {{ forms.list_isset(locale, r, 'firstPodium') }}
+                                    {{ forms.list_isset(locale, r, 'victorys') }}
+                                    {{ forms.list_isset(locale, r, 'podiums') }}
+                                    {{ forms.list_isset(locale, r, 'poles') }}
+                                    {{ forms.list_isset(locale, r, 'firstRace') }}
+                                    {{ forms.list_isset(locale, r, 'fastLaps') }}
+                                    {{ forms.list_isset(locale, r, 'bestGeneralResult') }}
+                                    {{ forms.list_isset(locale, r, 'gpss') }}
                                 </ul>
                             </div>
 
@@ -69,7 +71,7 @@
                                 {% endif %}
                                 <li><span class="title">{{ key }}:</span>
                                     {% for ri in record %}
-                                        {{ ri.description }}<br>
+                                        {{ locale == 'es' ? ri.description : ri.descriptionEN }}<br>
                                     {% endfor %}
                                 </li>
                                 {% if (loop.index % 10  == 9) %}
@@ -84,7 +86,7 @@
                 {% if r.description or r.descriptionEN %}
                     <div class="row info rider-biografy">
                         <h3><span class="right-arrow">&#9654;&nbsp;</span><b>{{ 'biografy' | trans }}</b></h3>
-                        <div>{{ r.description | raw }}</div>
+                        <div>{{ locale == 'es' ? (r.description | raw) : (r.descriptionEN | raw )}}</div>
                     </div>
                 {% endif %}
             </div>

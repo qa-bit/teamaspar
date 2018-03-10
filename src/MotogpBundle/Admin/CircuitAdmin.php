@@ -50,7 +50,9 @@ class CircuitAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('name')
+            ->add('nameEN')
             ->add('subtitle')
+            ->add('subtitleEN')
             ->add('country', CountryType::class, [
                 'preferred_choices' => ['ES']
             ])

@@ -115,8 +115,13 @@ class Video
     }
 
 
-    public function extractUrl() {
-        preg_match('/\?v=.+$/', $this->url, $matches);
+    public function extractUrl($locale) {
+
+        $urle = $locale == 'es'
+            ? $this->url
+            : $this->urlEN;
+
+        preg_match('/\?v=.+$/', $urle, $matches);
 
         if (count($matches))
             return str_replace('?v=', '', $matches[0]);
