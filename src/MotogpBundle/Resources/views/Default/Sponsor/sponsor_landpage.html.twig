@@ -4,9 +4,9 @@
 
 {% extends "MotogpBundle:Default:base.html.twig" %}
 {% block body %}
-    {{ parent() }}
-
-    {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : sponsor.getGallery() } %}
+    {% if sponsor.featuredMedia is not null %}
+        {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : sponsor.getGallery() } %}
+    {% endif %}
 
     <div class="smoke-background">
         <div class="white-background">
