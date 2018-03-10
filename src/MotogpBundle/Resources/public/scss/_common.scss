@@ -58,6 +58,10 @@ body {
   display : table;
 }
 
+.white-background-2 {
+  background: url(/bundles/motogp/img/assets/white_bg2.jpg) !important;
+}
+
 .link:hover {
   cursor : pointer;
 }
@@ -110,4 +114,8 @@ body {
   z-index: 999;
   background: rgba(255, 255, 255, 0.8);
   padding: .33em;
+}
+
+.body-block {
+  padding-top : 5em;
 }

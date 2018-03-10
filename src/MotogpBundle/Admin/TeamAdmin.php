@@ -36,6 +36,7 @@ class TeamAdmin extends AbstractAdmin
         $listMapper
             ->add('name')
             ->add('country')
+            ->add('modalities')
             ->add('teamCategory', null, array('editable' => true))
             ->add('_action', null, array(
                 'actions' => array(
@@ -59,7 +60,7 @@ class TeamAdmin extends AbstractAdmin
             ->with(null)
             ->add('name', null, ['label' => 'Nombre y apellidos'])
             ->add('teamCategory', null, ['required' => true, 'attr' => $mediumColumn])
-            ->add('modality', null, ['attr' => ['container_classes' => 'col-md-6']])
+            ->add('modalities', null, ['required' => true, 'attr' => ['container_classes' => 'col-md-6']])
             ->add('country', CountryType::class, ['label' => 'País',
                 'attr' => ['container_classes' => 'col-md-6'],
             ])

@@ -44,16 +44,19 @@
     {% block meta %}
     {% endblock %}
 </head>
-<body >
-{% block header %}
-    {% include "MotogpBundle:Default:Blocks/header.html.twig" %}
-{% endblock  %}
+<body {% block body_attrs %}{% endblock %}>
+<div class="header-block">
+    {% block header %}
+        {% include "MotogpBundle:Default:Blocks/header.html.twig" %}
+    {% endblock  %}
 
-{% block afterheader %}
-{% endblock %}
-
-{% block body %}
-{% endblock %}
+    {% block afterheader %}
+    {% endblock %}
+</div>
+<div class="body-block">
+    {% block body %}
+    {% endblock %}
+</div>
 </body>
 {% block javascripts %}
     <script src="{{ asset('/bundles/motogp/vendor/node_modules/jquery/dist/jquery.min.js') }}"></script>

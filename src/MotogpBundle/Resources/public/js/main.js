@@ -143,6 +143,18 @@ $(document).ready(function () {
                 $(this).parent().parent().parent().parent().find('.circuit-galleries-list').toggle();
             })
         },
+        staffTabs : function () {
+            $('.team-staff-menu li a').click(function (e) {
+                var offset = - $('.header-block').height();
+                e.preventDefault();
+                $('.team-staff-menu li a').removeClass('active');
+                $(this).addClass('active');
+                var id = $(this).attr('href');
+                $('.tab').removeClass('active');
+                $(id).addClass('active');
+                $(window).scrollTo($(id), {'offset' : offset});
+            });
+        },
         init : function () {
             this.cookies();
             this.toggleNews();
@@ -152,6 +164,7 @@ $(document).ready(function () {
             this.fancy();
             this.lazyYt();
             this.links();
+            this.staffTabs();
         }
     };
     home.init();
