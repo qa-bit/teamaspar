@@ -7,9 +7,9 @@
 
   .sponsor-logo {
     text-align : center;
-    padding : 2em;
+    padding : 2.2em;
     img {
-      height: 4em;
+      height: 3em;
       width: auto;
     }
 
@@ -30,12 +30,15 @@
   }
 
   .sponsor-logo.bn {
+    padding : 2em 4em;
     img {
       filter : saturate(0);
       transition : filter .33s;
+      opacity : .8;
       &:hover {
         filter: saturate(1);
         transition : filter .33s;
+        opacity : 1;
       }
     }
   }
