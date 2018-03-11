@@ -21,7 +21,7 @@ trait InCategoryTrait {
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", cascade={"persist"})
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $category;
 

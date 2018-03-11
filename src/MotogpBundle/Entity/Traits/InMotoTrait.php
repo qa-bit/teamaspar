@@ -21,7 +21,7 @@ trait InMotoTrait {
 
     /**
      * @ORM\ManyToOne(targetEntity="Moto", cascade={"persist"})
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $moto;
 
