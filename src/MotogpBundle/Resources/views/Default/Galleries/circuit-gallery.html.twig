@@ -17,7 +17,11 @@
         <ul>
             {% for g in circuit.galleries %}
                 {% if g.modality.slug == modality.slug %}
-                    <li class="fancytrigger" rel="gallery-{{ g.id }}">{{ g.name }}</li>
+                    <li class="fancytrigger" rel="gallery-{{ g.id }}">
+                        {% spaceless %}
+                            {{ locale == 'es' ? (g.category ? g.category.name : g.name)  : (g.category ? g.category.nameEN : g.nameEN) }}
+                        {% endspaceless %}
+                    </li>
                 {% endif %}
             {% endfor %}
         </ul>

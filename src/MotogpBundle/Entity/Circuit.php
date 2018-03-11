@@ -45,6 +45,7 @@ class Circuit
      * @var Gallery
      *
      * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Gallery", mappedBy="circuit", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OrderBy({"_order" = "ASC"})*
      */
     private $galleries;
 
@@ -53,6 +54,7 @@ class Circuit
      * @var Gallery
      *
      * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Post", mappedBy="circuit", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OrderBy({"_order" = "ASC"})
      */
     private $posts;
 

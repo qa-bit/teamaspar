@@ -25,7 +25,8 @@ class PostAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
+            ->add('name', null, ['show_filter' => true, 'advanced_filter' => false])
+            ->add('modality', null, ['show_filter' => true, 'advanced_filter' => false])
         ;
     }
 
@@ -37,7 +38,8 @@ class PostAdmin extends AbstractAdmin
         $listMapper
             ->add('name')
             ->add('modality', null, ['label' => 'Modalidad'])
-            ->add('categories', null, ['label' => 'Tags'])
+//            ->add('categories', null, ['label' => 'Tags'])
+            ->add('order', null, ['editable' => true])
             ->add('publishedAt', 'date', ['label' => 'Fecha', 'format' => 'd-m-Y'])
             ->add('_action', null, array(
                 'actions' => array(
@@ -113,9 +115,9 @@ class PostAdmin extends AbstractAdmin
                             'attr' => ['container_classes' => 'col-md-6'],
                             'required' => false
                         ])
-                        ->add('categories', 'sonata_type_model', [
+                        ->add('category', null, [
                             'label' => 'Tags',
-                            'multiple' => true,
+                            'required' => false,
                             'attr' => ['container_classes' => 'col-md-6']
                         ])
 

@@ -37,8 +37,9 @@ class GalleryAdmin extends AbstractAdmin
         $listMapper
             ->add('name')
             ->add('circuit', null, ['label' => 'Circuito'])
-            ->add('categories')
+            ->add('category', null, ['label' => 'Tags'])
             ->add('modality')
+            ->add('_order', null, ['editable' => true])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -58,9 +59,9 @@ class GalleryAdmin extends AbstractAdmin
                 ->with(null)
                         ->add('name')
                         ->add('nameEN')
-                        ->add('categories', 'sonata_type_model', [
+                        ->add('category', null , [
                             'label' => 'Tags',
-                            'multiple' => true
+                            'required' => false
                         ])
                         ->add('circuit', null,
                             [
@@ -69,6 +70,7 @@ class GalleryAdmin extends AbstractAdmin
                         )
                         ->add('race', null, ['label' => 'Carrera'])
                         ->add('modality')
+                        ->add('_order')
                     ->end()
                 ->end()
             ->tab('Imágenes')

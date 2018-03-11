@@ -56,4 +56,13 @@ class BuilderAdmin extends AbstractAdmin
             ->add('name')
         ;
     }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+
+        //if (!$isSuperAdmin) {
+        $collection
+            ->remove('delete');
+        //}
+    }
 }

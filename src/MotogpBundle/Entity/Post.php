@@ -5,7 +5,7 @@ namespace MotogpBundle\Entity;
 use Application\Sonata\MediaBundle\Entity\PostMedia;
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
-use MotogpBundle\Entity\Traits\InCategoriesTrait;
+use MotogpBundle\Entity\Traits\InCategoryTrait;
 use MotogpBundle\Entity\Traits\InCircuitTrait;
 use MotogpBundle\Entity\Traits\InModalityTrait;
 use MotogpBundle\Entity\Traits\HasMediaTrait;
@@ -23,19 +23,18 @@ class Post
 {
     use
         ContentTrait,
-        InCategoriesTrait,
+        InCategoryTrait,
         InModalityTrait,
         HasMediaTrait,
         InRiderTrait,
         InCircuitTrait,
         InSeasonTrait
     {
-        InCategoriesTrait::__construct as inCategoriesTraitConstructor;
+        
     }
 
     public function __construct()
     {
-        $this->inCategoriesTraitConstructor();
         $this->medias = new ArrayCollection();
         $this->publishedAt = new \DateTime();
     }
@@ -110,14 +109,8 @@ class Post
     }
 
 
-    public function removeCategory($category)
-    {
-        $this->categories->remove($category);
-        return $this;
-    }
-
     
-
+    
     /**
      * @return \DateTime
      */

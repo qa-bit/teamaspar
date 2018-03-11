@@ -14,6 +14,7 @@ class GalleryRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder('g')
             ->where('g.slug IS NULL')
+            ->orderBy('g._order', 'ASC')
             ->getQuery()
             ->getResult()
             ;
