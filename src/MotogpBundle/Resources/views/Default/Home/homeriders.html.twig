@@ -5,7 +5,8 @@
 
     {% if homeRiders | length >= 2 %}
         <div class="home-rider home-rider-1 relative">
-            <img src="{% path homeRiders[0].homeImage, 'big' %}" />
+            {#<img src="{% path homeRiders[0].homeImage, 'big' %}" />#}
+            <div class="home-rider-image" style="background:url('{% path homeRiders[0].homeImage, 'big' %}')"></div>
             <div class="vertical-separator">
                 <span class="circle"></span>
                 <span class="circle circle-bottom"></span>
@@ -16,7 +17,7 @@
         </div>
 
         <div class="home-rider home-rider-2 relative">
-            <img src="{% path homeRiders[1].homeImage, 'big' %}" />
+            <div class="home-rider-image" style="background:url('{% path homeRiders[1].homeImage, 'big' %}')"></div>
             <div class="vertical-separator-right">
                 <span class="circle"></span>
             </div>
