@@ -74,7 +74,7 @@
     <div class="locale-es">
         <div class="col-xs-11">
             {{ "cookies.message" | trans }}
-            <a href="">{{ "cookies.here" | trans }}</a>
+            <a href="{{ url('cookies', {'modality' : modality.slug }) }}">{{ "cookies.here" | trans }}</a>
             {#<a href="{{ url('cookies_info') }}">{{ "cookies.here" | trans }}</a>#}
         </div>
         <div class="col-xs-1">

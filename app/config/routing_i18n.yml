@@ -51,5 +51,13 @@ public_contact_success:
     defaults: { _controller: MotogpBundle:Contact:contactFormSuccess}
 
 cookies:
-    locales: { "en": "/en/{modality}/cookies", "es": "/es/cookies" }
+    locales: { "en": "/en/{modality}/cookies", "es": "/es/{modality}/cookies" }
     defaults: { _controller: MotogpBundle:Public:cookies}
+
+privacy:
+    locales: { "en": "/en/{modality}/privacy", "es": "/es/{modality}/politica-de-privacidad" }
+    defaults: { _controller: MotogpBundle:Public:privacy}
+
+terms:
+    locales: { "en": "/en/{modality}/terms-and-conditions", "es": "/es/{modality}/terminos-y-condiciones" }
+    defaults: { _controller: MotogpBundle:Public:terms}

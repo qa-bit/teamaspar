@@ -15,6 +15,7 @@
 {% block body %}
     {{ parent() }}
 
+    {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}
 
     <div class="smoke-background">
         <div class="white-background">

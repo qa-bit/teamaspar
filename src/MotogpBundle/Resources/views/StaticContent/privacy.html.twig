@@ -1,0 +1,30 @@
+{% trans_default_domain 'riders' %}
+
+{% macro list_isset(r, field) %}
+    {% if attribute(r, field) %}
+        <li>
+            <span class="title">{{ field | trans }}:</span>
+            <span>{{ attribute(r, field) }}</span>
+        </li>
+    {% endif %}
+{% endmacro %}
+
+{% import _self as forms %}
+
+{% extends "MotogpBundle:Default:base.html.twig" %}
+{% block body %}
+    {{ parent() }}
+
+
+    <div class="smoke-background">
+        <div class="white-background">
+            <div class="homesponsors">
+                <div class="col-xs-12">
+                   {% include 'MotogpBundle:StaticContent:privacy_' ~ locale ~ '.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'MotogpBundle:Default:footer.html.twig' %}
+{% endblock %}

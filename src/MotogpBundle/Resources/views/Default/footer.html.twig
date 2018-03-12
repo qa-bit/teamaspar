@@ -2,9 +2,9 @@
 <footer>
     <div class="footer-upper">
         <ul>
-            <li><a href="#">{{ "terms_and_conditions" | trans }}</a></li>
-            <li><a href="#">{{ "privacy_policy" | trans }}</a></li>
-            <li><a href="#">{{ "cookies_policy" | trans }}</a></li>
+            <li><a href="{{ url('terms', {'modality' : modality.slug }) }}">{{ "terms_and_conditions" | trans }}</a></li>
+            <li><a href="{{ url('privacy', {'modality' : modality.slug }) }}">{{ "privacy_policy" | trans }}</a></li>
+            <li><a href="{{ url('cookies', {'modality' : modality.slug }) }}">{{ "cookies_policy" | trans }}</a></li>
             <li><a href="{{ url('public_contact', {'modality' : modality.slug }) }}">{{ "contact" | trans }}</a></li>
         </ul>
     </div>

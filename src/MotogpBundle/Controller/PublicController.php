@@ -288,6 +288,7 @@ class PublicController extends Controller
 
         $bnSponsors = $em->getRepository(Sponsor::class)->getBNByModality($modality);
 
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('sponsor_'.str_replace('-', '_',  $modalitySlug));
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
@@ -295,6 +296,7 @@ class PublicController extends Controller
                 [
                     'team' => $this->getMainTeam(),
                     'colorSponsors' => $colorSponsors,
+                    'gallery' => $gallery,
                     'bnSponsors' => $bnSponsors,
                     'riders' => $homeRiders,
                     'modality' => $modality
@@ -429,7 +431,65 @@ class PublicController extends Controller
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
-                'MotogpBundle:Default:Cookies/cookies.html.twig',
+                'MotogpBundle:StaticContent:cookies.html.twig',
+                [
+                    'team' => $this->getMainTeam(),
+                    'riders' => $homeRiders,
+                    'modality' => $modality
+                ]
+            );
+        }
+        else
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+    }
+
+    /**
+     * @Route("/privacy")
+     */
+    public function privacyAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $modalitySlug = $request->get('modality');
+
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->render(
+                'MotogpBundle:StaticContent:privacy.html.twig',
+                [
+                    'team' => $this->getMainTeam(),
+                    'riders' => $homeRiders,
+                    'modality' => $modality
+                ]
+            );
+        }
+        else
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+    }
+
+    /**
+     * @Route("/terms")
+     */
+    public function termsAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $modalitySlug = $request->get('modality');
+
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->render(
+                'MotogpBundle:StaticContent:terms.html.twig',
                 [
                     'team' => $this->getMainTeam(),
                     'riders' => $homeRiders,
