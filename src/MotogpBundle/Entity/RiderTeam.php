@@ -5,6 +5,7 @@ namespace MotogpBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
 use MotogpBundle\Entity\Traits\InModalityTrait;
+use MotogpBundle\Entity\Rider;
 
 /**
  * RiderTeam
@@ -53,6 +54,13 @@ class RiderTeam
      * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Team", mappedBy="riderTeam", cascade={"all"}, orphanRemoval=true)
      */
     private $staffMembers;
+
+    /**
+     * @var Team
+     *
+     * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Rider", mappedBy="riderTeam", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $riders;
 
     /**
      * @return boolean
@@ -193,12 +201,34 @@ class RiderTeam
         }
     }
 
+
+    /**
+     * @param $team
+     * @return $this
+     */
+    public function addRider($rider)
+    {
+        if (!$this->riders->contains($rider)) {
+            $rider->setRiderTeam($this);
+            $this->riders->add($rider);
+        }
+    }
+
     /**
      * @return Team
      */
     public function getStaffMembers()
     {
         return $this->staffMembers;
+    }
+
+
+    /**
+     * @return Team
+     */
+    public function getRiders()
+    {
+        return $this->riders;
     }
 
     /**

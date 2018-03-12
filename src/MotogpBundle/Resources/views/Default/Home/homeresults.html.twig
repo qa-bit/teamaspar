@@ -4,13 +4,12 @@
         <div class="sep"></div>
         <table class="results">
             {% set l = 1 %}
-            {% for s in scores %}
-                {% if loop.index < 12 and s.race is not null and s.rider is not null and s.rider.moto is not null%}
+            {% for s in generalScore %}
+                {% if loop.index < 13 %}
                     <tr>
                         <td class="score-index">{{ l }}</td>
                         <td class="score-rider">{{ s.rider.name | truncate(1, false, '.') }} {{ s.rider.surName | upper}} </td>
-                        <td class="score-circuit">{{ s.race.circuit.name | truncate(7, false,'') | upper}}</td>
-                        <td class="score-rider-moto">{{ s.rider.moto.builder.name }}</td>
+                        <td class="score-circuit">{{ s.rider.riderTeam.name | truncate(25, false,'') | upper}}</td>
                         <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
                     </tr>
                     {% set l = l + 1 %}
@@ -25,13 +24,12 @@
         <div class="sep"></div>
         <table class="results">
             {% set l = 1 %}
-            {% for s in scores %}
-                {% if loop.index < 12 and s.race is not null and s.rider is not null and s.rider.moto is not null%}
+            {% for s in teamScore %}
+                {% if loop.index < 13 %}
                     <tr>
                         <td class="score-index">{{ l }}</td>
-                        <td class="score-rider">{{ s.rider.name | truncate(1, false, '.') }} {{ s.rider.surName | upper}} </td>
-                        <td class="score-circuit">{{ s.race.circuit.name | truncate(7, false,'') }}</td>
-                        <td class="score-rider-moto">{{ s.rider.moto.builder.name }}</td>
+                        <td class="score-rider">{{ s.team.name | upper }} </td>
+                        <td class="score-rider">{{ s.team.riders[0].moto.builder.name }} </td>
                         <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
                     </tr>
                     {% set l = l + 1 %}

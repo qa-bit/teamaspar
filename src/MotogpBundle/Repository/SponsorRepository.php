@@ -38,6 +38,7 @@ class SponsorRepository extends \Doctrine\ORM\EntityRepository
             ->where('m.id = :modality')
             ->andWhere('s.bn != true')
             ->setParameter('modality', $modality->getId())
+            ->orderBy('s._order', 'ASC')
             ->getQuery()
             ->getResult()
             ;
@@ -50,6 +51,7 @@ class SponsorRepository extends \Doctrine\ORM\EntityRepository
             ->where('m.id = :modality')
             ->andWhere('s.bn = true')
             ->setParameter('modality', $modality->getId())
+            ->orderBy('s._order', 'ASC')
             ->getQuery()
             ->getResult()
             ;

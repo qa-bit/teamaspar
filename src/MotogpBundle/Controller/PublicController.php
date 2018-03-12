@@ -15,6 +15,7 @@ use MotogpBundle\Entity\Circuit;
 use MotogpBundle\Entity\RiderTeam;
 use MotogpBundle\Entity\Team;
 use MotogpBundle\Entity\TeamCategory;
+use MotogpBundle\Entity\Season;
 
 
 use Symfony\Component\HttpFoundation\Request;
@@ -29,6 +30,98 @@ class PublicController extends Controller
         $team  = $em->getRepository(RiderTeam::class)->findMain();
 
         return $team;
+    }
+
+
+    private function getGeneralScore($modality) {
+        $em = $this->getDoctrine()->getManager();
+
+        $currentSeason = $em->getRepository(Season::class)->findOneBy(array('current' => true));
+
+        $scores = [];
+        $riders = [];
+
+
+        foreach ($currentSeason->getRaces() as $cr) {
+            foreach ($cr->getScores() as $score) {
+
+
+                if ($cr->getModality()->getId() != $modality->getId())
+                    continue;
+
+                $id = (string)$score->getRider()->getId();
+
+                $riders[$score->getRider()->getId()] = $score->getRider();
+
+                if (isset($scores[$id])) {
+                    $scores[$id] += $score->getScore();
+                } else {
+                    $scores[$id] = $score->getScore();
+                }
+            }
+        }
+
+        //dump($scores);
+        uasort($scores, function($a, $b) {
+            return $a < $b;
+        });
+
+
+        $data = [];
+
+        foreach ($scores as $rider => $score) {
+            $d = new \stdClass();
+            $d->rider = $riders[$rider];
+            $d->score = $score;
+
+            $data[] = $d;
+        }
+
+        return $data;
+    }
+
+
+    private function getGeneralScoreTeams($modality) {
+        $em = $this->getDoctrine()->getManager();
+
+        $currentSeason = $em->getRepository(Season::class)->findOneBy(array('current' => true));
+
+        $scores = [];
+        $teams = [];
+
+        foreach ($currentSeason->getRaces() as $cr) {
+            foreach ($cr->getScores() as $score) {
+
+                $id = (string)$score->getRider()->getRiderTeam()->getId();
+
+                $teams[$score->getRider()->getRiderTeam()->getId()] = $score->getRider()->getRiderTeam();
+
+                if (isset($scores[$id])) {
+                    $scores[$id] += $score->getScore();
+                } else {
+                    $scores[$id] = $score->getScore();
+                }
+            }
+        }
+
+        //dump($scores);
+        uasort($scores, function($a, $b) {
+            return $a < $b;
+        });
+
+
+        $data = [];
+
+
+        foreach ($scores as $team => $score) {
+            $d = new \stdClass();
+            $d->team = $teams[$team];
+            $d->score = $score;
+
+            $data[] = $d;
+        }
+
+        return $data;
     }
 
 
@@ -67,6 +160,9 @@ class PublicController extends Controller
         $bnSponsors = $em->getRepository(Sponsor::class)->getBNByModality($modality);
 
 
+        $generalScore = $this->getGeneralScore($modality);
+        $teamScore = $this->getGeneralScoreTeams($modality);
+
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
@@ -82,6 +178,8 @@ class PublicController extends Controller
                     'bnSponsors' => $bnSponsors,
                     'colorSponsors' => $colorSponsors,
                     'modality' => $modality,
+                    'generalScore' => $generalScore,
+                    'teamScore' => $teamScore,
                     'team' => $this->getMainTeam()
                 ]
             );
