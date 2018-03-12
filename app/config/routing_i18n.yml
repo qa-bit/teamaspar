@@ -58,6 +58,10 @@ public_register_success:
     locales: { "en": "/en/{modality}/register/success", "es": "/es/{modality}/registro/completado" }
     defaults: { _controller: MotogpBundle:Register:registerFormSuccess}
 
+public_register_confirmation:
+    locales: { "en": "/en/{modality}/register/confirm", "es": "/es/{modality}/registro/confirmacion" }
+    defaults: { _controller: MotogpBundle:Register:confirmFormSuccess}
+
 cookies:
     locales: { "en": "/en/{modality}/cookies", "es": "/es/{modality}/cookies" }
     defaults: { _controller: MotogpBundle:Public:cookies}

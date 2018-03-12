@@ -81,6 +81,12 @@ class Customer
      */
     private $adminConfirmed;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $activationHash;
+
 
     /**
      * Get id
@@ -241,5 +247,23 @@ class Customer
     {
         $this->adminConfirmed = $adminConfirmed;
     }
+
+    /**
+     * @return string
+     */
+    public function getActivationHash()
+    {
+        return $this->activationHash;
+    }
+
+    /**
+     * @param string $activationHash
+     */
+    public function setActivationHash($activationHash)
+    {
+        $this->activationHash = $activationHash;
+    }
+
+
 
 }

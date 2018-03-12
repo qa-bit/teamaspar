@@ -207,3 +207,19 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: TrackRecord, show_in_dashboard: false }
         public: true
+
+    motogp.admin.customer_type:
+        class: MotogpBundle\Admin\CustomerTypeAdmin
+        arguments: [~, MotogpBundle\Entity\CustomerType, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: CustomerType }
+        public: true
+
+    motogp.admin.newsletter:
+        class: MotogpBundle\Admin\NewsletterAdmin
+        arguments: [~, MotogpBundle\Entity\Newsletter, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Comunicados }
+        calls:
+            - [setContainer, ["@service_container"]]
+        public: true

@@ -16,6 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use MotogpBundle\Entity\Modality;
 use MotogpBundle\Entity\Gallery;
+use MotogpBundle\Entity\CustomerType;
 use Cocur\Slugify\Slugify;
 
 class Setup extends ContainerAwareCommand
@@ -41,6 +42,13 @@ class Setup extends ContainerAwareCommand
             'FIM-JR'
         ];
 
+
+        $customerTypes = [
+            ['slug' => 'public', 'name' => 'Público'],
+            ['slug' => 'sponsor', 'name' => 'Sponsor'],
+            ['slug' => 'media', 'name' => 'Medio'],
+        ];
+
         $slugs = ['moto-gp', 'moto-3', 'fim-jr'];
 
         $galleries =  ['inicio', 'contacto', 'noticias', 'videos', 'imagenes', 'motos', 'staff', 'sponsor', 'riders', 'register'];
@@ -63,6 +71,25 @@ class Setup extends ContainerAwareCommand
         }
 
         $em->flush();
+
+
+
+        foreach ($customerTypes as $m){
+
+            $old = $em->getRepository(Modality::class)->findOneBySlug($m);
+
+            if ($old === null) {
+                $new = new CustomerType();
+                $new->setSlug($m['slug']);
+                $new->setName($m['name']);
+                $em->persist($new);
+            }
+
+            $index++;
+        }
+
+        $em->flush();
+
         
         foreach ($galleries as $g) {
             foreach ($modalities as $m) {

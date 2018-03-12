@@ -10,3 +10,6 @@ register_success_text1: Registro completado con éxito
 register_success_text2: Gracias por inscribirse en nuestras newsletters.
 accept: Acepto recibir newsletters periódicamente.
 subscribe_1: Subscríbete a nuestras newsletters
+register_confirm_email: Confirmación de subscripción a nuestra newsletter
+register_confirm_email_text: Por favor, pulse en el siquiente enlace para confirmar su subscripción
+register_confirm_email_link: Confirmar

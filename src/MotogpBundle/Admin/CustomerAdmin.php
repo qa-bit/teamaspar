@@ -36,9 +36,9 @@ class CustomerAdmin extends AbstractAdmin
             ->add('name')
             ->add('surname')
             ->add('email')
-            ->add('phone')
+            ->add('userConfirmed', null, ['editable' => true])
+            ->add('adminConfirmed', null, ['editable' => true])
             ->add('type')
-            ->add('mediaType')
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -76,8 +76,8 @@ class CustomerAdmin extends AbstractAdmin
                     ),
                 )
             )
-            ->add('userAccepted', 'checkbox', ['label' => 'Confirmado (usuario)' ])
-            ->add('adminAccepted', 'checkbox', ['mapped' => 'Confirmado (administración)'])
+            ->add('userConfirmed', 'checkbox', ['label' => 'Confirmado (usuario)' ])
+            ->add('adminConfirmed', 'checkbox', ['mapped' => 'Confirmado (administración)'])
         ;
     }
 

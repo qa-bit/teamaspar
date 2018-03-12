@@ -1,0 +1,10 @@
+{% trans_default_domain 'contact' %}
+<div>
+    <h4>{{ "newsletter" | trans }}</h4>
+    <img src="{{ app.request.getSchemeAndHttpHost()}} {% path featuredMedia, 'big' %}" style="width: 100%" />
+    <div>
+        {{ body | raw }}
+    </div>
+</div>
+<br><br>
+<img src="{{ app.request.getSchemeAndHttpHost() ~ asset('/bundles/motogp/img/branding.png') }}" />
