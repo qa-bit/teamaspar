@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html modality="{{ modality.slug }}">
 <head>
     {% set locale = app.request.locale  ? app.request.locale : ( app.request.cookies.get('LC') ?  app.request.cookies.get('LC') : 'es' ) %}
     {% set params = {} %}
