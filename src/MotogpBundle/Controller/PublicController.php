@@ -164,28 +164,26 @@ class PublicController extends Controller
         $teamScore = $this->getGeneralScoreTeams($modality);
 
 
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:Default:index.html.twig',
-                [
-                    'index_gallery' => $gallery,
-                    'galleries' => $galleries,
-                    'posts' => $posts,
-                    'video' => $video,
-                    'scores' => $scores,
-                    'homeRiders' => $homeRiders,
-                    'riders' => $homeRiders,
-                    'bnSponsors' => $bnSponsors,
-                    'colorSponsors' => $colorSponsors,
-                    'modality' => $modality,
-                    'generalScore' => $generalScore,
-                    'teamScore' => $teamScore,
-                    'team' => $this->getMainTeam()
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+        return $this->render(
+            'MotogpBundle:Default:index.html.twig',
+            [
+                'index_gallery' => $gallery,
+                'galleries' => $galleries,
+                'posts' => $posts,
+                'video' => $video,
+                'scores' => $scores,
+                'homeRiders' => $homeRiders,
+                'riders' => $homeRiders,
+                'bnSponsors' => $bnSponsors,
+                'colorSponsors' => $colorSponsors,
+                'modality' => $modality,
+                'generalScore' => $generalScore,
+                'teamScore' => $teamScore,
+                'team' => $this->getMainTeam()
+            ]
+        );
+
 
     }
 
@@ -209,20 +207,18 @@ class PublicController extends Controller
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithGalleryInModality($modality);
 
 
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:Default:Images/images.html.twig',
-                [
-                    'gallery' => $gallery,
-                    'circuits' => $circuits,
-                    'riders' => $homeRiders,
-                    'modality' => $modality,
-                    'team' => $this->getMainTeam()
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+        return $this->render(
+            'MotogpBundle:Default:Images/images.html.twig',
+            [
+                'gallery' => $gallery,
+                'circuits' => $circuits,
+                'riders' => $homeRiders,
+                'modality' => $modality,
+                'team' => $this->getMainTeam()
+            ]
+        );
+
 
     }
 
@@ -239,27 +235,23 @@ class PublicController extends Controller
         $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('videos_'.str_replace('-', '_',  $modalitySlug));
-        
+
         $videos = $em->getRepository(Video::class)->getAllInModality($modality);
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
 
+        return $this->render(
+            'MotogpBundle:Default:Videos/videos.html.twig',
+            [
+                'gallery' => $gallery,
+                'videos' => $videos,
+                'riders' => $homeRiders,
+                'modality' => $modality,
+                'team' => $this->getMainTeam()
+            ]
+        );
 
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:Default:Videos/videos.html.twig',
-                [
-                    'gallery' => $gallery,
-                    'videos' => $videos,
-                    'riders' => $homeRiders,
-                    'modality' => $modality,
-                    'team' => $this->getMainTeam()
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
 
     }
 
@@ -280,19 +272,16 @@ class PublicController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
 
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:Default:Motos/motos.html.twig',
-                [
-                    'gallery' => $gallery,
-                    'riders' => $homeRiders,
-                    'modality' => $modality,
-                    'team' => $this->getMainTeam()
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+        return $this->render(
+            'MotogpBundle:Default:Motos/motos.html.twig',
+            [
+                'gallery' => $gallery,
+                'riders' => $homeRiders,
+                'modality' => $modality,
+                'team' => $this->getMainTeam()
+            ]
+        );
+
 
     }
 
@@ -316,22 +305,20 @@ class PublicController extends Controller
 
 
 
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:Default:Riders/riders.html.twig',
-                [
-                    'gallery' => $gallery,
-                    'galleries' => $galleries,
-                    'riders' => $homeRiders,
-                    'rider' => $rider,
-                    'modality' => $modality,
-                    'team' => $this->getMainTeam()
 
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+        return $this->render(
+            'MotogpBundle:Default:Riders/riders.html.twig',
+            [
+                'gallery' => $gallery,
+                'galleries' => $galleries,
+                'riders' => $homeRiders,
+                'rider' => $rider,
+                'modality' => $modality,
+                'team' => $this->getMainTeam()
+
+            ]
+        );
+
 
     }
 
@@ -352,20 +339,18 @@ class PublicController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
 
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:Default:Sponsor/sponsor_landpage.html.twig',
-                [
-                    'sponsor' => $sponsor,
-                    'riders' => $homeRiders,
-                    'modality' => $modality,
-                    'team' => $this->getMainTeam()
 
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+        return $this->render(
+            'MotogpBundle:Default:Sponsor/sponsor_landpage.html.twig',
+            [
+                'sponsor' => $sponsor,
+                'riders' => $homeRiders,
+                'modality' => $modality,
+                'team' => $this->getMainTeam()
+
+            ]
+        );
+
 
     }
 
@@ -388,21 +373,19 @@ class PublicController extends Controller
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('sponsor_'.str_replace('-', '_',  $modalitySlug));
 
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:Default:Sponsor/sponsor.html.twig',
-                [
-                    'team' => $this->getMainTeam(),
-                    'colorSponsors' => $colorSponsors,
-                    'gallery' => $gallery,
-                    'bnSponsors' => $bnSponsors,
-                    'riders' => $homeRiders,
-                    'modality' => $modality
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+        return $this->render(
+            'MotogpBundle:Default:Sponsor/sponsor.html.twig',
+            [
+                'team' => $this->getMainTeam(),
+                'colorSponsors' => $colorSponsors,
+                'gallery' => $gallery,
+                'bnSponsors' => $bnSponsors,
+                'riders' => $homeRiders,
+                'modality' => $modality
+            ]
+        );
+
 
     }
 
@@ -424,21 +407,19 @@ class PublicController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithPostsInModality($modality);
-        
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:Default:Posts/posts.html.twig',
-                [
-                    'gallery' => $gallery,
-                    'circuits' => $circuits,
-                    'modality' => $modality,
-                    'team' => $this->getMainTeam(),
-                    'riders' => $homeRiders
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+
+        return $this->render(
+            'MotogpBundle:Default:Posts/posts.html.twig',
+            [
+                'gallery' => $gallery,
+                'circuits' => $circuits,
+                'modality' => $modality,
+                'team' => $this->getMainTeam(),
+                'riders' => $homeRiders
+            ]
+        );
+
 
     }
 
@@ -456,19 +437,17 @@ class PublicController extends Controller
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:Default:Posts/post.html.twig',
-                [
-                    'post' => $post,
-                    'riders' => $homeRiders,
-                    'team' => $this->getMainTeam(),
-                    'modality' => $modality
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+        return $this->render(
+            'MotogpBundle:Default:Posts/post.html.twig',
+            [
+                'post' => $post,
+                'riders' => $homeRiders,
+                'team' => $this->getMainTeam(),
+                'modality' => $modality
+            ]
+        );
+
 
     }
 
@@ -494,21 +473,19 @@ class PublicController extends Controller
         $teamCategories = $em->getRepository(TeamCategory::class)->findBy(array(), array('_order' => 'ASC'));
 
 
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:Default:Team/team-staff.html.twig',
-                [
-                    'gallery' => $gallery,
-                    'team' => $this->getMainTeam(),
-                    'riders' => $riders,
-                    'staff' => $staff,
-                    'teamCategories' => $teamCategories,
-                    'modality' => $modality
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+        return $this->render(
+            'MotogpBundle:Default:Team/team-staff.html.twig',
+            [
+                'gallery' => $gallery,
+                'team' => $this->getMainTeam(),
+                'riders' => $riders,
+                'staff' => $staff,
+                'teamCategories' => $teamCategories,
+                'modality' => $modality
+            ]
+        );
+
 
     }
 
@@ -527,18 +504,16 @@ class PublicController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
 
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:StaticContent:cookies.html.twig',
-                [
-                    'team' => $this->getMainTeam(),
-                    'riders' => $homeRiders,
-                    'modality' => $modality
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+        return $this->render(
+            'MotogpBundle:StaticContent:cookies.html.twig',
+            [
+                'team' => $this->getMainTeam(),
+                'riders' => $homeRiders,
+                'modality' => $modality
+            ]
+        );
+
 
     }
 
@@ -555,19 +530,14 @@ class PublicController extends Controller
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
-
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:StaticContent:privacy.html.twig',
-                [
-                    'team' => $this->getMainTeam(),
-                    'riders' => $homeRiders,
-                    'modality' => $modality
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+        return $this->render(
+            'MotogpBundle:StaticContent:privacy.html.twig',
+            [
+                'team' => $this->getMainTeam(),
+                'riders' => $homeRiders,
+                'modality' => $modality
+            ]
+        );
 
     }
 
@@ -585,19 +555,16 @@ class PublicController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
 
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render(
-                'MotogpBundle:StaticContent:terms.html.twig',
-                [
-                    'team' => $this->getMainTeam(),
-                    'riders' => $homeRiders,
-                    'modality' => $modality
-                ]
-            );
-        }
-        else
-            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+        return $this->render(
+            'MotogpBundle:StaticContent:terms.html.twig',
+            [
+                'team' => $this->getMainTeam(),
+                'riders' => $homeRiders,
+                'modality' => $modality
+            ]
+        );
+
 
     }
-    
+
 }
