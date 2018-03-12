@@ -80,7 +80,7 @@
                     {% set hasNull = false %}
 
                     {% for tc in teamCategories %}
-                        {% if tc.order is not null %}
+                        {% if tc.order is not null and tc.order not in levels %}
                             {% set levels = levels | merge([tc.order]) %}
                             {% else %}
                             {% set hasNull = true %}
@@ -91,6 +91,7 @@
                     {% if hasNull %}
                         {% set levels = levels | merge([null]) %}
                     {% endif %}
+                    
 
                     {% for level in levels %}
                         <div class="team-categories">
