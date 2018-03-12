@@ -1,5 +1,5 @@
 {% trans_default_domain 'riders' %}
-
+{% block title %}{{ "owner" | trans([], 'messages') }} - {{ modality.slug | capitalize }} - {{ rider.name }}  {{ rider.surname }}{% endblock %}
 {% set r = rider %}
 
 {% macro list_isset(locale, r, field) %}

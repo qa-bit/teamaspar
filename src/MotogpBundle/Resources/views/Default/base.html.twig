@@ -20,6 +20,12 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"/>
     <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta charset="UTF-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+    <meta name="description" content="{% block description %}{% endblock %}" />
+    <meta property="og:title" content="{% block ogtitle %}{% endblock %}" />
+    <meta property="og:image" content="{% block ogimage %}{% endblock %}" />
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />

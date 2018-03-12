@@ -1,5 +1,5 @@
 {% trans_default_domain 'riders' %}
-
+{% block title %}{{ "owner" | trans([], 'messages') }} - {{ "terms" | trans([], 'messages') }} {% endblock %}
 {% macro list_isset(r, field) %}
     {% if attribute(r, field) %}
         <li>

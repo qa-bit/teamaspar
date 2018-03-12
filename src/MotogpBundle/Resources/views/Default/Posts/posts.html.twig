@@ -1,4 +1,5 @@
 {% extends "MotogpBundle:Default:base.html.twig" %}
+{% block title %}{{ "owner" | trans }} - {{ modality.slug | capitalize }} - {{ "news" | trans }}{% endblock %}
 {% block body %}
     {{ parent() }}
     {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}

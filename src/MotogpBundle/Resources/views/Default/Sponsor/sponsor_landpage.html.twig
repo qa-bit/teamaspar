@@ -1,4 +1,5 @@
 {% trans_default_domain 'riders' %}
+{% block title %}{{ "owner" | trans([], 'messages') }} - {{ modality.slug | capitalize }} - {{ sponsor.name }} {% endblock %}
 
 {% import _self as forms %}
 

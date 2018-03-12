@@ -1,4 +1,6 @@
 {% extends "MotogpBundle:Default:base.html.twig" %}
+{% block title %}{{ "owner" | trans }} - {{ locale == 'es' ? post.seoTitle : post.seoTitleEN }} {% endblock %}
+{% block keywords %}{{ "owner" | trans }} - {{ locale == 'es' ? post.seoKeywords : post.seoKeywordsEN }} {% endblock %}
 {% block body %}
     {{ parent() }}
     <div class="smoke-background col-xs-12 post">
