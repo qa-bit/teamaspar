@@ -72,8 +72,8 @@ $(document).ready(function () {
 
             $('.slider-bottom-arrow img').click(function () {
                 var $next = $('.top-slider').next().eq(0);
-
-                $(window).scrollTo($next, 1000);
+                var offset = - $('.header-block').height();
+                $(window).scrollTo($next, {'duration': 1000,'offset' : offset});
             });
 
         },
@@ -162,7 +162,7 @@ $(document).ready(function () {
                 var windowHeight = $(window).height();
                 var swiperHeight = windowHeight - topMenuHeight + 'px';
 
-                
+
                 $('.body-block').css({'padding-top' : topMenuHeight});
                 $('#swiper-inicio').css({'height' : swiperHeight});
                 $('body').css({'opacity' : 1});
