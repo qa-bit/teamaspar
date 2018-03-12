@@ -56,6 +56,7 @@ class Post
 
     /**
      * @ORM\ManyToOne(targetEntity="Gallery", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $gallery;
 
