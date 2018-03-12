@@ -192,7 +192,7 @@ $(document).ready(function () {
                     $('#motogpbundle_register_mediaType').parent().show();
                 }
 
-                if (val == 'media') {
+                if (val == 'sponsor') {
                     $('#motogpbundle_register_surname').parent().hide();
                     $('#motogpbundle_register_mediaType').parent().hide();
                 }
