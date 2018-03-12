@@ -21,7 +21,7 @@ use MotogpBundle\Entity\Modality;
 trait InModalitiesTrait {
 
     /**
-     * @ORM\ManyToMany(targetEntity="Modality", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity="Modality", cascade={"persist"})
      */
     protected $modalities;
 
