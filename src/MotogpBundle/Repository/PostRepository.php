@@ -20,7 +20,7 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $this->createQueryBuilder('g')
             ->where('g.modality = :modality')
             ->setParameter('modality', $modality->getId())
-            ->orderBy('g._order', 'ASC')
+            ->orderBy('g.updatedAt', 'DESC')
             ->getQuery()
             ->getResult()
             ;

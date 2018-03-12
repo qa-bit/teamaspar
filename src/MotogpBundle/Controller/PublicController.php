@@ -326,7 +326,7 @@ class PublicController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithPostsInModality($modality);
-
+        
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->render(
                 'MotogpBundle:Default:Posts/posts.html.twig',
