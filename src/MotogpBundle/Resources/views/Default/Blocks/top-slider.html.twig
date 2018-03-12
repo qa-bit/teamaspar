@@ -1,6 +1,6 @@
 {% if gallery is not null  and gallery.medias | length > 0%}
     <section id="slider-inicio" class="clearfix top-slider">
-        <div id="swiper-inicio" class="swiper-container" style="width:100%; height : 75vh">
+        <div id="swiper-inicio" class="swiper-container" style="width:100%; height : 100vh">
             <div class="swiper-wrapper">
                 {% for m in gallery.medias %}
                     {% if m is not null %}
@@ -8,7 +8,7 @@
                                 class="swiper-slide dark lazy cover"
                                 data-src="{% path m, 'xlarge' %}"
                                 aria-role="img"
-                                title="{{ locale == 'es' ? m.name : m.nameEN}}"
+                                title="{{ locale == 'es' ? m.description : m.descriptionEN}}"
                                 arial-label="{{ locale == 'es' ? m.name : m.nameEN }}"
                         >
 

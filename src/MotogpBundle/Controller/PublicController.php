@@ -411,5 +411,35 @@ class PublicController extends Controller
             throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
 
     }
+
+
+    /**
+     * @Route("/cookies")
+     */
+    public function cookiesAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $modalitySlug = $request->get('modality');
+
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->render(
+                'MotogpBundle:Default:Cookies/cookies.html.twig',
+                [
+                    'team' => $this->getMainTeam(),
+                    'riders' => $homeRiders,
+                    'modality' => $modality
+                ]
+            );
+        }
+        else
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+    }
     
 }

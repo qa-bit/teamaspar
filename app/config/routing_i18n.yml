@@ -49,3 +49,7 @@ public_contact:
 public_contact_success:
     locales: { "en": "/en/{modality}/contact/success", "es": "/es/{modality}/contacto/enviado" }
     defaults: { _controller: MotogpBundle:Contact:contactFormSuccess}
+
+cookies:
+    locales: { "en": "/en/{modality}/cookies", "es": "/es/cookies" }
+    defaults: { _controller: MotogpBundle:Public:cookies}
