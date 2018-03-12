@@ -92,6 +92,9 @@ class PublicController extends Controller
         foreach ($currentSeason->getRaces() as $cr) {
             foreach ($cr->getScores() as $score) {
 
+                if ($cr->getModality()->getId() != $modality->getId())
+                    continue;
+
                 $id = (string)$score->getRider()->getRiderTeam()->getId();
 
                 $teams[$score->getRider()->getRiderTeam()->getId()] = $score->getRider()->getRiderTeam();
