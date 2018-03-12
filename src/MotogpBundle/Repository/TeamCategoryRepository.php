@@ -10,4 +10,12 @@ namespace MotogpBundle\Repository;
  */
 class TeamCategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAll()
+    {
+        return $this->createQueryBuilder('g')
+            ->orderBy('g.order', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

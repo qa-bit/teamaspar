@@ -54,7 +54,7 @@ class Circuit
      * @var Gallery
      *
      * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Post", mappedBy="circuit", cascade={"all"}, orphanRemoval=true)
-     * @ORM\OrderBy({"updatedAt" = "DESC"})
+     * @ORM\OrderBy({"publishedAt" = "DESC"})
      */
     private $posts;
 
