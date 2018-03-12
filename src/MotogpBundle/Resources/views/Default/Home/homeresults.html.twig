@@ -7,7 +7,7 @@
             {% for s in generalScore %}
                 {% if loop.index < 13 %}
                     <tr>
-                        <td class="score-index">{{ l }}</td>
+                        <td class="score-index">{{ s.index }}</td>
                         <td class="score-rider">{{ s.rider.name | truncate(1, false, '.') }} {{ s.rider.surName | upper}} </td>
                         <td class="score-circuit">{{ s.rider.riderTeam.name | truncate(25, false,'') | upper}}</td>
                         <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>

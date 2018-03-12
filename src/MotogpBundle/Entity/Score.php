@@ -5,17 +5,20 @@ namespace MotogpBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
 use Doctrine\ORM\Mapping\UniqueConstraint;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Score
  *
  * @ORM\Table(
- *     name="score",
- *     uniqueConstraints= {
-            @ORM\UniqueConstraint(name="score_race_rider", columns={"race_id", "rider_id"})
- *     }
+ *     name="score"
  * )
  * @ORM\Entity(repositoryClass="MotogpBundle\Repository\ScoreRepository")
+ * @UniqueEntity(
+ *     fields={"rider", "race"},
+ *     errorPath="rider",
+ *     message="name_in_use"
+ * )
  */
 class Score
 {

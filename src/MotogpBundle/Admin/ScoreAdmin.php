@@ -52,10 +52,10 @@ class ScoreAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('rider', null, ['required' => true], ['admin_code' => 'motogp.admin.rider'])
-            ->add('score', null, ['required' => true] )
-            ->add('timeMinutes', null, ['required' => true] )
-            ->add('timeSeconds', null, ['required' => true] )
-            ->add('timeMilliSeconds', null, ['required' => true] )
+            ->add('score', null, ['required' => true], ['empty_value' => 0] )
+            ->add('timeMinutes', null, ['required' => false] )
+            ->add('timeSeconds', null, ['required' => false] )
+            ->add('timeMilliSeconds', null, ['required' => false] )
             //->add('race', null, ['required' => true ])
             //->add('name','hidden')
         ;

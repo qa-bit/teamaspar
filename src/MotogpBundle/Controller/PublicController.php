@@ -34,6 +34,8 @@ class PublicController extends Controller
 
 
     private function getGeneralScore($modality) {
+        
+        
         $em = $this->getDoctrine()->getManager();
 
         $currentSeason = $em->getRepository(Season::class)->findOneBy(array('current' => true));
@@ -68,16 +70,34 @@ class PublicController extends Controller
 
 
         $data = [];
+        $index = 0;
 
         foreach ($scores as $rider => $score) {
             $d = new \stdClass();
             $d->rider = $riders[$rider];
             $d->score = $score;
-
+            $d->index = $index + 1;
             $data[] = $d;
+
+            $index++;
+        }
+
+
+
+        if (count($data) > 12) {
+            $missing = 0;
+            for ($i = count($data) - 1; $i >= 12; $i--) {
+                if ($data[$i]->rider->getRiderTeam()->isMain()) {
+                    $pos = (12 - $missing - 1);
+                    $data[$i]->missing = true;
+                    $data[$pos] = $data[$i];
+                    $missing++;
+                }
+            }
         }
 
         return $data;
+
     }
 
 
