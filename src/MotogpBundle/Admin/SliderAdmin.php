@@ -52,9 +52,8 @@ class SliderAdmin extends GalleryAdmin
             ->with(null)
             ->add('name',null, ['attr' => ['readonly' => true]])
             ->add('nameEN')
-            ->add('categories', 'sonata_type_model', [
-                'label' => 'Tags',
-                'multiple' => true
+            ->add('category', null, ['label' => 'Tag'
+
             ])
             ->end()
             ->end()
