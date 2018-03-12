@@ -3,12 +3,19 @@
 namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Customer
  *
  * @ORM\Table(name="customer")
  * @ORM\Entity(repositoryClass="MotogpBundle\Repository\CustomerRepository")
+ * @UniqueEntity("email")
+ * @UniqueEntity(
+ *     fields={"name", "surname"},
+ *     errorPath="name",
+ *     message="name_in_use"
+ * )
  */
 class Customer
 {
@@ -31,7 +38,7 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $surname;
 
@@ -46,6 +53,33 @@ class Customer
      * @ORM\Column(type="string", nullable=true)
      */
     private $phone;
+
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $type;
+
+
+    /**
+     * @var $string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $mediaType;
+
+    /**
+     * @var string
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $userConfirmed;
+
+
+    /**
+     * @var string
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $adminConfirmed;
 
 
     /**
@@ -128,5 +162,84 @@ class Customer
         return $this->name.' '.$this->surname;
     }
 
-}
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMediaType()
+    {
+        return $this->mediaType;
+    }
+
+    /**
+     * @param mixed $mediaType
+     */
+    public function setMediaType($mediaType)
+    {
+        $this->mediaType = $mediaType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfirmed()
+    {
+        return $this->confirmed;
+    }
+
+    /**
+     * @param string $confirmed
+     */
+    public function setConfirmed($confirmed)
+    {
+        $this->confirmed = $confirmed;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserConfirmed()
+    {
+        return $this->userConfirmed;
+    }
+
+    /**
+     * @param string $userConfirmed
+     */
+    public function setUserConfirmed($userConfirmed)
+    {
+        $this->userConfirmed = $userConfirmed;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdminConfirmed()
+    {
+        return $this->adminConfirmed;
+    }
+
+    /**
+     * @param string $adminConfirmed
+     */
+    public function setAdminConfirmed($adminConfirmed)
+    {
+        $this->adminConfirmed = $adminConfirmed;
+    }
+
+}

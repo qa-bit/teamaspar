@@ -1,0 +1,12 @@
+type: Tipo
+name: Nombre
+surname: Apellidos
+MediaType: Tipo (medio)
+email: Email
+phone: Teléfono
+message: Mensaje
+send: Enviar
+register_success_text1: Registro completado con éxito
+register_success_text2: Gracias por inscribirse en nuestras newsletters.
+accept: Acepto recibir newsletters periódicamente.
+subscribe_1: Subscríbete a nuestras newsletters

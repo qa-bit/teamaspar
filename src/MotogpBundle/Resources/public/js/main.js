@@ -176,6 +176,36 @@ $(document).ready(function () {
             $(window).on('resize', resize);
 
         },
+        newsletters : function () {
+
+            var check = function (obj) {
+
+                var val = obj.val();
+
+                if (val == 'public') {
+                    $('#motogpbundle_register_surname').parent().show();
+                    $('#motogpbundle_register_mediaType').parent().hide();
+                }
+
+                if (val == 'media') {
+                    $('#motogpbundle_register_surname').parent().hide();
+                    $('#motogpbundle_register_mediaType').parent().show();
+                }
+
+                if (val == 'media') {
+                    $('#motogpbundle_register_surname').parent().hide();
+                    $('#motogpbundle_register_mediaType').parent().hide();
+                }
+            }
+
+
+            $('#motogpbundle_register_type').change(function () {
+                check($(this));
+            });
+
+            check($('#motogpbundle_register_type'));
+
+        },
         init : function () {
             this.resizeSliders();
             this.cookies();
@@ -187,6 +217,7 @@ $(document).ready(function () {
             this.lazyYt();
             this.links();
             this.staffTabs();
+            this.newsletters();
         }
     };
     home.init();

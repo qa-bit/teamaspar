@@ -56,6 +56,7 @@
 "Modalities": Modalidades
 "Web Url E N" : Weburl (Inglés)
 "Subtitle E N": Subtítulo (Inglés)
+"Media Type": Tipo (Medio)
 general_results: Clasificación general
 general_results_team : Clasificación equipos
 cookies:
@@ -74,3 +75,14 @@ cookies: Cookies
 privacy: Politica de privacidad
 terms: Terminos y condiciones
 cookies_policy: Politica de cookies
+public: Público
+sponsor: Sponsor
+mediaType: Tipo (medio)
+media: Medio
+media_type: Tipo de medio
+media_pr: Prensa
+media_radio: Radio
+media_tv: TV
+media_web: Web
+media_other: Otro
+name_in_use: Este nombre ya está registrado.

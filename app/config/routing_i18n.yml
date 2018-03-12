@@ -46,9 +46,17 @@ public_contact:
     locales: { "en": "/en/{modality}/contact", "es": "/es/{modality}/contacto" }
     defaults: { _controller: MotogpBundle:Contact:contactForm}
 
+public_register:
+    locales: { "en": "/en/{modality}/register", "es": "/es/{modality}/registro" }
+    defaults: { _controller: MotogpBundle:Register:registerForm}
+
 public_contact_success:
     locales: { "en": "/en/{modality}/contact/success", "es": "/es/{modality}/contacto/enviado" }
     defaults: { _controller: MotogpBundle:Contact:contactFormSuccess}
+
+public_register_success:
+    locales: { "en": "/en/{modality}/register/success", "es": "/es/{modality}/registro/completado" }
+    defaults: { _controller: MotogpBundle:Register:registerFormSuccess}
 
 cookies:
     locales: { "en": "/en/{modality}/cookies", "es": "/es/{modality}/cookies" }

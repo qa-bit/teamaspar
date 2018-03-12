@@ -1,0 +1,10 @@
+type: Type
+name: Name
+MediaType: Type (media)
+email: Email
+phone: Phone
+message: Mensaje
+send: Send
+register_success_title: Register completed successfully
+register_success_text1: Thank you.
+accept: I agree

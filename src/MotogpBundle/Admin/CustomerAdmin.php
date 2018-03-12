@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class CustomerAdmin extends AbstractAdmin
 {
@@ -36,9 +37,10 @@ class CustomerAdmin extends AbstractAdmin
             ->add('surname')
             ->add('email')
             ->add('phone')
+            ->add('type')
+            ->add('mediaType')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 ),
@@ -52,11 +54,30 @@ class CustomerAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-           // ->add('id')
-            ->add('name', null, ['attr' => ['container_classes' => 'col-md-6']])
-            ->add('surname', null, ['attr' => ['container_classes' => 'col-md-6']])
-            ->add('email', null, ['attr' => ['container_classes' => 'col-md-6']])
-            ->add('phone', null, ['attr' => ['container_classes' => 'col-md-6']])
+            ->add('name' ,'text', array('required' => true))
+            ->add('surname' ,'text', array('required' => false))
+            ->add('phone' ,'text', array('required' => false))
+            ->add('email' ,'email', array('required' => true))
+            ->add('type', ChoiceType::class, array(
+                'choices'  => array(
+                    'public' => 'public',
+                    'sponsor' => 'sponsor',
+                    'media' => 'media'
+                ),
+            ))
+            ->add('mediaType', ChoiceType::class, array(
+                    'required' => false,
+                    'choices'  => array(
+                        'media_pr' =>  'media_pr',
+                        'media_radio' => 'media_radio',
+                        'media_tv' => 'media_tv',
+                        'media_web' => 'media_web',
+                        'media_other' => 'media_other'
+                    ),
+                )
+            )
+            ->add('userAccepted', 'checkbox', ['label' => 'Confirmado (usuario)' ])
+            ->add('adminAccepted', 'checkbox', ['mapped' => 'Confirmado (administración)'])
         ;
     }
 
