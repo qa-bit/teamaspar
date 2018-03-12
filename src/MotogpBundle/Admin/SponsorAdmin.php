@@ -35,6 +35,8 @@ class SponsorAdmin extends AbstractAdmin
             ->add('name')
             ->add('webUrl')
             ->add('modalities')
+            ->add('bn', null, ['editable' => true ])
+            ->add('order', null, ['editable' => true ])
 
             ->add('_action', null, array(
                 'actions' => array(
