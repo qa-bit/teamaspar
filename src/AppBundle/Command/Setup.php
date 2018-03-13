@@ -77,7 +77,7 @@ class Setup extends ContainerAwareCommand
 
         foreach ($customerTypes as $m){
 
-            $old = $em->getRepository(Modality::class)->findOneBySlug($m);
+            $old = $em->getRepository(CustomerType::class)->findOneBySlug($m['slug']);
 
             if ($old === null) {
                 $new = new CustomerType();
