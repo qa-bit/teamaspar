@@ -19,7 +19,7 @@ motos:
     defaults: { _controller: MotogpBundle:Public:motos }
 
 riders:
-    locales: { "es": "/es/{modality}/piloto/{id}", "en": "/en/{modality}/rider/{id}" }
+    locales: { "es": "/es/{modality}/piloto/{slug}", "en": "/en/{modality}/rider/{slug}" }
     defaults: { _controller: MotogpBundle:Public:riders }
 
 sponsors:
@@ -27,7 +27,7 @@ sponsors:
     defaults: { _controller: MotogpBundle:Public:sponsors }
 
 sponsor:
-    locales: { "es": "/es/{modality}/sponsor/{id}", "en": "/en/{modality}/sponsor/{id}" }
+    locales: { "es": "/es/{modality}/sponsor/{slug}", "en": "/en/{modality}/sponsor/{slug}" }
     defaults: { _controller: MotogpBundle:Public:sponsor }
 
 posts:
@@ -35,7 +35,7 @@ posts:
     defaults: { _controller: MotogpBundle:Public:posts }
 
 post:
-    locales: { "es": "/es/{modality}/noticias/{id}", "en": "/en/{modality}/news/{id}" }
+    locales: { "es": "/es/{modality}/noticias/{slug}", "en": "/en/{modality}/news/{slug}" }
     defaults: { _controller: MotogpBundle:Public:post}
 
 team_staff:

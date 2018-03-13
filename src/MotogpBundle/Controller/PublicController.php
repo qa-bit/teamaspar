@@ -311,7 +311,7 @@ class PublicController extends Controller
     /**
      * @Route("/pilotos")
      */
-    public function ridersAction(Request $request, Rider $rider)
+    public function ridersAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -323,6 +323,8 @@ class PublicController extends Controller
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('riders_'.str_replace('-', '_',  $modalitySlug));
 
         $galleries  = $em->getRepository(Gallery::class)->findAll();
+
+        $rider = $em->getRepository(Rider::class)->findOneBySlug($request->get('slug'));
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
@@ -350,7 +352,7 @@ class PublicController extends Controller
     /**
      * @Route("/pilotos")
      */
-    public function sponsorAction(Request $request, Sponsor $sponsor)
+    public function sponsorAction(Request $request)
     {
 
         $modalitySlug = $request->get('modality');
@@ -361,6 +363,7 @@ class PublicController extends Controller
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
+        $sponsor = $em->getRepository(Sponsor::class)->findOneBySlug($request->get('slug'));
 
 
         return $this->render(
@@ -450,7 +453,7 @@ class PublicController extends Controller
     /**
      * @Route("/post")
      */
-    public function postAction(Request $request, Post $post)
+    public function postAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -459,6 +462,8 @@ class PublicController extends Controller
         $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
+        $post = $em->getRepository(Post::class)->findOneBySlug($request->get('slug'));
 
 
         return $this->render(

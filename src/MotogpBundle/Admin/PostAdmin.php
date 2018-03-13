@@ -11,6 +11,7 @@ use Sonata\FormatterBundle\Form\Type\SimpleFormatterType;
 use MotogpBundle\Admin\Media\HasMediasAdminTrait;
 use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
 use MotogpBundle\Entity\Rider;
+use Cocur\Slugify\Slugify;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 class PostAdmin extends AbstractAdmin
@@ -187,6 +188,10 @@ class PostAdmin extends AbstractAdmin
 
 
     public function saveHook($object) {
+
+        $slugify = new Slugify();
+
+        $object->setSlug($slugify->slugify($object->getName(), '-'));
 
         $this->saveMedias($object, 'motogp.admin.post_media');
         $this->saveFeaturedMedia($object);

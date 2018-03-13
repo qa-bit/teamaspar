@@ -15,6 +15,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Cocur\Slugify\Slugify;
 
 class RiderAdmin extends AbstractAdmin
 {
@@ -278,6 +279,12 @@ class RiderAdmin extends AbstractAdmin
 
     public function saveHook($object) {
 
+        $slugify = new Slugify();
+
+        $name = $object->getName().' '.$object->getSurname().$object->getNumber();
+
+        $object->setSlug($slugify->slugify($name, '-'));
+
         $this->saveMedias($object, 'motogp.admin.rider_media');
         $this->saveLogo($object);
         $this->saveFeaturedMedia($object);
@@ -293,6 +300,7 @@ class RiderAdmin extends AbstractAdmin
     }
 
     public function preUpdate($object) {
+
 
         $this->saveHook($object);
     }

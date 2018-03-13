@@ -43,7 +43,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for r in riders %}
-                            <a class="dropdown-item" href="{{ url('riders', {'id' : r.id, 'modality' : modality.slug}) }}">{{ r.name }}&nbsp;{{ r.surname }}</a>
+                            <a class="dropdown-item" href="{{ url('riders', {'slug' : r.slug, 'modality' : modality.slug}) }}">{{ r.name }}&nbsp;{{ r.surname }}</a>
                         {% endfor %}
                     </div>
                 </li>

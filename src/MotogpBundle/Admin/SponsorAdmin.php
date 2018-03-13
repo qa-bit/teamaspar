@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use MotogpBundle\Admin\Media\LogoAdminTrait;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Cocur\Slugify\Slugify;
 
 class SponsorAdmin extends AbstractAdmin
 {
@@ -95,6 +96,11 @@ class SponsorAdmin extends AbstractAdmin
     }
 
     public function saveHook($object) {
+
+        $slugify = new Slugify();
+
+        $name = $object->getName();
+        $object->setSlug($slugify->slugify($name, '-'));
 
         $this->saveFeaturedMedia($object);
         $this->saveLogo($object);

@@ -48,10 +48,10 @@
         </div>
 
         <div class="home-rider-link">
-            <img href="{{ url('riders', {'id' : homeRiders[0].id, 'modality' : modality.slug }) }}" class="link tcenter" src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" alt="">
+            <img href="{{ url('riders', {'slug' : homeRiders[0].slug, 'modality' : modality.slug }) }}" class="link tcenter" src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" alt="">
         </div>
         <div class="home-rider-link">
-            <img href="{{ url('riders', {'id' : homeRiders[1].id, 'modality' : modality.slug }) }}" class="link tcenter" src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" alt="">
+            <img href="{{ url('riders', {'slug' : homeRiders[1].slug, 'modality' : modality.slug }) }}" class="link tcenter" src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" alt="">
         </div>
     {% endif %}
 

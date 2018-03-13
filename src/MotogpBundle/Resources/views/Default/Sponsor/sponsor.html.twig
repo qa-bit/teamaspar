@@ -25,14 +25,14 @@
                 <div class="col-xs-12">
                     <div class="col-xs-12 col-md-12 sponsor-logo color text-center">
                         {% for s in colorSponsors %}
-                            <a href="{{ url('sponsor', {'id' : s.id, 'modality' : modality.slug}) }}">
+                            <a href="{{ url('sponsor', {'slug' : s.slug, 'modality' : modality.slug}) }}">
                                 <img src="{% path s.logo, 'big' %}" />
                             </a>
                         {% endfor %}
                     </div>
                     <div class="col-xs-12 col-md-12 sponsor-logo bn text-center">
                         {% for s in bnSponsors %}
-                            <a href="{{ url('sponsor', {'id' : s.id, 'modality' : modality.slug}) }}">
+                            <a href="{{ url('sponsor', {'slug' : s.slug, 'modality' : modality.slug}) }}">
                                 <img src="{% path s.logo, 'big' %}" alt="" />
                             </a>
                         {% endfor %}

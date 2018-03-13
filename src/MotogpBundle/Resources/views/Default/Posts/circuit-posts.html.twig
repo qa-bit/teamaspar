@@ -18,7 +18,7 @@
             {% for p in circuit.posts %}
                 {% if p.modality.id == modality.id %}
                     <li>
-                        <a href="{{ url('post', {'id' : p.id, 'modality' : modality.slug }) }}">
+                        <a href="{{ url('post', {'slug' : p.slug, 'modality' : modality.slug }) }}">
                             {% spaceless %}
                                 {{ locale == 'es' ? (p.category ? p.category.name : p.name)  : (p.category ? p.category.nameEN : p.nameEN) }}
                             {% endspaceless %}

@@ -9,6 +9,7 @@ use MotogpBundle\Entity\Traits\HasMediaTrait;
 use MotogpBundle\Entity\Traits\InModalitiesTrait;
 use MotogpBundle\Entity\Traits\InModalityTrait;
 
+
 /**
  * Sponsor
  *

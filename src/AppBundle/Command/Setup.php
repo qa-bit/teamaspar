@@ -19,6 +19,8 @@ use MotogpBundle\Entity\Gallery;
 use MotogpBundle\Entity\CustomerType;
 use Cocur\Slugify\Slugify;
 use MotogpBundle\Entity\Rider;
+use MotogpBundle\Entity\Post;
+use MotogpBundle\Entity\Sponsor;
 
 class Setup extends ContainerAwareCommand
 {
@@ -131,9 +133,30 @@ class Setup extends ContainerAwareCommand
         
         
         $riders = $em->getRepository(Rider::class)->findAll();
-        
-        
-        
+        $posts = $em->getRepository(Post::class)->findAll();
+        $sponsors = $em->getRepository(Sponsor::class)->findAll();
+
+
+        foreach ($riders as $r) {
+            $name = $r->getName().' '.$r->getSurname().$r->getNumber();
+            $r->setSlug($slugify->slugify($name, '-'));
+            $em->persist($r);
+        }
+
+        foreach ($posts as $r) {
+            $name = $r->getName();
+            $r->setSlug($slugify->slugify($name, '-'));
+            $em->persist($r);
+        }
+
+        foreach ($sponsors as $r) {
+            $name = $r->getName();
+            $r->setSlug($slugify->slugify($name, '-'));
+            $em->persist($r);
+        }
+
+        $em->flush();
+
 
     }
 }
