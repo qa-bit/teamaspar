@@ -120,6 +120,9 @@ $breakpoint-tablet : "769px";
 
   .homeresult {
     padding : 1em 0 !important;
+    >div {
+      height : 25em !important;
+    }
   }
 
   .smw {
