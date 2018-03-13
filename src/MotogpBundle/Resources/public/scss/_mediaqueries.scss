@@ -84,6 +84,12 @@ $breakpoint-tablet : "769px";
 @media screen and (max-width: 1023px)  {
 
 
+  .motos-gallery-item {
+    width : 50% !important;
+    padding-top : .5em !important;
+  }
+
+
   .only-desktop {
     display : none !important;
   }
@@ -170,10 +176,49 @@ $breakpoint-tablet : "769px";
     }
   }
 
-  form[name="motogpbundle_register"] {
-    text-align: center;
-    padding-top: 5em;
+  .staff-member {
+    width : 100%;
   }
+
+  form {
+    padding-top: 5em;
+    padding-bottom : 5em;
+    width: 100%;
+    display : table;
+  }
+
+  .homegalleries, .homegallery {
+    padding : 1em 0 !important;
+    width : 100%;
+    display : block;
+    .page-l, .page-r {
+      display : none !important;
+    }
+
+    .swiper-pagination-bullets {
+      display : block !important;
+    }
+
+  }
+
+  .rider-media {
+    position : static !important;
+  }
+
+  .rider-description .row {
+    height : auto !important;
+  }
+
+  #slider-motos .cover {
+    background-size: cover !important;
+    background-position : center center;
+  }
+
+  .moto-description-separator {
+     display : none !important;
+  }
+
+
 
 }
 
