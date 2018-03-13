@@ -127,6 +127,12 @@ class Setup extends ContainerAwareCommand
             $em->flush();
 
         }
+        
+        
+        $riders = $em->getRepository(Rider)->findAll();
+        
+        
+        
 
     }
 }
