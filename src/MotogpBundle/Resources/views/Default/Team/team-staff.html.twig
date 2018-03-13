@@ -21,8 +21,6 @@
     {% include  "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery }%}
 
     <div class="tabs">
-
-
         <div id="history" class="tab active">
             <div class="smoke-background">
                 <div class="white-background white-background-2">
@@ -31,7 +29,7 @@
                         <div class="col-xs-12">
                             <div class="section-separator" style="margin-bottom:2em;padding:.5em 0"></div>
                         </div>
-                        <div style="padding: 3.5em">
+                        <div class="staff-history" style="padding: 3.5em">
                             {{ locale == 'es' ? (team.history | raw ) : (team.historyEN | raw )}}
                         </div>
                     </div>

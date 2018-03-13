@@ -32,7 +32,6 @@
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/swiper/dist/css/swiper.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/css/jquery.fancybox.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/helpers/css/jquery.fancybox-thumbs.css') }}" />
-        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/jquery-cookiebar/jquery.cookiebar.css') }}">
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/fonts/fontfaces.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/lazyyt.css') }}" />
     {% endblock %}
@@ -80,7 +79,6 @@
         <div class="col-xs-11">
             {{ "cookies.message" | trans }}
             <a href="{{ url('cookies', {'modality' : modality.slug }) }}">{{ "cookies.here" | trans }}</a>
-            {#<a href="{{ url('cookies_info') }}">{{ "cookies.here" | trans }}</a>#}
         </div>
         <div class="col-xs-1">
             <i class="pull-right fa fa-times my-close-button"></i>
