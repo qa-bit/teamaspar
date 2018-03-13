@@ -109,7 +109,7 @@ class NewsletterAdmin extends AbstractAdmin
                 $em = $this->modelManager->getEntityManager(CustomerType::class);
                 $ct = $em->getRepository(Customer::class)->findByType($slug);
                 foreach ($ct as $c) {
-                    $recipients[] = $c->getEmail();
+                    $recipients[$c->getEmail()] = $c->getName();
                 }
             }
 
@@ -121,14 +121,15 @@ class NewsletterAdmin extends AbstractAdmin
 
             $data = [
                 'name' => $object->getName(),
+                'title' => $object->getPost()->getName(),
                 'featuredMedia' => $object->getPost()->getFeaturedMedia(),
                 'body' => $object->getPost()->getDescription()
             ];
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('ANGEL NIETO TEAM - Newsletter')
+                ->setSubject('ANGEL NIETO TEAM - '.$object->getName())
                 ->setFrom($from)
-                ->setTo($from)
+                ->setTo($recipients)
                 ->setReplyTo($from)
                 ->setContentType("text/html")
                 ->setBody($templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html'));

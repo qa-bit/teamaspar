@@ -1,7 +1,7 @@
 {% trans_default_domain 'contact' %}
 <div>
-    <h4>{{ "newsletter" | trans }}</h4>
     <img src="{{ app.request.getSchemeAndHttpHost()}} {% path featuredMedia, 'big' %}" style="width: 100%" />
+    <h3>{{ title }}</h3>
     <div>
         {{ body | raw }}
     </div>
