@@ -18,6 +18,7 @@ use MotogpBundle\Entity\Modality;
 use MotogpBundle\Entity\Gallery;
 use MotogpBundle\Entity\CustomerType;
 use Cocur\Slugify\Slugify;
+use MotogpBundle\Entity\Rider;
 
 class Setup extends ContainerAwareCommand
 {
@@ -129,7 +130,7 @@ class Setup extends ContainerAwareCommand
         }
         
         
-        $riders = $em->getRepository(Rider)->findAll();
+        $riders = $em->getRepository(Rider::class)->findAll();
         
         
         
