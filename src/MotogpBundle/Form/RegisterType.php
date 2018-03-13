@@ -39,6 +39,7 @@ class RegisterType extends AbstractType
             ->add('phone' ,'text', array('required' => false))
             ->add('accept', 'checkbox', ['mapped' => false])
             ->add('email' ,'email', array('required' => true))
+            ->add('locale' ,'text', array('required' => true))
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
                     'public' => 'public',

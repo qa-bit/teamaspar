@@ -114,6 +114,13 @@ trait ContentTrait {
     private $updatedAt;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $slug;
+
+    /**
      * @return int
      */
     public function getId()
@@ -329,6 +336,23 @@ trait ContentTrait {
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    
     public function __toString()
     {
        return $this->name ?? (string) null;

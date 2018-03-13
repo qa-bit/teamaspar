@@ -63,8 +63,7 @@ class RegisterController extends Controller
             $hash = password_hash($hashString, PASSWORD_DEFAULT);
 
             $customer->setActivationHash($hash);
-
-
+            
             $url = $this->generateUrl(
                 'public_register_confirmation',
                 array(

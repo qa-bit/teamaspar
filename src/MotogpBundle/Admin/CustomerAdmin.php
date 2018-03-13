@@ -54,16 +54,16 @@ class CustomerAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name' ,'text', array('required' => true))
-            ->add('surname' ,'text', array('required' => false))
-            ->add('phone' ,'text', array('required' => false))
-            ->add('email' ,'email', array('required' => true))
+            ->add('name' ,'text', array('required' => true, 'attr' => ['container_classes' => 'col-md-6']))
+            ->add('surname' ,'text', array('required' => false, 'attr' => ['container_classes' => 'col-md-6']))
+            ->add('phone' ,'text', array('required' => false, 'attr' => ['container_classes' => 'col-md-6']))
+            ->add('email' ,'email', array('required' => true, 'attr' => ['container_classes' => 'col-md-6']))
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
                     'public' => 'public',
                     'sponsor' => 'sponsor',
                     'media' => 'media'
-                ),
+                ),'attr' => ['container_classes' => 'col-md-4'],
             ))
             ->add('mediaType', ChoiceType::class, array(
                     'required' => false,
@@ -73,11 +73,17 @@ class CustomerAdmin extends AbstractAdmin
                         'media_tv' => 'media_tv',
                         'media_web' => 'media_web',
                         'media_other' => 'media_other'
-                    ),
+                    ), 'attr' => ['container_classes' => 'col-md-4'],
                 )
             )
-            ->add('userConfirmed', 'checkbox', ['label' => 'Confirmado (usuario)' ])
-            ->add('adminConfirmed', 'checkbox', ['mapped' => 'Confirmado (administración)'])
+            ->add('locale', ChoiceType::class, array(
+                'choices'  => array(
+                    'Español' => 'es',
+                    'Inglés' => 'en',
+                ),'attr' => ['container_classes' => 'col-md-4'],
+            ))
+            ->add('userConfirmed', 'checkbox', ['label' => 'Confirmado (usuario)', 'attr' => ['container_classes' => 'col-md-6'] ])
+            ->add('adminConfirmed', 'checkbox', ['mapped' => 'Confirmado (administración)', 'attr' => ['container_classes' => 'col-md-6']])
         ;
     }
 

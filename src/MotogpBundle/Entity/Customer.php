@@ -89,6 +89,13 @@ class Customer
 
 
     /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $locale;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -264,6 +271,21 @@ class Customer
         $this->activationHash = $activationHash;
     }
 
+    /**
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
 
+    /**
+     * @param string $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+    
 
 }

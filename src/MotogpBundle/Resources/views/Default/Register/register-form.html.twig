@@ -50,12 +50,14 @@
                                 {{ form_widget(form.accept, {'attr' : {'class' : 'form-control'}}) }}
                                 {{ form_errors(form.accept) }}
                             </fieldset>
+
                             <fieldset class="form-group">
                                 <br><br>
                                 <button class="btn btn-info" type="submit">{{ 'send' | trans | capitalize }}</button>
                             </fieldset>
                         </div>
                         <div class="hidden">
+                            {{ form_widget(form.locale, {'attr' : {'class' : 'form-control', 'value' : locale}}) }}
                             {{ form_rest(form) }}
                         </div>
                     </div>
