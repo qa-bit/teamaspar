@@ -37,6 +37,7 @@
       transition : filter .33s;
       opacity : .8;
       height : 2em !important;
+      margin : 1em !important;
       &:hover {
         filter: saturate(1);
         transition : filter .33s;
