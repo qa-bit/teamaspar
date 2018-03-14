@@ -41,7 +41,11 @@
     "bundles/motogp/scss/main.scss"
     %}
 
-    <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('d-m-y-h-m-i-s') }}" />
+    {% if app.environment == 'dev' %}
+        <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('d-m-y-h-m-i-s') }}" />
+    {% else %}
+        <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('d-m-y-h-m-i-s') }}" />
+    {% endif %}
 
     {% endstylesheets %}
 
