@@ -12,7 +12,6 @@
     img {
       height: 3em;
       width: auto;
-      margin : 1em;
     }
 
     a {
@@ -37,6 +36,7 @@
       filter : saturate(0);
       transition : filter .33s;
       opacity : .8;
+      height : 1em !important;
       &:hover {
         filter: saturate(1);
         transition : filter .33s;
@@ -55,4 +55,11 @@
     }
   }
 
+}
+
+.sponsors-block {
+  width: 82%;
+  display: table;
+  margin: auto;
+  float: none;
 }

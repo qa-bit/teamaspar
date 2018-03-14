@@ -1,5 +1,34 @@
-$(document).ready(function () {
 
+var $socialHtmlTwitter = $('.smw-twitter').html();
+var $socialHtmlInstagram = $('.smw-instagram').html();
+
+var widgets = function () {
+
+    if (!($('.smw-twitter').size()))
+        return;
+
+    var wwidth = $(window).width();
+
+    if (wwidth <= 1600)
+        return;
+
+    var px = wwidth * 0.2;
+    var pxd = wwidth * 0.2;
+
+    $('.smw-twitter').html(null);
+    $('.smw-instagram').html(null);
+
+    $socialHtmlTwitter_A = $socialHtmlTwitter.replace(/320/g, px).replace(/200/g, pxd);
+    $socialHtmlInstagram_A = $socialHtmlInstagram.replace(/320/g, px).replace(/200/g, pxd);
+
+    $('.smw-twitter').html($socialHtmlTwitter_A);
+    $('.smw-instagram').html($socialHtmlInstagram_A);
+};
+
+
+widgets();
+
+$(document).ready(function () {
     var home = {
         cookies : function () {
             $(document).ready(function() {
@@ -206,6 +235,10 @@ $(document).ready(function () {
             check($('#motogpbundle_register_type'));
 
         },
+        socialMedia : function () {
+
+
+        },
         init : function () {
             this.resizeSliders();
             this.cookies();
@@ -218,7 +251,11 @@ $(document).ready(function () {
             this.links();
             this.staffTabs();
             this.newsletters();
+            this.socialMedia();
+
         }
     };
     home.init();
+
+    $(window).on('resize', widgets);
 });
