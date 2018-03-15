@@ -15,7 +15,10 @@ h1 {
 
 .content {
     word-break: break-all;
-    border : 1px solid red;
-    width : 500px;
-    max-width: 500px;
+    width : 548px;
+    max-width: 548px;
+}
+
+.content-centered {
+    text-align : center;
 }
