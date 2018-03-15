@@ -97,11 +97,7 @@ class NewsletterAdmin extends AbstractAdmin
         $action = $this->getForm()->get('actions')->getData();
 
         if ($action == 'update_and_send') {
-
-//            dump($object->getPost());
-//            die();
-            //dump($object->getCustomerTypes());
-
+            
             $recipients = [];
 
             foreach ($object->getCustomerTypes() as $type) {
@@ -112,8 +108,7 @@ class NewsletterAdmin extends AbstractAdmin
                     $recipients[$c->getEmail()] = $c->getName();
                 }
             }
-
-
+            
 
             $mail = $this->getConfigurationPool()->getContainer()->getParameter('general_mailing');
             $from = $this->getConfigurationPool()->getContainer()->getParameter('mailer_user');
@@ -123,8 +118,13 @@ class NewsletterAdmin extends AbstractAdmin
                 'name' => $object->getName(),
                 'title' => $object->getPost()->getName(),
                 'featuredMedia' => $object->getPost()->getFeaturedMedia(),
-                'body' => $object->getPost()->getDescription()
+                'body' => $object->getPost()->getDescription(),
+                'post' => $object->getPost()
             ];
+
+
+            $html = $templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html');
+            
 
             $message = \Swift_Message::newInstance()
                 ->setSubject('ANGEL NIETO TEAM - '.$object->getName())
@@ -132,7 +132,7 @@ class NewsletterAdmin extends AbstractAdmin
                 ->setTo($recipients)
                 ->setReplyTo($from)
                 ->setContentType("text/html")
-                ->setBody($templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html'));
+                ->setBody($html);
 
 
             $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();

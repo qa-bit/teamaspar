@@ -139,3 +139,15 @@ oneup_uploader:
          gallery :
              frontend : dropzone
              root_folder: true
+
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        cache : ~
+        thumb_a :
+            quality : 70
+            filters :
+                thumbnail: { size : [384, 384], mode: outbound}

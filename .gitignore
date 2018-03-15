@@ -19,3 +19,4 @@
 /web/uploads/media/*
 /src/MotogpBundle/Resources/public/vendor/node_modules/*
 /web/uploads/
+/web/media/cache/*

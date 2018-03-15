@@ -4,8 +4,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-
-
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -32,8 +30,9 @@ class AppKernel extends Kernel
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
-            //new Hampe\Bundle\ZurbInkBundle\HampeZurbInkBundle(),
+            new Hampe\Bundle\ZurbInkBundle\HampeZurbInkBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
             new AppBundle\AppBundle(),
             new MotogpBundle\MotogpBundle(),
         ];

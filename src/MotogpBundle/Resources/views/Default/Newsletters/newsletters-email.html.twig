@@ -1,10 +1,95 @@
 {% trans_default_domain 'contact' %}
-<div>
-    <img src="{{ app.request.getSchemeAndHttpHost()}} {% path featuredMedia, 'big' %}" style="width: 100%" />
-    <h3>{{ title }}</h3>
-    <div>
-        {{ body | raw }}
-    </div>
-</div>
-<br><br>
-<img src="{{ app.request.getSchemeAndHttpHost() ~ asset('/bundles/motogp/img/branding.png') }}" />
+
+{% extends 'HampeZurbInkBundle:FoundationForEmails:2/base.html.twig' %}
+{% block preHtml %}
+    {{ zurb_ink_styles.add("@MotogpBundle/Resources/public/css/mailing.css") }}
+{% endblock %}
+{% block content %}
+
+    <container>
+
+        <spacer size="16"></spacer>
+
+        <wrapper class="primary">
+            <spacer size="16"></spacer>
+            <row>
+                <columns small="12">
+                    <center>
+                        <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('/bundles/motogp/img/assets/newsletters/header_moto-gp.jpg') }}" />
+                    </center>
+                </columns>
+            </row>
+            <spacer size="16"></spacer>
+
+            <row>
+                <columns small="12" medium="12" large="12">
+                    <img src="{% path post.featuredMedia, 'xlarge' %}" />
+                </columns>
+            </row>
+
+            {% set medias = post.medias %}
+
+            {% set context = "post" %}
+
+            {% if post.gallery and post.gallery.medias | length %}
+                {% set context = "gallery" %}
+                {% set medias = post.gallery.medias %}
+            {% endif %}
+
+            {% for row in medias | batch(3, '')%}
+                <row>
+                    {% for m in row %}
+                        {% if m is not null and m != '' %}
+                            <columns>
+                                {% set img_url = m | media_public_url(context ~ '_xlarge') %}
+                                <img src="{{ img_url  |  imagine_filter('thumb_a') }}" />
+                            </columns>
+                        {% else %}
+                            <columns></columns>
+                        {% endif %}
+                    {% endfor %}
+                </row>
+            {% endfor %}
+
+            <row>
+                <columns small="12" medium="12" large="12">
+                    <h5>{{ title | upper  }}</h5>
+                </columns>
+            </row>
+            <spacer size="16"></spacer>
+            <row>
+                <columns small="12" medium="12" large="12">
+                    {{ body | raw  }}
+                </columns>
+            </row>
+
+            <spacer size="16"></spacer>
+
+            <row>
+                <columns small="12" medium="12" large="12">
+                    <center>
+                        <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('/bundles/motogp/img/assets/newsletters/footer_moto-gp.jpg') }}" />
+                    </center>
+                </columns>
+            </row>
+            <spacer size="32"></spacer>
+        </wrapper>
+        <spacer size="16"></spacer>
+        <row>
+            <columns></columns>
+            <columns>
+                <center class="smalltext">
+                    Copyright © 2018 Ángel Nieto Team, All rights reserved.<br><br>
+                    You are receiving this email from Ángel Nieto Team MotoGP.<br>
+                    Our mailing address is:<br>
+                    Ángel Nieto Team<br>
+                    Pol. Ind. Picassent, C/6, Parc. 49<br>
+                    Picassent, Valencia 46220<br>
+                    Spain
+                </center>
+            </columns>
+            <columns>
+            </columns>
+        </row>
+    </container>
+{% endblock %}

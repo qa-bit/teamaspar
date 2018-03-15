@@ -223,3 +223,10 @@ services:
         calls:
             - [setContainer, ["@service_container"]]
         public: true
+
+    motogp.image_path_extension:
+        class: MotogpBundle\Twig\ImagePathExtension
+        public: false
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }

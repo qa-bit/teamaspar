@@ -1,0 +1,15 @@
+body {
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+    padding : 1em;
+}
+
+h1 {
+    color : #004E96;
+    font-weight: lighter;
+}
+
+.smalltext{
+    color : #555;
+    font-size : 12px;
+    text-align : center;
+}
