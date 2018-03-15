@@ -13,17 +13,20 @@
         <wrapper class="primary">
             <spacer size="16"></spacer>
             <row>
-                <columns small="12">
+                <columns>
                     <center>
-                        <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('/bundles/motogp/img/assets/newsletters/header_moto-gp.jpg') }}" />
+                        {% set img_url = 'static/header_moto-gp.jpg' %}
+                        <img src="{{ img_url  |  imagine_filter('email_header') }}" />
                     </center>
                 </columns>
             </row>
             <spacer size="16"></spacer>
 
             <row>
-                <columns small="12" medium="12" large="12">
-                    <img src="{% path post.featuredMedia, 'xlarge' %}" />
+                <columns>
+                    {% set img_url = post.featuredMedia | media_public_url('featured_xlarge') %}
+                    {{ img_url }}
+                    <img src="{{ img_url  |  imagine_filter('email_header') }}" />
                 </columns>
             </row>
 
@@ -42,7 +45,7 @@
                         {% if m is not null and m != '' %}
                             <columns>
                                 {% set img_url = m | media_public_url(context ~ '_xlarge') %}
-                                <img src="{{ img_url  |  imagine_filter('thumb_a') }}" />
+                                <img src="{{ img_url  |  imagine_filter('email_thumbnail') }}" />
                             </columns>
                         {% else %}
                             <columns></columns>
@@ -52,13 +55,13 @@
             {% endfor %}
 
             <row>
-                <columns small="12" medium="12" large="12">
+                <columns>
                     <h5>{{ title | upper  }}</h5>
                 </columns>
             </row>
             <spacer size="16"></spacer>
             <row>
-                <columns small="12" medium="12" large="12">
+                <columns>
                     {{ body | raw  }}
                 </columns>
             </row>
@@ -66,9 +69,10 @@
             <spacer size="16"></spacer>
 
             <row>
-                <columns small="12" medium="12" large="12">
+                <columns>
                     <center>
-                        <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('/bundles/motogp/img/assets/newsletters/footer_moto-gp.jpg') }}" />
+                        {% set img_url = 'static/footer_moto-gp.jpg' %}
+                        <img src="{{ img_url  |  imagine_filter('email_header') }}" />
                     </center>
                 </columns>
             </row>
@@ -76,7 +80,6 @@
         </wrapper>
         <spacer size="16"></spacer>
         <row>
-            <columns></columns>
             <columns>
                 <center class="smalltext">
                     Copyright © 2018 Ángel Nieto Team, All rights reserved.<br><br>
@@ -87,8 +90,6 @@
                     Picassent, Valencia 46220<br>
                     Spain
                 </center>
-            </columns>
-            <columns>
             </columns>
         </row>
     </container>
