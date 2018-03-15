@@ -146,9 +146,7 @@ class NewsletterAdmin extends AbstractAdmin
             
 
             $object->setLastSendAt(new \DateTime());
-
-            echo $html;
-            die();
+            
         }
 
     }
