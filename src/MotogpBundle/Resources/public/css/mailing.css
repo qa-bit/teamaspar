@@ -12,3 +12,10 @@ h1 {
     font-size : 12px;
     text-align : center;
 }
+
+.content {
+    word-break: break-all;
+    border : 1px solid red;
+    width : 500px;
+    max-width: 500px;
+}

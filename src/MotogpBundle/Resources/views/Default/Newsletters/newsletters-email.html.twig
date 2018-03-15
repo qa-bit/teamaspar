@@ -61,7 +61,9 @@
             <spacer size="16"></spacer>
             <row>
                 <columns>
-                    {{ body | striptags  }}
+                    <table class="content">
+                        {{ body | raw  }}
+                    </table>
                 </columns>
             </row>
 
