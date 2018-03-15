@@ -25,7 +25,6 @@
             <row>
                 <columns>
                     {% set img_url = post.featuredMedia | media_public_url('featured_xlarge') %}
-                    {{ img_url }}
                     <img src="{{ img_url  |  imagine_filter('email_header') }}" />
                 </columns>
             </row>
