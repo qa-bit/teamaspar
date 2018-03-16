@@ -1,5 +1,6 @@
 body {
     font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+    background : white;
 }
 
 h1 {
@@ -30,10 +31,10 @@ h1 {
 }
 
 .media-image-1, .media-image-2 {
-    border-right : 16px solid white;
-    border-right : 16px solid white;
+    /*border-right : 16px solid white;*/
+    /*border-right : 16px solid white;*/
 }
 
 .primary {
-    background : #fbfbfb;
+    /*background : #fbfbfb;*/
 }

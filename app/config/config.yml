@@ -151,7 +151,11 @@ liip_imagine:
             quality : 70
             filters :
                 thumbnail: { size : [172, 172], mode: outbound}
-
+        email_thumbnail_right :
+                    quality : 70
+                    filters :
+                        thumbnail: { size : [172, 172], mode: outbound}
+                        background : { size : [180, 172], position : left, color : '#FFFFFF' }
         email_header :
             format: png
             quality : 70

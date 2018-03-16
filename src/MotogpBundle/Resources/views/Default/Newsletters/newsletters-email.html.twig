@@ -46,7 +46,11 @@
                             {% if m is not null and m != '' %}
                                 {#<columns>#}
                                 {% set img_url = m | media_public_url(context ~ '_xlarge') %}
-                                <img class="media-image media-image-{{ loop.index % 3 }}" src="{{ img_url  |  imagine_filter('email_thumbnail') }}" />
+                                {% if loop.index % 3 == 0 %}
+                                    <img class="media-image media-image-{{ loop.index % 3 }}" src="{{ img_url  |  imagine_filter('email_thumbnail') }}" />
+                                {% else %}
+                                    <img class="media-image media-image-{{ loop.index % 3 }}" src="{{ img_url  |  imagine_filter('email_thumbnail_right') }}" />
+                                {% endif %}
                                 {#</columns>#}
                             {% else %}
                                 {#<columns></columns>#}
