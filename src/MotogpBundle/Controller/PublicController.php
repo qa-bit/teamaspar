@@ -63,7 +63,6 @@ class PublicController extends Controller
             }
         }
 
-        //dump($scores);
         uasort($scores, function($a, $b) {
             return $a < $b;
         });
@@ -82,16 +81,18 @@ class PublicController extends Controller
             $index++;
         }
 
-
-
         if (count($data) > 12) {
-            $missing = 0;
-            for ($i = count($data) - 1; $i >= 12; $i--) {
-                if ($data[$i]->rider->getRiderTeam()->isMain()) {
-                    $pos = (12 - $missing - 1);
-                    $data[$i]->missing = true;
-                    $data[$pos] = $data[$i];
-                    $missing++;
+
+            $reverse = array();
+            $reverse = array_reverse($data);
+
+            foreach ($reverse as $index => $d) {
+
+                $idx = 12 - $index - 1;
+
+                if ($d->rider->getRiderTeam()->isMain()) {
+                    $d->missing = true;
+                    $data[$idx] = $d;
                 }
             }
         }
@@ -127,7 +128,6 @@ class PublicController extends Controller
             }
         }
 
-        //dump($scores);
         uasort($scores, function($a, $b) {
             return $a < $b;
         });
@@ -591,8 +591,6 @@ class PublicController extends Controller
                 'modality' => $modality
             ]
         );
-
-
     }
 
 }

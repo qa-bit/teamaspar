@@ -22,3 +22,14 @@ h1 {
 .content-centered {
     text-align : center;
 }
+
+.media-image {
+    display : inline;
+    float : left;
+    clear:none;
+}
+
+.media-image-1, .media-image-2 {
+    margin-right : 16px;
+    margin-right : 16px !important;
+}

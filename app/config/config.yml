@@ -150,7 +150,7 @@ liip_imagine:
         email_thumbnail :
             quality : 70
             filters :
-                thumbnail: { size : [180, 180], mode: outbound}
+                thumbnail: { size : [172, 172], mode: outbound}
 
         email_header :
             format: png

@@ -125,6 +125,8 @@ class NewsletterAdmin extends AbstractAdmin
 
             $html = $templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html');
 
+
+
             $message = \Swift_Message::newInstance()
                 ->setSubject('ANGEL NIETO TEAM - '.$object->getName())
                 ->setFrom($from)
@@ -144,9 +146,8 @@ class NewsletterAdmin extends AbstractAdmin
 
             $spool->flushQueue($transport);
             
-
             $object->setLastSendAt(new \DateTime());
-            
+
         }
 
     }

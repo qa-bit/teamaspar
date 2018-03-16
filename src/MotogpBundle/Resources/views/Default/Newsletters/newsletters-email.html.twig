@@ -40,16 +40,19 @@
 
             {% for row in medias | batch(3, '')%}
                 <row>
-                    {% for m in row %}
-                        {% if m is not null and m != '' %}
-                            <columns>
+                    <columns class="medias">
+                        {% for m in row %}
+
+                            {% if m is not null and m != '' %}
+                                {#<columns>#}
                                 {% set img_url = m | media_public_url(context ~ '_xlarge') %}
-                                <img src="{{ img_url  |  imagine_filter('email_thumbnail') }}" />
-                            </columns>
-                        {% else %}
-                            <columns></columns>
-                        {% endif %}
-                    {% endfor %}
+                                <img class="media-image media-image-{{ loop.index % 3 }}" src="{{ img_url  |  imagine_filter('email_thumbnail') }}" />
+                                {#</columns>#}
+                            {% else %}
+                                {#<columns></columns>#}
+                            {% endif %}
+                        {% endfor %}
+                    </columns>
                 </row>
             {% endfor %}
 
