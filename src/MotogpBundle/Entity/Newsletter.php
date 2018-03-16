@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use MotogpBundle\Entity\CustomerType;
+use MotogpBundle\Entity\Traits\InGroupsTrait;
 
 /**
  * Newsletter
@@ -15,7 +16,7 @@ use MotogpBundle\Entity\CustomerType;
  */
 class Newsletter
 {
-   use ContentTrait;
+   use ContentTrait, InGroupsTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="Post", cascade={"persist"})
@@ -27,6 +28,7 @@ class Newsletter
      * @ORM\ManyToMany(targetEntity="CustomerType", cascade={"persist"})
      */
     protected $customerTypes;
+
 
 
     /**

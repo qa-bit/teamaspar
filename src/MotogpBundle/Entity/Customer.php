@@ -4,6 +4,7 @@ namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use MotogpBundle\Entity\Traits\InGroupsTrait;
 
 /**
  * Customer
@@ -19,6 +20,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Customer
 {
+
+    use InGroupsTrait;
+
     /**
      * @var int
      *

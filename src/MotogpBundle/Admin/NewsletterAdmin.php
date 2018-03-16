@@ -40,6 +40,7 @@ class NewsletterAdmin extends AbstractAdmin
             ->add('name')
             ->add('post')
             ->add('customerTypes')
+            ->add('groups')
             ->add('lastSendAt')
             ->add('_action', null, array(
                 'actions' => array(
@@ -70,6 +71,7 @@ class NewsletterAdmin extends AbstractAdmin
             ->add('nameEN', null, ['required' => true])
             ->add('post', null, ['required' => true])
             ->add('customerTypes', null, ['required' => true])
+            ->add('groups')
             ->add('actions', ChoiceType::class, array(
                 'mapped' => false,
                 'label' => 'Acción',
@@ -92,7 +94,86 @@ class NewsletterAdmin extends AbstractAdmin
     }
 
 
-    public function sendMail($locale, $groups, $types) {
+    public function filterByGroups($customers, $groups) {
+
+
+        $customersInGroups = [];
+
+
+        if (!count($groups)) {
+            return $customers;
+        }
+
+        foreach ($customers as $customer) {
+            foreach ($customer->getGroups() as $cg) {
+                foreach ($groups as $g) {
+                    if ($g->getId() == $cg->getId()) {
+                        $customersInGroups[] = $customer;
+                    }
+                }
+            }
+        }
+
+        return $customersInGroups;
+
+    }
+
+    public function sendMail($object, $locale) {
+
+
+        $recipients = [];
+
+        foreach ($object->getCustomerTypes() as $type) {
+            $slug = $type->getSlug();
+            $em = $this->modelManager->getEntityManager(CustomerType::class);
+            $ct = $em->getRepository(Customer::class)->findByType($slug);
+
+            $customers = $this->filterByGroups($ct, $object->getGroups());
+
+            dump($customers);
+
+            foreach ($customers as $c) {
+                if ($c->getLocale() == $locale && $c->getUserConfirmed() && $c->getAdminConfirmed() )
+                    $recipients[$c->getEmail()] = $c->getName();
+            }
+        }
+        
+        $mail = $this->getConfigurationPool()->getContainer()->getParameter('general_mailing');
+        $from = $this->getConfigurationPool()->getContainer()->getParameter('mailer_user');
+        $templating = $this->container->get('templating');
+
+        $data = [
+            'name' => $locale == 'es' ? $object->getName() : $object->getNameEN(),
+            'title' => $locale == 'es' ? $object->getPost()->getName() : $object->getPost()->getNameEN(),
+            'featuredMedia' => $object->getPost()->getFeaturedMedia(),
+            'body' => $locale == 'es' ? $object->getPost()->getDescription()  : $object->getPost()->getDescriptionEN(),
+            'post' => $object->getPost(),
+            'locale' => $locale
+        ];
+
+
+        $html = $templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html');
+
+
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('ANGEL NIETO TEAM - '.$locale == 'es' ? $object->getName() : $object->getNameEN())
+            ->setFrom($from)
+            ->setBcc($recipients)
+            ->setReplyTo($from)
+            ->setContentType("text/html")
+            ->setBody($html);
+
+
+        $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
+
+        $this->container->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
+
+        $result = $this->container->get('mailer')->send($message);
+        $spool = $this->container->get('mailer')->getTransport()->getSpool();
+        $transport = $this->container->get('swiftmailer.transport.real');
+
+        $spool->flushQueue($transport);
 
     }
 
@@ -102,57 +183,12 @@ class NewsletterAdmin extends AbstractAdmin
         $action = $this->getForm()->get('actions')->getData();
 
         if ($action == 'update_and_send') {
-            
-            $recipients = [];
 
-            foreach ($object->getCustomerTypes() as $type) {
-                $slug = $type->getSlug();
-                $em = $this->modelManager->getEntityManager(CustomerType::class);
-                $ct = $em->getRepository(Customer::class)->findByType($slug);
-                foreach ($ct as $c) {
-                    $recipients[$c->getEmail()] = $c->getName();
-                }
-            }
-            
-
-            $mail = $this->getConfigurationPool()->getContainer()->getParameter('general_mailing');
-            $from = $this->getConfigurationPool()->getContainer()->getParameter('mailer_user');
-            $templating = $this->container->get('templating');
-
-            $data = [
-                'name' => $object->getName(),
-                'title' => $object->getPost()->getName(),
-                'featuredMedia' => $object->getPost()->getFeaturedMedia(),
-                'body' => $object->getPost()->getDescription(),
-                'post' => $object->getPost()
-            ];
-
-
-            $html = $templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html');
-
-
-
-            $message = \Swift_Message::newInstance()
-                ->setSubject('ANGEL NIETO TEAM - '.$object->getName())
-                ->setFrom($from)
-                ->setTo($recipients)
-                ->setReplyTo($from)
-                ->setContentType("text/html")
-                ->setBody($html);
-
-
-            $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
-
-            $this->container->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
-
-            $result = $this->container->get('mailer')->send($message);
-            $spool = $this->container->get('mailer')->getTransport()->getSpool();
-            $transport = $this->container->get('swiftmailer.transport.real');
-
-            $spool->flushQueue($transport);
+            $this->sendMail($object, 'en');
+            $this->sendMail($object, 'es');
 
             $object->setLastSendAt(new \DateTime());
-            
+
         }
 
     }

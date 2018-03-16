@@ -3,6 +3,7 @@
 namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * CustomerGroup
@@ -12,6 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CustomerGroup
 {
+
+
+    public function __construct()
+    {
+        $this->customers = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -23,13 +31,18 @@ class CustomerGroup
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="Customer", inversedBy="groups")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $customers;
+
+    /**
      * @var string
      * 
-     * @ORM\Column(type="string", nullable="false")
+     * @ORM\Column(type="string", nullable=false)
      */
     private $name;
-    
-    
+
 
     /**
      * Get id.
@@ -56,6 +69,27 @@ class CustomerGroup
     {
         $this->name = $name;
     }
-    
-    
+
+    public function __toString()
+    {
+        return $this->name ?? '';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomers()
+    {
+        return $this->customers;
+    }
+
+    /**
+     * @param mixed $customers
+     */
+    public function setCustomers($customers)
+    {
+        $this->customers = $customers;
+    }
+
+
 }

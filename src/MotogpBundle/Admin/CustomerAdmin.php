@@ -39,6 +39,7 @@ class CustomerAdmin extends AbstractAdmin
             ->add('userConfirmed', null, ['editable' => true])
             ->add('adminConfirmed', null, ['editable' => true])
             ->add('type')
+            ->add('groups')
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -82,6 +83,7 @@ class CustomerAdmin extends AbstractAdmin
                     'Inglés' => 'en',
                 ),'attr' => ['container_classes' => 'col-md-4'],
             ))
+            ->add('groups')
             ->add('userConfirmed', 'checkbox', ['label' => 'Confirmado (usuario)', 'attr' => ['container_classes' => 'col-md-6'] ])
             ->add('adminConfirmed', 'checkbox', ['mapped' => 'Confirmado (administración)', 'attr' => ['container_classes' => 'col-md-6']])
         ;
@@ -98,6 +100,7 @@ class CustomerAdmin extends AbstractAdmin
             ->add('surname')
             ->add('email')
             ->add('phone')
+
         ;
     }
 }

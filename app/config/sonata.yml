@@ -43,6 +43,7 @@ sonata_admin:
                 label: Newsletters
                 items:
                     - motogp.admin.customer
+                    - motogp.admin.customer_group
                     - motogp.admin.newsletter
             config:
                 label: Configuración

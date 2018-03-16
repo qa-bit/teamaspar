@@ -16,7 +16,9 @@
                 <columns>
                     <center>
                         {% set img_url = 'static/header_moto-gp.jpg' %}
-                        <img src="{{ img_url  |  imagine_filter('email_header') }}" />
+                        <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-gp'}) }}">
+                            <img src="{{ img_url  |  imagine_filter('email_header') }}" />
+                        </a>
                     </center>
                 </columns>
             </row>
@@ -25,6 +27,7 @@
             <row>
                 <columns>
                     {% set img_url = post.featuredMedia | media_public_url('featured_xlarge') %}
+                    <a href="{{ url('post', {'slug' : post.slug, 'modality': post.modality.slug, 'locale' : locale}) }}"></a>
                     <img src="{{ img_url  |  imagine_filter('email_header') }}" />
                 </columns>
             </row>
@@ -80,7 +83,9 @@
                 <columns>
                     <center>
                         {% set img_url = 'static/footer_moto-gp.jpg' %}
-                        <img src="{{ img_url  |  imagine_filter('email_header') }}" />
+                        <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-gp'}) }}">
+                            <img src="{{ img_url  |  imagine_filter('email_header') }}" />
+                        </a>
                     </center>
                 </columns>
             </row>
@@ -90,13 +95,22 @@
         <row>
             <columns>
                 <table class="smalltext content content-centered">
-                    Copyright © 2018 Ángel Nieto Team, All rights reserved.<br><br>
-                    You are receiving this email from Ángel Nieto Team MotoGP.<br>
-                    Our mailing address is:<br>
-                    Ángel Nieto Team<br>
-                    Pol. Ind. Picassent, C/6, Parc. 49<br>
-                    Picassent, Valencia 46220<br>
-                    Spain
+                    {% if locale == 'en' %}
+                        Copyright © {{ "now" | date('Y') }} Ángel Nieto Team, All rights reserved.<br><br>
+                        You are receiving this email from Ángel Nieto Team MotoGP.<br>
+                        Our mailing address is:<br>
+                        Ángel Nieto Team<br>
+                        Pol. Ind. Picassent, C/6, Parc. 49<br>
+                        Picassent, Valencia 46220<br>
+                        Spain
+                    {% else %}
+                        Copyright © {{ "now" | date('Y') }} Ángel Nieto Team, Todos los derechos reservados.<br><br>
+                        Está recibiendo este email desde Ángel Nieto Team MotoGP.<br>
+                        Ángel Nieto Team<br>
+                        Pol. Ind. Picassent, C/6, Parc. 49<br>
+                        Picassent, Valencia 46220<br>
+                        España
+                    {% endif %}
                 </table>
             </columns>
         </row>
