@@ -92,6 +92,11 @@ class NewsletterAdmin extends AbstractAdmin
     }
 
 
+    public function sendMail($locale, $groups, $types) {
+
+    }
+
+
     public function saveHook($object) {
 
         $action = $this->getForm()->get('actions')->getData();
@@ -145,9 +150,9 @@ class NewsletterAdmin extends AbstractAdmin
             $transport = $this->container->get('swiftmailer.transport.real');
 
             $spool->flushQueue($transport);
-            
-            $object->setLastSendAt(new \DateTime());
 
+            $object->setLastSendAt(new \DateTime());
+            
         }
 
     }
