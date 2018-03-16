@@ -137,7 +137,7 @@ class NewsletterAdmin extends AbstractAdmin
                     $recipients[$c->getEmail()] = $c->getName();
             }
         }
-        
+
         $mail = $this->getConfigurationPool()->getContainer()->getParameter('general_mailing');
         $from = $this->getConfigurationPool()->getContainer()->getParameter('mailer_user');
         $templating = $this->container->get('templating');
@@ -154,10 +154,10 @@ class NewsletterAdmin extends AbstractAdmin
 
         $html = $templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html');
 
-
+        $subjectTitle = $locale == 'es' ? $object->getName() : $object->getNameEN();
 
         $message = \Swift_Message::newInstance()
-            ->setSubject('ANGEL NIETO TEAM - '.$locale == 'es' ? $object->getName() : $object->getNameEN())
+            ->setSubject('ANGEL NIETO TEAM - '.$subjectTitle)
             ->setFrom($from)
             ->setBcc($recipients)
             ->setReplyTo($from)
