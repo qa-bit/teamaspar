@@ -94,9 +94,8 @@ class PublicController extends Controller
                 if ($d->rider->getRiderTeam()->isMain()) {
                     $d->missing = true;
                     $data[$reverseIndex] = $d;
+                    $reverseIndex--;
                 }
-
-                $reverseIndex--;
             }
         }
 
@@ -265,7 +264,7 @@ class PublicController extends Controller
         $videos = $em->getRepository(Video::class)->getAllInModality($modality);
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
-        
+
 
         return $this->render(
             'MotogpBundle:Default:Videos/videos.html.twig',
