@@ -16,7 +16,7 @@ class VideoRepository extends \Doctrine\ORM\EntityRepository
             ->where('v.modality = :modality')
             ->setParameter('modality', $modality->getId())
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult();
             ;
     }
 
