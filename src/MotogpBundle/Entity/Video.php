@@ -121,10 +121,12 @@ class Video
             ? $this->url
             : $this->urlEN;
 
-        preg_match('/\?v=.+$/', $urle, $matches);
+        preg_match('/\?v=.+&|$/', $urle, $matches);
+
+        $url = str_replace('&','', $matches[0]);
 
         if (count($matches))
-            return str_replace('?v=', '', $matches[0]);
+            return str_replace('?v=', '', $url);
 
         return '';
     }

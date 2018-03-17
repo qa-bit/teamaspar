@@ -33,7 +33,6 @@ class VideoAdmin extends AbstractAdmin
             ->add('name')
             ->add('url')
             ->add('categories', null, ['label' => 'Tags'])
-            ->add('description')
             ->add('modality')
             //->add('nameEN')
             //->add('description')

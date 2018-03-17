@@ -130,7 +130,7 @@ class NewsletterAdmin extends AbstractAdmin
 
             $customers = $this->filterByGroups($ct, $object->getGroups());
 
-            dump($customers);
+            //dump($customers);
 
             foreach ($customers as $c) {
                 if ($c->getLocale() == $locale && $c->getUserConfirmed() && $c->getAdminConfirmed() )
