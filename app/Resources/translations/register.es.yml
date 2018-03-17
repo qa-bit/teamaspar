@@ -1,4 +1,4 @@
-type: Tipo
+type: Eres...
 name: Nombre
 surname: Apellidos
 MediaType: Tipo (medio)
@@ -7,10 +7,11 @@ phone: Teléfono
 message: Mensaje
 send: Enviar
 register_success_text1: Registro completado con éxito
-register_success_text2: Gracias por inscribirse en nuestras newsletters.
+register_success_text2: Para completar el alta, debes confirmar la suscripción haciendo clic en el correo electrónico que te hemos enviado.
 accept: Acepto recibir newsletters periódicamente.
-subscribe_1: Subscríbete a nuestras newsletters.
-subscribe_2: Rellenando el siguiente formulario.
+subscribe_1: ¿Quieres estar al día de las novedades del Ángel Nieto Team?
+subscribe_2: ¿Quieres ser el primero en enterarte de nuestros sorteos?
+subscribe_3: ¡¡Únete a nuestra comunidad!!
 register_confirm_email: Confirmación de subscripción a nuestra newsletter
 register_confirm_email_text: Por favor, pulse en el siquiente enlace para confirmar su subscripción
 register_confirm_email_link: Confirmar

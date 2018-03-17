@@ -27,6 +27,8 @@
                             <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][descriptionEN]" type="text" value="{{ media.descriptionEN }}" />
                             <label>Enlace</label>
                             <input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][url]" type="text" value="{{ media.url }}" />
+                            <label>Enlace (Inglés)</label>
+                            <input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][urlEN]" type="text" value="{{ media.urlEN }}" />
                             <label>Piloto</label>
                             <select class="form-control" name="{{ form.vars.full_name }}[{{ index }}][rider]" type="text" value="{{ media.rider }}">
                                 <option value="">-</option>
@@ -63,6 +65,8 @@
             <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[__index__][descriptionEN]" type="text" />
             <label>Enlace</label>
             <input placeholder="Enlace" class="form-control" name="{{ form.vars.full_name }}[__index__][url]" type="text" />
+            <label>Enlace (Inglés)</label>
+            <input placeholder="Enlace (inglés)" class="form-control" name="{{ form.vars.full_name }}[__index__][urlEN]" type="text" />
             <input class="form-control uploadFile" name="{{ form.vars.full_name }}[__index__][uploadFile]" type="hidden"  />
             <label>Piloto</label>
              <select class="form-control" name="{{ form.vars.full_name }}[__index__][rider]" type="text">
@@ -103,6 +107,8 @@
                             <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][descriptionEN]" type="text" value="{{ media.descriptionEN }}" />
                             <label>Enlace</label>
                             <input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][url]" type="text" value="{{ media.url }}" />
+                            <label>Enlace (Inglés)</label>
+                            <input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][urlEN]" type="text" value="{{ media.urlEN }}" />
                         </div>
                         {#<label>Destacada</label>#}
                         {#<input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][featured]" type="checkbox" checked="{{ media.featured == true }}" />#}
@@ -132,6 +138,8 @@
             <input placeholder="Descripción" class="form-control" name="{{ form.vars.full_name }}[__index__][descriptionEN]" type="text" />
             <label>Enlace</label>
             <input placeholder="Enlace" class="form-control" name="{{ form.vars.full_name }}[__index__][url]" type="text" />
+            <label>Enlace (Inglés)</label>
+            <input placeholder="Enlace (inglés)" class="form-control" name="{{ form.vars.full_name }}[__index__][urlEN]" type="text" />
             <input class="form-control uploadFile" name="{{ form.vars.full_name }}[__index__][uploadFile]" type="hidden"  />
         </div>
     </div>

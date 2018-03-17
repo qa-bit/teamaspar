@@ -18,6 +18,7 @@
         </id>
 
         <field name="url" column="url" type="string" nullable="true"  />
+        <field name="urlEN" column="url_en" type="string" nullable="true"  />
         <field name="title" column="title" type="string" nullable="true"  />
 
         <field name="titleEN" column="titleEN" type="string" nullable="true"  />

@@ -1,10 +1,17 @@
-type: Type
+type: You are...
 name: Name
-MediaType: Type (media)
+surname: Surname
+MediaType: Tipo (medio)
 email: Email
 phone: Phone
-message: Mensaje
+message: Message
 send: Send
-register_success_title: Register completed successfully
-register_success_text1: Thank you.
-accept: I agree
+register_success_text1: Registration completed successfully
+register_success_text2: To complete the registration, you must confirm the subscription by clicking on the email that we have sent you.
+accept: I agree to receive newsletters periodically.
+subscribe_1: Do you want to be up to date with the Ángel Nieto Team news?
+subscribe_2: Do you want to be the first to know about our prizes?
+subscribe_3: Join our community!!
+register_confirm_email: Confirmation of subscription to our newsletter
+register_confirm_email_text: Please, click on the following link to confirm your subscription
+register_confirm_email_link: Confirm

@@ -58,6 +58,8 @@ class RiderMedia extends BaseMedia
      */
     private $url;
 
+    private $urlEN;
+
     /**
      * @var string
      */
@@ -194,6 +196,21 @@ class RiderMedia extends BaseMedia
         $this->titleEN = $titleEN;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getUrlEN()
+    {
+        return $this->urlEN;
+    }
+
+    /**
+     * @param mixed $urlEN
+     */
+    public function setUrlEN($urlEN)
+    {
+        $this->urlEN = $urlEN;
+    }
     
     
 }

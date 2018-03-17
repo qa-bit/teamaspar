@@ -68,6 +68,11 @@ class GalleryMedia extends BaseMedia
     /**
      * @var string
      */
+    private $urlEN;
+
+    /**
+     * @var string
+     */
     private $descriptionEN;
 
     /**
@@ -210,6 +215,20 @@ class GalleryMedia extends BaseMedia
         $this->titleEN = $titleEN;
     }
 
+    /**
+     * @return string
+     */
+    public function getUrlEN()
+    {
+        return $this->urlEN;
+    }
 
-
+    /**
+     * @param string $urlEN
+     */
+    public function setUrlEN($urlEN)
+    {
+        $this->urlEN = $urlEN;
+    }
+    
 }

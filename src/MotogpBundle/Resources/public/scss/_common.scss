@@ -138,3 +138,20 @@ html[modality="moto-3"] {
 input[type="checkbox"] {
   width : 1em;
 }
+
+footer .powered-by{
+  text-align: center;
+
+  a {
+    color: #a6a6a6;
+    text-decoration: none;
+    transition : color .33s;
+    font-size : .85em;
+    &:hover {
+      color: $menu-golden;
+      transition : color .33s;
+    }
+
+  }
+
+}

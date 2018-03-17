@@ -103,6 +103,7 @@ class RiderMediaAdmin extends AbstractAdmin
             ->add('description')
             ->add('descriptionEN')
             ->add('url')
+            ->add('urlEN')
             ->add('_order')
             //->add('providerReference')
             //->add('rider', 'sonata_type_model')

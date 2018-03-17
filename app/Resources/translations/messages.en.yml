@@ -4,15 +4,25 @@ cookies:
     message: Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle publicidad relacionada con sus preferencias mediante el análisis de sus hábitos de navegación. Si continua navegando, consideramos que acepta su uso. Puede cambiar la configuración u obtener más información
     here: Aquí
 owner: Angel Nieto Team
-news: Noticias
-images: Imágenes
-videos: Vídeos
-pilotos: Pilotos
+news: News
+images: Images
+videos: Videos
+pilotos: Riders
 sponsors: Sponsors
-register: Registro
+register: register
 motos: Motos
-contact: Contacto
+contact: Contact
 cookies: Cookies
-privacy: Politica de privacidad
-terms: Terminos y condiciones
-cookies_policy: Politica de cookies
+privacy: Privacy Policy
+terms: Terms and conditions
+cookies_policy: Cookies policy
+public: Fan
+sponsor: Sponsor
+media: Media
+mediaType: Tipo (medio)
+media_pr: Press
+media_radio: Radio
+media_tv: TV
+media_web: Web
+media_other: Otro
+name_in_use: Name in use.

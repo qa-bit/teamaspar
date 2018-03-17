@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html modality="{{ modality.slug }}">
 <head>
-    {% set locale = app.request.locale  ? app.request.locale : ( app.request.cookies.get('LC') ?  app.request.cookies.get('LC') : 'es' ) %}
+    {% set locale = (app.request.locale  ? app.request.locale : ( app.request.cookies.get('LC') ?  app.request.cookies.get('LC') : 'es' )) | lower %}
     {% set params = {} %}
     {% set currentRoute = app.request.get('_route') %}
     {%  for key, value in app.request.attributes.get('_route_params') %}

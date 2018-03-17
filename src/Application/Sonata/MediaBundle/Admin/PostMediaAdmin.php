@@ -103,6 +103,7 @@ class PostMediaAdmin extends AbstractAdmin
             ->add('description')
             ->add('descriptionEN')
             ->add('url')
+            ->add('urlEN')
             ->add('_order')
             //->add('providerReference')
             //->add('post', 'sonata_type_model')

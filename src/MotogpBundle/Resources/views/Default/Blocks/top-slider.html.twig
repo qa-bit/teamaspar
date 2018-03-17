@@ -14,13 +14,14 @@
 
                             <div class="slider-caption">
                                 {% if m.title %}
+                                    {% set url = (locale == 'es' ? m.url : m.urlEN) %}
                                     <h2>
-                                        <a href="{{ m.url ? m.url : '#' }}" target="_blank">
+                                        <a href="{{ url ? url : '#' }}" target="_blank">
                                             {{ locale == 'es' ? m.title : m.titleEN }}
                                         </a>
                                     </h2>
                                     <label>
-                                        <a href="{{ m.url ? m.url : '#' }}" target="_blank">
+                                        <a href="{{ url ? url : '#' }}" target="_blank">
                                             {{ locale == 'es'  ? m.description : m.descriptionEN }}
                                         </a>
                                     </label>

@@ -16,13 +16,14 @@ sonata_admin:
         groups:
             blog:
                 label: Blog
+                on_top: true
                 items:
                     - motogp.admin.post
             team:
-                label: Equipo
+                label: Pilotos
+                on_top: true
                 items:
                     - motogp.admin.rider
-                    - motogp.admin.rider_external
             staff:
                 label: Staff
                 items:
@@ -56,6 +57,7 @@ sonata_admin:
                     - motogp.admin.circuit
                     - motogp.admin.sponsor
                     - motogp.admin.moto
+                    - motogp.admin.rider_external
                 roles: [ROLE_SUPER_ADMIN]
 
             newsletterss:
