@@ -120,13 +120,11 @@ class Video
         $urle = $locale == 'es'
             ? $this->url
             : $this->urlEN;
-
-        preg_match('/\?v=.+&|$/', $urle, $matches);
-
-        $url = str_replace('&','', $matches[0]);
+        
+        preg_match('/\?v=([^&.]+)/', $urle, $matches);
 
         if (count($matches))
-            return str_replace('?v=', '', $url);
+            return str_replace('?v=', '', $matches[1]);
 
         return '';
     }

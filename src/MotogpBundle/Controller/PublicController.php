@@ -81,6 +81,9 @@ class PublicController extends Controller
             $index++;
         }
 
+
+        $reverseIndex = 11;
+
         if (count($data) > 12) {
 
             $reverse = array();
@@ -88,12 +91,12 @@ class PublicController extends Controller
 
             foreach ($reverse as $index => $d) {
 
-                $idx = 12 - $index - 1;
-
                 if ($d->rider->getRiderTeam()->isMain()) {
                     $d->missing = true;
-                    $data[$idx] = $d;
+                    $data[$reverseIndex] = $d;
                 }
+
+                $reverseIndex--;
             }
         }
 
@@ -262,7 +265,7 @@ class PublicController extends Controller
         $videos = $em->getRepository(Video::class)->getAllInModality($modality);
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
-
+        
 
         return $this->render(
             'MotogpBundle:Default:Videos/videos.html.twig',
