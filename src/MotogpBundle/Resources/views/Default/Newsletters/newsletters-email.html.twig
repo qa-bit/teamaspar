@@ -27,7 +27,7 @@
             <row>
                 <columns>
                     {% set img_url = post.featuredMedia | media_public_url('featured_xlarge') %}
-                    <a href="{{ url('post', {'slug' : post.slug, 'modality': post.modality.slug, 'locale' : locale}) }}">
+                    <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
                         <img src="{{ img_url  |  imagine_filter('email_header') }}" />
                     </a>
                 </columns>
