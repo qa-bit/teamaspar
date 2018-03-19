@@ -81,8 +81,8 @@ class PostAdmin extends AbstractAdmin
                                 'attr' => $mediumColumn
                             ]
                         )
-                        ->add('name', null, ['label' => 'Título'])
-                        ->add('nameEN', null, ['label' => 'Título (Inglés)'])
+                        ->add('name', null, ['label' => 'Título', 'required' => true])
+                        ->add('nameEN', null, ['label' => 'Título (Inglés)', 'required' => true])
                         ->add('description', 'ckeditor', array(
                             'label' => 'Contenido'
                         ))
@@ -193,6 +193,7 @@ class PostAdmin extends AbstractAdmin
         $slugify = new Slugify();
 
         $object->setSlug($slugify->slugify($object->getName(), '-'));
+        $object->setSlugEn($slugify->slugify($object->getNameEN(), '-'));
 
         $this->saveMedias($object, 'motogp.admin.post_media');
         $this->saveFeaturedMedia($object);

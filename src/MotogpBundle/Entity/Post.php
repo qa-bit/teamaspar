@@ -12,11 +12,14 @@ use MotogpBundle\Entity\Traits\HasMediaTrait;
 use MotogpBundle\Entity\Traits\InRiderTrait;
 use MotogpBundle\Entity\Traits\InSeasonTrait;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Post
  *
  * @ORM\Table(name="post")
+ * @UniqueEntity("name")
+ * @UniqueEntity("nameEN")
  * @ORM\Entity(repositoryClass="MotogpBundle\Repository\PostRepository")
  */
 class Post

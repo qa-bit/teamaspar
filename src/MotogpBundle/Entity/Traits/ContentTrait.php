@@ -120,6 +120,14 @@ trait ContentTrait {
      */
     private $slug;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $slugEN;
+
     /**
      * @return int
      */
@@ -357,4 +365,21 @@ trait ContentTrait {
     {
        return $this->name ?? (string) null;
     }
+
+    /**
+     * @return string
+     */
+    public function getSlugEN()
+    {
+        return $this->slugEN;
+    }
+
+    /**
+     * @param string $slugEN
+     */
+    public function setSlugEN($slugEN)
+    {
+        $this->slugEN = $slugEN;
+    }
+    
 }
