@@ -83,7 +83,7 @@ $(document).ready(function () {
                     lazyLoading: true,
                     loop: false,
                     effect: 'fade',
-                    autoplay : autoplay ? autoplay : null,
+                    autoplay : false,
                     nextButton: '#' + paginationId + '-right',
                     prevButton: '#' + paginationId + '-left'
                 });
@@ -92,10 +92,7 @@ $(document).ready(function () {
                 if (numsliders < 2){
                     $('#' + paginationId).hide();
                 }
-
-                $(this).click(function () {
-                    swipers[id].slideNext();
-                });
+                
 
             });
 
@@ -121,6 +118,7 @@ $(document).ready(function () {
             } );
         },
         fancy : function () {
+
             $('.fancybox').fancybox(
                 {
                     prevEffect	: 'none',
@@ -139,7 +137,6 @@ $(document).ready(function () {
             $('.fancytrigger').click(
                 function () {
                     var $rel = $(this).attr('rel');
-                    console.error($rel);
                     $('.fancybox[rel="'+ $rel + '"]').eq(0).trigger('click');
                 }
             );

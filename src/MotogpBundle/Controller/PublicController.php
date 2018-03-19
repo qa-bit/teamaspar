@@ -459,13 +459,18 @@ class PublicController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $locale = $request->get('_locale');
+
+
         $modalitySlug = $request->get('modality');
 
         $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
-        $post = $em->getRepository(Post::class)->findOneBySlug($request->get('slug'));
+        $post = $locale == 'es'
+            ? $em->getRepository(Post::class)->findOneBySlug($request->get('slug'))
+            : $em->getRepository(Post::class)->findOneBySlugEN($request->get('slug'));
 
 
         return $this->render(

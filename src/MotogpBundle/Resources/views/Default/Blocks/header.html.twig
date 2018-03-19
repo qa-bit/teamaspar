@@ -62,10 +62,10 @@
         <div class="header-options">
             <ul class="lang-selector only-desktop">
                 <li class="">
-                    <img class="link" href="{{ enURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_en.png')}}" alt="" />
+                    <img class="link" href="{{ (customUrlEN is defined) ? customUrlEN : enURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_en.png')}}" alt="" />
                 </li>
                 <li class="">
-                    <img class="link" href="{{ esURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_es.png')}}" alt="" />
+                    <img class="link" href="{{ (customUrl is defined) ? customUrl : esURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_es.png')}}" alt="" />
                 </li>
             </ul>
             <ul class="social-links only-desktop">

@@ -3,7 +3,7 @@
         <div class="w100 circuit-gallery-featured" style="background:url('{% path circuit.featuredMedia, 'big' %}');">
         </div>
         <div class="col-xs-12 col-md-6 circuit-gallery-description">
-            <h6>{{ (locale == 'es' ? circuit.name : circuit.nameEN )| truncate(80, true, '...')}}</h6>
+            <h6>{{ ( locale == 'es' ? circuit.name : circuit.nameEN )| truncate(80, true, '...') }}</h6>
             <div class="sep"></div>
             <div class="trow">
                 <h3>{{ locale == 'es' ? circuit.subtitle : circuit.subtitleEN }}</h3>
@@ -18,7 +18,7 @@
             {% for p in circuit.posts %}
                 {% if p.modality.id == modality.id %}
                     <li>
-                        <a href="{{ url('post', {'slug' : p.slug, 'modality' : modality.slug }) }}">
+                        <a href="{{ url('post', {'slug' : locale == 'es' ? p.slug : p.slugEN, 'modality' : modality.slug }) }}">
                             {% spaceless %}
                                 {{ locale == 'es' ? (p.category ? p.category.name : p.name)  : (p.category ? p.category.nameEN : p.nameEN) }}
                             {% endspaceless %}
