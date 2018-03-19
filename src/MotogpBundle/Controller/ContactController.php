@@ -62,8 +62,9 @@ class ContactController extends Controller
             );
 
 
-            $mail = $this->getParameter('general_mailing');
-            $from = $this->getParameter('mailer_user');
+            $mail = $this->getParameter('contact_mailing');
+            $from = $this->getParameter('mailer_contact_user');
+
 
             $message = \Swift_Message::newInstance()
                 ->setSubject('Formulario de contacto')
@@ -75,11 +76,12 @@ class ContactController extends Controller
 
 
             $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
-            $this->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
+            $this->get('swiftmailer.mailer.mailer_contact')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
 
-            $result = $this->get('mailer')->send($message);
-            $spool = $this->get('mailer')->getTransport()->getSpool();
-            $transport = $this->get('swiftmailer.transport.real');
+            $result = $this->get('swiftmailer.mailer.mailer_contact')->send($message);
+            $spool = $this->get('swiftmailer.mailer.mailer_contact')->getTransport()->getSpool();
+            
+            $transport = $this->get('swiftmailer.mailer.mailer_contact.transport.real');
 
             $spool->flushQueue($transport);
 
