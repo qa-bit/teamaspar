@@ -1,0 +1,13 @@
+{% set url = locale == 'es' ? video.url  : video.urlEN %}
+{% if url != '' %}
+    <div class="video-gallery-item">
+        <div class="fb-video" data-href="{{ url }}" data-show-text="false">
+            <div class="fb-xfbml-parse-ignore">
+            </div>
+        </div>
+        <div class="col-xs-12 text-center video-description">
+            <p class="header"><b>{{ locale == 'es' ? (video.circuit.name ?? video.name) : (video.circuit.nameEN ?? video.nameEN) }}</b></p>
+            <p> {{ locale == 'es' ? video.name : video.nameEN }}</p>
+        </div>
+    </div>
+{% endif %}

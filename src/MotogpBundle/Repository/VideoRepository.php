@@ -26,6 +26,7 @@ class VideoRepository extends \Doctrine\ORM\EntityRepository
         return $this->createQueryBuilder('v')
             ->where('v.modality = :modality')
             ->setParameter('modality', $modality->getId())
+            ->orderBy('v._order', 'DESC')
             ->getQuery()
             ->getResult();
         ;

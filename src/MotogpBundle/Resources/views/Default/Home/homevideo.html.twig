@@ -1,6 +1,26 @@
 {% if video is not null and video | length%}
-    {% set url = video[0].extractUrl(locale) %}
-    {% if url != '' %}
-        <iframe src="https://www.youtube.com/embed/{{ url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    {% if video[0].isFacebook(locale) %}
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <div class="w100 fb-wrapper-outer">
+            <div class="fb-wrapper">
+                <div class="fb-video" data-href="{{ locale == 'es' ? video[0].url : video[0].urlEN }}" data-width="auto" data-show-text="false" data-show-captions="false">
+                    <div class="fb-xfbml-parse-ignore">
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% set url = video[0].extractUrl(locale) %}
+        {% if url != '' %}
+            <iframe src="https://www.youtube.com/embed/{{ url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        {% endif %}
     {% endif %}
 {% endif %}

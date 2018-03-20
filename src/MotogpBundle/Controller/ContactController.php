@@ -47,7 +47,6 @@ class ContactController extends Controller
         $form->handleRequest($request);
 
 
-
         if ($form->isSubmitted() && $form->isValid()) {
 
             $data = array(

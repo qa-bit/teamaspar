@@ -129,5 +129,19 @@ class Video
         return '';
     }
     
+
+    public function isFacebook ($locale) {
+
+        $urle = $locale == 'es'
+            ? $this->url
+            : $this->urlEN;
+
+        preg_match('/facebook/', $urle, $matches);
+
+        $isFb = count($matches);
+
+        return $isFb;
+    }
+    
 }
 

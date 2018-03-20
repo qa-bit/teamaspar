@@ -4,11 +4,25 @@
     {{ parent() }}
     {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}
 
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <div class="smoke-background">
         <div class="white-background">
             <div class="video-gallery">
                 {% for v in videos %}
-                    {% include "MotogpBundle:Default:Videos/video_gallery_item.html.twig" with {'video' : v } %}
+                    {% if v.isFacebook(locale) %}
+                        {% include "MotogpBundle:Default:Videos/video_gallery_item_facebook.html.twig" with {'video' : v } %}
+                    {% else %}
+                        {% include "MotogpBundle:Default:Videos/video_gallery_item.html.twig" with {'video' : v } %}
+                    {% endif %}
                 {% endfor %}
             </div>
             <div class="text-center w100">

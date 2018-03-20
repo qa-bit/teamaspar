@@ -25,6 +25,37 @@
   }
 }
 
+.video-gallery-item {
+  .fb-video {
+    background: $menu-grey;
+    height: 20em;
+  }
+}
+
+
+.fb-wrapper {
+  height: 18em;
+  min-height: 18em;
+  background: black;
+  width: 90%;
+  display: block;
+  vertical-align: middle;
+  margin: auto;
+  overflow: hidden;
+  iframe {
+    box-shadow : none !important;
+  }
+}
+
+.fb-wrapper-outer {
+  background: rgba(0, 0, 0, 1.33);
+  display: block;
+  box-shadow: 0 0 16px black;
+  height: 18em;
+  max-height: 18em;
+  overflow: hidden;
+}
+
 @media screen and (max-width : 1024px) {
   .video-gallery-item {
     width : 100%;
