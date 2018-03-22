@@ -45,6 +45,10 @@ trait InGroupsTrait {
      */
     public function addGroup($group)
     {
+
+        if ($this->groups === null )
+            $this->groups = new ArrayCollection();
+
         if (!$this->groups->contains($group)) {
             $this->groups->add($group);
         }

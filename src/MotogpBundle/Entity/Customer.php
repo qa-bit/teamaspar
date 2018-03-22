@@ -290,6 +290,14 @@ class Customer
     {
         $this->locale = $locale;
     }
+
+
+    public function getFullName() {
+
+        $surname = $this->surname ? $this->surname : '';
+
+        return $this->getName().' '.$surname;
+    }
     
 
 }

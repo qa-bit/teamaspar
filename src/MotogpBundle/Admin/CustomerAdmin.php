@@ -19,10 +19,10 @@ class CustomerAdmin extends AbstractAdmin
     {
         $datagridMapper
             //->add('id')
-            ->add('name')
-            ->add('surname')
+//            ->add('fullname')
             ->add('email')
             ->add('phone')
+            ->add('groups')
         ;
     }
 
@@ -33,8 +33,7 @@ class CustomerAdmin extends AbstractAdmin
     {
         $listMapper
            // ->add('id')
-            ->add('name')
-            ->add('surname')
+            ->add('fullName')
             ->add('email')
             ->add('userConfirmed', null, ['editable' => true])
             ->add('adminConfirmed', null, ['editable' => true])

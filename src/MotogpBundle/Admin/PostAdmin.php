@@ -132,7 +132,7 @@ class PostAdmin extends AbstractAdmin
                     'label' => 'Imágen de portada',
                     'required' => false,
                 ))
-                ->add('medias', 'sonata_type_collection',['label' => 'Imágenes',],
+                ->add('medias', 'sonata_type_collection', ['label' => 'Imágenes',],
                     [
                         'edit' => 'inline',
                         'inline' => 'table',
