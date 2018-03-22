@@ -119,9 +119,12 @@ $breakpoint-tablet : "769px";
   }
 
   .homeresult {
+    display: table;
     padding : 1em 0 !important;
     >div {
-      height : 25em !important;
+      display : table-cell;
+      width: 100%;
+      vertical-align: middle;
     }
   }
 
@@ -131,7 +134,7 @@ $breakpoint-tablet : "769px";
 
   .homeresult > div {
     font-size : 1.6em;
-    height : 25em;
+    height : 16em;
   }
 
   .section-separator {
@@ -191,6 +194,7 @@ $breakpoint-tablet : "769px";
   }
 
   .homegalleries, .homegallery {
+
     padding : 1em 0 !important;
     width : 100%;
     display : block;
@@ -201,6 +205,7 @@ $breakpoint-tablet : "769px";
     .swiper-pagination-bullets {
       display : block !important;
     }
+
 
   }
 
@@ -223,7 +228,10 @@ $breakpoint-tablet : "769px";
 
 
   .homegalleries {
-    display : none !important;
+    display : block !important;
+    width : 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
 
