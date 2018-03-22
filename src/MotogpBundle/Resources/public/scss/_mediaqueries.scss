@@ -13,8 +13,12 @@ $breakpoint-tablet : "769px";
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
   }
 
-  .navbar-collapse.collapse[aria-expanded="false"] {
+  .navbar-collapse.collapse {
     display: none!important;
+  }
+
+  .navbar-collapse.collapse[aria-expanded="true"] {
+    display: block !important;
   }
 
   .navbar-nav {
@@ -196,7 +200,7 @@ $breakpoint-tablet : "769px";
   .homegalleries, .homegallery {
 
     padding : 1em 0 !important;
-    width : 100%;
+    max-width : 100%;
     display : block;
     .page-l, .page-r {
       display : none !important;
@@ -229,7 +233,6 @@ $breakpoint-tablet : "769px";
 
   .homegalleries {
     display : block !important;
-    width : 100%;
     max-width: 100%;
     overflow: hidden;
   }
@@ -263,4 +266,9 @@ $breakpoint-tablet : "769px";
   .moto-bg {
     display : none;
   }
+}
+
+
+@media screen and (min-width : 560px) and (max-width : 1024px) {
+
 }

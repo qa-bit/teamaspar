@@ -1,8 +1,8 @@
-<div class="homepost col-xs-12 col-md-6">
+<div class="homepost col-xs-12 col-sm-6">
     <div class="homepost-inner link" href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': modality.slug}) }}">
-        <div class="col-xs-12 col-md-6 homepost-image" style="background:url('{% path post.featuredMedia, 'big' %}');">
+        <div class="col-xs-12 col-sm-6 homepost-image" style="background:url('{% path post.featuredMedia, 'big' %}');">
         </div>
-        <div class="col-xs-12 col-md-6 homepost-content">
+        <div class="col-xs-12 col-sm-6 homepost-content">
             <h4>{{ (locale == "es" ? post.name : post.nameEN) | truncate(80, true, '...') | upper}}</h4>
             <div class="sep"></div>
             <div class="post-content">

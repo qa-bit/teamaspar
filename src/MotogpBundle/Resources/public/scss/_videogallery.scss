@@ -1,5 +1,5 @@
 .video-gallery-item {
-  width : 50%;
+  //width : 50%;
   display: table;
   padding : .5em;
   float : left;
@@ -58,6 +58,6 @@
 
 @media screen and (max-width : 1024px) {
   .video-gallery-item {
-    width : 100%;
+    //width : 100%;
   }
 }

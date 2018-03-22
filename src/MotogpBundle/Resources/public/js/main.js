@@ -7,22 +7,29 @@ var widgets = function () {
     if (!($('.smw-twitter').size()))
         return;
 
-    var wwidth = $(window).width();
+    var wwidth = $('.home-block-white').width();
 
-    if (wwidth <= 1600)
+    if (wwidth <= 768)
         return;
 
-    var px = wwidth * 0.2;
-    var pxd = wwidth * 0.2;
+    var px = wwidth * 0.3;
+    var pxd = wwidth * 0.3;
+
+    console.error('px', px);
 
     $('.smw-twitter').html(null);
     $('.smw-instagram').html(null);
+
 
     $socialHtmlTwitter_A = $socialHtmlTwitter.replace(/320/g, px).replace(/200/g, pxd);
     $socialHtmlInstagram_A = $socialHtmlInstagram.replace(/320/g, px).replace(/200/g, pxd);
 
     $('.smw-twitter').html($socialHtmlTwitter_A);
     $('.smw-instagram').html($socialHtmlInstagram_A);
+
+    $('.smw-box').css({'width' : px + 'px'});
+    $('.social-media-widgets .social-media-widgets-inner').css({'width' : (px * 3) + 'px', 'max-height' : px + 'px'});
+
 };
 
 
