@@ -1,7 +1,15 @@
 $breakpoint-tablet : "769px";
+.menu-mobile {
 
+}
 
-@media (max-width: 1023px)  {
+@media (max-width: 1023px) {
+
+  article.tcenter {
+    width : 100% !important;
+    max-width: 100% !important;
+  }
+
   .navbar-header {
     float: none;
   }
@@ -83,9 +91,11 @@ $breakpoint-tablet : "769px";
     padding-top : 1em;
   }
 
+
+
 }
 
-@media screen and (max-width: 1023px)  {
+@media screen and (max-width:1023px) {
 
 
   .motos-gallery-item {
@@ -118,7 +128,7 @@ $breakpoint-tablet : "769px";
     }
   }
 
-  .moto-bg, .home-riders, .homebottom {
+  .moto-bg  {
     display : none;
   }
 
@@ -210,7 +220,6 @@ $breakpoint-tablet : "769px";
       display : block !important;
     }
 
-
   }
 
   .rider-media {
@@ -237,23 +246,15 @@ $breakpoint-tablet : "769px";
     overflow: hidden;
   }
 
-
 }
 
-
-.menu-mobile {
-
-}
-
-
-@media screen and(min-width: 1024px) {
+@media screen and (min-width:1024px) {
   .only-mobile {
     display : none;
   }
 }
 
-
-@media screen and (min-width: 1024px) and (max-width: 1120px) {
+@media screen and (min-width:1024px) and ( max-width: 1120px ) {
   .navbar-brand {
     width : 9em;
     position : static;
@@ -268,7 +269,51 @@ $breakpoint-tablet : "769px";
   }
 }
 
+@media screen and (max-width:1023px) and ( orientation : portrait ) {
 
-@media screen and (min-width : 560px) and (max-width : 1024px) {
+  .swiper-container {
+    height : 14em !important;
+  }
+
+  .staff-history {
+    p {
+      word-break: break-all;
+      max-width: 100%;
+    }
+  }
+
+  .slider-caption {
+    font-size: .5em;
+  }
+
+}
+
+
+@media screen and (max-width: 1023px) {
+  .home-rider {
+    display:none !important;
+  }
+
+  .home-rider-info {
+    width: 100% !important;
+  }
+
+  .powered-by {
+    position : static !important;
+  }
+
+  .home-rider-image-mobile {
+    display : table !important;
+    width: 100%;
+    height: auto;
+  }
+
+  .home-rider-info-left {
+    background: linear-gradient(to bottom, rgba(94, 72, 35, 0) 0%, rgba(94, 72, 35, 0.01) 62%, rgba(94, 72, 35, 1) 100%) !important;
+  }
+
+  .home-rider-info-right {
+    background: linear-gradient(to top, rgba(66, 66, 66, 1) 0%, rgba(66, 66, 66, 0.01) 38%, rgba(66, 66, 66, 0) 100%) !important;
+  }
 
 }

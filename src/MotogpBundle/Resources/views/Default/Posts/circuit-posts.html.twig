@@ -3,7 +3,7 @@
         <div class="w100 circuit-gallery-featured" style="background:url('{% path circuit.featuredMedia, 'big' %}');">
         </div>
         <div class="col-xs-12 col-sm-6 circuit-gallery-description">
-            <h6>{{ ( locale == 'es' ? circuit.name : circuit.nameEN )| truncate(80, true, '...') }}</h6>
+            <h6>{{ ( locale == 'es' ? circuit.name : circuit.nameEN ) | truncate(80, true, '...') }}</h6>
             <div class="sep"></div>
             <div class="trow">
                 <h3>{{ locale == 'es' ? circuit.subtitle : circuit.subtitleEN }}</h3>

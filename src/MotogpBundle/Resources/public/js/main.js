@@ -15,8 +15,6 @@ var widgets = function () {
     var px = wwidth * 0.3;
     var pxd = wwidth * 0.3;
 
-    console.error('px', px);
-
     $('.smw-twitter').html(null);
     $('.smw-instagram').html(null);
 

@@ -160,8 +160,7 @@ class PostMediaAdmin extends AbstractAdmin
         return $object;
     }
 
-
-
+    
     public function preUpdate($object) {
         //dump('preUpdate');
         $this->saveHook($object);
