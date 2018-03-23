@@ -19,6 +19,12 @@ class PostAdmin extends AbstractAdmin
 
 
     use HasMediasAdminTrait, FeaturedMediaAdminTrait;
+
+    protected $datagridValues = array(
+        '_page'       => 1,
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'publishedAt'
+    );
     
     /**
      * @param DatagridMapper $datagridMapper
@@ -110,6 +116,11 @@ class PostAdmin extends AbstractAdmin
                         ->add('season', null,
                             [
                                 'required' => true,
+                                'query_builder' => function ($qb) {
+
+                                    return $qb->createQueryBuilder('p')
+                                        ->orderBy('p.current', 'DESC');
+                                },
                                 'attr' => ['container_classes' => 'col-md-6']
                             ])
                         ->add('circuit', null, [

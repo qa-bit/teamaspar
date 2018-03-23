@@ -11,6 +11,13 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class ScoreAdmin extends AbstractAdmin
 {
+
+    private $container;
+
+    public function setContainer($container) {
+        $this->container = $container;
+    }
+
     /**
      * @param DatagridMapper $datagridMapper
      */

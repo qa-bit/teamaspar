@@ -7,6 +7,7 @@ use MotogpBundle\Entity\Traits\ContentTrait;
 use MotogpBundle\Entity\Traits\InCircuitTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use MotogpBundle\Entity\Traits\InModalityTrait;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 /**

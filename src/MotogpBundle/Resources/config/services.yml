@@ -140,6 +140,8 @@ services:
     motogp.admin.score:
         class: MotogpBundle\Admin\ScoreAdmin
         arguments: [~, MotogpBundle\Entity\Score, SonataAdminBundle:CRUD]
+        calls:
+            - [setContainer, ["@service_container"]]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Score, show_in_dashboard: false }
         public: true

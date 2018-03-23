@@ -47,6 +47,7 @@ class RaceAdmin extends AbstractAdmin
         ;
     }
 
+
     /**
      * @param FormMapper $formMapper
      */
@@ -58,7 +59,13 @@ class RaceAdmin extends AbstractAdmin
         $formMapper
             ->tab('Información')
                 ->with(null)
-                    ->add('season', null, ['required' => true, 'attr' => $mediumColumn])
+                    ->add('season', null, [
+                        'required' => true, 'attr' => $mediumColumn,
+                        'query_builder' => function ($qb) {
+                            return $qb->createQueryBuilder('o')
+                                ->orderBy('o.current', 'DESC');
+                        },
+                    ])
                     ->add('circuit', null, ['required' => true, 'attr' => $mediumColumn])
                     ->add('modality', null, ['required' => true, 'attr' => $mediumColumn])
                     ->add('name')

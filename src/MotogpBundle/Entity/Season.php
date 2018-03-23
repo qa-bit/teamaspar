@@ -4,6 +4,7 @@ namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Season
@@ -14,6 +15,12 @@ use MotogpBundle\Entity\Traits\ContentTrait;
 class Season
 {
     use ContentTrait;
+
+    public function __construct()
+    {
+        $this->circuits = new ArrayCollection();
+        $this->races = new ArrayCollection();
+    }
 
     /**
      * @var string

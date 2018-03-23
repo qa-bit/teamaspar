@@ -19,7 +19,7 @@ trait InSeasonTrait {
 
     /**
      * @ORM\ManyToOne(targetEntity="Season", cascade={"persist"})
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $season;
 

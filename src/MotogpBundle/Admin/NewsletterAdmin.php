@@ -69,7 +69,14 @@ class NewsletterAdmin extends AbstractAdmin
         $formMapper
             ->add('name', null, ['required' => true])
             ->add('nameEN', null, ['required' => true])
-            ->add('post', null, ['required' => true])
+            ->add('post', null, [
+                'query_builder' => function ($qb) {
+
+                    return $qb->createQueryBuilder('p')
+                        ->orderBy('p.publishedAt', 'DESC');
+                },
+                'required' => true
+            ])
             ->add('customerTypes', null, ['required' => true])
             ->add('groups')
             ->add('actions', ChoiceType::class, array(
