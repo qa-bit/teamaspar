@@ -8,3 +8,4 @@ chmod -R 777 var/logs &&
 chmod -R 777 web/uploads/ &&
 chmod -R 777 web/media &&
 sh install_front_deps.sh
+service httpd restart
