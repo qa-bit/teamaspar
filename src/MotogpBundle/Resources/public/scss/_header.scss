@@ -130,13 +130,19 @@
   z-index : 1024;
 }
 
-.header-social {
-  position: fixed;
-  bottom: 0;
-  padding: 0.33em;
+
+
+.header-social-list {
+  position : absolute !important;
+  bottom : 0;
   right: 0;
+  width: 14.4em !important;
+}
+
+.header-social {
+  padding: 0.33em;
   background: #f4f4f4;
-  width: 14.5em;
+  width: 100%;
   text-align: center;
   img {
     height : 1em;

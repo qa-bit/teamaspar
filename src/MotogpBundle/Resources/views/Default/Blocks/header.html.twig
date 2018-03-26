@@ -120,17 +120,17 @@
                         </div>
                     </li>
                 {% endfor %}
+                <li class="header-social-list">
+                    <div class="only-mobile header-social">
+                        <img blank href="{{ team.facebook }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_facebook.png') }}" alt="" />
+                        <img blank href="{{ team.twitter }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_twitter.png') }}" alt="" />
+                        <img blank href="{{ team.instagram }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_instagram.png') }}" alt="" />
+                        <img blank href="{{ team.youtube }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_youtube.png') }}" alt="" />
+                        <img class="link mobile-lang-selector" href="{{ (customUrlEN is defined) ? customUrlEN : enURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_en.png')}}" alt="" />
+                        <img class="link mobile-lang-selector" href="{{ (customUrl is defined) ? customUrl : esURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_es.png')}}" alt="" />
+                    </div>
+                </li>
             </ul>
-            <div class="col-xs-12">
-                <div class="only-mobile header-social">
-                    <img blank href="{{ team.facebook }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_facebook.png') }}" alt="" />
-                    <img blank href="{{ team.twitter }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_twitter.png') }}" alt="" />
-                    <img blank href="{{ team.instagram }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_instagram.png') }}" alt="" />
-                    <img blank href="{{ team.youtube }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_youtube.png') }}" alt="" />
-                    <img class="link mobile-lang-selector" href="{{ (customUrlEN is defined) ? customUrlEN : enURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_en.png')}}" alt="" />
-                    <img class="link mobile-lang-selector" href="{{ (customUrl is defined) ? customUrl : esURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_es.png')}}" alt="" />
-                </div>
-            </div>
         </div>
     </div>
     <div class="header-options">
