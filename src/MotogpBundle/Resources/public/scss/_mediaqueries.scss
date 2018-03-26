@@ -5,6 +5,14 @@ $breakpoint-tablet : "769px";
 
 @media (max-width: 1023px) {
 
+  .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+    background-color : transparent;
+  }
+
+
+  .staff-tabs .tab {
+    display: block !important;
+  }
 
   #header {
     box-shadow : none;
@@ -117,8 +125,6 @@ $breakpoint-tablet : "769px";
 
   .modality-list {
     list-style-type: none;
-    /* display: table; */
-    /* margin: auto; */
     float: left;
     margin: 0;
     padding: 0;
@@ -132,18 +138,17 @@ $breakpoint-tablet : "769px";
 
 
     .dropdown-menu li a:hover, .dropdown-submenu>a {
-      color : grey !important;
+      color : transparent !important;
     }
 
     .navbar-nav li a.dropdown-toggle:hover {
-      color : grey !important;
+      color : transparent !important;
     }
 
   }
 
   ul.nav{
     background: #F4F4F4;
-    min-height : 80vh;
     a {
       border-right : none !important;
     }
@@ -238,6 +243,16 @@ $breakpoint-tablet : "769px";
 
   .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
     background-color : transparent;
+  }
+
+  .rider-wrapper .rider-image {
+    height: auto;
+    width: 100%;
+    display : block;
+  }
+
+  .rider-media {
+    background : transparent !important;
   }
 
 
@@ -394,6 +409,10 @@ $breakpoint-tablet : "769px";
     overflow: hidden;
   }
 
+  .navbar-nav {
+    display : block;
+  }
+
 }
 
 @media screen and (min-width:1024px) {
@@ -519,8 +538,17 @@ $breakpoint-tablet : "769px";
 
 @media screen and (max-width: 1024px) and (orientation: landscape){
   .navbar .navbar-collapse {
-    max-height : 80vh;
     overflow-y: auto;
+  }
+}
+
+
+@media screen and (min-width : 640px) and (max-width: 1024px) {
+  .navbar-brand img {
+    position: relative;
+    top: -.5em;
+    height: 2.33em;
+    margin: auto;
   }
 }
 

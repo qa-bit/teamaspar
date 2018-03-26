@@ -256,16 +256,38 @@ $(document).ready(function () {
 
                 var isDefault = $(this).hasClass('default-open');
 
+                console.error('isDefault', isDefault);
+
                 $('.default-open').removeClass('default-open');
 
                 if (isDefault) {
                     $(window).delay(50).queue(function (next) {
+                        console.error($el);
                         $el.removeClass('open');
                         next();
                     });
                 }
 
             });
+
+
+            var calcMenuHeight = function () {
+                var menuHeight = $('.navbar-header').height();
+                var wHeight = $(window).height();
+
+                $('.nav.navbar-nav.only-mobile').css({'height' : wHeight - menuHeight + 'px', 'max-height' : wHeight - menuHeight + 'px'});
+
+
+            };
+
+
+            $(window).delay(100).queue(function (next) {
+                calcMenuHeight();
+                next();
+            });
+
+            $(window).on('resize', calcMenuHeight)
+
         },
         init : function () {
             this.resizeSliders();

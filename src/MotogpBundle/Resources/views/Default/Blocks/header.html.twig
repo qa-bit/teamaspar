@@ -24,11 +24,11 @@
                 <li>
                     {% if modality.slug == 'moto-gp' %}
                         <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-gp'}) }}">
-                            <img {% if modality.slug == 'moto-gp' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/assets/motogp.png')}}" alt="" />
+                            <img src="{{ asset('/bundles/motogp/img/assets/motogp.png')}}" alt="" />
                         </a>
                     {% else %}
                         <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}">
-                            <img {% if modality.slug == 'moto-gp' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/assets/moto3.png')}}" alt="" />
+                            <img src="{{ asset('/bundles/motogp/img/assets/moto3.png')}}" alt="" />
                         </a>
                     {% endif %}
                 </li>
@@ -96,7 +96,7 @@
                                     </div>
                                 </li>
 
-                                <li class="dropdown-submenu">
+                                <li class="dropdown-submenu team-staff-menu-mobile">
                                     {#{{ url('team_staff', {'modality': m.slug}) }}#}
                                     <a class="{{ route == 'team_staff' ? 'active' : '' }} nav-link dropdown-toggle" href="#" id="staff-drop">
                                         Team-staff
@@ -106,7 +106,7 @@
                                             {{ "history" | trans({}, 'staff') }}
                                         </a>
                                         {% for r in modalityRiders %}
-                                            <a class="dropdown-item" href="{{ url('team_staff', {'modality' : m.slug}) }}#rider-{{ r.number }}">{{ r.name }}&nbsp;{{ r.surname }}</a>
+                                            <a class="dropdown-item" href="{{ url('team_staff', {'modality' : m.slug}) }}#rider-{{ r.id }}">{{ r.name }}&nbsp;{{ r.surname }}</a>
                                         {% endfor %}
                                         <a href="{{ url('team_staff', {'modality' : m.slug}) }}#chart" class="dropdown-item">
                                             {{ "organization_chart" | trans({}, 'staff') }}
@@ -165,6 +165,5 @@
                 </a>
             </li>
         </ul>
-    </div>
     </div>
 </nav>

@@ -131,12 +131,16 @@
 }
 
 .header-social {
-  position : absolute;
-  bottom : 0;
-  padding : .33em;
-  right : 0;
+  position: fixed;
+  bottom: 0;
+  padding: 0.33em;
+  right: 0;
+  background: #f4f4f4;
+  width: 14.5em;
+  text-align: center;
   img {
     height : 1em;
     width : auto;
+    margin-left : .33em;
   }
 }
