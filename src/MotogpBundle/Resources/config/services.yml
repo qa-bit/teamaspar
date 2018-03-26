@@ -233,6 +233,14 @@ services:
         tags:
             - { name: twig.extension }
 
+
+    motogp.get_data_extension:
+        class: MotogpBundle\Twig\GetDataExtension
+        public: false
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }
+
     motogp.admin.customer_group:
         class: MotogpBundle\Admin\CustomerGroupAdmin
         arguments: [~, MotogpBundle\Entity\CustomerGroup, SonataAdminBundle:CRUD]

@@ -41,5 +41,19 @@ class RiderRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
             ;
     }
+
+    public function getHomeRidersInModalitySlug($modality)
+    {
+
+        return $this->createQueryBuilder('r')
+            ->innerJoin('r.modality', 'm')
+            ->where('r.showInHome = true')
+            ->andWhere('m.slug = :slug')
+            ->setParameter('slug', $modality)
+            ->orderBy('r._order','ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     
 }

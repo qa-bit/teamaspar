@@ -148,9 +148,7 @@ class PublicController extends Controller
 
         return $data;
     }
-
-
-
+    
 
     /**
      * @Route("/")
@@ -230,8 +228,6 @@ class PublicController extends Controller
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('imagenes_'.str_replace('-', '_',  $modalitySlug));
 
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithGalleryInModality($modality);
-
-
 
         return $this->render(
             'MotogpBundle:Default:Images/images.html.twig',
@@ -329,9 +325,7 @@ class PublicController extends Controller
         $rider = $em->getRepository(Rider::class)->findOneBySlug($request->get('slug'));
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
-
-
-
+        
 
         return $this->render(
             'MotogpBundle:Default:Riders/riders.html.twig',
@@ -342,7 +336,6 @@ class PublicController extends Controller
                 'rider' => $rider,
                 'modality' => $modality,
                 'team' => $this->getMainTeam()
-
             ]
         );
 

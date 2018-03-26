@@ -5,6 +5,53 @@ $breakpoint-tablet : "769px";
 
 @media (max-width: 1023px) {
 
+
+  #header {
+    box-shadow : none;
+    border-bottom : 0;
+  }
+
+  #header, #header .container-fluid {
+    background : transparent !important;
+  }
+
+  .container-fluid {
+    padding : 0;
+    margin : 0!important;
+  }
+
+  .navbar {
+    .container {
+      margin : 0;
+      padding : 0;
+    }
+
+    ul.nav {
+      margin : 0 !important;
+      float : right !important;;
+      li a {
+        margin : 0;
+        display:table;
+      }
+    }
+
+    .dropdown-menu {
+      padding-bottom: 0;
+      padding-top : 0;
+      position : static;
+      ul {
+        list-style-type : none;
+        padding-left: 0 !important;
+      }
+    }
+
+    .navbar-collapse {
+      margin : 0 !important;
+      padding: 0 !important;
+    }
+
+  }
+
   article.tcenter {
     width : 100% !important;
     max-width: 100% !important;
@@ -12,6 +59,7 @@ $breakpoint-tablet : "769px";
 
   .navbar-header {
     float: none;
+    background : white;
   }
   .navbar-toggle {
     display: block;
@@ -35,21 +83,36 @@ $breakpoint-tablet : "769px";
   }
   .navbar-nav>li {
     float: none;
+    border-bottom : 1px solid white;
   }
   .navbar-nav>li>a {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right : 14em;
+    width : 100%;
+  }
+
+  .navbar-nav li a:hover {
+    //color : white !important;
   }
 
   .navbar-brand {
-    width: 6em;
+    width: 33vw;
     top: 0;
     right: 5em;
-    position : static;
+    position: absolute;
+    left: 34vw;
   }
 
-  #header {
-    background : #fefefe;
+  .navbar-toggle {
+    border : none;
+    background : none;
+    background-color : white;
+  }
+
+  .nav>li {
+    display : table;
+    width : 100%;
   }
 
   .modality-list {
@@ -64,12 +127,23 @@ $breakpoint-tablet : "769px";
       height: 2em !important;
       top: .8em !important;
       left: 1em !important;
+      filter : saturate(0);
     }
+
+
+    .dropdown-menu li a:hover, .dropdown-submenu>a {
+      color : grey !important;
+    }
+
+    .navbar-nav li a.dropdown-toggle:hover {
+      color : grey !important;
+    }
+
   }
 
   ul.nav{
-    width : 100%;
-    text-align : right;
+    background: #F4F4F4;
+    min-height : 80vh;
     a {
       border-right : none !important;
     }
@@ -91,6 +165,80 @@ $breakpoint-tablet : "769px";
     padding-top : 1em;
   }
 
+
+
+  .dropdown-toggle {
+    width : 100%;
+  }
+
+  .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover,
+  .dropdown-toggle.parent, .open .dropdown-toggle.parent {
+    background-color : #918F90 !important;
+    color : white !important;
+  }
+
+  .navbar-nav li a.active.dropdown-toggle {
+    background-color: #656263 !important;
+    color: white !important;
+  }
+
+
+
+  .dropdown-toggle {
+    background-image : url('/bundles/motogp/img/assets/menu_plus.png');
+  }
+
+
+  .dropdown-submenu .dropdown-toggle {
+    background-image : url('/bundles/motogp/img/assets/menu_plus_black.png') !important;
+  }
+
+  .dropdown-submenu.open .dropdown-toggle {
+    background-image : url('/bundles/motogp/img/assets/menu_minus_black.png') !important;
+  }
+
+  .open .dropdown-toggle, .default-open .dropdown-toggle {
+    background-image : url('/bundles/motogp/img/assets/menu_minus.png');
+  }
+
+
+  .dropdown-menu li {
+    &:nth-child(even) {
+      background-color: #D3D3D3;
+    }
+    &:nth-child(odd) {
+      background-color: #E9E9E9;
+    }
+
+    a {
+      padding : .75em 5em;
+    }
+    a.active {
+      width : 100%;
+      font-weight : bolder;
+    }
+  }
+
+  .default-open>.dropdown-menu {
+    display: block !important;
+    width : 100%;
+  }
+
+
+  .modality-list img {
+    height: 2.66em !important;
+    top: 0.3em !important;
+    left: 1em !important;
+  }
+
+  .team-staff-menu {
+    display: none;
+  }
+
+
+  .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color : transparent;
+  }
 
 
 }
@@ -286,6 +434,8 @@ $breakpoint-tablet : "769px";
     font-size: .5em;
   }
 
+
+
 }
 
 
@@ -316,4 +466,61 @@ $breakpoint-tablet : "769px";
     background: linear-gradient(to top, rgba(66, 66, 66, 1) 0%, rgba(66, 66, 66, 0.01) 38%, rgba(66, 66, 66, 0) 100%) !important;
   }
 
+
+  .dropdown-submenu {
+    position : static;
+  }
+
+  .dropdown-submenu>.dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+    padding-left: 1em;
+  }
+
+  //.dropdown-submenu:hover>.dropdown-menu {
+  //  display: block;
+  //}
+
+  .dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+  }
+
+  .dropdown-submenu.pull-left {
+    float: none;
+  }
+
+  .dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+  }
+
+
+  .dropdown-toggle {
+    background-repeat: no-repeat;
+    background-size: auto 2em;
+    background-position: 90%;
+  }
+
+  .dropdown-submenu .dropdown-menu {
+    display : none;
+  }
+
+  .dropdown-submenu.open .dropdown-menu {
+    display : block !important;
+  }
+
 }
+
+
+@media screen and (max-width: 1024px) and (orientation: landscape){
+  .navbar .navbar-collapse {
+    max-height : 80vh;
+    overflow-y: auto;
+  }
+}
+
