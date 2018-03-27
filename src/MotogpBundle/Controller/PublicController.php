@@ -70,6 +70,7 @@ class PublicController extends Controller
 
         $data = [];
         $index = 0;
+        $insertedIds = [];
 
         foreach ($scores as $rider => $score) {
             $d = new \stdClass();
@@ -77,6 +78,9 @@ class PublicController extends Controller
             $d->score = $score;
             $d->index = $index + 1;
             $data[] = $d;
+            if ($index <= 11 && $d->rider->getRiderTeam()->isMain()) {
+                $insertedIds = [$d->rider->getId()];
+            }
 
             $index++;
         }
@@ -84,14 +88,14 @@ class PublicController extends Controller
 
         $reverseIndex = 11;
 
+
         if (count($data) > 12) {
 
             $reverse = array();
             $reverse = array_reverse($data);
 
             foreach ($reverse as $index => $d) {
-
-                if ($d->rider->getRiderTeam()->isMain()) {
+                if ($d->rider->getRiderTeam()->isMain() && !in_array($d->rider->getId(), $insertedIds)) {
                     $d->missing = true;
                     $data[$reverseIndex] = $d;
                     $reverseIndex--;
@@ -148,7 +152,7 @@ class PublicController extends Controller
 
         return $data;
     }
-    
+        
 
     /**
      * @Route("/")

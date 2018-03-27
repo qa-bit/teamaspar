@@ -238,6 +238,26 @@ class RiderTeam
     {
         $this->staffMembers = $staffMembers;
     }
+
+    public function getTeamMoto($modality) {
+
+        if (!$this->main) {
+            if (count($this->riders))
+                return $this->riders[0]->getMoto();
+        } else {
+            $moto = null;
+
+            foreach ($this->getRiders() as $rider) {
+                if ($rider->getModality()->getSlug() == $modality) {
+                    $moto = $rider->getMoto();
+                }
+            }
+
+            return $moto;
+        }
+
+        return null;
+    }
     
 }
 

@@ -29,7 +29,11 @@
                     <tr>
                         <td class="score-index">{{ l }}</td>
                         <td class="score-rider">{{ s.team.name | upper }} </td>
-                        <td class="score-rider">{{ s.team.riders[0].moto.builder.name }} </td>
+                        <td class="score-rider">
+                            {% if s.team.getTeamMoto(modality.slug) is not null %}
+                                {{ s.team.getTeamMoto(modality.slug).builder.name }}
+                            {% endif %}
+                        </td>
                         <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
                     </tr>
                     {% set l = l + 1 %}
