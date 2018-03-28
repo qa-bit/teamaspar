@@ -20,3 +20,4 @@
 /src/MotogpBundle/Resources/public/vendor/node_modules/*
 /web/uploads/
 /web/media/cache/*
+/web/static/newsletters/*
