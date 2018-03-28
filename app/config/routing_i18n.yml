@@ -22,12 +22,12 @@ riders:
     locales: { "es": "/es/{modality}/piloto/{slug}", "en": "/en/{modality}/rider/{slug}" }
     defaults: { _controller: MotogpBundle:Public:riders }
 
-sponsors:
-    locales: { "es": "/es/{modality}/sponsors", "en": "/en/{modality}/sponsors" }
+partners:
+    locales: { "es": "/es/{modality}/partners", "en": "/en/{modality}/partners" }
     defaults: { _controller: MotogpBundle:Public:sponsors }
 
-sponsor:
-    locales: { "es": "/es/{modality}/sponsor/{slug}", "en": "/en/{modality}/sponsor/{slug}" }
+partner:
+    locales: { "es": "/es/{modality}/partner/{slug}", "en": "/en/{modality}/partner/{slug}" }
     defaults: { _controller: MotogpBundle:Public:sponsor }
 
 posts:

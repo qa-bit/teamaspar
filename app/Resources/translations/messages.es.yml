@@ -73,7 +73,7 @@ news: Noticias
 images: Imágenes
 videos: Vídeos
 pilotos: Pilotos
-sponsors: Sponsors
+sponsors: Partners
 register: Registro
 motos: Motos
 contact: Contacto
@@ -82,7 +82,7 @@ privacy: Politica de privacidad
 terms: Terminos y condiciones
 cookies_policy: Politica de cookies
 public: Aficionado
-sponsor: Sponsor
+sponsor: Partner
 mediaType: Tipo (medio)
 media: Medio
 media_type: Tipo de medio
@@ -92,3 +92,6 @@ media_tv: TV
 media_web: Web
 media_other: Otro
 name_in_use: Este nombre ya está registrado.
+"Sponsor": Partner
+"Sponsors": Partners
+"Sponsor List": Partners

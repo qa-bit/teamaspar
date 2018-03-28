@@ -15,8 +15,8 @@
             <row>
                 <columns>
                     <center>
-                        {% set img_url = 'static/header_moto-gp.jpg' %}
-                        <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-gp'}) }}">
+                        {% set img_url = 'static/newsletters/header_' ~ post.modality.slug ~ '.jpg' %}
+                        <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
                             <img src="{{ img_url  |  imagine_filter('email_header') }}" />
                         </a>
                     </center>
@@ -42,28 +42,6 @@
                 {% set medias = post.gallery.medias %}
             {% endif %}
 
-            {% for row in medias | batch(3, '')%}
-                <row>
-                    <columns class="medias">
-                        {% for m in row %}
-
-                            {% if m is not null and m != '' %}
-                                {#<columns>#}
-                                {% set img_url = m | media_public_url(context ~ '_xlarge') %}
-                                {% if loop.index % 3 == 0 %}
-                                    <img class="media-image media-image-{{ loop.index % 3 }}" src="{{ img_url  |  imagine_filter('email_thumbnail') }}" />
-                                {% else %}
-                                    <img class="media-image media-image-{{ loop.index % 3 }}" src="{{ img_url  |  imagine_filter('email_thumbnail_right') }}" />
-                                {% endif %}
-                                {#</columns>#}
-                            {% else %}
-                                {#<columns></columns>#}
-                            {% endif %}
-                        {% endfor %}
-                    </columns>
-                </row>
-            {% endfor %}
-
             <row>
                 <columns class="smalltext content content-centered">
                     <h3>{{ title | upper  }}</h3>
@@ -78,13 +56,32 @@
                 </columns>
             </row>
 
+
+            {% for row in medias | batch(3, '')%}
+                <row>
+                    <columns class="medias">
+                        {% for m in row %}
+                            {% if m is not null and m != '' %}
+                                {% set img_url = m | media_public_url(context ~ '_xlarge') %}
+                                {% if loop.index % 3 == 0 %}
+                                    <img class="media-image media-image-{{ loop.index % 3 }}" src="{{ img_url  |  imagine_filter('email_thumbnail') }}" />
+                                {% else %}
+                                    <img class="media-image media-image-{{ loop.index % 3 }}" src="{{ img_url  |  imagine_filter('email_thumbnail_right') }}" />
+                                {% endif %}
+                            {% else %}
+                            {% endif %}
+                        {% endfor %}
+                    </columns>
+                </row>
+            {% endfor %}
+
             <spacer size="16"></spacer>
 
             <row>
                 <columns>
                     <center>
-                        {% set img_url = 'static/footer_moto-gp.jpg' %}
-                        <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-gp'}) }}">
+                        {% set img_url = 'static/newsletters/footer_' ~ post.modality.slug ~ '.jpg' %}
+                        <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
                             <img src="{{ img_url  |  imagine_filter('email_header') }}" />
                         </a>
                     </center>

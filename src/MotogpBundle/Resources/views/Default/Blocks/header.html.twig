@@ -64,7 +64,7 @@
                     </div>
                 </li>
                 <li><a class="{{ route == 'team_staff' ? 'active' : '' }}" href="{{ url('team_staff', {'modality': modality.slug}) }}">Team-staff</a></li>
-                <li><a class="{{ route == 'sponsors' ? 'active' : '' }}"   href="{{ url('sponsors', {'modality': modality.slug}) }}">Sponsors</a></li>
+                <li><a class="{{ route == 'partners' ? 'active' : '' }}"   href="{{ url('partners', {'modality': modality.slug}) }}">Partners</a></li>
                 <li><a class="{{ route == 'register' ? 'active' : '' }}"   href="{{ url('public_register', {'modality': modality.slug}) }}">{{ "register" | trans }}</a></li>
             </ul>
             <ul class="nav navbar-nav only-mobile">
@@ -114,7 +114,7 @@
                                     </div>
                                 </li>
 
-                                <li><a class="{{ route == 'sponsors' ? 'active' : '' }}"   href="{{ url('sponsors', {'modality': m.slug}) }}">Sponsors</a></li>
+                                <li><a class="{{ route == 'partners' ? 'active' : '' }}"   href="{{ url('partners', {'modality': m.slug}) }}">Partners</a></li>
                                 <li><a class="{{ route == 'register' ? 'active' : '' }}"   href="{{ url('public_register', {'modality': m.slug}) }}">{{ "register" | trans }}</a></li>
                             </ul>
                         </div>

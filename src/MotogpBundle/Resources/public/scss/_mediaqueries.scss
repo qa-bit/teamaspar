@@ -5,6 +5,27 @@ $breakpoint-tablet : "769px";
 
 @media (max-width: 1023px) {
 
+  .rider-biografy > div {
+    padding : .5em;
+    text-align: justify;
+  }
+
+  .rider-description .rider-name, .track-records {
+    padding : 3em 1em;
+    ul {
+      padding : 0 1.2em;
+    }
+  }
+
+  .track-records>div {
+    padding : 0;
+  }
+
+
+  html[route="index"] #swiper-inicio {
+    margin-bottom : 1em;
+  }
+
   .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
     background-color : transparent;
   }
@@ -342,8 +363,8 @@ $breakpoint-tablet : "769px";
   }
 
   .staff-history {
-    padding: 2.5% !important;
-    width: 95%;
+    padding: 2em !important;
+    width: 100%;
     text-align: justify;
   }
 
@@ -444,7 +465,7 @@ $breakpoint-tablet : "769px";
 
   .staff-history {
     p {
-      word-break: break-all;
+      word-break: break-word;
       max-width: 100%;
     }
   }

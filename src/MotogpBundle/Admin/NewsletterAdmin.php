@@ -159,11 +159,12 @@ class NewsletterAdmin extends AbstractAdmin
 
         $html = $templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html');
 
+
         $subjectTitle = $locale == 'es' ? $object->getName() : $object->getNameEN();
 
         $message = \Swift_Message::newInstance()
             ->setSubject('ANGEL NIETO TEAM - '.$subjectTitle)
-            ->setFrom($from)
+            ->setFrom($from, 'Ángel Nieto Team')
             ->setBcc($recipients)
             ->setReplyTo($from)
             ->setContentType("text/html")
@@ -191,7 +192,6 @@ class NewsletterAdmin extends AbstractAdmin
 
             $this->sendMail($object, 'en');
             $this->sendMail($object, 'es');
-
             $object->setLastSendAt(new \DateTime());
 
         }
