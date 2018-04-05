@@ -57,16 +57,20 @@
             </row>
 
 
-            {% for row in medias | batch(3, '')%}
+            {% for row in medias | batch(4, '')%}
                 <row>
                     <columns class="medias">
                         {% for m in row %}
                             {% if m is not null and m != '' %}
                                 {% set img_url = m | media_public_url(context ~ '_xlarge') %}
-                                {% if loop.index % 3 == 0 %}
-                                    <img class="media-image media-image-{{ loop.index % 3 }}" src="{{ img_url  |  imagine_filter('email_thumbnail') }}" />
+                                {% if loop.index % 4 == 0 %}
+                                    <a target="_blank" href="{{ app.request.getSchemeAndHttpHost() ~ asset(img_url) }}">
+                                        <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_filter('email_thumbnail') }}" />
+                                    </a>
                                 {% else %}
-                                    <img class="media-image media-image-{{ loop.index % 3 }}" src="{{ img_url  |  imagine_filter('email_thumbnail_right') }}" />
+                                    <a target="_blank" href="{{ app.request.getSchemeAndHttpHost() ~ asset(img_url) }}">
+                                        <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_filter('email_thumbnail_right') }}" />
+                                    </a>
                                 {% endif %}
                             {% else %}
                             {% endif %}

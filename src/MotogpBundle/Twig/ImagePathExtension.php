@@ -19,7 +19,9 @@ class ImagePathExtension extends \Twig_Extension
 
     public function getMediaPublicUrl($media, string $format)
     {
-        
+
+        if ($media == null) return '';
+
         $provider = $this->container->get($media->getProviderName());
 
         return $provider->generatePublicUrl($media, $format);

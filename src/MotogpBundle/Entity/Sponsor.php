@@ -27,6 +27,12 @@ class Sponsor
      */
     private $webUrl;
 
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $enabled;
+
 
     /**
      * @var string
@@ -97,6 +103,21 @@ class Sponsor
         $this->webUrlEN = $webUrlEN;
     }
 
-    
+    /**
+     * @return mixed
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param mixed $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
 }
 

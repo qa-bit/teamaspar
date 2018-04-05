@@ -15,6 +15,7 @@ class SponsorRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder('s')
             ->where('s.bn != true')
+            ->andWhere('s.enabled = true')
             ->getQuery()
             ->getResult()
             ;
@@ -24,6 +25,7 @@ class SponsorRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder('s')
             ->where('s.bn = true')
+            ->andWhere('s.enabled = true')
             ->getQuery()
             ->getResult()
             ;
@@ -32,10 +34,10 @@ class SponsorRepository extends \Doctrine\ORM\EntityRepository
 
     public function getColorByModality($modality)
     {
-
         return $this->createQueryBuilder('s')
             ->join('s.modalities', 'm')
             ->where('m.id = :modality')
+            ->andWhere('s.enabled = true')
             ->andWhere('s.bn != true')
             ->setParameter('modality', $modality->getId())
             ->orderBy('s._order', 'ASC')
@@ -50,6 +52,7 @@ class SponsorRepository extends \Doctrine\ORM\EntityRepository
             ->join('s.modalities', 'm')
             ->where('m.id = :modality')
             ->andWhere('s.bn = true')
+            ->andWhere('s.enabled = true')
             ->setParameter('modality', $modality->getId())
             ->orderBy('s._order', 'ASC')
             ->getQuery()

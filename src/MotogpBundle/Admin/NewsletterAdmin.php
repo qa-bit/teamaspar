@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class NewsletterAdmin extends AbstractAdmin
@@ -57,14 +58,13 @@ class NewsletterAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
 
-        if (!count($this->getSubject()->getCustomerTypes())) {
-            $em = $this->modelManager->getEntityManager(CustomerType::class);
-            $ct = $em->getRepository(CustomerType::class)->findOneBySlug('public');
-
-            $this->getSubject()->addCustomerType($ct);
-
-        }
-
+//        if (!count($this->getSubject()->getCustomerTypes())) {
+//            $em = $this->modelManager->getEntityManager(CustomerType::class);
+//            $ct = $em->getRepository(CustomerType::class)->findOneBySlug('public');
+//
+//            $this->getSubject()->addCustomerType($ct);
+//
+//        }
 
         $formMapper
             ->add('name', null, ['required' => true])
@@ -75,7 +75,7 @@ class NewsletterAdmin extends AbstractAdmin
                     return $qb->createQueryBuilder('p')
                         ->orderBy('p.publishedAt', 'DESC');
                 },
-                'required' => true
+                'required' => false
             ])
             ->add('customerTypes', null, ['required' => true])
             ->add('groups')
@@ -205,6 +205,38 @@ class NewsletterAdmin extends AbstractAdmin
 
     public function prePersist($object) {
         $this->saveHook($object);
+    }
+
+
+    public function validate(ErrorElement $errorElement, $object ) {
+
+        $categories = $object->getCustomerType();
+
+        $groups = $object->getGroups();
+
+        $post = $object->getPost();
+
+        if ( $groups === null || !count($groups)) {
+
+            $groups_error = 'Elija al menos un grupo.';
+            $errorElement->with( 'groups' )->addViolation( $groups_error )->end();
+
+        }
+
+        if ( $categories === null || !count($categories)) {
+
+            $error = 'Elija al menos una categoría.';
+            $errorElement->with( 'customerTypes' )->addViolation( $error )->end();
+
+        }
+
+        if ( $post === null) {
+
+            $error = 'Seleccione una publicación.';
+            $errorElement->with( 'post' )->addViolation( $error )->end();
+
+        }
+
     }
 
 }

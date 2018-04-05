@@ -31,24 +31,26 @@
                 </div>
             </div>
             <br/><br/>
-            {#{% include "MotogpBundle:Default:Posts/post-galleries.html.twig" with {'post' : post }%}#}
+
+            {% set g = post %}
+
+
+            {% if post.gallery is not empty %}
+                {% set g = post.gallery %}
+            {% endif %}
+
+            {% if g is not null and g is not empty and g.medias is not null and g.medias is not empty %}
+                {% include 'MotogpBundle:Default:Motos/motos-gallery.html.twig' with {'gallery' : g} %}
+            {% endif %}
+
+            <div class="text-center">
+                <img src="{{ asset('/bundles/motogp/img/assets/up.png') }}" alt="" class="up-arrow">
+                <br/><br/>
+            </div>
+
         </div>
+
     </div>
 
-    {% set g = post %}
-
-
-    {% if post.gallery is not empty %}
-        {% set g = post.gallery %}
-    {% endif %}
-
-    {% if g is not null and g is not empty and g.medias is not null and g.medias is not empty %}
-        {% include 'MotogpBundle:Default:Motos/motos-gallery.html.twig' with {'gallery' : g} %}
-    {% endif %}
-
-    <div class="text-center">
-        <img src="{{ asset('/bundles/motogp/img/assets/up.png') }}" alt="" class="up-arrow">
-        <br/><br/>
-    </div>
     {% include 'MotogpBundle:Default:footer.html.twig' %}
 {% endblock %}

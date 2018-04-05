@@ -36,7 +36,7 @@ trait InModalityTrait {
     /**
      * @param mixed $modality
      */
-    public function setModality(Modality $modality)
+    public function setModality($modality)
     {
         $this->modality = $modality;
     }

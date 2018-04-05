@@ -13,6 +13,7 @@ use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
 use MotogpBundle\Entity\Rider;
 use Cocur\Slugify\Slugify;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\CoreBundle\Validator\ErrorElement;
 
 class PostAdmin extends AbstractAdmin
 {
@@ -82,8 +83,8 @@ class PostAdmin extends AbstractAdmin
                         )
                         ->add('modality', null,
                             [
-                                'required' => true,
-                                'label' => 'Modalidad',
+                                'required' => false,
+                                'label' => 'Modalidad *',
                                 'attr' => $mediumColumn
                             ]
                         )
@@ -227,4 +228,19 @@ class PostAdmin extends AbstractAdmin
             array('MotogpBundle:Admin:admin.theme.html.twig')
         );
     }
+
+
+    public function validate(ErrorElement $errorElement, $object ) {
+
+        $modality = $object->getModality();
+
+        if ( $modality === null) {
+
+            $error = 'Seleccione una modalidad.';
+            $errorElement->with( 'modality' )->addViolation( $error )->end();
+
+        }
+
+    }
+
 }
