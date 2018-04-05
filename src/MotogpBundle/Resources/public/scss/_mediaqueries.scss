@@ -31,8 +31,8 @@ $breakpoint-tablet : "769px";
   }
 
 
-  .staff-tabs .tab {
-    display: block !important;
+  .staff-tabs .tab>div {
+    padding-top : 4em;
   }
 
   #header {

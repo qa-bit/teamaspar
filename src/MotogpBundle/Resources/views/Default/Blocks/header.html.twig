@@ -102,20 +102,20 @@
                                         Team-staff
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="staff-riders-{{ m.slug }}">
-                                        <a href="{{ url('team_staff', {'modality' : m.slug}) }}#history" class="dropdown-item">
+                                        <a link="history" href="{{ url('team_staff', {'modality' : m.slug}) }}#history" class="dropdown-item">
                                             {{ "history" | trans({}, 'staff') }}
                                         </a>
                                         {% for r in modalityRiders %}
-                                            <a class="dropdown-item" href="{{ url('team_staff', {'modality' : m.slug}) }}#rider-{{ r.id }}">{{ r.name }}&nbsp;{{ r.surname }}</a>
+                                            <a link="rider-{{ r.id }}" class="dropdown-item" href="{{ url('team_staff', {'modality' : m.slug}) }}#rider-{{ r.id }}">{{ r.name }}&nbsp;{{ r.surname }}</a>
                                         {% endfor %}
-                                        <a href="{{ url('team_staff', {'modality' : m.slug}) }}#chart" class="dropdown-item">
+                                        <a link="chart" href="{{ url('team_staff', {'modality' : m.slug}) }}#chart" class="dropdown-item">
                                             {{ "organization_chart" | trans({}, 'staff') }}
                                         </a>
                                     </div>
                                 </li>
 
-                                <li><a class="{{ route == 'partners' ? 'active' : '' }}"   href="{{ url('partners', {'modality': m.slug}) }}">Partners</a></li>
-                                <li><a class="{{ route == 'register' ? 'active' : '' }}"   href="{{ url('public_register', {'modality': m.slug}) }}">{{ "register" | trans }}</a></li>
+                                <li><a class="{{ route == 'partners' ? 'active' : '' }}"  href="{{ url('partners', {'modality': m.slug}) }}">Partners</a></li>
+                                <li><a class="{{ route == 'register' ? 'active' : '' }}"  href="{{ url('public_register', {'modality': m.slug}) }}">{{ "register" | trans }}</a></li>
                             </ul>
                         </div>
                     </li>

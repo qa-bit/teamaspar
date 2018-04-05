@@ -243,11 +243,27 @@ $(document).ready(function () {
         },
         menus : function () {
             $('.dropdown-submenu a').on('click', function (e) {
+
                 e.stopPropagation();
+
                 if ($(this).parent().hasClass('open'))
                     $(this).parent().removeClass('open');
                 else
                     $(this).parent().addClass('open');
+
+
+                if ( $('html').attr('route') == 'team_staff' && $(this).attr('link') ) {
+                    var id = '#' + $(this).attr('link');
+                    e.preventDefault();
+                    var offset = -$('.navbar-header').height();
+                    $('a[link]').removeClass('active');
+                    $(this).addClass('active');
+                    $('.tab').removeClass('active');
+                    $(id).addClass('active');
+                    $(window).scrollTo($(id), {'offset' : offset });
+                    $('.navbar-toggle').trigger('click');
+                }
+
             });
 
             $('.dropdown').click(function () {
@@ -255,8 +271,6 @@ $(document).ready(function () {
                 var $el = $(this);
 
                 var isDefault = $(this).hasClass('default-open');
-
-                console.error('isDefault', isDefault);
 
                 $('.default-open').removeClass('default-open');
 
@@ -283,10 +297,17 @@ $(document).ready(function () {
 
             $(window).delay(100).queue(function (next) {
                 calcMenuHeight();
+
                 next();
             });
 
-            $(window).on('resize', calcMenuHeight)
+            $(window).on('resize', calcMenuHeight);
+
+            $hash = window.location.hash;
+
+
+
+
 
         },
         init : function () {
@@ -302,7 +323,20 @@ $(document).ready(function () {
             this.staffTabs();
             this.newsletters();
             this.socialMedia();
-            this.menus()
+            this.menus();
+
+
+            $(window).delay(200).queue(function (next) {
+                
+                if ( $('html').attr('route') == 'team_staff' && $hash ) {
+                    var offset = -$('.navbar-header').height();
+                    console.error($hash, offset);
+                    $($hash).addClass('active');
+                    $(window).scrollTo($($hash), {'offset' : offset });
+                }
+
+                next();
+            })
 
         }
     };

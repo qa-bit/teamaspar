@@ -21,3 +21,12 @@
 /web/uploads/
 /web/media/cache/*
 /web/static/newsletters/*
+.idea/
+src/Application/Sonata/MediaBundle/Command/
+src/Application/Sonata/MediaBundle/Controller/
+src/Application/Sonata/MediaBundle/DependencyInjection/
+src/Application/Sonata/MediaBundle/Resources/config/routing/
+src/Application/Sonata/MediaBundle/Resources/views/
+src/MotogpBundle/Resources/public/vendor/node_modules/
+web/media/
+web/var/
