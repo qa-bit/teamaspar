@@ -83,9 +83,10 @@ $(document).ready(function () {
                 CKEDITOR.instances[$(formBaseName + 'description').attr('id').replace('#', null)].setData(data.description);
                 CKEDITOR.instances[$(formBaseName + 'descriptionEN').attr('id').replace('#', null)].setData(data.descriptionEN);
 
-                $(formBaseName + 'gallery').val(data.gallery.id);
 
+                if (data.gallery)
 
+                    $(formBaseName + 'gallery').val(data.gallery.id);
 
                 var mediasDZ = $('#post-medias').get(0).dropzone;
 
