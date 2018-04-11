@@ -1,6 +1,25 @@
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
 
 {% block side_bar_after_nav %}
+
+    <div id="modal-window" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <div baseData="{{ kernelRootDir }}"></div>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700" media="all">
     <div class="form-group">
 
@@ -101,4 +120,5 @@
         Dropzone.autoDiscover = false;
     </script>
     <script src="{{ asset('bundles/motogp/js/admin/addFeaturedMedia.js') }}?v={{ "now" | date('dmyhs') }}"></script>
+    <script src="{{ asset('bundles/motogp/js/admin/importPost.js') }}?v={{ "now" | date('dmyhs') }}"></script>
 {% endblock %}

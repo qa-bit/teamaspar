@@ -5,6 +5,8 @@ namespace MotogpBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use MotogpBundle\Entity\Traits\ContentTrait;
+use MotogpBundle\Entity\Traits\HasFooterImageTrait;
+use MotogpBundle\Entity\Traits\HasHeaderImageTrait;
 
 /**
  * Modality
@@ -14,7 +16,7 @@ use MotogpBundle\Entity\Traits\ContentTrait;
  */
 class Modality
 {
-    use ContentTrait;
+    use ContentTrait, HasFooterImageTrait, HasHeaderImageTrait;
 
     /**
      * @var string

@@ -6,6 +6,13 @@ services:
             - { name: sonata.admin, manager_type: orm, group: admin, label: PostMedia }
         public: true
 
+    application_sonata_media.admin.newsletter_media:
+        class: Application\Sonata\MediaBundle\Admin\NewsLetterMediaAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\NewsLetterMedia, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: NewsLetterMedia }
+        public: true
+
     application_sonata_media.admin.rider_media:
         class: Application\Sonata\MediaBundle\Admin\RiderMediaAdmin
         arguments: [~, Application\Sonata\MediaBundle\Entity\RiderMedia, SonataAdminBundle:CRUD]

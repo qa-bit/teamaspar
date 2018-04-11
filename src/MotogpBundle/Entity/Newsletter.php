@@ -7,6 +7,7 @@ use MotogpBundle\Entity\Traits\ContentTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use MotogpBundle\Entity\CustomerType;
 use MotogpBundle\Entity\Traits\InGroupsTrait;
+use MotogpBundle\Entity\Traits\HasMediaTrait;
 
 /**
  * Newsletter
@@ -16,7 +17,13 @@ use MotogpBundle\Entity\Traits\InGroupsTrait;
  */
 class Newsletter
 {
-   use ContentTrait, InGroupsTrait;
+   use ContentTrait, InGroupsTrait, HasMediaTrait;
+
+    public function __construct()
+    {
+        $this->medias = new ArrayCollection();
+        $this->customerTypes = new ArrayCollection();
+    }
 
     /**
      * @ORM\ManyToOne(targetEntity="Post", cascade={"persist"})
@@ -30,6 +37,20 @@ class Newsletter
     protected $customerTypes;
 
 
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $imported;
+
+
+    /**
+     * @var PostMedia
+     * @ORM\OneToMany(targetEntity="Application\Sonata\MediaBundle\Entity\NewsLetterMedia", mappedBy="owner", cascade={"all"}, orphanRemoval=true)
+     */
+    private $medias;
+
+
 
     /**
      * @var \DateTime
@@ -37,10 +58,12 @@ class Newsletter
      */
     protected $lastSendAt;
 
-    public function __construct()
-    {
-        $this->customerTypes = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity="Gallery", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    protected $gallery;
+
 
     /**
      * @return mixed
@@ -105,6 +128,89 @@ class Newsletter
     {
         $this->lastSendAt = $lastSendAt;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isImported()
+    {
+        return $this->imported;
+    }
+
+    /**
+     * @param boolean $imported
+     */
+    public function setImported($imported)
+    {
+        $this->imported = $imported;
+    }
+
+    /**
+     * @return Media
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+
+    /**
+     * @return Media
+     */
+    public function getMedia()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * @param Media $medias
+     */
+    public function setMedia(PostMedia $media)
+    {
+        $this->medias = $media;
+    }
+
+    /**
+     * @param $category
+     * @return $this
+     */
+    public function addMedia($media)
+    {
+        if (!$this->medias->contains($media)) {
+            $media->setOwner($this);
+            $this->medias->add($media);
+        }
+    }
+
+
+    /**
+     * @param $category
+     * @return $this
+     */
+    public function addMedias($media)
+    {
+        if (!$this->medias->contains($media)) {
+            $media->setOwner($this);
+            $this->medias->add($media);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
+
+    /**
+     * @param mixed $gallery
+     */
+    public function setGallery($gallery)
+    {
+        $this->gallery = $gallery;
+    }
+
 
 }
 

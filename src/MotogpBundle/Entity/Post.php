@@ -13,6 +13,8 @@ use MotogpBundle\Entity\Traits\InRiderTrait;
 use MotogpBundle\Entity\Traits\InSeasonTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Post
@@ -21,6 +23,15 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity("name")
  * @UniqueEntity("nameEN")
  * @ORM\Entity(repositoryClass="MotogpBundle\Repository\PostRepository")
+ * @ApiResource(
+ *      itemOperations={
+ *          "get"={"method"="GET"}
+ *     },
+ *     attributes={
+ *     "normalization_context"={"groups"={"read"}},
+ *     "denormalization_context"={"groups"={"write"}}
+ *     }
+ * )
  */
 class Post
 {
@@ -51,7 +62,7 @@ class Post
 
     /**
      * @var PostMedia
-     *
+     * @Groups("read")
      * @ORM\OneToMany(targetEntity="Application\Sonata\MediaBundle\Entity\PostMedia", mappedBy="owner", cascade={"all"}, orphanRemoval=true)
      */
     private $medias;
@@ -59,6 +70,7 @@ class Post
 
     /**
      * @ORM\ManyToOne(targetEntity="Gallery", cascade={"persist"})
+     * @Groups("read")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $gallery;
@@ -66,7 +78,7 @@ class Post
 
     /**
      * @var \DateTime
-     *
+     * @Groups("read")
      * @ORM\Column(type="date", nullable=true)
      */
     private $publishedAt;

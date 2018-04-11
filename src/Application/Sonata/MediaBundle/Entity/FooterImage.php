@@ -14,21 +14,23 @@ use Doctrine\ORM\Mapping as ORM;
  * References:
  * @link http://www.doctrine-project.org/projects/orm/2.0/docs/reference/working-with-objects/en
  */
-class Logo extends BaseMedia
+class FooterImage extends BaseMedia
 {
 
     public function __construct()
     {
-        $this->context        = 'logo';
+        $this->context        = 'footerimage';
         $this->providerName   = 'sonata.media.provider.image';
         $this->providerStatus = 1;
         $this->providerReference = "reference";
         $this->providerMetadata = [];
         $this->enabled = true;
-        $this->name           = 'post-image-'.(new \DateTime())->format('ymdms');
+        $this->name           = 'footer-image-'.(new \DateTime())->format('ymdms');
         $this->featured = false;
     }
-    
+
+
+
     /**
      * @var int $id
      */

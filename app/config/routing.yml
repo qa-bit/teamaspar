@@ -38,3 +38,9 @@ _sonata_admin:
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+
+_api_platform:
+    resource: api-platform/routing.yml
+    type: 'api_platform'
+    prefix:   /api

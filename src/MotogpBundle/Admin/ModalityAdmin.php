@@ -2,15 +2,18 @@
 
 namespace MotogpBundle\Admin;
 
+use MotogpBundle\Admin\Media\HeaderImageAdminTrait;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use MotogpBundle\Admin\Media\FooterImageAdminTrait;
 
 class ModalityAdmin extends AbstractAdmin
 {
+    use FooterImageAdminTrait, HeaderImageAdminTrait;
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -56,6 +59,20 @@ class ModalityAdmin extends AbstractAdmin
             ->add('_order')
             ->end()
             ->end()
+            ->tab('Newsletters')
+            ->with(null)
+            ->add('headerImage', 'sonata_type_admin', array(
+                'label' => 'Cabecera',
+                'required' => false,
+                'attr' => ['container_classes' => 'clearfix col-md-6']
+            ))
+            ->add('footerImage', 'sonata_type_admin', array(
+                'label' => 'Footer',
+                'required' => false,
+                'attr' => ['container_classes' => 'clearfix col-md-6']
+            ))
+            ->end()
+            ->end()
             ->tab('SEO')
             ->with(null)
             ->add('seoTitle')
@@ -64,8 +81,6 @@ class ModalityAdmin extends AbstractAdmin
             ->add('seoKeywordsEN')
             ->end()
             ->end()
-//            ->add('createdAt')
-//            ->add('updatedAt')
         ;
     }
 
@@ -99,4 +114,29 @@ class ModalityAdmin extends AbstractAdmin
             ->remove('delete');
         //}
     }
+
+
+    public function saveHook($object) {
+        $this->saveFooterImage($object);
+        $this->saveHeaderImage($object);
+    }
+
+    public function preUpdate($object) {
+
+
+        $this->saveHook($object);
+    }
+
+    public function prePersist($object) {
+        $this->saveHook($object);
+    }
+
+    public function getFormTheme()
+    {
+        return array_merge(
+            parent::getFormTheme(),
+            array('MotogpBundle:Admin:admin.theme.html.twig')
+        );
+    }
+
 }

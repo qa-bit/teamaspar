@@ -22,6 +22,7 @@ trait ContentTrait {
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @Groups("read")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -29,7 +30,7 @@ trait ContentTrait {
     
     /**
      * @var string
-     *
+     * @Groups("read")
      * @ORM\Column(type="string", nullable=false)
      */
     private $name;
@@ -37,7 +38,7 @@ trait ContentTrait {
 
     /**
      * @var string
-     *
+     * @Groups("read")
      * @ORM\Column(type="string", nullable=true)
      * @Groups({"context"})
      */
@@ -45,7 +46,7 @@ trait ContentTrait {
 
     /**
      * @var string
-     *
+     * @Groups("read")
      * @ORM\Column(type="text", nullable=true)
      * @Groups({"context"})
      */
@@ -54,7 +55,7 @@ trait ContentTrait {
 
     /**
      * @var string
-     *
+     * @Groups("read")
      * @ORM\Column(type="text", nullable=true)
      */
     private $descriptionEN;
@@ -115,7 +116,7 @@ trait ContentTrait {
 
     /**
      * @var string
-     *
+     * 
      * @ORM\Column(type="string", nullable=true)
      */
     private $slug;

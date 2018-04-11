@@ -118,7 +118,7 @@ $(document).ready(function () {
                 }
             );
 
-
+            
             if ( $('form').attr('editing') === "true") {
                 var i = 0;
                 var baseUrl = $('html').attr('baseUrl').replace('app_dev.php', '').replace('app.php', '');

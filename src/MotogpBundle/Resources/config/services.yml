@@ -153,6 +153,13 @@ services:
             - { name: sonata.admin, manager_type: orm, group: admin, label: PostMedia, show_in_dashboard: false }
         public: true
 
+    motogp.admin.newsletter_media:
+        class: Application\Sonata\MediaBundle\Admin\NewsLetterMediaAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\NewsLetterMedia, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: PostMedia, show_in_dashboard: false }
+        public: true
+
     motogp.admin.rider_media:
         class: Application\Sonata\MediaBundle\Admin\RiderMediaAdmin
         arguments: [~, Application\Sonata\MediaBundle\Entity\RiderMedia, SonataAdminBundle:CRUD]
@@ -179,6 +186,20 @@ services:
         arguments: [~, Application\Sonata\MediaBundle\Entity\Logo, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Logo, show_in_dashboard: false}
+        public: true
+
+    motogp.admin.footerimage:
+        class: Application\Sonata\MediaBundle\Admin\FooterImageAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\FooterImage, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: FooterImage, show_in_dashboard: false}
+        public: true
+
+    motogp.admin.headerimage:
+        class: Application\Sonata\MediaBundle\Admin\HeaderImageAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\HeaderImage, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: HeaderImage, show_in_dashboard: false}
         public: true
 
     motogp.admin.homeimage:

@@ -8,6 +8,8 @@
 
 namespace MotogpBundle\Entity\Traits;
 
+
+use Application\Sonata\MediaBundle\Entity\FeaturedMedia;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,30 +17,29 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * ContentTrait
  */
-trait HasMediaTrait {
+trait HasHeaderImageTrait {
 
     /**
      * @var \Application\Sonata\MediaBundle\Entity\FeaturedMedia
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\FeaturedMedia", cascade={"persist"}, fetch="LAZY")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\HeaderImage", cascade={"persist"}, fetch="LAZY")
      * @ORM\JoinColumn(onDelete="CASCADE")
-     * @Groups("read")
      */
-    protected $featuredMedia;
+    protected $headerImage;
 
     /**
      * @param MediaInterface $media
      */
-    public function setFeaturedMedia($featuredMedia)
+    public function setHeaderImage($image)
     {
-        $this->featuredMedia = $featuredMedia;
+        $this->headerImage = $image;
     }
 
     /**
      * @return MediaInterface
      */
-    public function getFeaturedMedia()
+    public function getHeaderImage()
     {
-        return $this->featuredMedia;
+        return $this->headerImage;
     }
 
 

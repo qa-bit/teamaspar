@@ -11,12 +11,17 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use MotogpBundle\Admin\Media\HasMediasAdminTrait;
+use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
+
 
 class NewsletterAdmin extends AbstractAdmin
 {
 
 
+    use HasMediasAdminTrait, FeaturedMediaAdminTrait;
     private $container;
+
 
     public function setContainer($container) {
         $this->container = $container;
@@ -67,16 +72,25 @@ class NewsletterAdmin extends AbstractAdmin
 //        }
 
         $formMapper
-            ->add('name', null, ['required' => true])
-            ->add('nameEN', null, ['required' => true])
+            ->tab('Información')
+            ->with(null)
             ->add('post', null, [
                 'query_builder' => function ($qb) {
 
                     return $qb->createQueryBuilder('p')
                         ->orderBy('p.publishedAt', 'DESC');
                 },
-                'required' => false
+                'required' => false,
+                'label' => 'Publicación',
+                'attr' => [
+                    'data-sonata-select2' => 'false',
+                    'class' => 'form-control newsletter-post-selector'
+                ]
+
             ])
+            ->add('name', null, ['required' => true])
+            ->add('nameEN', null, ['required' => true])
+
             ->add('customerTypes', null, ['required' => true])
             ->add('groups')
             ->add('actions', ChoiceType::class, array(
@@ -87,6 +101,50 @@ class NewsletterAdmin extends AbstractAdmin
                     'Actualizar y enviar' => 'update_and_send',
                 ),
             ))
+            ->end()
+            ->end()
+            ->tab('Contenido')
+            ->with(null)
+            ->add('name', null, ['label' => 'Título', 'required' => true])
+            ->add('nameEN', null, ['label' => 'Título (Inglés)', 'required' => true])
+            ->add('description', 'ckeditor', array(
+                'label' => 'Contenido'
+            ))
+            ->add('descriptionEN', 'ckeditor', array(
+                'label' => 'Contenido Inglés'
+            ))
+            ->end()
+            ->end()
+            ->tab('Imágenes')
+            ->with(null)
+            ->add('featuredMedia', 'sonata_type_admin', array(
+                'label' => 'Imágen de portada',
+                'required' => false,
+            ))
+            ->add('medias', 'sonata_type_collection', ['label' => 'Imágenes'],
+                [
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                ]
+            )
+            ->add('gallery', null, [
+                'label' => 'Galería',
+                'multiple' => false,
+                'required' => false,
+                'query_builder' => function ($qb) {
+                    $b = $qb->createQueryBuilder('s')
+                        ->where('s.slug is NULL');
+
+                    return $b;
+                },
+                'attr' => [
+                    'data-sonata-select2' => 'false',
+                    'container_classes' => 'col-md-12'
+                ]
+            ], [
+                'admin_code' => 'motogp.admin.gallery'
+            ])
+
         ;
     }
 
@@ -136,7 +194,7 @@ class NewsletterAdmin extends AbstractAdmin
             $ct = $em->getRepository(Customer::class)->findByType($slug);
 
             $customers = $this->filterByGroups($ct, $object->getGroups());
-            
+
             foreach ($customers as $c) {
                 if ($c->getLocale() == $locale && $c->getUserConfirmed() && $c->getAdminConfirmed() )
                     $recipients[$c->getEmail()] = $c->getName();
@@ -149,15 +207,20 @@ class NewsletterAdmin extends AbstractAdmin
 
         $data = [
             'name' => $locale == 'es' ? $object->getName() : $object->getNameEN(),
-            'title' => $locale == 'es' ? $object->getPost()->getName() : $object->getPost()->getNameEN(),
-            'featuredMedia' => $object->getPost()->getFeaturedMedia(),
-            'body' => $locale == 'es' ? $object->getPost()->getDescription()  : $object->getPost()->getDescriptionEN(),
+            'title' => $locale == 'es' ? $object->getName() : $object->getNameEN(),
+            'featuredMedia' => $object->getFeaturedMedia(),
+            'medias' => $object->getMedia(),
+            'newsletter' => $object,
+            'body' => $locale == 'es' ? $object->getDescription()  : $object->getDescriptionEN(),
             'post' => $object->getPost(),
             'locale' => $locale
         ];
 
 
         $html = $templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html');
+
+
+
 
 
         $subjectTitle = $locale == 'es' ? $object->getName() : $object->getNameEN();
@@ -186,17 +249,34 @@ class NewsletterAdmin extends AbstractAdmin
 
     public function saveHook($object) {
 
+        $this->saveMedias($object, 'motogp.admin.newsletter_media');
+        $this->saveFeaturedMedia($object);
+
+
+
+
+    }
+
+
+    public function postPersist($object) {
         $action = $this->getForm()->get('actions')->getData();
-
         if ($action == 'update_and_send') {
+            $this->sendMail($object, 'en');
+            $this->sendMail($object, 'es');
+            $object->setLastSendAt(new \DateTime());
+        }
+    }
 
+    public function postUpdate($object) {
+        $action = $this->getForm()->get('actions')->getData();
+        if ($action == 'update_and_send') {
             $this->sendMail($object, 'en');
             $this->sendMail($object, 'es');
             $object->setLastSendAt(new \DateTime());
 
         }
-
     }
+
 
     public function preUpdate($object) {
 
@@ -237,6 +317,14 @@ class NewsletterAdmin extends AbstractAdmin
 
         }
 
+    }
+
+    public function getFormTheme()
+    {
+        return array_merge(
+            parent::getFormTheme(),
+            array('MotogpBundle:Admin:admin.theme.html.twig')
+        );
     }
 
 }

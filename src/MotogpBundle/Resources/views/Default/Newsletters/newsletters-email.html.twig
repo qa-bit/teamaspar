@@ -15,7 +15,7 @@
             <row>
                 <columns>
                     <center>
-                        {% set img_url = 'static/newsletters/header_' ~ post.modality.slug ~ '.jpg' %}
+                        {% set img_url = post.modality.headerImage | media_public_url('headerimage_medium') %}
                         <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
                             <img src="{{ img_url  |  imagine_filter('email_header') }}" />
                         </a>
@@ -26,20 +26,18 @@
 
             <row>
                 <columns>
-                    {% set img_url = post.featuredMedia | media_public_url('featured_xlarge') %}
+                    {% set img_url = featuredMedia | media_public_url('featured_xlarge') %}
                     <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
                         <img src="{{ img_url  |  imagine_filter('email_header') }}" />
                     </a>
                 </columns>
             </row>
 
-            {% set medias = post.medias %}
+            {% set context = "newsletter" %}
 
-            {% set context = "post" %}
-
-            {% if post.gallery and post.gallery.medias | length %}
+            {% if newsletter.gallery and newsletter.gallery.medias | length %}
                 {% set context = "gallery" %}
-                {% set medias = post.gallery.medias %}
+                {% set medias = newsletter.gallery.medias %}
             {% endif %}
 
             <row>
@@ -84,7 +82,7 @@
             <row>
                 <columns>
                     <center>
-                        {% set img_url = 'static/newsletters/footer_' ~ post.modality.slug ~ '.jpg' %}
+                        {% set img_url = post.modality.footerImage | media_public_url('footerimage_medium') %}
                         <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
                             <img src="{{ img_url  |  imagine_filter('email_header') }}" />
                         </a>
