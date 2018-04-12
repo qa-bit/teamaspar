@@ -62,8 +62,12 @@ $(document).ready(function () {
     var hideModal = function (mw) {
         mw.modal('hide');
     };
-
+    
     node.change(function () {
+
+        if (!$(this).val())
+            return;
+
         var formBaseName = '#'+ $(this).attr('id').replace('post', '');
         var url = "/api/posts/" + $(this).val();
         var basePath = $('div[baseData]').attr('baseData').replace('app', 'web/uploads/media/');
@@ -117,4 +121,37 @@ $(document).ready(function () {
         })
 
     });
+    
+    if (node.length) {
+
+        var formBaseName = '#'+ node.attr('id').replace('post', '');
+        var $form = $('.sonata-ba-form form');
+
+        $form.on('submit', function (e) {
+
+            var customerTypes = $(formBaseName + 'customerTypes');
+            var groups    = $(formBaseName + 'groups');
+            var missing = false;
+
+            $('.form-error').remove();
+
+            if (!customerTypes.val()) {
+                missing = true;
+                var errorField = $('<div class="color-red help-block sonata-ba-field-error-messages form-error"><i class="fa fa-exclamation-circle"></i><span>Elija una categoría</span></div>');
+                customerTypes.parent().append(errorField);
+            }
+
+            if (!groups.val()) {
+                missing = true;
+                var errorField = $('<div class="color-red help-block sonata-ba-field-error-messages form-error"><i class="fa fa-exclamation-circle"></i><span>Elija al menos un grupo</span></div>');
+                groups.parent().append(errorField);
+            }
+
+            if (missing) {
+                e.preventDefault();
+                $(this).find('.nav li a').eq(0).trigger('click');
+            }
+            
+        });
+    }
 });

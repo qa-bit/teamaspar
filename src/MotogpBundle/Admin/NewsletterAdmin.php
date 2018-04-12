@@ -83,6 +83,7 @@ class NewsletterAdmin extends AbstractAdmin
                 'required' => false,
                 'label' => 'Publicación',
                 'attr' => [
+                    'required' => 'required',
                     'data-sonata-select2' => 'false',
                     'class' => 'form-control newsletter-post-selector'
                 ]
@@ -218,10 +219,6 @@ class NewsletterAdmin extends AbstractAdmin
 
 
         $html = $templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html');
-
-
-
-
 
         $subjectTitle = $locale == 'es' ? $object->getName() : $object->getNameEN();
 
