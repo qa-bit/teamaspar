@@ -219,7 +219,7 @@ class NewsletterAdmin extends AbstractAdmin
 
 
         $html = $templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html');
-
+        
         $subjectTitle = $locale == 'es' ? $object->getName() : $object->getNameEN();
 
         $message = \Swift_Message::newInstance()

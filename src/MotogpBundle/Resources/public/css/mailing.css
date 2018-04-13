@@ -16,8 +16,8 @@ h1 {
 
 .content {
     word-break: normal;
-    width : 948px;
-    max-width: 948px;
+    width : 868px;
+    max-width: 868px;
 }
 
 .content-centered {
@@ -40,9 +40,9 @@ h1 {
 }
 
 p {
-    max-width: 948px;
+    max-width: 868px;
 }
 
 table.container {
-    width: 980px;
+    width: 900px;
 }
