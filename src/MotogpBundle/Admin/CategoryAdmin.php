@@ -29,6 +29,7 @@ class CategoryAdmin extends AbstractAdmin
         $listMapper
             ->add('name')
             ->add('description')
+            ->add('abbr')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -52,6 +53,7 @@ class CategoryAdmin extends AbstractAdmin
             ->add('description',null, array(
             ))
             ->add('descriptionEN')
+            ->add('abbr', null, ['label' => 'Abreviatura'])
             ->add('_order')
             ->end()
             ->end()

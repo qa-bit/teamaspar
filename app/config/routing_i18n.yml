@@ -73,3 +73,12 @@ privacy:
 terms:
     locales: { "en": "/en/{modality}/terms-and-conditions", "es": "/es/{modality}/terminos-y-condiciones" }
     defaults: { _controller: MotogpBundle:Public:terms}
+
+newsletters_unsubscribe:
+    locales: { "en": "/en/{modality}/unsubscribe", "es": "/es/{modality}/baja-newsletters" }
+    defaults: { _controller: MotogpBundle:Register:requestUnsubscribe}
+
+newsletters_unsubscribe_confirmation:
+    locales: { "en": "/en/{modality}/unsubscribe-confirm", "es": "/es/{modality}/confirmacion-baja-newsletters" }
+    defaults: { _controller: MotogpBundle:Register:confirmUnsubscription }
+

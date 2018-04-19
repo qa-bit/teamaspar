@@ -1,0 +1,12 @@
+{% trans_default_domain 'register' %}
+
+<div>
+    <h4>{{ "unsubscribe_confirm_email" | trans }}</h4>
+
+    <div>
+        <p>{{ "unsubscribe_confirm_email_text" | trans }}</p>
+        <a href="{{ url }}">{{ "unsubscribe_confirm_email_link" | trans }}</a>
+    </div>
+</div>
+<br><br>
+<img src="{{ app.request.getSchemeAndHttpHost() ~ asset('/bundles/motogp/img/branding.png') }}" />

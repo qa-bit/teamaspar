@@ -21,6 +21,12 @@ class Tag
      */
     private $id;
 
+    /**
+     * @var string
+     * @ORM\Column(name="abbr", type="string");
+     */
+    private $abbr;
+
 
     /**
      * Get id
@@ -31,5 +37,22 @@ class Tag
     {
         return $this->id;
     }
+
+    /**
+     * @return string
+     */
+    public function getAbbr()
+    {
+        return $this->abbr;
+    }
+
+    /**
+     * @param string $abbr
+     */
+    public function setAbbr($abbr)
+    {
+        $this->abbr = $abbr;
+    }
+    
 }
 

@@ -15,3 +15,12 @@ subscribe_3: Join our community!!
 register_confirm_email: Confirmation of subscription to our newsletter
 register_confirm_email_text: Please, click on the following link to confirm your subscription
 register_confirm_email_link: Confirm
+unsubscribe_1: Unsubscribe from our newsletters
+unsubscribe_email: Your email
+unsubscribe_email_disclaimer: You will receive an email shortly to cancel your subscription
+unsubscribe_email_unsubscribe: Unsubscribe
+unsubscribe_confirm_email: Cancel newsletters subscription
+unsubscribe_confirm_email_text: Please, click on the following link to cancel your subscription
+unsubscribe_confirm_email_link: Cancel subscription
+unsubscribe_success_text1: Subscription canceled succesfully
+unsubscribe_wrong: Wrong confirmation key

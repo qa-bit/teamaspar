@@ -13,20 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegisterType extends AbstractType
 {
-
-    /*
-     * private $name;
-    private $surname;
-    private $email;
-    private $phone;
-    private $type;
-    private $mediaType;
-    private $userConfirmed;
-    private $adminConfirmed;
-
-     */
-
-
+    
     /**
      * {@inheritdoc}
      */

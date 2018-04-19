@@ -15,3 +15,12 @@ subscribe_3: ¡¡Únete a nuestra comunidad!!
 register_confirm_email: Confirmación de subscripción a nuestra newsletter
 register_confirm_email_text: Por favor, pulse en el siquiente enlace para confirmar su subscripción
 register_confirm_email_link: Confirmar
+unsubscribe_1: Darse de baja de nuestras newsletters
+unsubscribe_email: Su email
+unsubscribe_email_disclaimer: En breve recibirá un email con un enlace de confirmación.
+unsubscribe_email_unsubscribe: Darse de baja
+unsubscribe_confirm_email: Baja en newsletters
+unsubscribe_confirm_email_text: Por favor, pulse en el siquiente enlace para darse de baja
+unsubscribe_confirm_email_link: Darse de baja
+unsubscribe_success_text1: Baja realizada correctamente
+unsubscribe_wrong: Clave de confirmación errónea

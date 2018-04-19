@@ -171,7 +171,7 @@ class PublicController extends Controller
         $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('inicio_'.str_replace('-', '_',  $modalitySlug));
-
+        
         $galleries = $em->getRepository(Gallery::class)->getGalleries();
 
         $posts  = $em->getRepository(Post::class)->getLastInModality($modality);

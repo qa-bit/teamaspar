@@ -96,6 +96,13 @@ class Customer
      * @var string
      * @ORM\Column(type="string", nullable=true)
      */
+    private $deactivationHash;
+
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
     private $locale;
 
 
@@ -297,6 +304,22 @@ class Customer
         $surname = $this->surname ? $this->surname : '';
 
         return $this->getName().' '.$surname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeactivationHash()
+    {
+        return $this->deactivationHash;
+    }
+
+    /**
+     * @param string $deactivationHash
+     */
+    public function setDeactivationHash($deactivationHash)
+    {
+        $this->deactivationHash = $deactivationHash;
     }
     
 

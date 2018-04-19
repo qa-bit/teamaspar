@@ -2,6 +2,7 @@
 {% block title %}{{ "owner" | trans }} - {{ modality.slug | capitalize }}{% endblock %}
 {% block body %}
     {{ parent() }}
-    {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : index_gallery} %}
+    {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : index_gallery, 'reverse_order' : true} %}
+
     {% include "MotogpBundle:Default:Home/homeblock.html.twig" with {'posts' : posts} %}
 {% endblock %}

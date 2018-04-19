@@ -188,6 +188,7 @@ class NewsletterAdmin extends AbstractAdmin
 
 
         $recipients = [];
+        $post = $object->getPost();
 
         foreach ($object->getCustomerTypes() as $type) {
             $slug = $type->getSlug();
@@ -219,12 +220,21 @@ class NewsletterAdmin extends AbstractAdmin
 
 
         $html = $templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html');
-        
-        $subjectTitle = $locale == 'es' ? $object->getName() : $object->getNameEN();
+
+        $circuitName = $object->getPost()->getCircuit()->getName();
+
+        $tagAbbr = ($post->getCategory() && $post->getCategory()->getAbbr())
+            ? '('.$post->getCategory()->getAbbr().')'
+            : '';
+
+        $postTitle = $locale == 'es' ? $object->getName() : $object->getNameEN();
+
+        $subjectTitle = "$circuitName $tagAbbr - $postTitle";
+
 
         $message = \Swift_Message::newInstance()
-            ->setSubject('ANGEL NIETO TEAM - '.$subjectTitle)
-            ->setFrom($from, 'Ángel Nieto Team')
+            ->setSubject($subjectTitle)
+            ->setFrom($from, 'Ángel Nieto Team '.$object->getPost()->getModality())
             ->setBcc($recipients)
             ->setReplyTo($from)
             ->setContentType("text/html")

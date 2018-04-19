@@ -1,0 +1,44 @@
+{% trans_default_domain 'register' %}
+{% block title %}{{ "owner" | trans([], 'messages') }} - {{ "register" | trans([], 'messages') }} {% endblock %}
+{% extends "MotogpBundle:Default:base.html.twig" %}
+{% block body %}
+    {{ parent() }}
+    {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}
+    <div class="smoke-background">
+        <div class="white-background motos-wrapper">
+            <div class="w100">
+                <div class="col-xs-12 col-md-8 tcenter section">
+                    <div class="">
+                        <div class="col-xs-12">
+                            <h3>{{ "unsubscribe_1" | trans }}</h3>
+                        </div>
+
+                        {% if not sent %}
+                            {{ form_start(form) }}
+                            <div class="col-xs-12">
+                                <fieldset class="form-group">
+                                    <label class="w100">{{ 'unsubscribe_email' | trans | capitalize}}</label>
+                                    {{ form_widget(form.email, {'attr' : {'class' : 'form-control type-select'}}) }}
+                                    {{ form_errors(form.email) }}
+                                </fieldset>
+                                <button class="btn btn-info" type="submit">{{ "unsubscribe_email_unsubscribe" | trans }}</button>
+                            </div>
+                            <div class="hidden">
+                                {{ form_rest(form) }}
+                            </div>
+                        {% endif %}
+
+                        {% if sent %}
+                            <div class="col-xs-12">
+                                <p>
+                                    {{ "unsubscribe_email_disclaimer" | trans }}
+                                </p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'MotogpBundle:Default:footer.html.twig' %}
+{% endblock %}

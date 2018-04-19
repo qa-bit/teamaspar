@@ -8,3 +8,5 @@ send: Send
 contact_success_title: Message sent successfully
 contact_success_text1: Thank you for contacting us
 contact_success_text2: We are going to answer you as soon as posible
+want_to_change_subscription: Want to change how you receive these emails?
+unsubscribe: Unsubscribe from this list

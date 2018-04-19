@@ -92,6 +92,7 @@
             <spacer size="32"></spacer>
         </wrapper>
         <spacer size="16"></spacer>
+
         <row>
             <columns>
                 <table class="smalltext content content-centered">
@@ -112,6 +113,17 @@
                         España
                     {% endif %}
                 </table>
+            </columns>
+        </row>
+        <spacer size="16"></spacer>
+        <row>
+            <columns>
+                <div class="smalltext content content-centered">
+                    <p>{{ locale == 'es' ?  '¿Desea cambiar la forma en que recibe estos correos electrónicos?' : 'Want to change how you receive these emails?'}}</p>
+                    <a target="_blank" href="{{ url('newsletters_unsubscribe', {'modality' : post.modality.slug, 'locale' : locale }) }}">
+                        {{ locale == 'es' ? 'Darse de baja de nuestras newsletters' : 'Unsubscribe from this list' | trans }}
+                    </a>
+                </div>
             </columns>
         </row>
     </container>
