@@ -127,4 +127,12 @@ class RaceAdmin extends AbstractAdmin
         }
     }
 
+    public function getFormTheme()
+    {
+        return array_merge(
+            parent::getFormTheme(),
+            array('MotogpBundle:Admin:admin.theme.html.twig')
+        );
+    }
+
 }

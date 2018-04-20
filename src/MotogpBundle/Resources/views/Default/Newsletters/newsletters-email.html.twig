@@ -17,7 +17,7 @@
                     <center>
                         {% set img_url = post.modality.headerImage | media_public_url('headerimage_medium') %}
                         <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
-                            <img src="{{ img_url  |  imagine_filter('email_header') }}" />
+                            <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
                         </a>
                     </center>
                 </columns>
@@ -28,7 +28,7 @@
                 <columns>
                     {% set img_url = featuredMedia | media_public_url('featured_xlarge') %}
                     <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
-                        <img src="{{ img_url  |  imagine_filter('email_header') }}" />
+                        <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
                     </a>
                 </columns>
             </row>
@@ -84,7 +84,7 @@
                     <center>
                         {% set img_url = post.modality.footerImage | media_public_url('footerimage_medium') %}
                         <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
-                            <img src="{{ img_url  |  imagine_filter('email_header') }}" />
+                            <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
                         </a>
                     </center>
                 </columns>

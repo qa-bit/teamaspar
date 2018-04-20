@@ -63,8 +63,6 @@ class ScoreAdmin extends AbstractAdmin
             ->add('timeMinutes', null, ['required' => false] )
             ->add('timeSeconds', null, ['required' => false] )
             ->add('timeMilliSeconds', null, ['required' => false] )
-            //->add('race', null, ['required' => true ])
-            //->add('name','hidden')
         ;
     }
 
