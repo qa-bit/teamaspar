@@ -95,23 +95,28 @@
 
         <row>
             <columns>
-                <table class="smalltext content content-centered">
-                    {% if locale == 'en' %}
-                        Copyright © {{ "now" | date('Y') }} Ángel Nieto Team, All rights reserved.<br><br>
-                        You are receiving this email from Ángel Nieto Team MotoGP.<br>
-                        Our mailing address is:<br>
-                        Ángel Nieto Team<br>
-                        Pol. Ind. Picassent, C/6, Parc. 49<br>
-                        Picassent, Valencia 46220<br>
-                        Spain
-                    {% else %}
-                        Copyright © {{ "now" | date('Y') }} Ángel Nieto Team, Todos los derechos reservados.<br><br>
-                        Está recibiendo este email desde Ángel Nieto Team MotoGP.<br>
-                        Ángel Nieto Team<br>
-                        Pol. Ind. Picassent, C/6, Parc. 49<br>
-                        Picassent, Valencia 46220<br>
-                        España
-                    {% endif %}
+                <table class="smalltext content content-centered" align="center">
+                    <tr class="tcenter ">
+                        <td  class="smalltext tcenter" align="center">
+                            {% if locale == 'en' %}
+                                Copyright © {{ "now" | date('Y') }} Ángel Nieto Team, All rights reserved.<br><br>
+                                You are receiving this email from Ángel Nieto Team MotoGP.<br>
+                                Our mailing address is:<br>
+                                Ángel Nieto Team<br>
+                                Pol. Ind. Picassent, C/6, Parc. 49<br>
+                                Picassent, Valencia 46220<br>
+                                Spain
+                            {% else %}
+                                Copyright © {{ "now" | date('Y') }} Ángel Nieto Team, Todos los derechos reservados.<br><br>
+                                Está recibiendo este email desde Ángel Nieto Team MotoGP.<br>
+                                Ángel Nieto Team<br>
+                                Pol. Ind. Picassent, C/6, Parc. 49<br>
+                                Picassent, Valencia 46220<br>
+                                España
+                            {% endif %}
+                        </td>
+                    </tr>
+
                 </table>
             </columns>
         </row>
@@ -119,10 +124,16 @@
         <row>
             <columns>
                 <div class="smalltext content content-centered">
-                    <p>{{ locale == 'es' ?  '¿Desea cambiar la forma en que recibe estos correos electrónicos?' : 'Want to change how you receive these emails?'}}</p>
-                    <a target="_blank" href="{{ url('newsletters_unsubscribe', {'modality' : post.modality.slug, 'locale' : locale }) }}">
-                        {{ locale == 'es' ? 'Darse de baja de nuestras newsletters' : 'Unsubscribe from this list' | trans }}
-                    </a>
+                    <table class="smalltext content content-centered" align="center">
+                        <tr class="tcenter">
+                            <td class="tcenter">
+                                <p class="tcenter smalltext">{{ locale == 'es' ?  '¿Desea cambiar la forma en que recibe estos correos electrónicos?' : 'Want to change how you receive these emails?'}}</p><br>
+                                <a class="smalltext" target="_blank" href="{{ url('newsletters_unsubscribe', {'modality' : post.modality.slug, 'locale' : locale }) }}">
+                                    {{ locale == 'es' ? 'Darse de baja de nuestras newsletters' : 'Unsubscribe from this list' | trans }}
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </columns>
         </row>

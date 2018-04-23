@@ -3,7 +3,9 @@
 {% block sonata_admin_orm_one_to_many_widget %}
     {% if sonata_admin.name == 'medias' %}
         {% include 'MotogpBundle:Admin:media_admin.html.twig' %}
-    {%  else %}
+    {%  elseif sonata_admin.name == 'scores' %}
+        {% include 'MotogpBundle:Admin:records_admin.html.twig' %}
+    {% else %}
         {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_one_to_many.html.twig' %}
     {% endif %}
 {% endblock %}

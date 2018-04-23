@@ -2,12 +2,14 @@
 
 namespace MotogpBundle\Admin;
 
+use MotogpBundle\Entity\Modality;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use MotogpBundle\Entity\Rider;
 
 class RaceAdmin extends AbstractAdmin
 {
@@ -67,7 +69,15 @@ class RaceAdmin extends AbstractAdmin
                         },
                     ])
                     ->add('circuit', null, ['required' => true, 'attr' => $mediumColumn])
-                    ->add('modality', null, ['required' => true, 'attr' => $mediumColumn])
+                    ->add('modality', null, [
+                        'required' => true,
+                        'label' => 'Modalidad',
+                        'attr' => [
+                            'required' => 'required',
+                            'data-sonata-select2' => 'false',
+                            'class' => 'form-control race-modality-selector'
+                        ]
+                    ])
                     ->add('name')
                     ->add('nameEN')
                     ->add('start', 'sonata_type_date_picker', [
@@ -135,4 +145,33 @@ class RaceAdmin extends AbstractAdmin
         );
     }
 
+
+    public function getRiders() {
+
+        $container = $this->getConfigurationPool()->getContainer();
+        $em = $container->get('doctrine.orm.entity_manager');
+
+        $modalities = $em->getRepository(Modality::class)->findAll();
+        $riders = [];
+
+        foreach ($modalities as $m) {
+            $mid = $m->getId();
+            $r = [];
+
+            foreach ($em->getRepository(Rider::class)->getRidersInModality($mid) as $rider) {
+                $riderObj = new \stdClass();
+                $riderObj->id = $rider->getId();
+                $riderObj->name = $rider->getName().' '.$rider->getSurname();
+
+                $r[] = $riderObj;
+            }
+
+            $riders[$mid] = $r;
+        }
+
+
+        return $riders;
+    }
+
 }
+

@@ -55,5 +55,18 @@ class RiderRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
             ;
     }
+
+    public function getRidersInModality($modality)
+    {
+
+        return $this->createQueryBuilder('r')
+            ->innerJoin('r.modality', 'm')
+            ->andWhere('m.id = :id')
+            ->setParameter('id', $modality)
+            ->orderBy('r.name','ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     
 }

@@ -46,3 +46,7 @@ p {
 table.container {
     width: 900px;
 }
+
+.tcenter {
+    text-align : center;
+}

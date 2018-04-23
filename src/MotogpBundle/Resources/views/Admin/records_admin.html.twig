@@ -1,0 +1,67 @@
+{% set riders = sonata_admin.admin.getRiders() %}
+<div id="race-records" riders="{{ riders | json_encode }}">
+    <div class="form-group">
+        {% set index = 0 %}
+        <div class="collection">
+            <table class="table table-striped score-table">
+                <tr>
+                    <th>Piloto</th>
+                    <th>Puntuación</th>
+                    <th>Minutos</th>
+                    <th>Segundos</th>
+                    <th>Ms</th>
+                </tr>
+                {% for record in form.vars.value %}
+                    <tr class="score-row">
+                        <td>
+                            <span>
+                                {{ record.rider.name }}&nbsp;{{ record.rider.surname }}
+                            </span>
+                            <input class="hidden" data-rider-id type="number" name="{{ form.vars.full_name }}[{{ index }}][rider]" type="text" value="{{ record.rider.id }}" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="number" name="{{ form.vars.full_name }}[{{ index }}][score]" type="text" value="{{ record.score }}" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="number" name="{{ form.vars.full_name }}[{{ index }}][timeMinutes]" type="text" value="{{ record.timeMinutes }}" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="number" name="{{ form.vars.full_name }}[{{ index }}][timeSeconds]" type="text" value="{{ record.timeSeconds }}" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="number" name="{{ form.vars.full_name }}[{{ index }}][timeMilliSeconds]" type="text" value="{{ record.timeMilliSeconds }}" />
+                        </td>
+                    </tr>
+                    {% set index = index + 1 %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="score-data-prototype" data-prototype='{% spaceless %}
+  <tr class="score-row">
+                        <td>
+                            <span class="rider-name">
+
+                            </span>
+                            <input type="text" class="rider-id hidden form-control" name="{{ form.vars.full_name }}[__index__][rider]" type="text" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" name="{{ form.vars.full_name }}[__index__][score]" type="text" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" name="{{ form.vars.full_name }}[__index__][timeMinutes]" type="text" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" name="{{ form.vars.full_name }}[__index__][timeSeconds]" type="text" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" name="{{ form.vars.full_name }}[__index__][timeMilliSeconds]" type="text" />
+                        </td>
+                    </tr>
+{% endspaceless %}'>
+</div>
+
+<script src="{{ asset('bundles/motogp/js/admin/raceScores.js') }}"></script>

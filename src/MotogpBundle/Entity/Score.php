@@ -38,6 +38,7 @@ class Score
 
     /**
      * @ORM\ManyToOne(targetEntity="Rider", cascade={"persist"}, inversedBy="scores")
+     * @ORM\OrderBy({"name" = "ASC"})
      * @ORM\JoinColumn(onDelete="CASCADE")*
      */
     protected $rider;
