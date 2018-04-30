@@ -12,6 +12,7 @@ use MotogpBundle\Entity\Traits\InMotoTrait;
 use MotogpBundle\Entity\Traits\HasLogoTrait;
 use MotogpBundle\Entity\Traits\HasHomeImageTrait;
 use MotogpBundle\Entity\Traits\HasPreviewImageTrait;
+use MotogpBundle\Entity\Traits\HasQuotationImageTrait;
 use Application\Sonata\MediaBundle\Entity\RiderMedia;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -31,6 +32,7 @@ class Rider
        HasMediaTrait,
        HasLogoTrait,
        HasHomeImageTrait,
+       HasQuotationImageTrait,
        HasPreviewImageTrait,
        InMotoTrait;
 

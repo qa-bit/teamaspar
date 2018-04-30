@@ -1,4 +1,15 @@
 services:
+    motogp.newsletters_manager:
+        class: MotogpBundle\Services\Newsletters
+        arguments: [
+            "@templating",
+            "@swiftmailer.mailer.mailer",
+            "@doctrine.orm.entity_manager",
+            "@swiftmailer.mailer.mailer.transport.smtp",
+            "%mailer_user%",
+            "%scheme_url%"
+            ]
+
     app.upload_listener:
         class: AppBundle\EventListener\UploadListener
         arguments: ["@doctrine.orm.entity_manager"]
@@ -209,6 +220,13 @@ services:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Logo, show_in_dashboard: false}
         public: true
 
+    motogp.admin.quotationImage:
+        class: Application\Sonata\MediaBundle\Admin\QuotationImageAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\QuotationImage, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Logo, show_in_dashboard: false}
+        public: true
+
     motogp.admin.previewimage:
         class: Application\Sonata\MediaBundle\Admin\PreviewImageAdmin
         arguments: [~, Application\Sonata\MediaBundle\Entity\PreviewImage, SonataAdminBundle:CRUD]
@@ -267,4 +285,11 @@ services:
         arguments: [~, MotogpBundle\Entity\CustomerGroup, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: CustomerGroup }
+        public: true
+
+    motogp.admin.team_quotation:
+        class: MotogpBundle\Admin\TeamQuotationAdmin
+        arguments: [~, MotogpBundle\Entity\TeamQuotation, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TeamQuotation }
         public: true

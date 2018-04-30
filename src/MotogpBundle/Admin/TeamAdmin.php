@@ -3,7 +3,7 @@
 namespace MotogpBundle\Admin;
 
 use MotogpBundle\Admin\Media\FeaturedMediaAdminTrait;
-use MotogpBundle\Entity\Traits\HasMediaGalleryTrait;
+use MotogpBundle\Admin\Media\QuotationImageAdminTrait;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -16,7 +16,9 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 class TeamAdmin extends AbstractAdmin
 {
 
-    use FeaturedMediaAdminTrait;
+    use FeaturedMediaAdminTrait,
+        QuotationImageAdminTrait
+        ;
 
     /**
      * @param DatagridMapper $datagridMapper
@@ -112,6 +114,10 @@ class TeamAdmin extends AbstractAdmin
                         'label' => 'Imágen de portada',
                         'required' => false,
                     ))
+                    ->add('quotationImage', 'sonata_type_admin', array(
+                        'label' => 'Imágen newsletters',
+                        'required' => false,
+                    ))
                     ->end()
             ->end()
             ->tab('SEO')
@@ -149,6 +155,7 @@ class TeamAdmin extends AbstractAdmin
     public function saveHook($object) {
 
         $this->saveFeaturedMedia($object);
+        $this->saveQuotationImage($object);
 
     }
 

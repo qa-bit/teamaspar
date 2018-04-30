@@ -15,34 +15,31 @@
     {% if sonata_admin.name == 'featuredMedia' %}
         <div id="featured-media">
             {% include 'MotogpBundle:Admin:featured_media_admin.html.twig' with {'title' : 'una imagen de portada'}%}
-            {#{% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}#}
         </div>
         {% elseif sonata_admin.name == 'logo' %}
             <div id="logo">
                 {% include 'MotogpBundle:Admin:featured_media_admin.html.twig' with {'title' : 'un logotipo'}%}
-                {#{% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}#}
             </div>
         {% elseif sonata_admin.name == 'homeImage' %}
             <div id="logo">
                 {% include 'MotogpBundle:Admin:featured_media_admin.html.twig' with {'title' : 'una imagen para el home'}%}
-                {#{% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}#}
             </div>
         {% elseif sonata_admin.name == 'footerImage' %}
         <div id="logo">
             {% include 'MotogpBundle:Admin:featured_media_admin.html.twig' with {'title' : 'un footer para newsletters'}%}
-            {#{% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}#}
         </div>
         {% elseif sonata_admin.name == 'headerImage' %}
         <div id="logo">
             {% include 'MotogpBundle:Admin:featured_media_admin.html.twig' with {'title' : 'una cabecera para newsletters'}%}
-            {#{% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}#}
         </div>
         {% elseif sonata_admin.name == 'previewImage' %}
         <div id="logo">
             {% include 'MotogpBundle:Admin:featured_media_admin.html.twig' with {'title' : 'una imagen para galerias home'}%}
-            {#{% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}#}
         </div>
-
+        {% elseif sonata_admin.name == 'quotationImage' %}
+        <div id="logo">
+            {% include 'MotogpBundle:Admin:featured_media_admin.html.twig' with {'title' : 'una imagen para newsletters'}%}
+        </div>
         {% else %}
         {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}
     {% endif %}

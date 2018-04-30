@@ -48,6 +48,7 @@ class NewsletterAdmin extends AbstractAdmin
             ->add('customerTypes')
             ->add('groups')
             ->add('lastSendAt')
+            ->add('queued')
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -145,6 +146,11 @@ class NewsletterAdmin extends AbstractAdmin
             ], [
                 'admin_code' => 'motogp.admin.gallery'
             ])
+            ->end()
+            ->end()
+            ->tab('Citas')
+            ->with(null)
+            ->add('teamQuotations', 'sonata_type_collection', [], ['edit' => 'inline', 'inline' => 'table'])
 
         ;
     }
@@ -160,111 +166,23 @@ class NewsletterAdmin extends AbstractAdmin
     }
 
 
-    public function filterByGroups($customers, $groups) {
-
-
-        $customersInGroups = [];
-
-
-        if (!count($groups)) {
-            return $customers;
-        }
-
-        foreach ($customers as $customer) {
-            foreach ($customer->getGroups() as $cg) {
-                foreach ($groups as $g) {
-                    if ($g->getId() == $cg->getId()) {
-                        $customersInGroups[] = $customer;
-                    }
-                }
-            }
-        }
-
-        return $customersInGroups;
-
-    }
-
-    public function sendMail($object, $locale) {
-
-
-        $recipients = [];
-        $post = $object->getPost();
-
-        foreach ($object->getCustomerTypes() as $type) {
-            $slug = $type->getSlug();
-            $em = $this->modelManager->getEntityManager(CustomerType::class);
-            $ct = $em->getRepository(Customer::class)->findByType($slug);
-
-            $customers = $this->filterByGroups($ct, $object->getGroups());
-
-            foreach ($customers as $c) {
-                if ($c->getLocale() == $locale && $c->getUserConfirmed() && $c->getAdminConfirmed() )
-                    $recipients[$c->getEmail()] = $c->getName();
-            }
-        }
-
-        $mail = $this->getConfigurationPool()->getContainer()->getParameter('general_mailing');
-        $from = $this->getConfigurationPool()->getContainer()->getParameter('mailer_user');
-        $templating = $this->container->get('templating');
-
-        $data = [
-            'name' => $locale == 'es' ? $object->getName() : $object->getNameEN(),
-            'title' => $locale == 'es' ? $object->getName() : $object->getNameEN(),
-            'featuredMedia' => $object->getFeaturedMedia(),
-            'medias' => $object->getMedia(),
-            'newsletter' => $object,
-            'body' => $locale == 'es' ? $object->getDescription()  : $object->getDescriptionEN(),
-            'post' => $object->getPost(),
-            'locale' => $locale
-        ];
-
-
-        $html = $templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data,'text/html');
-
-        $circuitName = $object->getPost()->getCircuit()->getName();
-
-        $tagAbbr = ($post->getCategory() && $post->getCategory()->getAbbr())
-            ? '('.$post->getCategory()->getAbbr().')'
-            : '';
-
-        $postTitle = $locale == 'es' ? $object->getName() : $object->getNameEN();
-
-        $subjectTitle = "$circuitName $tagAbbr - $postTitle";
-
-
-        $message = \Swift_Message::newInstance()
-            ->setSubject($subjectTitle)
-            ->setFrom($from, 'Ángel Nieto Team '.$object->getPost()->getModality())
-            ->setBcc($recipients)
-            ->setReplyTo($from)
-            ->setContentType("text/html")
-            ->setBody($html);
-
-
-        $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
-
-        $this->container->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
-
-        $result = $this->container->get('mailer')->send($message);
-        $spool = $this->container->get('mailer')->getTransport()->getSpool();
-        $transport = $this->container->get('swiftmailer.transport.real');
-
-        $spool->flushQueue($transport);
-
-    }
-
-
     public function saveHook($object) {
+
+        $action = $this->getForm()->get('actions')->getData();
+        if ($action == 'update_and_send') {
+            $object->setQueued(true);
+        }
 
         $this->saveMedias($object, 'motogp.admin.newsletter_media');
         $this->saveFeaturedMedia($object);
 
-
-
-
+        //TODO: tell why newsletter id is not getting set in
+        //TODO: Newsletter->addTeamQuotation
+        foreach ($object->getTeamQuotations() as $quotation) {
+            $quotation->setNewsletter($object);
+        }
     }
-
-
+    
     public function postPersist($object) {
         $action = $this->getForm()->get('actions')->getData();
         if ($action == 'update_and_send') {
@@ -275,13 +193,7 @@ class NewsletterAdmin extends AbstractAdmin
     }
 
     public function postUpdate($object) {
-        $action = $this->getForm()->get('actions')->getData();
-        if ($action == 'update_and_send') {
-            $this->sendMail($object, 'en');
-            $this->sendMail($object, 'es');
-            $object->setLastSendAt(new \DateTime());
 
-        }
     }
 
 

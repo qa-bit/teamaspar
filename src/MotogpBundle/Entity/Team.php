@@ -4,11 +4,13 @@ namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
+use MotogpBundle\Entity\Traits\HasQuotationImageTrait;
 use MotogpBundle\Entity\Traits\InModalitiesTrait;
 use MotogpBundle\Entity\Traits\InRiderTeamTrait;
 use MotogpBundle\Entity\Traits\InRiderTrait;
 use MotogpBundle\Entity\Traits\InTeamCategoryTrait;
 use MotogpBundle\Entity\Traits\HasMediaTrait;
+
 
 /**
  * Team
@@ -24,6 +26,7 @@ class Team
        InRiderTeamTrait,
        InRiderTrait,
        InModalitiesTrait,
+       HasQuotationImageTrait,
        HasMediaTrait;
 
    /**

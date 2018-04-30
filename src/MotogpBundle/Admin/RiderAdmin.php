@@ -7,6 +7,7 @@ use MotogpBundle\Admin\Media\HasMediasAdminTrait;
 use MotogpBundle\Admin\Media\HomeImageAdminTrait;
 use MotogpBundle\Admin\Media\LogoAdminTrait;
 use MotogpBundle\Admin\Media\PreviewImageAdminTrait;
+use MotogpBundle\Admin\Media\QuotationImageAdminTrait;
 use MotogpBundle\Entity\RiderTeam;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -21,7 +22,13 @@ class RiderAdmin extends AbstractAdmin
 {
 
 
-    use HasMediasAdminTrait, FeaturedMediaAdminTrait, LogoAdminTrait, HomeImageAdminTrait, PreviewImageAdminTrait;
+    use HasMediasAdminTrait,
+        FeaturedMediaAdminTrait,
+        LogoAdminTrait,
+        HomeImageAdminTrait,
+        PreviewImageAdminTrait,
+        QuotationImageAdminTrait
+        ;
 
     /**
      * @param DatagridMapper $datagridMapper
@@ -149,13 +156,6 @@ class RiderAdmin extends AbstractAdmin
             ->add('gpss', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Nº total de GPS disputados'])
-//            ->add('victoryList', 'ckeditor', [
-//                'attr' => ['container_classes' => 'col-md-12'],
-//                'label' => 'Palmáres deportivo',
-//                'required' => false
-//            ])
-
-
             ->add('firstRaceEN', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Primera carrera (EN)'])
@@ -195,7 +195,6 @@ class RiderAdmin extends AbstractAdmin
             ->add('gpssEN', null, [
                 'attr' => ['container_classes' => 'col-md-6'],
                 'label' => 'Nº total de GPS disputados (EN) '])
-//            ->add('victoryListEN', 'ckeditor', ['label' => 'Palmarés deportivo (EN) ', 'required' => false])
             ->end()
             ->end()
             ->tab('Palmarés')
@@ -216,22 +215,27 @@ class RiderAdmin extends AbstractAdmin
                 ->add('featuredMedia', 'sonata_type_admin', array(
                     'label' => 'Imágen de portada',
                     'required' => false,
-                    'attr' => ['container_classes' => 'clearfix col-md-6']
+                    'attr' => ['container_classes' => 'clearfix col-md-4']
                 ))
                 ->add('homeImage', 'sonata_type_admin', array(
                     'label' => 'Imágen home',
                     'required' => false,
-                    'attr' => ['container_classes' => 'clearfix col-md-6']
+                    'attr' => ['container_classes' => 'clearfix col-md-4']
                 ))
                 ->add('logo', 'sonata_type_admin', array(
                     'label' => 'Logotipo',
                     'required' => false,
-                    'attr' => ['container_classes' => 'clearfix col-md-6']
+                    'attr' => ['container_classes' => 'clearfix col-md-4']
                 ))
                 ->add('previewImage', 'sonata_type_admin', array(
                     'label' => 'Imágen home (galerías)',
                     'required' => false,
-                    'attr' => ['container_classes' => 'clearfix col-md-6']
+                    'attr' => ['container_classes' => 'clearfix col-md-4']
+                ))
+                ->add('quotationImage', 'sonata_type_admin', array(
+                    'label' => 'Imágen Newsletters',
+                    'required' => false,
+                    'attr' => ['container_classes' => 'clearfix col-md-4']
                 ))
                 ->add('medias', 'sonata_type_collection',['label' => 'Imágenes (slider)',],
                     [
@@ -290,6 +294,8 @@ class RiderAdmin extends AbstractAdmin
         $this->saveFeaturedMedia($object);
         $this->saveHomeImage($object);
         $this->savePreviewImage($object);
+        $this->saveQuotationImage($object);
+
         $object->setExternal(false);
 
 
@@ -328,5 +334,7 @@ class RiderAdmin extends AbstractAdmin
 
         return $query;
     }
+    
+    
 
 }

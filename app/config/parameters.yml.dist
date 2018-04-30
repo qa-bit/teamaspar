@@ -19,4 +19,5 @@ parameters:
     mailer_contact_password: ~
     mailer_contact_port: 587
     mailer_contact_encryption: tls
+    scheme_url: ~
     secret: ThisTokenIsNotSoSecretChangeIt

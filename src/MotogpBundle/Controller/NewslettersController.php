@@ -2,9 +2,11 @@
 
 namespace MotogpBundle\Controller;
 
+use MotogpBundle\Entity\Newsletter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use MotogpBundle\Entity\Gallery;
@@ -18,7 +20,7 @@ use Symfony\Component\Translation\Translator;
 
 
 
-class RegisterController extends Controller
+class NewslettersController extends Controller
 {
 
     private function getMainTeam($modality = null)
@@ -253,6 +255,26 @@ class RegisterController extends Controller
             'modality' => $modality,
             'team' => $this->getMainTeam()
         ));
+    }
+
+
+    /**
+     * @Route("/test-newsletter/{newsletter}")
+     */
+    public function renderNewsletter(Newsletter $newsletter) {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            $nm = $templating = $this->container->get('motogp.newsletters_manager');
+
+            $nm->sendMail($newsletter, 'es');
+
+            die();
+
+            return $this->render('MotogpBundle:Default/Register:unsubscribe-step.html.twig', []);
+
+//            return new Response($nm->renderNewsletter($newsletter));
+        }
+
+        return new Response(Response::HTTP_BAD_REQUEST);
     }
 
     protected function sendUnsubscribeEmail($customer, $modalitySlug) {

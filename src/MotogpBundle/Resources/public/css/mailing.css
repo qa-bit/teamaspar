@@ -49,4 +49,47 @@ table.container {
 
 .tcenter {
     text-align : center;
+    margin : auto;
+    float : none;
+}
+
+.quotation {
+    background : #fafafa;
+    margin-top : 2em;
+    margin-bottom : 2em;
+    padding : 2em 0;
+}
+
+.quotation h2 {
+    margin : 1em auto;
+    color : #CAB876;
+}
+
+.quotation-content {
+    padding : 0 3em;
+}
+
+.quotation-content p {
+    text-align : center;
+}
+
+.w100 {
+    width : 100%;
+    display: table;
+}
+
+.fleft {
+    float : left;
+}
+
+.fright {
+    float : right;
+}
+
+.clearfix {
+    clear : both;
+}
+
+.quotation-content-raw {
+    margin-top : 10px;
 }

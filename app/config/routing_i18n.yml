@@ -48,7 +48,7 @@ public_contact:
 
 public_register:
     locales: { "en": "/en/{modality}/register", "es": "/es/{modality}/registro" }
-    defaults: { _controller: MotogpBundle:Register:registerForm}
+    defaults: { _controller: MotogpBundle:Newsletters:registerForm}
 
 public_contact_success:
     locales: { "en": "/en/{modality}/contact/success", "es": "/es/{modality}/contacto/enviado" }
@@ -56,11 +56,11 @@ public_contact_success:
 
 public_register_success:
     locales: { "en": "/en/{modality}/register/success", "es": "/es/{modality}/registro/completado" }
-    defaults: { _controller: MotogpBundle:Register:registerFormSuccess}
+    defaults: { _controller: MotogpBundle:Newsletters:registerFormSuccess}
 
 public_register_confirmation:
     locales: { "en": "/en/{modality}/register/confirm", "es": "/es/{modality}/registro/confirmacion" }
-    defaults: { _controller: MotogpBundle:Register:confirmFormSuccess}
+    defaults: { _controller: MotogpBundle:Newsletters:confirmFormSuccess}
 
 cookies:
     locales: { "en": "/en/{modality}/cookies", "es": "/es/{modality}/cookies" }
@@ -76,9 +76,10 @@ terms:
 
 newsletters_unsubscribe:
     locales: { "en": "/en/{modality}/unsubscribe", "es": "/es/{modality}/baja-newsletters" }
-    defaults: { _controller: MotogpBundle:Register:requestUnsubscribe}
+    defaults: { _controller: MotogpBundle:Newsletters:requestUnsubscribe}
 
 newsletters_unsubscribe_confirmation:
     locales: { "en": "/en/{modality}/unsubscribe-confirm", "es": "/es/{modality}/confirmacion-baja-newsletters" }
-    defaults: { _controller: MotogpBundle:Register:confirmUnsubscription }
+    defaults: { _controller: MotogpBundle:Newsletters:confirmUnsubscription }
+
 

@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use MotogpBundle\Entity\CustomerType;
 use MotogpBundle\Entity\Traits\InGroupsTrait;
 use MotogpBundle\Entity\Traits\HasMediaTrait;
+use MotogpBundle\Entity\TeamQuotation;
 
 /**
  * Newsletter
@@ -23,6 +24,7 @@ class Newsletter
     {
         $this->medias = new ArrayCollection();
         $this->customerTypes = new ArrayCollection();
+        $this->teamQuotations = new ArrayCollection();
     }
 
     /**
@@ -38,6 +40,11 @@ class Newsletter
 
 
     /**
+     * @ORM\OneToMany(targetEntity="TeamQuotation", cascade={"persist"}, mappedBy="newsletter", cascade={"all"}, orphanRemoval=true)
+     */
+    protected $teamQuotations;
+
+    /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
@@ -50,8 +57,6 @@ class Newsletter
      */
     private $medias;
 
-
-
     /**
      * @var \DateTime
      * @ORM\Column(type="date", nullable=true)
@@ -63,6 +68,12 @@ class Newsletter
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $gallery;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $queued;
 
 
     /**
@@ -100,6 +111,17 @@ class Newsletter
         if (!$this->customerTypes->contains($customerType)) {
             $this->customerTypes->add($customerType);
         }
+    }
+
+    public function addTeamQuotation($teamQuotation)
+    {
+
+        $teamQuotation->setNewsletter($this);
+
+        if (!$this->teamQuotations->contains($teamQuotation)) {
+            $this->teamQuotations->add($teamQuotation);
+        }
+
     }
 
 
@@ -211,6 +233,37 @@ class Newsletter
         $this->gallery = $gallery;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTeamQuotations()
+    {
+        return $this->teamQuotations;
+    }
+
+    /**
+     * @param mixed $teamQuotations
+     */
+    public function setTeamQuotations($teamQuotations)
+    {
+        $this->teamQuotations = $teamQuotations;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isQueued()
+    {
+        return $this->queued;
+    }
+
+    /**
+     * @param boolean $queued
+     */
+    public function setQueued($queued)
+    {
+        $this->queued = $queued;
+    }
 
 }
 

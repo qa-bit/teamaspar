@@ -62,11 +62,11 @@
                             {% if m is not null and m != '' %}
                                 {% set img_url = m | media_public_url(context ~ '_xlarge') %}
                                 {% if loop.index % 4 == 0 %}
-                                    <a target="_blank" href="{{ app.request.getSchemeAndHttpHost() ~ asset(img_url) }}">
+                                    <a target="_blank" href="{{ url_scheme ~ asset(img_url) }}">
                                         <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_filter('email_thumbnail') }}" />
                                     </a>
                                 {% else %}
-                                    <a target="_blank" href="{{ app.request.getSchemeAndHttpHost() ~ asset(img_url) }}">
+                                    <a target="_blank" href="{{ url_scheme ~ asset(img_url) }}">
                                         <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_filter('email_thumbnail_right') }}" />
                                     </a>
                                 {% endif %}
@@ -78,6 +78,40 @@
             {% endfor %}
 
             <spacer size="16"></spacer>
+
+            {% for quotation in newsletter.teamQuotations %}
+                <row>
+                    <columns>
+                        <table class="content content-centered quotation">
+                            <tr>
+                                <td>
+                                    <br><br>
+                                    <div class="content-centered w100">
+                                        {% if quotation.quoter.quotationImage %}
+                                            {% set img_url = quotation.quoter.quotationImage | media_public_url('quotationimage_medium') %}
+                                            <img class="tcenter" src="{{ img_url | imagine_filter('email_thumbnail') }}?v=2" />
+                                        {% endif %}
+                                    </div>
+                                    <h2 class="content-centered">{{ quotation.quoter.name | upper}}</h2>
+
+                                    <div class="content-centered quotation-content">
+                                        <div class="w100 clearfix">
+                                            <img class="fleft " src="{{ asset('/bundles/motogp/img/assets/quotation_left.png')}}" alt="" />
+                                        </div>
+                                        <div class="w100 quotation-content-raw">
+                                            {{ quotation.description | raw}}
+                                        </div>
+                                        <div class="w100 clearfix">
+                                            <img class="fright " src="{{ asset('/bundles/motogp/img/assets/quotation_right.png')}}" alt="" />
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                </td>
+                            </tr>
+                        </table>
+                    </columns>
+                </row>
+            {% endfor %}
 
             <row>
                 <columns>

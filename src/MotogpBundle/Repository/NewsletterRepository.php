@@ -10,4 +10,12 @@ namespace MotogpBundle\Repository;
  */
 class NewsletterRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getQueued()
+    {
+        return $this->createQueryBuilder('n')
+            ->where('n.queued = true')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
