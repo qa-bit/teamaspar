@@ -92,17 +92,17 @@
                                             <img class="tcenter" src="{{ img_url | imagine_filter('email_thumbnail') }}?v=2" />
                                         {% endif %}
                                     </div>
-                                    <h2 class="content-centered">{{ quotation.quoter.name | upper}}</h2>
+                                    <h2 class="content-centered">{{ quotation.quoter.fullname | upper}}</h2>
 
                                     <div class="content-centered quotation-content">
                                         <div class="w100 clearfix">
-                                            <img class="fleft " src="{{ asset('/bundles/motogp/img/assets/quotation_left.png')}}" alt="" />
+                                            <img class="fleft " src="{{ url_scheme ~ asset('/bundles/motogp/img/assets/quotation_left.png')}}" alt="" />
                                         </div>
                                         <div class="w100 quotation-content-raw">
                                             {{ quotation.description | raw}}
                                         </div>
                                         <div class="w100 clearfix">
-                                            <img class="fright " src="{{ asset('/bundles/motogp/img/assets/quotation_right.png')}}" alt="" />
+                                            <img class="fright " src="{{ url_scheme ~ asset('/bundles/motogp/img/assets/quotation_right.png')}}" alt="" />
                                         </div>
                                     </div>
                                     <br><br>

@@ -51,6 +51,11 @@ class Team
    {
       $this->country = $country;
    }
+
+
+   public function getFullName() {
+      return $this->name;
+   }
    
 }
 

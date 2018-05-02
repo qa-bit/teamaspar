@@ -44,11 +44,11 @@ class NewsletterAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('name')
-            ->add('post')
+            ->add('post', null, ['label' => 'Post'])
             ->add('customerTypes')
             ->add('groups')
-            ->add('lastSendAt')
-            ->add('queued')
+            ->add('lastSendAt', null, ['format' => 'd/m/y H:i'])
+            ->add('queued', null, ['label' => 'En cola'])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),

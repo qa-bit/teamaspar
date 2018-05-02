@@ -1108,6 +1108,10 @@ class Rider
    }
 
 
+   public function getFullname() {
+      return $this->name.' '.$this->surname;
+   }
+
    public function __toString()
    {
       return $this->name.' '.$this->surname;
