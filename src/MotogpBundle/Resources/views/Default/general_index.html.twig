@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% set currentRoute = app.request.get('_route') %}
+<html route="{{ currentRoute }}">
+<head>
+
+    {% set locale = (app.request.locale  ? app.request.locale : ( app.request.cookies.get('LC') ?  app.request.cookies.get('LC') : 'es' )) | lower %}
+    {% set params = {} %}
+
+    {%  for key, value in app.request.attributes.get('_route_params') %}
+        {% if key != '_locale' %}
+            {% set params = params | merge({(key) : (value)}) %}
+        {% endif %}
+    {% endfor %}
+
+    {% set esURL = url('index', {'locale': 'es'} | merge(params)) %}
+    {% set enURL = url('index', {'locale': 'en'} | merge(params)) %}
+
+    <meta charset="UTF-8" />
+
+    {% if app.environment == 'dev' %}
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    {% endif %}
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta charset="UTF-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="keywords"     content="{% block keywords %}{% endblock %}" />
+    <meta name="description"  content="{% block description %}{% endblock %}" />
+    <meta property="og:title" content="{% block ogtitle %}{% endblock %}" />
+    <meta property="og:image" content="{% block ogimage %}{% endblock %}" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115754752-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-115754752-1');
+    </script>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/font-awesome/css/font-awesome.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/swiper/dist/css/swiper.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/css/jquery.fancybox.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/helpers/css/jquery.fancybox-thumbs.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/fonts/fontfaces.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/lazyyt.css') }}" />
+    {% endblock %}
+
+    {% stylesheets filter="scssphp" output="bundles/motogp/css/app-v11.css"
+    "bundles/motogp/scss/_variables.scss"
+    "bundles/motogp/scss/main.scss"
+    %}
+
+    {% if app.environment == 'dev' %}
+        <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('d-m-y-h-m-i-s') }}" />
+    {% else %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endif %}
+
+    {% endstylesheets %}
+
+    {% block meta %}
+    {% endblock %}
+    <style>
+        @media screen and (min-width: 1023px) and (max-width: 1600px){
+            .navbar-brand {
+                bottom: 1.33em;
+            }
+        }
+    </style>
+</head>
+<body {% block body_attrs %}{% endblock %}>
+<div class="header-block">
+    {% block header %}
+        {% include "MotogpBundle:Default:Blocks/header_simple.html.twig" %}
+    {% endblock  %}
+
+    {% block afterheader %}
+    {% endblock %}
+</div>
+<div class="body-block">
+    {% block body %}
+        <div class="relative general-links-wrapper">
+            <img
+                    class="img img-responsive general-index-image"
+                    alt="angel nieto team"
+                    src="{{ asset('/bundles/motogp/img/general_index.jpg') }}"
+            />
+
+            <div
+                    class="col-xs-12 absolute general-index-links"
+                    style="background: url('{{ asset('/bundles/motogp/img/general_index_clear.jpg') }}')"
+            >
+                <div class="left col-xs-6">
+                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-gp'}) }}">
+                        <img src="{{ asset('/bundles/motogp/img/motogp_big.png')}}" alt="" />
+                    </a>
+                </div>
+                <div class="right col-xs-6">
+                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}">
+                        <img src="{{ asset('/bundles/motogp/img/moto3_big.png')}}" alt="" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% include "MotogpBundle:Default:footer.html.twig" with {'modality' : team.riders[0].modality }%}
+    {% endblock %}
+</div>
+</body>
+{% block javascripts %}
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/jquery.scrollto/jquery.scrollTo.min.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/jquery-lazy/jquery.lazy.min.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/swiper/dist/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/js/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/js/jquery.cookiebar.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/helpers/js/jquery.fancybox-thumbs.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/js/lazyyt.js') }}"></script>
+    <script src="{{ asset('/bundles/motogp/js/main.js') }}?v={{ "now" | date('d-m-y-h-i-s') }}"></script>
+{% endblock %}
+<div class="cookie-message">
+    <div class="locale-es">
+        <div class="col-xs-11">
+            {{ "cookies.message" | trans }}
+            <a href="{{ url('cookies', {'modality' : 'moto-gp' }) }}">{{ "cookies.here" | trans }}</a>
+        </div>
+        <div class="col-xs-1">
+            <i class="pull-right fa fa-times my-close-button"></i>
+        </div>
+    </div>
+</div>
+</html>

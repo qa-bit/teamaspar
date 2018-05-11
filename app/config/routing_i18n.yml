@@ -1,6 +1,6 @@
 index:
     locales: { "es": "/es/{modality}", "en": "/en/{modality}" }
-    defaults: { _controller: MotogpBundle:Public:index }
+    defaults: { _controller: MotogpBundle:Public:index, modality : '' }
 
 motogp_public_index:
     locales: { "es": "/es/{modality}", "en": "/en/{modality}" }

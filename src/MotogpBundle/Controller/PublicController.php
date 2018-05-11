@@ -163,7 +163,12 @@ class PublicController extends Controller
         $modalitySlug = $request->get('modality');
 
         if (!$modalitySlug) {
-            return $this->redirectToRoute('index', array('locale' => 'es', 'modality' => 'moto-gp'), 301);
+            return $this->render(
+                'MotogpBundle:Default:general_index.html.twig',
+                [
+                    'team' => $this->getMainTeam()
+                ]
+            );
         }
 
         $em = $this->getDoctrine()->getManager();
