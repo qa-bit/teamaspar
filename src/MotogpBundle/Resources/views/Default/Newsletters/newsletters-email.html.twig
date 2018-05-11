@@ -16,9 +16,11 @@
                 <columns>
                     <center>
                         {% set img_url = post.modality.headerImage | media_public_url('headerimage_medium') %}
-                        <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
-                            <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
-                        </a>
+                        {% if img_url %}
+                            <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
+                                <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
+                            </a>
+                        {% endif %}
                     </center>
                 </columns>
             </row>
@@ -27,9 +29,11 @@
             <row>
                 <columns>
                     {% set img_url = featuredMedia | media_public_url('featured_xlarge') %}
-                    <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
-                        <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
-                    </a>
+                    {% if img_url %}
+                        <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
+                            <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
+                        </a>
+                    {% endif %}
                 </columns>
             </row>
 
@@ -117,9 +121,11 @@
                 <columns>
                     <center>
                         {% set img_url = post.modality.footerImage | media_public_url('footerimage_medium') %}
-                        <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
-                            <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
-                        </a>
+                        {% if img_url %}
+                            <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
+                                <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
+                            </a>
+                        {% endif %}
                     </center>
                 </columns>
             </row>
