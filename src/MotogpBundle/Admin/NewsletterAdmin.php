@@ -186,8 +186,8 @@ class NewsletterAdmin extends AbstractAdmin
     public function postPersist($object) {
         $action = $this->getForm()->get('actions')->getData();
         if ($action == 'update_and_send') {
-            $this->sendMail($object, 'en');
-            $this->sendMail($object, 'es');
+            //$this->sendMail($object, 'en');
+            //$this->sendMail($object, 'es');
             $object->setLastSendAt(new \DateTime());
         }
     }
