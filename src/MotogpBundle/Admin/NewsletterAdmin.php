@@ -76,13 +76,13 @@ class NewsletterAdmin extends AbstractAdmin
                 'required' => false,
                 'label' => 'Publicación',
                 'attr' => [
-                    'required' => 'required',
                     'data-sonata-select2' => 'false',
                     'class' => 'form-control newsletter-post-selector'
                 ]
 
             ])
             ->add('name', null, ['required' => true])
+            ->add('modality', null, ['required' => true])
             ->add('nameEN', null, ['required' => true])
 
             ->add('customerTypes', null, ['required' => true])
@@ -165,6 +165,7 @@ class NewsletterAdmin extends AbstractAdmin
             $object->setQueued(true);
         }
 
+        
         $this->saveMedias($object, 'motogp.admin.newsletter_media');
         $this->saveFeaturedMedia($object);
 
@@ -221,12 +222,12 @@ class NewsletterAdmin extends AbstractAdmin
 
         }
 
-        if ( $post === null) {
-
-            $error = 'Seleccione una publicación.';
-            $errorElement->with( 'post' )->addViolation( $error )->end();
-
-        }
+//        if ( $post === null) {
+//
+//            $error = 'Seleccione una publicación.';
+//            $errorElement->with( 'post' )->addViolation( $error )->end();
+//
+//        }
 
     }
 

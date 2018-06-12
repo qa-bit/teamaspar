@@ -9,6 +9,7 @@ use MotogpBundle\Entity\CustomerType;
 use MotogpBundle\Entity\Traits\InGroupsTrait;
 use MotogpBundle\Entity\Traits\HasMediaTrait;
 use MotogpBundle\Entity\TeamQuotation;
+use MotogpBundle\Entity\Traits\InModalityTrait;
 
 /**
  * Newsletter
@@ -18,7 +19,7 @@ use MotogpBundle\Entity\TeamQuotation;
  */
 class Newsletter
 {
-   use ContentTrait, InGroupsTrait, HasMediaTrait;
+   use ContentTrait, InGroupsTrait, HasMediaTrait, InModalityTrait;
 
     public function __construct()
     {
@@ -264,6 +265,6 @@ class Newsletter
     {
         $this->queued = $queued;
     }
-
+    
 }
 

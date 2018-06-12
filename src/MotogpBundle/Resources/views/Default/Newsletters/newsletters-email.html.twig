@@ -1,4 +1,8 @@
 {% trans_default_domain 'contact' %}
+{% set mod = modality %}
+{% if post %}
+    {% set mod = post.modality %}
+{% endif %}
 
 {% extends 'HampeZurbInkBundle:FoundationForEmails:2/base.html.twig' %}
 {% block preHtml %}
@@ -15,9 +19,9 @@
             <row>
                 <columns>
                     <center>
-                        {% set img_url = post.modality.headerImage | media_public_url('headerimage_medium') %}
+                        {% set img_url = mod.headerImage | media_public_url('headerimage_medium') %}
                         {% if img_url %}
-                            <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
+                            <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
                                 <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
                             </a>
                         {% endif %}
@@ -30,9 +34,15 @@
                 <columns>
                     {% set img_url = featuredMedia | media_public_url('featured_xlarge') %}
                     {% if img_url %}
-                        <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
-                            <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
-                        </a>
+                        {% if post %}
+                            <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
+                                <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
+                            </a>
+                            {% else %}
+                                <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
+                                    <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
+                                </a>
+                        {% endif %}
                     {% endif %}
                 </columns>
             </row>
@@ -120,9 +130,9 @@
             <row>
                 <columns>
                     <center>
-                        {% set img_url = post.modality.footerImage | media_public_url('footerimage_medium') %}
+                        {% set img_url = mod.footerImage | media_public_url('footerimage_medium') %}
                         {% if img_url %}
-                            <a href="{{ url('index', {'locale' : locale, 'modality' : post.modality.slug }) }}">
+                            <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
                                 <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
                             </a>
                         {% endif %}
@@ -168,7 +178,7 @@
                         <tr class="tcenter">
                             <td class="tcenter">
                                 <p class="tcenter smalltext">{{ locale == 'es' ?  '¿Desea cambiar la forma en que recibe estos correos electrónicos?' : 'Want to change how you receive these emails?'}}</p><br>
-                                <a class="smalltext" target="_blank" href="{{ url('newsletters_unsubscribe', {'modality' : post.modality.slug, 'locale' : locale }) }}">
+                                <a class="smalltext" target="_blank" href="{{ url('newsletters_unsubscribe', {'modality' : mod.slug, 'locale' : locale }) }}">
                                     {{ locale == 'es' ? 'Darse de baja de nuestras newsletters' : 'Unsubscribe from this list' | trans }}
                                 </a>
                             </td>

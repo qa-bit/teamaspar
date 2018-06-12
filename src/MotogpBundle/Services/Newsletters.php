@@ -7,6 +7,7 @@ use MotogpBundle\Entity\Post;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Doctrine\ORM\EntityManager;
 use MotogpBundle\Entity\Customer;
+use MotogpBundle\Entity\Traits\InModalityTrait;
 
 class Newsletters
 {
@@ -93,19 +94,26 @@ class Newsletters
 
         $html = str_replace('http://localhost', $this->url_scheme, $html);
         
-        $circuitName = $newsletter->getPost()->getCircuit()->getName();
+        $circuitName = $newsletter->getPost() ?
+            $newsletter->getPost()->getCircuit()->getName() : '';
 
-        $tagAbbr = ($post->getCategory() && $post->getCategory()->getAbbr())
-            ? '(' . $post->getCategory()->getAbbr() . ')'
-            : '';
+        $tagAbbr = '';
+
+        if ($post) {
+            $tagAbbr = ($post->getCategory() && $post->getCategory()->getAbbr())
+                ? '(' . $post->getCategory()->getAbbr() . ')'
+                : '';
+        }
 
         $postTitle = $locale == 'es' ? $newsletter->getName() : $newsletter->getNameEN();
 
-        $subjectTitle = "$circuitName $tagAbbr - $postTitle";
+        $subjectTitle = $post ? "$circuitName $tagAbbr - $postTitle" : $postTitle;
+
+        $mod = $post ? $post->getModality() : $newsletter->getModality();
 
         $message = \Swift_Message::newInstance()
             ->setSubject($subjectTitle)
-            ->setFrom($from, self::MAIL_SUBJECT_PREFIX . $newsletter->getPost()->getModality())
+            ->setFrom($from, self::MAIL_SUBJECT_PREFIX . $mod)
             ->setBcc($recipients)
             ->setReplyTo($from)
             ->setContentType("text/html")
@@ -135,6 +143,7 @@ class Newsletters
             'title' => $locale == 'es' ? $newsletter->getName() : $newsletter->getNameEN(),
             'featuredMedia' => $newsletter->getFeaturedMedia(),
             'medias' => $newsletter->getMedia(),
+            'modality' => $newsletter->getModality(),
             'newsletter' => $newsletter,
             'body' => $locale == 'es' ? $newsletter->getDescription() : $newsletter->getDescriptionEN(),
             'post' => $newsletter->getPost(),
