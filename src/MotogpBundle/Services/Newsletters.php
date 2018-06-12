@@ -136,7 +136,7 @@ class Newsletters
             'featuredMedia' => $newsletter->getFeaturedMedia(),
             'medias' => $newsletter->getMedia(),
             'newsletter' => $newsletter,
-            'body' => $newsletter == 'es' ? $newsletter->getDescription() : $newsletter->getDescriptionEN(),
+            'body' => $locale == 'es' ? $newsletter->getDescription() : $newsletter->getDescriptionEN(),
             'post' => $newsletter->getPost(),
             'locale' => $locale,
             'url_scheme' => $this->url_scheme
