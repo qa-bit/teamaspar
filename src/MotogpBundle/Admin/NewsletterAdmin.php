@@ -64,14 +64,6 @@ class NewsletterAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
 
-//        if (!count($this->getSubject()->getCustomerTypes())) {
-//            $em = $this->modelManager->getEntityManager(CustomerType::class);
-//            $ct = $em->getRepository(CustomerType::class)->findOneBySlug('public');
-//
-//            $this->getSubject()->addCustomerType($ct);
-//
-//        }
-
         $formMapper
             ->tab('Información')
             ->with(null)
@@ -188,7 +180,7 @@ class NewsletterAdmin extends AbstractAdmin
         if ($action == 'update_and_send') {
             //$this->sendMail($object, 'en');
             //$this->sendMail($object, 'es');
-            $object->setLastSendAt(new \DateTime());
+            //$object->setLastSendAt(new \DateTime());
         }
     }
 
