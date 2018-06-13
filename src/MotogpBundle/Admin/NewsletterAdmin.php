@@ -49,6 +49,7 @@ class NewsletterAdmin extends AbstractAdmin
             ->add('groups')
             ->add('lastSendAt', null, ['format' => 'd/m/y H:i'])
             ->add('queued', null, ['label' => 'En cola'])
+            ->add('failed', null, ['label' => 'Envío fallido'])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -143,7 +144,12 @@ class NewsletterAdmin extends AbstractAdmin
             ->tab('Citas')
             ->with(null)
             ->add('teamQuotations', 'sonata_type_collection', [], ['edit' => 'inline', 'inline' => 'table'])
-
+            ->end()
+            ->end()
+            ->tab('Estado')
+                ->with(null)
+                ->add('failed', null, ['attr'=> ['readonly' => true], 'label' => 'Envío fallido'])
+                ->add('errorMessage', null, ['attr'=> ['readonly' => true], 'label' => 'Mensaje de error'])
         ;
     }
 

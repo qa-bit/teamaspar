@@ -106,7 +106,7 @@ class Newsletters
 
 
         $html = str_replace('http://localhost', $this->url_scheme, $html);
-        
+
         $circuitName = $newsletter->getPost() ?
             $newsletter->getPost()->getCircuit()->getName() : '';
 
@@ -124,27 +124,46 @@ class Newsletters
 
         $mod = $post ? $post->getModality() : $newsletter->getModality();
 
-        $message = \Swift_Message::newInstance()
-            ->setSubject($subjectTitle)
-            ->setFrom($from, self::MAIL_SUBJECT_PREFIX . $mod)
-            ->setBcc($recipients)
-            ->setReplyTo($from)
-            ->setContentType("text/html")
-            ->setBody($html);
+
+        $errors = "";
+
+        try {
+            $message = \Swift_Message::newInstance()
+                ->setSubject($subjectTitle)
+                ->setFrom($from, self::MAIL_SUBJECT_PREFIX . $mod)
+                ->setBcc($recipients)
+                ->setReplyTo($from)
+                ->setContentType("text/html")
+                ->setBody($html);
+
+        } catch(\Swift_RfcComplianceException $e) {
+            return ['sent' => false, 'errors' => $e->getMessage()];
+        }
+
 
 
         $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
 
         $this->mailer->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
 
+        $failures ='';
 
-        if ($this->mailer->send($message)) {
+        try {
+            $mail = $this->mailer->send($message, $failures);
             $spool = $this->mailer->getTransport()->getSpool();
             $spool->flushQueue($this->transport);
-            return true;
+
+        } catch(\Swift_TransportException $e) {
+            
+            return ['sent' => false, 'errors' => $e->getMessage()];
         }
 
-        return false;
+        
+        if ($mail) {
+            return ['sent' => true];
+        }
+
+        return ['sent' => false];
 
     }
 
@@ -166,6 +185,8 @@ class Newsletters
 
         return $this->templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data, 'text/html');
     }
+    
+    
 
 
 }

@@ -30,17 +30,29 @@ class SendNewslettersCommand extends ContainerAwareCommand
         $newsletters = $this->em->getRepository(Newsletter::class)->getQueued();
         foreach ($newsletters as $newsletter) {
             $sent = false;
+
+            $newsletter->setQueued(false);
+            $this->em->flush();
+
+
             foreach (self::LOCALES as $locale) {
                 $this->output->writeln('sending '.$newsletter->getName(). ' '.$locale);
-                if ($this->nm->sendMail($newsletter, $locale))
-                    $sent = true;
+
+                $sent = $this->nm->sendMail($newsletter, $locale);
 
             }
 
-            if ($sent) {
-                $newsletter->setQueued(false);
+            if ($sent['sent'] == true) {
                 $newsletter->setLastSendAt(new \DateTime());
+                $newsletter->setFailed(false);
+                $newsletter->setErrorMessage('');
                 $this->output->writeln('sent', $sent);
+            } else {
+                dump($sent);
+                $newsletter->setQueued(false);
+                $newsletter->setFailed(true);
+                $newsletter->setLastSendAt(null);
+                $newsletter->setErrorMessage($sent['errors']);
             }
         }
 

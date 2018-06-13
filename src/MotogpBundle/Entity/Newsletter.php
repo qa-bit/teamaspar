@@ -76,6 +76,19 @@ class Newsletter
      */
     private $queued;
 
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $failed;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $errorMessage;
+
+
 
     /**
      * @return mixed
@@ -91,6 +104,38 @@ class Newsletter
     public function setPost($post)
     {
         $this->post = $post;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isFailed()
+    {
+        return $this->failed;
+    }
+
+    /**
+     * @param boolean $failed
+     */
+    public function setFailed($failed)
+    {
+        $this->failed = $failed;
+    }
+
+    /**
+     * @return string
+     */
+    public function getErrorMessage()
+    {
+        return $this->errorMessage;
+    }
+
+    /**
+     * @param string $errorMessage
+     */
+    public function setErrorMessage($errorMessage)
+    {
+        $this->errorMessage = $errorMessage;
     }
 
 
@@ -265,6 +310,7 @@ class Newsletter
     {
         $this->queued = $queued;
     }
+
     
 }
 
