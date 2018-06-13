@@ -13,9 +13,29 @@
             {% set index = 0 %}
             <div class="collection">
                 {% for media in form.vars.value %}
-                    <div class="hidden media-description collection-row well row col-md-12 form-group" path="{% path media, 'icon' %}" index="{{ index }}">
+
+                    {% set failedUrl = null %}
+                    {% if media.id is null %}
+                        {% set base = app.request.server.get('DOCUMENT_ROOT') %}
+                        {% set previousUrl = media.uploadFile | path_public_url %}
+                        {% set failedUrl = asset(previousUrl) %}
+                    {% endif %}
+
+                    <div class="hidden media-description collection-row well row col-md-12 form-group"
+                         {% if not failedUrl %}
+                            path="{% path media, 'icon' %}"
+                             {% else %}
+                             path = "{{ failedUrl }}"
+                         {% endif %}
+                         index="{{ index }}">
                         <div class="col-xs-4">
-                            <img class="img img-responsive" src="{% path media, 'icon' %}"/>
+                            <img class="img img-responsive"
+                                {% if not failedUrl %}
+                                 src="{% path media, 'icon' %}
+                                 {% else %}
+                                    src="{{ failedUrl }}"
+                                 {% endif %}
+                            />
                             <label>Orden</label>
                             <input type="number" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][_order]" type="text" value="{{ media._order }}" />
                         </div>
@@ -39,6 +59,9 @@
                                     </option>
                                 {% endfor %}
                             </select>
+                            {% if failedUrl %}
+                                <input placeholder="upf" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][uploadFile]" type="text" value="{{ media.uploadFile }}" />
+                            {% endif %}
                         </div>
                         {#<label>Destacada</label>#}
                         {#<input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][featured]" type="checkbox" checked="{{ media.featured == true }}" />#}
@@ -67,7 +90,7 @@
             <input placeholder="Enlace" class="form-control" name="{{ form.vars.full_name }}[__index__][url]" type="text" />
             <label>Enlace (Inglés)</label>
             <input placeholder="Enlace (inglés)" class="form-control" name="{{ form.vars.full_name }}[__index__][urlEN]" type="text" />
-            <input class="form-control uploadFile" name="{{ form.vars.full_name }}[__index__][uploadFile]" type="hidden"  />
+            <input class="form-control uploadFile" name="{{ form.vars.full_name }}[__index__][uploadFile]" type=""  />
             <label>Piloto</label>
              <select class="form-control" name="{{ form.vars.full_name }}[__index__][rider]" type="text">
                             <option value="">-</option>
@@ -90,9 +113,31 @@
             {% set index = 0 %}
             <div class="collection">
                 {% for media in form.vars.value %}
-                    <div class="media-description hidden collection-row well row col-md-12 form-group" path="{% path media, 'icon' %}" index="{{ index }}">
+                    {% set failedUrl = null %}
+
+                    {% if media.id is null %}
+                        {% set base = app.request.server.get('DOCUMENT_ROOT') %}
+                        {% set previousUrl = media.uploadFile | path_public_url %}
+                        {% set failedUrl = asset(previousUrl) %}
+                    {% endif %}
+                    <div class="media-description hidden collection-row well row col-md-12 form-group"
+
+                         {% if not failedUrl %}
+                            path="{% path media, 'icon' %}"
+                         {% else %}
+                            path="{{ failedUrl }}"
+                         {% endif %}
+
+                         index="{{ index }}">
                         <div class="col-xs-4">
-                            <img class="img img-responsive" src="{% path media, 'icon' %}"/>
+                            <img class="img img-responsive"
+                                 {% if not failedUrl %}
+                                 src="{% path media, 'icon' %}
+                                 {% else %}
+                                    src="{{ failedUrl }}"
+                                 {% endif %}
+
+                                 "/>
                             <label>Orden</label>
                             <input type="number" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][_order]" type="text" value="{{ media._order }}" />
                         </div>
@@ -109,6 +154,9 @@
                             <input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][url]" type="text" value="{{ media.url }}" />
                             <label>Enlace (Inglés)</label>
                             <input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][urlEN]" type="text" value="{{ media.urlEN }}" />
+                            {% if failedUrl %}
+                                <input placeholder="upf" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][uploadFile]" type="hidden" value="{{ media.uploadFile }}" />
+                            {% endif %}
                         </div>
                         {#<label>Destacada</label>#}
                         {#<input placeholder="Url" class="form-control" name="{{ form.vars.full_name }}[{{ index }}][featured]" type="checkbox" checked="{{ media.featured == true }}" />#}
@@ -140,7 +188,7 @@
             <input placeholder="Enlace" class="form-control" name="{{ form.vars.full_name }}[__index__][url]" type="text" />
             <label>Enlace (Inglés)</label>
             <input placeholder="Enlace (inglés)" class="form-control" name="{{ form.vars.full_name }}[__index__][urlEN]" type="text" />
-            <input class="form-control uploadFile" name="{{ form.vars.full_name }}[__index__][uploadFile]" type="hidden"  />
+            <input class="form-control uploadFile" name="{{ form.vars.full_name }}[__index__][uploadFile]" type="text"  />
         </div>
     </div>
 {% endspaceless %}'>

@@ -38,9 +38,20 @@ class Newsletters
 
         $customersInGroups = [];
 
+        $customersInCategories = [];
 
         if (!count($groups)) {
-            return $customers;
+            foreach ($customers as $customer) {
+
+                if ($customer->getGroups()) {
+                    if (!count($customer->getGroups()))
+                        $customersInCategories[] = $customer;
+                } else {
+                    $customersInCategories[] = $customer;
+                }
+            }
+
+            return $customersInCategories;
         }
 
         foreach ($customers as $customer) {
@@ -71,6 +82,8 @@ class Newsletters
                     $recipients[$c->getEmail()] = $c->getName();
             }
         }
+
+        dump($recipients);
 
         return $recipients;
 

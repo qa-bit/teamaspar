@@ -66,6 +66,7 @@ class PostAdmin extends AbstractAdmin
     {
 
         $mediumColumn = ['container_classes' => 'col-md-6'];
+        
 
         $formMapper
             ->tab('Información')

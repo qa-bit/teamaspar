@@ -208,12 +208,12 @@ class NewsletterAdmin extends AbstractAdmin
 
         $post = $object->getPost();
 
-        if ( $groups === null || !count($groups)) {
-
-            $groups_error = 'Elija al menos un grupo.';
-            $errorElement->with( 'groups' )->addViolation( $groups_error )->end();
-
-        }
+//        if ( $groups === null || !count($groups)) {
+//
+//            $groups_error = 'Elija al menos un grupo.';
+//            $errorElement->with( 'groups' )->addViolation( $groups_error )->end();
+//
+//        }
 
         if ( $categories === null || !count($categories)) {
 
@@ -237,6 +237,14 @@ class NewsletterAdmin extends AbstractAdmin
             parent::getFormTheme(),
             array('MotogpBundle:Admin:admin.theme.html.twig')
         );
+    }
+
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        $query->orderBy($query->getRootAliases()[0] . '.id', 'DESC');
+
+        return $query;
     }
 
 }

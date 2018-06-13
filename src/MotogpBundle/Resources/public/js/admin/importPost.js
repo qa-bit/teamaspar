@@ -141,11 +141,11 @@ $(document).ready(function () {
                 customerTypes.parent().append(errorField);
             }
 
-            if (!groups.val()) {
-                missing = true;
-                var errorField = $('<div class="color-red help-block sonata-ba-field-error-messages form-error"><i class="fa fa-exclamation-circle"></i><span>Elija al menos un grupo</span></div>');
-                groups.parent().append(errorField);
-            }
+            // if (!groups.val()) {
+            //     missing = true;
+            //     var errorField = $('<div class="color-red help-block sonata-ba-field-error-messages form-error"><i class="fa fa-exclamation-circle"></i><span>Elija al menos un grupo</span></div>');
+            //     groups.parent().append(errorField);
+            // }
 
             if (missing) {
                 e.preventDefault();
