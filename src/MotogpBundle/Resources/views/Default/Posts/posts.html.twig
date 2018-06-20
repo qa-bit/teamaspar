@@ -14,19 +14,30 @@
                     {% endif %}
                 {% endfor %}
 
-                {% for c in cpost %}
-                    {% if loop.index == 1 or (loop.index % 4  == 0)%}
-                        <div class="row col-xs-12">
-                    {% endif %}
+                {#{% for c in cpost %}#}
+                    {#{% if loop.index == 1 or (loop.index % 4  == 0)%}#}
+                        {#<div class="row col-xs-12">#}
+                    {#{% endif %}#}
 
-                    {% if c.posts | length %}
-                        {% include "MotogpBundle:Default:Posts/circuit-posts.html.twig" with {'circuit' : c} %}
-                    {% endif %}
+                    {#{% if c.posts | length %}#}
+                        {#{% include "MotogpBundle:Default:Posts/circuit-posts.html.twig" with {'circuit' : c} %}#}
+                    {#{% endif %}#}
 
-                    {% if (loop.index % 4  == 3 ) %}
-                        </div>
-                    {% endif %}
+                    {#{% if (loop.index % 4  == 3 ) %}#}
+                        {#</div>#}
+                    {#{% endif %}#}
+                {#{% endfor %}#}
+
+                {% for cb in cpost | batch(3, '') %}
+                    <div class="row col-xs-12">
+                        {% for c in cb %}
+                            {% if c.id is defined %}
+                                {% include "MotogpBundle:Default:Posts/circuit-posts.html.twig" with {'circuit' : c} %}
+                             {% endif %}
+                        {% endfor %}
+                    </div>
                 {% endfor %}
+
 
             </div>
             <div class="form-group col-xs-12">

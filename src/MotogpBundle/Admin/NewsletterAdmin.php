@@ -83,7 +83,7 @@ class NewsletterAdmin extends AbstractAdmin
 
             ])
             ->add('name', null, ['required' => true])
-            ->add('modality', null, ['required' => true])
+            ->add('modality', null, ['required' => true, 'label' => 'Modalidad (sólo para newsletters sin Post asociado)'])
             ->add('nameEN', null, ['required' => true])
 
             ->add('customerTypes', null, ['required' => true])

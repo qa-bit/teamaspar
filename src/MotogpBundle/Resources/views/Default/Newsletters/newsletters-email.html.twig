@@ -19,7 +19,7 @@
             <row>
                 <columns>
                     <center>
-                        {% set img_url = mod.headerImage | media_public_url('headerimage_medium') %}
+                        {% set img_url = mod.headerImage | media_public_url('headerimage_std') %}
                         {% if img_url %}
                             <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
                                 <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
@@ -130,7 +130,7 @@
             <row>
                 <columns>
                     <center>
-                        {% set img_url = mod.footerImage | media_public_url('footerimage_medium') %}
+                        {% set img_url = mod.footerImage | media_public_url('footerimage_std') %}
                         {% if img_url %}
                             <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
                                 <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
