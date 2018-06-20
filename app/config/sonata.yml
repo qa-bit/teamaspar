@@ -132,7 +132,8 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 icon: { width: 256, quality: 70}
-                medium:   { width: 868 , quality: 70}
+                medium:   { width: 868 , quality: 100}
+                std:   { width: 868 , quality: 100}
                 big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
         headerimage:  # the default context is mandatory
@@ -141,7 +142,8 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 icon: { width: 256, quality: 70}
-                medium:   { width: 868 , quality: 70}
+                medium:   { width: 868 , quality: 100}
+                std:   { width: 868 , quality: 100}
                 big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
         featured:  # the default context is mandatory
@@ -190,7 +192,7 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 icon: { width: 256, quality: 70}
-                medium:   { width: 500 , quality: 70}
+                medium:   { width: 500 , quality: 100}
                 big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
                 
