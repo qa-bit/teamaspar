@@ -25,6 +25,11 @@ class SendNewslettersCommand extends ContainerAwareCommand
             ->addOption('option', null, InputOption::VALUE_NONE, 'Option description')
         ;
     }
+
+    protected function updateCache () {
+        $cacheManager = $this->getContainer()->get('liip_imagine.cache.manager');
+        $cacheManager->remove();
+    }
     
     protected function sendNewsLetters() {
         $newsletters = $this->em->getRepository(Newsletter::class)->getQueued();
@@ -32,6 +37,7 @@ class SendNewslettersCommand extends ContainerAwareCommand
             $sent = false;
 
             $newsletter->setQueued(false);
+            $this->updateCache();
             $this->em->flush();
 
 

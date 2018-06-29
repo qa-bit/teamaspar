@@ -22,7 +22,7 @@
                         {% set img_url = mod.headerImage | media_public_url('headerimage_std') %}
                         {% if img_url %}
                             <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
-                                <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
+                                <img src="{{ img_url  |  imagine_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
                             </a>
                         {% endif %}
                     </center>
@@ -36,11 +36,11 @@
                     {% if img_url %}
                         {% if post %}
                             <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
-                                <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
+                                <img src="{{ img_url  |  imagine_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
                             </a>
                             {% else %}
                                 <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
-                                    <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
+                                    <img src="{{ img_url  |  imagine_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
                                 </a>
                         {% endif %}
                     {% endif %}
@@ -133,7 +133,7 @@
                         {% set img_url = mod.footerImage | media_public_url('footerimage_std') %}
                         {% if img_url %}
                             <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
-                                <img src="{{ img_url  |  imagine_filter('email_header') }}?v=2" />
+                                <img src="{{ img_url  |  imagine_filter('email_footer') }}?v={{ 'now' | date('ymdhis') }}" />
                             </a>
                         {% endif %}
                     </center>

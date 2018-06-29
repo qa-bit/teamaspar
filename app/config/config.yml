@@ -165,7 +165,7 @@ liip_imagine:
         default:
             web_path: ~
     filter_sets:
-        cache : ~
+        cache : []
         email_thumbnail :
             quality : 70
             filters :
@@ -177,7 +177,14 @@ liip_imagine:
                         background : { size : [221, 205], position : left, color : '#FFFFFF' }
         email_header :
             format: png
-            quality : 70
+            quality : 100
+            filters:
+                relative_resize:
+                    widen : 868
+
+        email_footer :
+            format: png
+            quality : 100
             filters:
                 relative_resize:
                     widen : 868

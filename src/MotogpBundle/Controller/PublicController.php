@@ -2,6 +2,7 @@
 
 namespace MotogpBundle\Controller;
 
+use MotogpBundle\Entity\Newsletter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MotogpBundle\Entity\Gallery;
@@ -34,8 +35,8 @@ class PublicController extends Controller
 
 
     private function getGeneralScore($modality) {
-        
-        
+
+
         $em = $this->getDoctrine()->getManager();
 
         $currentSeason = $em->getRepository(Season::class)->findOneBy(array('current' => true));
@@ -152,7 +153,7 @@ class PublicController extends Controller
 
         return $data;
     }
-        
+
 
     /**
      * @Route("/")
@@ -176,7 +177,7 @@ class PublicController extends Controller
         $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('inicio_'.str_replace('-', '_',  $modalitySlug));
-        
+
         $galleries = $em->getRepository(Gallery::class)->getGalleries();
 
         $posts  = $em->getRepository(Post::class)->getLastInModality($modality);
@@ -334,7 +335,7 @@ class PublicController extends Controller
         $rider = $em->getRepository(Rider::class)->findOneBySlug($request->get('slug'));
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
-        
+
 
         return $this->render(
             'MotogpBundle:Default:Riders/riders.html.twig',
@@ -601,5 +602,43 @@ class PublicController extends Controller
             ]
         );
     }
+
+
+    protected function updateCache ($path, $filter) {
+        $cacheManager = $this->get('liip_imagine.cache.manager');
+        $cacheManager->remove();
+    }
+
+//    /**
+//     * @Route("/imagecache-test/{id}")
+//     */
+//    public function imageCacheTest(Newsletter $newsletter) {
+//
+//        $media = $newsletter->getModality()->getHeaderImage();
+//
+//        $provider = $this->get($media->getProviderName());
+//
+//        $url = preg_replace("#^/#", '', $provider->generatePublicUrl($media, 'headerimage_std'));
+//
+//        $this->updateCache($url, 'email_header');
+//
+//        $locale = 'es';
+//
+//        $data = [
+//            'name' => $locale == 'es' ? $newsletter->getName() : $newsletter->getNameEN(),
+//            'title' => $locale == 'es' ? $newsletter->getName() : $newsletter->getNameEN(),
+//            'featuredMedia' => $newsletter->getFeaturedMedia(),
+//            'medias' => $newsletter->getMedia(),
+//            'modality' => $newsletter->getModality(),
+//            'newsletter' => $newsletter,
+//            'body' => $locale == 'es' ? $newsletter->getDescription() : $newsletter->getDescriptionEN(),
+//            'post' => $newsletter->getPost(),
+//            'locale' => $locale,
+//            'url_scheme' => 'http://cmsmotogp.test'
+//        ];
+//
+//        return $this->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data);
+//
+//    }
 
 }
