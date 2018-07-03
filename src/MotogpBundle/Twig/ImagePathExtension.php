@@ -25,9 +25,9 @@ class ImagePathExtension extends \Twig_Extension
     {
         $cacheManager = $this->container->get('liip_imagine.cache.manager');
         $cacheManager->remove($path, $filter);
-        sleep(10);
+        sleep(2);
         $cacheManager->resolve($path, $filter);
-        sleep(10);
+        sleep(2);
         return $cacheManager->getBrowserPath($path, $filter, $runtimeConfig, $resolver);
     }
 
