@@ -77,11 +77,11 @@
                                 {% set img_url = m | media_public_url(context ~ '_xlarge') %}
                                 {% if loop.index % 4 == 0 %}
                                     <a target="_blank" href="{{ url_scheme ~ asset(img_url) }}">
-                                        <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_nocache_filter('email_thumbnail') }}" />
+                                        <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_nocache_filter('email_thumbnail') }}?v={{ 'now' | date('ymdhis') }}" />
                                     </a>
                                 {% else %}
                                     <a target="_blank" href="{{ url_scheme ~ asset(img_url) }}">
-                                        <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_nocache_filter('email_thumbnail_right') }}" />
+                                        <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_nocache_filter('email_thumbnail_right') }}?v={{ 'now' | date('ymdhis') }}" />
                                     </a>
                                 {% endif %}
                             {% else %}
@@ -110,13 +110,13 @@
 
                                     <div class="content-centered quotation-content">
                                         <div class="w100 clearfix">
-                                            <img class="fleft " src="{{ url_scheme ~ asset('/bundles/motogp/img/assets/quotation_left.png')}}" alt="" />
+                                            <img class="fleft " src="{{ url_scheme ~ asset('/bundles/motogp/img/assets/quotation_left.png')}}?v={{ 'now' | date('ymdhis') }}" alt="" />
                                         </div>
                                         <div class="w100 quotation-content-raw">
                                             {{ (locale == 'es' ? quotation.description : quotation.descriptionEN) | raw}}
                                         </div>
                                         <div class="w100 clearfix">
-                                            <img class="fright " src="{{ url_scheme ~ asset('/bundles/motogp/img/assets/quotation_right.png')}}" alt="" />
+                                            <img class="fright " src="{{ url_scheme ~ asset('/bundles/motogp/img/assets/quotation_right.png')}}?v={{ 'now' | date('ymdhis') }}" alt="" />
                                         </div>
                                     </div>
                                     <br><br>
