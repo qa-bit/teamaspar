@@ -66,3 +66,13 @@ img[data-dz-thumbnail] {
 .color-red {
   color : #f74242;
 }
+
+.dz-image {
+  border : 1px solid #eee;
+}
+
+img[data-dz-thumbnail] {
+  height: auto;
+  width: 95%;
+  margin : 2.5%;
+}

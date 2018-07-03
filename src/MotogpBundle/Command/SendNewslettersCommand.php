@@ -27,8 +27,9 @@ class SendNewslettersCommand extends ContainerAwareCommand
     }
 
     protected function updateCache () {
-        $cacheManager = $this->getContainer()->get('liip_imagine.cache.manager');
-        $cacheManager->remove();
+//        $cacheManager = $this->getContainer()->get('liip_imagine.cache.manager');
+//        $cacheManager->remove();
+       // $cacheManager->resolve();
     }
     
     protected function sendNewsLetters() {

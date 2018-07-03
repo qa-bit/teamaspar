@@ -22,7 +22,7 @@
                         {% set img_url = mod.headerImage | media_public_url('headerimage_std') %}
                         {% if img_url %}
                             <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
-                                <img src="{{ img_url  |  imagine_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
+                                <img src="{{ img_url  |  imagine_nocache_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
                             </a>
                         {% endif %}
                     </center>
@@ -36,11 +36,11 @@
                     {% if img_url %}
                         {% if post %}
                             <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
-                                <img src="{{ img_url  |  imagine_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
+                                <img src="{{ img_url  |  imagine_nocache_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
                             </a>
                             {% else %}
                                 <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
-                                    <img src="{{ img_url  |  imagine_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
+                                    <img src="{{ img_url  |  imagine_nocache_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
                                 </a>
                         {% endif %}
                     {% endif %}
@@ -77,11 +77,11 @@
                                 {% set img_url = m | media_public_url(context ~ '_xlarge') %}
                                 {% if loop.index % 4 == 0 %}
                                     <a target="_blank" href="{{ url_scheme ~ asset(img_url) }}">
-                                        <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_filter('email_thumbnail') }}" />
+                                        <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_nocache_filter('email_thumbnail') }}" />
                                     </a>
                                 {% else %}
                                     <a target="_blank" href="{{ url_scheme ~ asset(img_url) }}">
-                                        <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_filter('email_thumbnail_right') }}" />
+                                        <img class="media-image media-image-{{ loop.index % 4 }}" src="{{ img_url  |  imagine_nocache_filter('email_thumbnail_right') }}" />
                                     </a>
                                 {% endif %}
                             {% else %}
@@ -103,7 +103,7 @@
                                     <div class="content-centered w100">
                                         {% if quotation.quoter.quotationImage %}
                                             {% set img_url = quotation.quoter.quotationImage | media_public_url('quotationimage_medium') %}
-                                            <img class="tcenter" src="{{ img_url | imagine_filter('email_thumbnail') }}?v=2" />
+                                            <img class="tcenter" src="{{ img_url | imagine_nocache_filter('email_thumbnail') }}?v=2" />
                                         {% endif %}
                                     </div>
                                     <h2 class="content-centered">{{ quotation.quoter.fullname | upper}}</h2>
@@ -133,7 +133,7 @@
                         {% set img_url = mod.footerImage | media_public_url('footerimage_std') %}
                         {% if img_url %}
                             <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
-                                <img src="{{ img_url  |  imagine_filter('email_footer') }}?v={{ 'now' | date('ymdhis') }}" />
+                                <img src="{{ img_url  |  imagine_nocache_filter('email_footer') }}?v={{ 'now' | date('ymdhis') }}" />
                             </a>
                         {% endif %}
                     </center>
