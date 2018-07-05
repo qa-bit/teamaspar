@@ -107,7 +107,7 @@ class Newsletters
 
         $html = str_replace('http://localhost', $this->url_scheme, $html);
 
-        $circuitName = $newsletter->getPost() ?
+        $circuitName = $newsletter->getPost() && $newsletter->getPost()->getCircuit() ?
             $newsletter->getPost()->getCircuit()->getName() : '';
 
         $tagAbbr = '';
