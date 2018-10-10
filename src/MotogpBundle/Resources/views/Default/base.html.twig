@@ -82,18 +82,27 @@
     {% endblock %}
 </head>
 <body {% block body_attrs %}{% endblock %}>
-<div class="header-block">
-    {% block header %}
-        {% include "MotogpBundle:Default:Blocks/header.html.twig" %}
-    {% endblock  %}
 
-    {% block afterheader %}
-    {% endblock %}
-</div>
-<div class="body-block">
-    {% block body %}
-    {% endblock %}
-</div>
+{% if modality.slug == 'fim-jr' and not app.user %}
+    ERROR 404<br>
+    <div class="col-xs-12 tcenter">
+    <a href="{{ url('index') }}">Volver</a>
+    </div>
+{% else %}
+    <div class="header-block">
+        {% block header %}
+            {% include "MotogpBundle:Default:Blocks/header.html.twig" %}
+        {% endblock  %}
+
+        {% block afterheader %}
+        {% endblock %}
+    </div>
+    <div class="body-block">
+        {% block body %}
+        {% endblock %}
+    </div>
+{% endif %}
+
 </body>
 {% block javascripts %}
     <script src="{{ asset('/bundles/motogp/vendor/node_modules/jquery/dist/jquery.min.js') }}"></script>
