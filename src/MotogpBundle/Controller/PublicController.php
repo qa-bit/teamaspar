@@ -292,9 +292,16 @@ class PublicController extends Controller
     public function motosAction(Request $request)
     {
 
+
+
+
         $em = $this->getDoctrine()->getManager();
 
         $modalitySlug = $request->get('modality');
+
+        if ($modalitySlug == 'fim-jr') {
+            return $this->redirectToRoute('homepage');
+        }
 
         $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
 

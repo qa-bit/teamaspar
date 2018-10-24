@@ -1,3 +1,5 @@
+Dropzone = require('dropzone');
+
 $(document).ready(function () {
         Dropzone.autoDiscover = false;
     
@@ -149,5 +151,4 @@ $(document).ready(function () {
 
         });
 
-    }
-);
+    });

@@ -150,3 +150,10 @@
     margin-left : .33em;
   }
 }
+
+html[modality="fim-jr"] {
+  .navbar-brand {
+    top: 0 !important;
+    padding-top: .33em !important;
+  }
+}

@@ -51,8 +51,9 @@
                 <li><a class="{{ (route == 'posts' or route == 'post') ? 'active' : '' }}" href="{{ url('posts', {'modality': modality.slug}) }}">{{ "news" | trans }}</a></li>
                 <li><a class="{{ route == 'images' ? 'active' : '' }}" href="{{ url('images', {'modality': modality.slug}) }}">{{ "images" | trans }}</a></li>
                 <li><a class="{{ route == 'videos' ? 'active' : '' }}" href="{{ url('videos', {'modality': modality.slug}) }}">{{ "videos" | trans }}</a></li>
-                <li><a class="{{ route == 'motos' ? 'active' : '' }}" href="{{ url('motos', {'modality': modality.slug}) }}">{{ motoname }}</a></li>
-
+                {% if modality.slug != 'fim-jr' %}
+                    <li><a class="{{ route == 'motos' ? 'active' : '' }}" href="{{ url('motos', {'modality': modality.slug}) }}">{{ motoname }}</a></li>
+                {% endif %}
                 <li class="nav-item dropdown">
                     <a class="{{ route == 'riders' ? 'active' : '' }} nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ "riders" | trans }}
