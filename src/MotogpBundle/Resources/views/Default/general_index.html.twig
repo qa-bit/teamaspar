@@ -117,7 +117,10 @@
                 </div>
                 <div class="right col-xs-6">
                     <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}">
-                        <img src="{{ asset('/bundles/motogp/img/moto3_big.png')}}" alt="" />
+                        <img id="image-moto-3" src="{{ asset('/bundles/motogp/img/moto3_big.png')}}" alt="" />
+                    </a>
+                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}">
+                        <img id="image-fim-jr" src="{{ asset('/bundles/motogp/img/fim_jr.png')}}" alt="" />
                     </a>
                 </div>
             </div>
@@ -149,4 +152,8 @@
         </div>
     </div>
 </div>
+<style>
+
+
+</style>
 </html>

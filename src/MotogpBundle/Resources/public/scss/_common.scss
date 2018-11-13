@@ -170,7 +170,12 @@ footer .powered-by{
   .general-index-links {
     background : transparent !important;
   }
+
+
+
 }
+
+
 
 
 @media screen and (orientation : portrait) {
@@ -188,6 +193,20 @@ footer .powered-by{
 .general-index-links {
 
   @media screen and (min-width: 981px) {
+
+
+    #image-fim-jr {
+      height: auto;
+      width: 9em;
+      margin-top: 2em;
+      margin-left: 20em;
+    }
+
+    #image-moto-3 {
+      margin-top: 16em;
+      margin-bottom: 6em;
+    }
+
 
     top: 0;
 
@@ -220,11 +239,18 @@ footer .powered-by{
       }
     }
   }
-  @media screen and (max-width: 980px) {
+  @media screen and (max-width: 980px), (orientation : portrait) {
+
+
+   >div {
+     width : 100% !important;
+   }
+
 
     top: 0;
 
     img {
+      margin : 1em auto;
     }
 
     a {
@@ -235,7 +261,6 @@ footer .powered-by{
     .left img {
       display : table;
       float : none;
-      margin : 8em auto;
       transition: filter 0.33s;
       filter: saturate(0.75);
 
@@ -252,7 +277,6 @@ footer .powered-by{
       float : none;
       width : auto;
       height : 8vh;
-      margin : 8em auto;
       transition: filter .33s;
       filter: saturate(0);
       &:hover {
@@ -262,7 +286,7 @@ footer .powered-by{
     }
   }
 
-  @media screen and (max-width: 640px), (orientation : portrait) {
+  @media screen and (max-width: 980px), (orientation : portrait) {
 
     padding : 0;
     >div {
@@ -282,6 +306,10 @@ footer .powered-by{
     img {
       filter : saturate(1.25) !important;
       margin : 2em auto !important;
+      width : 8em !important;
+      height: auto !important;
     }
   }
+
+
 }

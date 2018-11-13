@@ -83,12 +83,7 @@
 </head>
 <body {% block body_attrs %}{% endblock %}>
 
-{% if modality.slug == 'fim-jr' and not app.user %}
-    ERROR 404<br>
-    <div class="col-xs-12 tcenter">
-    <a href="{{ url('index') }}">Volver</a>
-    </div>
-{% else %}
+
     <div class="header-block">
         {% block header %}
             {% include "MotogpBundle:Default:Blocks/header.html.twig" %}
@@ -101,7 +96,7 @@
         {% block body %}
         {% endblock %}
     </div>
-{% endif %}
+
 
 </body>
 {% block javascripts %}
