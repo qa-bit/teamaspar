@@ -215,11 +215,12 @@ footer .powered-by{
 
     .left img {
       float: right;
-      height: 10em;
-      margin-right: 19em;
+      height: 15em;
+      margin-right: 15em;
       transition: filter 0.33s;
       filter: saturate(0.75);
-      margin-top: 20em;
+      margin-top: 19em;
+
       &:hover {
         transition: filter .33s;
         filter: saturate(1);
