@@ -56,6 +56,7 @@ class ModalityAdmin extends AbstractAdmin
             ->add('nameEN')
             ->add('description', 'ckeditor')
             ->add('descriptionEN', 'ckeditor')
+            ->add('active')
             ->add('_order')
             ->end()
             ->end()

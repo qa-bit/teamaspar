@@ -12,7 +12,12 @@
     <div class="smoke-background">
         <div class="white-background">
             <div class="w100 rider-description">
-                {{ sponsor.description | raw}}
+                {% if locale == 'es' %}
+                    {{ sponsor.description | raw}}
+                {% endif %}
+                {% if locale == 'en' %}
+                    {{ sponsor.descriptionEN | raw}}
+                {% endif %}
             </div>
             <div class="col-xs-12 text-center">
                 <a target="_blank" href="{{ sponsor.webUrl }}"><i class="fa fa-link"></i>&nbsp;{{ sponsor.name }}</a>

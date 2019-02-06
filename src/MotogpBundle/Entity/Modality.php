@@ -50,7 +50,11 @@ class Modality
     private $slug;
 
 
-
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $active;
 
     /**
      * @return string
@@ -131,5 +135,21 @@ class Modality
     {
         $this->slug = $slug;
     }
-    
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
 }
