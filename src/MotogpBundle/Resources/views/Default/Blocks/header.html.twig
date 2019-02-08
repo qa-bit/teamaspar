@@ -4,7 +4,7 @@
 {% set motoname = '' %}
 
 {% if modality.slug == 'moto-gp' %}
-    {% set motoname = 'ducati' %}
+    {% set motoname = 'ktm' %}
 {% else %}
     {% set motoname = 'ktm '%}
 {% endif %}
@@ -49,9 +49,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="modality-list only-desktop">
-                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-gp'}) }}"><img {% if modality.slug == 'moto-gp' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/assets/motogp.png?v=5')}}" alt="" /></a></li>
-                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}"><img {% if modality.slug == 'moto-3' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/assets/moto3.png?v=5')}}" alt="" /></a></li>
-                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}"><img {% if modality.slug == 'fim-jr' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/assets/fimjr.png?v=5')}}" alt="" /></a></li>
+                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-gp'}) }}"><img {% if modality.slug == 'moto-gp' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/assets/motogp.png?v=6')}}" alt="" /></a></li>
+                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}"><img {% if modality.slug == 'moto-3' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/assets/moto3.png?v=6')}}" alt="" /></a></li>
+                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}"><img {% if modality.slug == 'fim-jr' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/assets/fimjr.png?v=6')}}" alt="" /></a></li>
                 {#<li><a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}"><img {% if modality.slug == 'fim-jr' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/assets/fimjr.png')}}" alt="" /></a></li>#}
             </ul>
             <ul class="nav navbar-nav only-desktop">
