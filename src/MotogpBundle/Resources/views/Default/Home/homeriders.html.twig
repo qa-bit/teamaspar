@@ -1,6 +1,6 @@
 <div class="home-riders">
     <div class="col-xs-3 tcenter">
-        <img class="img img-responsive powered-by" src="{{ asset('/bundles/motogp/img/assets/logo_sponsor-' ~ modality.slug ~ '.png') }}" />
+        <img class="img img-responsive powered-by" src="{{ asset('/bundles/motogp/img/assets/logo_sponsor-' ~ modality.slug ~ '.png') }}?v={{ "now" | date('ymdhi') }}" />
     </div>
 
     {% if homeRiders | length >= 2 %}
