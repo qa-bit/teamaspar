@@ -79,17 +79,19 @@ class RiderAdmin extends AbstractAdmin
             ->add('birthDate', 'sonata_type_date_picker', [
                 'label' => 'Fecha de nacimiento',
                 'format'=>'dd/MM/yyyy',
-                'attr' => ['container_classes' => 'col-md-6'],
+                'attr' => ['container_classes' => 'col-md-4'],
             ])
             ->add('birthPlace', null, ['label' => 'Lugar de nacimiento',
-                'attr' => ['container_classes' => 'col-md-6'],
+                'attr' => ['container_classes' => 'col-md-4'],
             ])
             ->add('country', CountryType::class, ['label' => 'País',
-                'attr' => ['container_classes' => 'col-md-6'],
+                'attr' => ['container_classes' => 'col-md-4'],
             ])
-            ->add('modality', null, ['label' => 'Modalidad', 'required' => true, 'attr' => ['container_classes' => 'col-md-6']])
-            ->add('moto', null, ['required' => true, 'attr' => ['container_classes' => 'col-md-6'],])
-            ->add('_order', null, ['attr' => ['container_classes' => 'col-md-6']])
+            ->add('modality', null, ['label' => 'Modalidad', 'required' => true, 'attr' => ['container_classes' => 'col-md-4']])
+            ->add('modalityClassification', null, ['required' => false, 'attr' => ['container_classes' => 'col-md-4']])
+            ->add('moto', null, ['required' => true, 'attr' => ['container_classes' => 'col-md-4']])
+
+            ->add('_order', null, ['attr' => ['container_classes' => 'col-md-3']])
             ->add('showInHome', 'checkbox', [
                 'label' => 'Mostrar en inicio',
                 'required' => false,

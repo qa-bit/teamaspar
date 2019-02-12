@@ -34,6 +34,22 @@ class PublicController extends Controller
     }
 
 
+    private function getModality($modalitySlug) {
+        $em = $this->getDoctrine()->getManager();
+
+        $m = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $m;
+        } else {
+            if ($m->isActive()) return $m;
+        }
+
+        return false;
+
+    }
+
+
     private function getGeneralScore($modality) {
 
 
@@ -174,7 +190,10 @@ class PublicController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('inicio_'.str_replace('-', '_',  $modalitySlug));
 
@@ -231,7 +250,10 @@ class PublicController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
@@ -263,7 +285,10 @@ class PublicController extends Controller
 
         $modalitySlug = $request->get('modality');
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('videos_'.str_replace('-', '_',  $modalitySlug));
 
@@ -292,9 +317,6 @@ class PublicController extends Controller
     public function motosAction(Request $request)
     {
 
-
-
-
         $em = $this->getDoctrine()->getManager();
 
         $modalitySlug = $request->get('modality');
@@ -303,7 +325,10 @@ class PublicController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('motos_'.str_replace('-', '_',  $modalitySlug));
 
@@ -333,7 +358,10 @@ class PublicController extends Controller
 
         $modalitySlug = $request->get('modality');
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('riders_'.str_replace('-', '_',  $modalitySlug));
 
@@ -371,7 +399,10 @@ class PublicController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
@@ -401,7 +432,10 @@ class PublicController extends Controller
 
         $modalitySlug = $request->get('modality');
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
@@ -438,7 +472,10 @@ class PublicController extends Controller
 
         $modalitySlug = $request->get('modality');
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('noticias_'.str_replace('-', '_',  $modalitySlug));
 
@@ -474,7 +511,10 @@ class PublicController extends Controller
 
         $modalitySlug = $request->get('modality');
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
@@ -507,7 +547,10 @@ class PublicController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('staff_'.str_replace('-', '_',  $modalitySlug));
 
@@ -544,7 +587,10 @@ class PublicController extends Controller
 
         $modalitySlug = $request->get('modality');
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
@@ -571,7 +617,9 @@ class PublicController extends Controller
 
         $modalitySlug = $request->get('modality');
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
@@ -595,7 +643,10 @@ class PublicController extends Controller
 
         $modalitySlug = $request->get('modality');
 
-        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 

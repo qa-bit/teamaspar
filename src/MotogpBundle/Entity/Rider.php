@@ -15,6 +15,7 @@ use MotogpBundle\Entity\Traits\HasPreviewImageTrait;
 use MotogpBundle\Entity\Traits\HasQuotationImageTrait;
 use Application\Sonata\MediaBundle\Entity\RiderMedia;
 use Doctrine\Common\Collections\ArrayCollection;
+use MotogpBundle\Entity\ModalityClassification;
 
 /**
  * Rider
@@ -58,6 +59,13 @@ class Rider
     * @ORM\OrderBy({"year" = "ASC"})
     */
    protected $records;
+
+
+   /**
+    * @ORM\ManyToOne(targetEntity="ModalityClassification", cascade={"persist"})
+    * @ORM\JoinColumn(onDelete="CASCADE")
+    */
+   protected $modalityClassification;
 
    
    /**
@@ -1099,6 +1107,22 @@ class Rider
       return $this->staffMembers;
    }
 
+   /**
+    * @return mixed
+    */
+   public function getModalityClassification()
+   {
+      return $this->modalityClassification;
+   }
+
+   /**
+    * @param mixed $modalityClassification
+    */
+   public function setModalityClassification($modalityClassification)
+   {
+      $this->modalityClassification = $modalityClassification;
+   }
+   
    /**
     * @param Team $staffMembers
     */

@@ -58,6 +58,7 @@ sonata_admin:
                     - motogp.admin.sponsor
                     - motogp.admin.moto
                     - motogp.admin.rider_external
+                    - motogp.admin.modality_classification
                 roles: [ROLE_SUPER_ADMIN]
 
             newsletterss:

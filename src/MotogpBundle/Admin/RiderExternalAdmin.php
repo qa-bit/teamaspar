@@ -71,8 +71,9 @@ class RiderExternalAdmin extends AbstractAdmin
             ->add('birthPlace', null, ['label' => 'Lugar de nacimiento',
                 'attr' => ['container_classes' => 'col-md-6'],
             ])
-            ->add('modality', null, ['label' => 'Modalidad', 'required' => true, 'attr' => ['container_classes' => 'col-md-6']])
-            ->add('moto', null, ['required' => true, 'attr' => ['container_classes' => 'col-md-6'],])
+            ->add('modality', null, ['label' => 'Modalidad', 'required' => true, 'attr' => ['container_classes' => 'col-md-4']])
+            ->add('modalityClassification', null, ['required' => false, 'attr' => ['container_classes' => 'col-md-4']])
+            ->add('moto', null, ['required' => true, 'attr' => ['container_classes' => 'col-md-4'],])
             ->add('riderTeam', null,
                 [
                     'class' => RiderTeam::class,

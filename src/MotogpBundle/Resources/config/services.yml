@@ -53,6 +53,13 @@ services:
                 - { name: sonata.admin, manager_type: orm, group: Staff, label: Categorías staff }
             public: true
 
+    motogp.admin.modality_classification:
+            class: MotogpBundle\Admin\ModalityClassificationAdmin
+            arguments: [~, MotogpBundle\Entity\ModalityClassification, SonataAdminBundle:CRUD]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Configuración, label: Clasificaciones }
+            public: true
+
     motogp.admin.race:
         class: MotogpBundle\Admin\RaceAdmin
         arguments: [~, MotogpBundle\Entity\Race, SonataAdminBundle:CRUD]
