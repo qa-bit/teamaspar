@@ -45,6 +45,7 @@ class GetDataExtension extends \Twig_Extension
                 $years[] = $i;
             }
         }
+        
 
         return $years;
     }

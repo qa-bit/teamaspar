@@ -629,7 +629,7 @@ class PublicController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithPostsInModalityAndYear($modality, $year);
-
+        
 
         return $this->render(
             'MotogpBundle:Default:Posts/posts.html.twig',

@@ -6,10 +6,13 @@
 
 {% for p in circuit.posts %}
     {% set postYear = p.publishedAt | date('Y') %}
-    {% if p.modality.id == modality.id and postYear == year %}
+    {% if p.modality.id == modality.id
+
+    %}
         {% set posts = posts | merge([p]) %}
     {% endif %}
 {% endfor %}
+
 
 {% if posts | length %}
     <div class="circuit-gallery col-xs-12 col-sm-6 col-md-4">
