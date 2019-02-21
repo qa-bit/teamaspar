@@ -1,0 +1,21 @@
+<ul class="modality-list only-mobile">
+    <li>
+        {% if modality.slug == 'moto-2' %}
+            <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-2'}) }}">
+                <img src="{{ asset('/bundles/motogp/img/assets/motogp.png')}}" alt="" />
+            </a>
+        {% else %}
+            <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}">
+                <img src="{{ asset('/bundles/motogp/img/assets/moto3.png')}}" alt="" />
+            </a>
+        {% endif %}
+
+        {% if modality.slug == 'fim-jr' %}
+            <a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}">
+                <img src="{{ asset('/bundles/motogp/img/assets/fim-jr.png')}}" alt="" />
+            </a>
+        {% endif %}
+    </li>
+    {#<li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}"><img {% if modality.slug == 'moto-3' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/assets/moto3.png?v=2')}}" alt="" /></a></li>#}
+    {#<li><a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}"><img {% if modality.slug == 'fim-jr' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/assets/fimjr.png')}}" alt="" /></a></li>#}
+</ul>

@@ -38,6 +38,7 @@ class Gallery
     public function __construct()
     {
         $this->medias = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     /**

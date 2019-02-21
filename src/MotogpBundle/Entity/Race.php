@@ -44,6 +44,12 @@ class Race
      */
     protected $scores;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="ModalityClassification", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $modalityClassification;
+
 
     public function __construct()
     {
@@ -136,5 +142,21 @@ class Race
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getModalityClassification()
+    {
+        return $this->modalityClassification;
+    }
+
+    /**
+     * @param mixed $modalityClassification
+     */
+    public function setModalityClassification($modalityClassification)
+    {
+        $this->modalityClassification = $modalityClassification;
+    }
+    
 }
 

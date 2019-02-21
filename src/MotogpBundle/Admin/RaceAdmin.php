@@ -13,6 +13,13 @@ use MotogpBundle\Entity\Rider;
 
 class RaceAdmin extends AbstractAdmin
 {
+
+
+    protected $datagridValues = [
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'start',
+    ];
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -38,6 +45,7 @@ class RaceAdmin extends AbstractAdmin
             ->add('season')
             ->add('circuit')
             ->add('modality')
+            ->add('modalityClassification')
             ->add('start', null, ['format' => 'd-m-Y'])
             ->add('end', null, ['format' => 'd-m-Y'])
             ->add('_action', null, array(
@@ -60,44 +68,62 @@ class RaceAdmin extends AbstractAdmin
 
         $formMapper
             ->tab('Información')
-                ->with(null)
-                    ->add('season', null, [
-                        'required' => true, 'attr' => $mediumColumn,
-                        'query_builder' => function ($qb) {
-                            return $qb->createQueryBuilder('o')
-                                ->orderBy('o.current', 'DESC');
-                        },
-                    ])
-                    ->add('circuit', null, ['required' => true, 'attr' => $mediumColumn])
-                    ->add('modality', null, [
-                        'required' => true,
-                        'label' => 'Modalidad',
-                        'attr' => [
-                            'required' => 'required',
-                            'data-sonata-select2' => 'false',
-                            'class' => 'form-control race-modality-selector'
-                        ]
-                    ])
-                    ->add('name')
-                    ->add('nameEN')
-                    ->add('start', 'sonata_type_date_picker', [
-                        'format'=>'dd/MM/yyyy',
-                        'attr' => $mediumColumn])
-                    ->add('end', 'sonata_type_date_picker', [
-                        'format'=>'dd/MM/yyyy',
-                        'attr' => $mediumColumn])
+            ->with(null)
+            ->add('season', null, [
+                'required' => true, 'attr' => $mediumColumn,
+                'query_builder' => function ($qb) {
+                    return $qb->createQueryBuilder('o')
+                        ->orderBy('o.current', 'DESC');
+                },
+            ])
+            ->add('circuit', null, ['required' => true, 'attr' => $mediumColumn])
+            ->add('modality', null, [
+                'required' => true,
+                'label' => 'Modalidad',
+                'attr' => [
+                    'required' => 'required',
+                    'data-sonata-select2' => 'false',
+                    'class' => 'form-control race-modality-selector'
+                ]
+            ])
+            ->add('modality', null, [
+                'required' => true,
+                'label' => 'Modalidad',
+                'attr' => [
+                    'required' => 'required',
+                    'data-sonata-select2' => 'false',
+                    'class' => 'form-control race-modality-selector'
+                ]
+            ])
+            ->add('modalityClassification', null, [
+                'required' => false,
+                'label' => 'Clasificación',
+                'attr' => [
+                    'required' => false,
+                    'data-sonata-select2' => 'false',
+                    'class' => 'form-control race-modality-classification-selector'
+                ]
+            ])
+            ->add('name')
+            ->add('nameEN')
+            ->add('start', 'sonata_type_date_picker', [
+                'format'=>'dd/MM/yyyy',
+                'attr' => $mediumColumn])
+            ->add('end', 'sonata_type_date_picker', [
+                'format'=>'dd/MM/yyyy',
+                'attr' => $mediumColumn])
 
-                    ->end()
-                ->end()
+            ->end()
+            ->end()
             ->tab('Resultados')
-                ->with(null)
-                ->add('scores', 'sonata_type_collection', [],
-                    [
-                        'edit' => 'inline',
-                        'inline' => 'table'
-                    ]
-                    )
-                ->end()
+            ->with(null)
+            ->add('scores', 'sonata_type_collection', [],
+                [
+                    'edit' => 'inline',
+                    'inline' => 'table'
+                ]
+            )
+            ->end()
             ->end();
     }
 
@@ -162,6 +188,7 @@ class RaceAdmin extends AbstractAdmin
                 $riderObj = new \stdClass();
                 $riderObj->id = $rider->getId();
                 $riderObj->name = $rider->getName().' '.$rider->getSurname();
+                $riderObj->modalityClassification = $rider->getModalityClassification() ? $rider->getModalityClassification()->getId() : null;
 
                 $r[] = $riderObj;
             }

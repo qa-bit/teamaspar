@@ -1,15 +1,21 @@
 $(document).ready(function () {
 
+    var FIMJR = 6;
 
     if (!$('#race-records').size())
         return;
 
     var modalitySelector = $('.race-modality-selector');
+    var modalityClassificationSelector = $('.race-modality-classification-selector');
+
     var riders = JSON.parse($('#race-records').attr('riders'));
 
     var collectionNode = $('.score-table .score-row');
 
     var count = collectionNode.size();
+
+    var selectedModality = null;
+    var selectedModalityClassification = null;
 
     var riderExists = function (rider) {
         var exists = false;
@@ -50,7 +56,8 @@ $(document).ready(function () {
         for (var i=0; i < riders[modality].length; i++) {
             var rider = riders[modality][i];
             if (!riderExists(rider)) {
-                addRider(rider);
+                if (!(selectedModality == FIMJR && selectedModalityClassification != rider.modalityClassification))
+                    addRider(rider);
             }
         }
     };
@@ -58,9 +65,47 @@ $(document).ready(function () {
     var modality = modalitySelector.val();
     addRiders(modality);
 
+    var checkSubmodality = function () {
+
+        var selector = $('.race-modality-classification-selector');
+        var modality = $('.race-modality-selector').val();
+
+        if (parseInt(modality) == FIMJR) {
+            selector.parent().parent().show();
+
+            if (!selector.val()) {
+                var first = selector.find('option').eq(1).attr('value');
+                selector.val(first);
+                selectedModalityClassification = first;
+            }
+
+
+        } else {
+            selector.val();
+            selector.parent().parent().hide();
+            selectedModalityClassification = null;
+        }
+
+        selectedModality = modality;
+
+    };
+
     modalitySelector.on('change', function () {
         var modality = $(this).val();
+        checkSubmodality(modality);
         deleteRiders();
         addRiders(modality);
     });
+
+    modalityClassificationSelector.on('change', function () {
+        selectedModalityClassification = $(this).val();
+        if (selectedModalityClassification) {
+            checkSubmodality(selectedModality);
+            deleteRiders();
+            addRiders(selectedModality);
+        }
+    });
+
+
+    checkSubmodality();
 });

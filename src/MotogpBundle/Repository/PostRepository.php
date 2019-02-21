@@ -25,4 +25,17 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
             ;
     }
+
+
+    public function getLastInModalityAndYear($modality)
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.modality = :modality')
+            ->setParameter('modality', $modality->getId())
+            ->orderBy('g.publishedAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }

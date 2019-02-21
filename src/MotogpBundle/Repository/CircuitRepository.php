@@ -18,6 +18,27 @@ class CircuitRepository extends \Doctrine\ORM\EntityRepository
             ->leftJoin('c.galleries', 'g')
             ->where('g.modality = :modality')
             ->setParameter('modality', $modality->getId())
+            ->orderBy('g.createdAt, g.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function getCircuitsWithGalleryInModalityAndYear($modality, $year)
+    {
+
+        $firstDay = new \DateTime('01-01-'.$year);
+        $lastDay  =  new \DateTime('31-12-'.$year.' 23:59:59');
+
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.galleries', 'g')
+            ->where('g.modality = :modality')
+            ->andWhere('g.createdAt >= :start')
+            ->andWhere('g.createdAt <= :end')
+            ->setParameter('modality', $modality->getId())
+            ->setParameter('start', $firstDay)
+            ->setParameter('end', $lastDay)
+            ->orderBy('g.createdAt, g.id', 'DESC')
             ->getQuery()
             ->getResult()
             ;
@@ -31,6 +52,27 @@ class CircuitRepository extends \Doctrine\ORM\EntityRepository
             ->leftJoin('c.posts', 'g')
             ->where('g.modality = :modality')
             ->setParameter('modality', $modality->getId())
+            ->orderBy('g.publishedAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function getCircuitsWithPostsInModalityAndYear($modality, $year)
+    {
+
+        $firstDay = new \DateTime('01-01-'.$year);
+        $lastDay  =  new \DateTime('31-12-'.$year.' 23:59:59');
+
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.posts', 'g')
+            ->where('g.modality = :modality')
+            ->andWhere('g.publishedAt >= :start')
+            ->andWhere('g.publishedAt <= :end')
+            ->setParameter('modality', $modality->getId())
+            ->setParameter('start', $firstDay)
+            ->setParameter('end', $lastDay)
+            ->orderBy('g.publishedAt', 'DESC')
             ->getQuery()
             ->getResult()
             ;

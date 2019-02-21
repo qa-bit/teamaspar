@@ -1,39 +1,51 @@
-<div class="circuit-gallery col-xs-12 col-sm-6 col-md-4">
-    <div class="circuit-gallery-inner">
-        <div class="w100 circuit-gallery-featured" style="background:url('{% path circuit.featuredMedia, 'big' %}');">
-        </div>
-        <div class="col-xs-12 col-sm-6 circuit-gallery-description">
-            <h6>{{ circuit.name | truncate(80, true, '...')}}</h6>
-            <div class="sep"></div>
-            <div class="trow">
-                <h3>{{ circuit.subtitle }}</h3>
+{% set galleries = [] %}
+
+{% if year is not defined %}
+    {% set year = ("now" | date('Y')) %}
+{% endif %}
+
+{% for p in circuit.galleries %}
+    {% set galleryYear = p.createdAt | date('Y') %}
+    {% if p.modality.id == modality.id and galleryYear == year %}
+        {% set galleries = galleries | merge([p]) %}
+    {% endif %}
+{% endfor %}
+
+{% if galleries | length %}
+    <div class="circuit-gallery col-xs-12 col-sm-6 col-md-4">
+        <div class="circuit-gallery-inner">
+            <div class="w100 circuit-gallery-featured" style="background:url('{% path circuit.featuredMedia, 'big' %}');">
             </div>
-            <div class="toggle-galleries">
-                <div class="toggler closed"></div>
+            <div class="col-xs-12 col-sm-6 circuit-gallery-description">
+                <h6>{{ circuit.name | truncate(80, true, '...')}}</h6>
+                <div class="sep"></div>
+                <div class="trow">
+                    <h3>{{ circuit.subtitle }}</h3>
+                </div>
+                <div class="toggle-galleries">
+                    <div class="toggler closed"></div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="circuit-galleries-list">
-        <ul>
-            {% for g in circuit.galleries %}
-                {% if g.modality.slug == modality.slug %}
-                    <li class="fancytrigger" rel="gallery-{{ g.id }}">
+        <div class="circuit-galleries-list">
+            <ul>
+                {% for g in galleries %}
+                    <li class="fancytrigger" rel="gallery-{{ g.id }}" title="{{ g.createdAt | date('d/m/Y') }} ({{ g.id }})">
                         {% spaceless %}
                             {{ locale == 'es' ? (g.category ? g.category.name : g.name)  : (g.category ? g.category.nameEN : g.nameEN) }}
                         {% endspaceless %}
                     </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-</div>
-
-{% for g in circuit.galleries %}
-    {% for i in g.medias %}
-        {% if g.modality.slug == modality.slug %}
-            <a class="fancybox hidden" rel="gallery-{{ g.id }}" href="{% path i, 'xlarge' %}" title="{{ i.description }}">
-                <img src="{% path i, 'big' %}" />
-            </a>
-        {% endif %}
+    {% for g in galleries %}
+        {% for i in g.medias %}
+            {% if g.modality.slug == modality.slug %}
+                <a title="{{ g.createdAt | date('d/m-Y H:i') }} ({{ g.id }})" class="fancybox hidden" rel="gallery-{{ g.id }}" href="{% path i, 'xlarge' %}" title="{{ i.description }}">
+                    <img src="{% path i, 'big' %}" />
+                </a>
+            {% endif %}
+        {% endfor %}
     {% endfor %}
-{% endfor %}
+{% endif %}

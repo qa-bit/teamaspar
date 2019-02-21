@@ -10,6 +10,10 @@ images:
     locales: { "es": "/es/{modality}/imagenes", "en": "/en/{modality}/images" }
     defaults: { _controller: MotogpBundle:Public:images }
 
+images_by_year:
+    locales: { "es": "/es/{modality}/{year}/imagenes", "en": "/en/{modality}/{year}images" }
+    defaults: { _controller: MotogpBundle:Public:images }
+
 videos:
     locales: { "es": "/es/{modality}/videos", "en": "/en/{modality}/videos" }
     defaults: { _controller: MotogpBundle:Public:videos }
@@ -34,8 +38,16 @@ posts:
     locales: { "es": "/es/{modality}/noticias", "en": "/en/{modality}/news" }
     defaults: { _controller: MotogpBundle:Public:posts }
 
+posts_by_year:
+    locales: { "es": "/es/{modality}/{year}/noticias", "en": "/en/{modality}/{year}/news" }
+    defaults: { _controller: MotogpBundle:Public:postsByYear }
+
 post:
     locales: { "es": "/es/{modality}/noticias/{slug}", "en": "/en/{modality}/news/{slug}" }
+    defaults: { _controller: MotogpBundle:Public:post}
+
+post_year:
+    locales: { "es": "/es/{modality}/{year}/noticias/{slug}", "en": "/en/{modality}/{year}/news/{slug}" }
     defaults: { _controller: MotogpBundle:Public:post}
 
 team_staff:

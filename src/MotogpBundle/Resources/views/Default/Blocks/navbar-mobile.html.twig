@@ -1,0 +1,67 @@
+<ul class="nav navbar-nav only-mobile">
+    {% set modalities = [
+    {'name' : 'MOTO GP', 'slug' : 'moto-2'},
+    {'name' : 'MOTO 3', 'slug' : 'moto-3'},
+    {'name' : 'FIM JR', 'slug' : 'fim-jr'},
+    ] %}
+    {% for m in modalities %}
+        <li class="nav-item dropdown {% if m.slug == modality.slug %}active default-open{% endif %}">
+            {% set modalityRiders = m.slug | modality_home_riders %}
+            <a class="{{ modality.slug == m.slug ? 'active' : '' }} nav-link dropdown-toggle parent" href="#" id="navbarDropdown-mod-{{ m.slug }}" role="button" data-toggle="dropdown">
+                {{ m.name }}
+            </a>
+            <div class="dropdown-menu multi-level" aria-labelledby="navbarDropdown-mod-{{ m.slug }}">
+                <ul>
+                    <li><a class="{{ (route == 'posts' or route == 'post') ? 'active' : '' }}" href="{{ url('posts', {'modality': m.slug}) }}">{{ "news" | trans }}</a></li>
+                    <li><a class="{{ route == 'images' ? 'active' : '' }}" href="{{ url('images', {'modality': m.slug}) }}">{{ "images" | trans }}</a></li>
+                    <li><a class="{{ route == 'videos' ? 'active' : '' }}" href="{{ url('videos', {'modality': m.slug}) }}">{{ "videos" | trans }}</a></li>
+                    {% if m.slug != 'fim-jr' %}
+                        <li><a class="{{ route == 'motos' ? 'active' : '' }}" href="{{ url('motos', {'modality': m.slug}) }}">{{ motoname }}</a></li>
+                    {% endif %}
+
+                    <li class="dropdown-submenu">
+                        <a class="{{ route == 'riders' ? 'active' : '' }} nav-link dropdown-toggle" href="#" id="navbarDropdown-riders-{{ m.slug }}" role="button" data-toggle="dropdown">
+                            {{ "riders" | trans }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-riders-{{ m.slug }}">
+                            {% for r in modalityRiders %}
+                                <a class="dropdown-item" href="{{ url('riders', {'slug' : r.slug, 'modality' : m.slug}) }}">{{ r.name }}&nbsp;{{ r.surname }}</a>
+                            {% endfor %}
+                        </div>
+                    </li>
+
+                    <li class="dropdown-submenu team-staff-menu-mobile">
+                        {#{{ url('team_staff', {'modality': m.slug}) }}#}
+                        <a class="{{ route == 'team_staff' ? 'active' : '' }} nav-link dropdown-toggle" href="#" id="staff-drop">
+                            Team-staff
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="staff-riders-{{ m.slug }}">
+                            <a link="history" href="{{ url('team_staff', {'modality' : m.slug}) }}#history" class="dropdown-item">
+                                {{ "history" | trans({}, 'staff') }}
+                            </a>
+                            {% for r in modalityRiders %}
+                                <a link="rider-{{ r.id }}" class="dropdown-item" href="{{ url('team_staff', {'modality' : m.slug}) }}#rider-{{ r.id }}">{{ r.name }}&nbsp;{{ r.surname }}</a>
+                            {% endfor %}
+                            <a link="chart" href="{{ url('team_staff', {'modality' : m.slug}) }}#chart" class="dropdown-item">
+                                {{ "organization_chart" | trans({}, 'staff') }}
+                            </a>
+                        </div>
+                    </li>
+
+                    <li><a class="{{ route == 'partners' ? 'active' : '' }}"  href="{{ url('partners', {'modality': m.slug}) }}">Partners</a></li>
+                    <li><a class="{{ route == 'register' ? 'active' : '' }}"  href="{{ url('public_register', {'modality': m.slug}) }}">{{ "register" | trans }}</a></li>
+                </ul>
+            </div>
+        </li>
+    {% endfor %}
+    <li class="header-social-list">
+        <div class="only-mobile header-social">
+            <img blank href="{{ team.facebook }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_facebook.png') }}" alt="" />
+            <img blank href="{{ team.twitter }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_twitter.png') }}" alt="" />
+            <img blank href="{{ team.instagram }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_instagram.png') }}" alt="" />
+            <img blank href="{{ team.youtube }}" class="link" src="{{ asset('/bundles/motogp/img/assets/sm_footer_youtube.png') }}" alt="" />
+            <img class="link mobile-lang-selector" href="{{ (customUrlEN is defined) ? customUrlEN : enURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_en.png')}}" alt="" />
+            <img class="link mobile-lang-selector" href="{{ (customUrl is defined) ? customUrl : esURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_es.png')}}" alt="" />
+        </div>
+    </li>
+</ul>

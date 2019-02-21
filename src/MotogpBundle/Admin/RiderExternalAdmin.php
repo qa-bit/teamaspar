@@ -14,7 +14,6 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class RiderExternalAdmin extends AbstractAdmin
 {
-
     protected $baseRoutePattern = 'rider-external-admin';
     protected $baseRouteName = 'rider-external-admin';
     protected $classNameLabel = "Rider external";
@@ -73,7 +72,7 @@ class RiderExternalAdmin extends AbstractAdmin
             ])
             ->add('modality', null, ['label' => 'Modalidad', 'required' => true, 'attr' => ['container_classes' => 'col-md-4']])
             ->add('modalityClassification', null, ['required' => false, 'attr' => ['container_classes' => 'col-md-4']])
-            ->add('moto', null, ['required' => true, 'attr' => ['container_classes' => 'col-md-4'],])
+            ->add('moto', null, ['required' => false, 'attr' => ['container_classes' => 'col-md-4'],])
             ->add('riderTeam', null,
                 [
                     'class' => RiderTeam::class,
@@ -83,7 +82,7 @@ class RiderExternalAdmin extends AbstractAdmin
 
                        return $b;
                     },
-                    'required' => true,
+                    'required' => false,
                     'attr' => ['container_classes' => 'col-md-12']
                 ], ['admin_code' => 'motogp.admin.rider_team']
             )

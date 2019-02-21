@@ -52,6 +52,7 @@ class RiderAdmin extends AbstractAdmin
             ->add('modality')
             ->add('moto')
             ->add('order', null, array('editable' => true))
+            ->add('modalityClassification')
             ->add('showInHome', null, array('editable' => true, 'label' => 'Mostrar en inicio'))
             ->add('_action', null, array(
                 'actions' => array(

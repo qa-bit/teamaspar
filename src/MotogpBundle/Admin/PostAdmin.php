@@ -48,6 +48,7 @@ class PostAdmin extends AbstractAdmin
             ->add('modality', null, ['label' => 'Modalidad'])
             ->add('category.abbr', null, ['label' => 'Tag'])
             ->add('circuit')
+            ->add('season')
             ->add('order', null, ['editable' => true])
             ->add('publishedAt', 'date', ['label' => 'Fecha', 'format' => 'd-m-Y'])
             ->add('_action', null, array(

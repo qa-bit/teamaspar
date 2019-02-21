@@ -1,44 +1,53 @@
-<div class="col-xs-12 col-md-6 homeresult">
-    <div>
-        <h5 class="title">{{ "general_results" | trans | upper}}</h5>
-        <div class="sep"></div>
-        <table class="results">
-            {% set l = 1 %}
-            {% for s in generalScore %}
-                {% if loop.index < 13 %}
-                    <tr>
-                        <td class="score-index">{{ s.index }}</td>
-                        <td class="score-rider">{{ s.rider.name | truncate(1, false, '.') }} {{ s.rider.surName | upper}} </td>
-                        <td class="score-circuit">{{ s.rider.riderTeam.name | truncate(25, false,'') | upper}}</td>
-                        <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
-                    </tr>
-                    {% set l = l + 1 %}
-                {% endif %}
-            {% endfor %}
-        </table>
+{% if modality.slug == 'fim-jr' %}
+    {% include "MotogpBundle:Default:Home/homeresults-fimjr.html.twig" %}
+{% else %}
+    <div class="col-xs-12 col-md-6 homeresult">
+        <div>
+            <h5 class="title">{{ "general_results" | trans | upper}}</h5>
+            <div class="sep"></div>
+            <table class="results">
+                {% set l = 1 %}
+                {% for s in generalScore %}
+                    {% if loop.index < 13 %}
+                        <tr>
+                            <td class="score-index">{{ s.index }}</td>
+                            <td class="score-rider">{{ s.rider.name | truncate(1, false, '.') }} {{ s.rider.surName | upper}} </td>
+                            <td class="score-circuit">
+                                {% if s.rider.riderTeam %}
+                                    {{ s.rider.riderTeam.name | truncate(25, false,'') | upper}}
+                                {% endif %}
+                            </td>
+                            <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
+                        </tr>
+                        {% set l = l + 1 %}
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
     </div>
-</div>
-<div class="col-xs-12 col-md-6 homeresult">
-    <div>
-        <h5 class="title">{{ "general_results_team" | trans | upper }}</h5>
-        <div class="sep"></div>
-        <table class="results">
-            {% set l = 1 %}
-            {% for s in teamScore %}
-                {% if loop.index < 13 %}
-                    <tr>
-                        <td class="score-index">{{ l }}</td>
-                        <td class="score-rider">{{ s.team.name | upper }} </td>
-                        <td class="score-rider">
-                            {% if s.team.getTeamMoto(modality.slug) is not null %}
-                                {{ s.team.getTeamMoto(modality.slug).builder.name }}
-                            {% endif %}
-                        </td>
-                        <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
-                    </tr>
-                    {% set l = l + 1 %}
-                {% endif %}
-            {% endfor %}
-        </table>
+
+    <div class="col-xs-12 col-md-6 homeresult">
+        <div>
+            <h5 class="title">{{ "general_results_team" | trans | upper }}</h5>
+            <div class="sep"></div>
+            <table class="results">
+                {% set l = 1 %}
+                {% for s in teamScore %}
+                    {% if loop.index < 13 %}
+                        <tr>
+                            <td class="score-index">{{ l }}</td>
+                            <td class="score-rider">{{ s.team.name | upper }} </td>
+                            <td class="score-rider">
+                                {% if s.team.getTeamMoto(modality.slug) is not null %}
+                                    {{ s.team.getTeamMoto(modality.slug).builder.name }}
+                                {% endif %}
+                            </td>
+                            <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
+                        </tr>
+                        {% set l = l + 1 %}
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
     </div>
-</div>
+{% endif %}

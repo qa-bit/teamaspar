@@ -1,0 +1,20 @@
+{% trans_default_domain 'topmenu' %}
+{% set newsYears = modality | modality_years_with_news %}
+{% if newsYears | length  < 2 %}
+    <li>
+        <a class="{{ (route == 'posts' or route == 'post') ? 'active' : '' }} nav-link dropdown-toggle" href="{{ url('posts', {'modality': modality.slug}) }}">{{ "news" | trans }}</a>
+    </li>
+{% else %}
+    <li class="nav-item dropdown">
+        <a class="{{ route == 'posts' ? 'active' : '' }} nav-link dropdown-toggle" href="#" id="postsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ "news" | trans }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul style="list-style-type: none">
+                {% for y in newsYears %}
+                    <li><a class="dropdown-item" href="{{ url('posts_by_year', {'year' : y, 'modality' : modality.slug}) }}">{{ y }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </li>
+{% endif %}

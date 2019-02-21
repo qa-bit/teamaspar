@@ -1,0 +1,28 @@
+{% for scores in generalScore %}
+    {% if scores | length %}
+        <div class="col-xs-12 col-md-6 homeresult">
+            <div>
+                <h5 class="title">{{ ()locale == 'es' ? scores[0].rider.modalityClassification.name : scores[0].rider.modalityClassification.nameEN) | upper }}</h5>
+                <div class="sep"></div>
+                <table class="results">
+                    {% set l = 1 %}
+                    {% for s in scores %}
+                        {% if loop.index < 13 %}
+                            <tr>
+                                <td class="score-index">{{ s.index }}</td>
+                                <td class="score-rider">{{ s.rider.name | truncate(1, false, '.') }} {{ s.rider.surName | upper}} </td>
+                                <td class="score-circuit">
+                                    {% if s.rider.riderTeam %}
+                                        {{ s.rider.riderTeam.name | truncate(25, false,'') | upper}}
+                                    {% endif %}
+                                </td>
+                                <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
+                            </tr>
+                            {% set l = l + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}

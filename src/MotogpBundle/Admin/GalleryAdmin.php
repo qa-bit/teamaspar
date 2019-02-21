@@ -38,6 +38,7 @@ class GalleryAdmin extends AbstractAdmin
             ->add('name')
             ->add('circuit', null, ['label' => 'Circuito'])
             ->add('category', null, ['label' => 'Tags'])
+            ->add('createdAt', null, ['format' => 'd/m/Y', 'label' => 'Fecha'])
             ->add('modality')
             ->add('_order', null, ['editable' => true])
             ->add('_action', null, array(
@@ -70,6 +71,17 @@ class GalleryAdmin extends AbstractAdmin
                         )
                         ->add('race', null, ['label' => 'Carrera'])
                         ->add('modality')
+                        ->add('createdAt', 'sonata_type_date_picker',
+                            [
+                                'required' => true,
+                                'label' => 'Fecha',
+                                'format'=>'dd/MM/yyyy',
+                                'attr' => ['data-date-format' => 'dd-mm-Y']
+                            ],
+                            [
+                                'date-format' => 'D'
+                            ]
+                        )
                         ->add('_order')
                     ->end()
                 ->end()

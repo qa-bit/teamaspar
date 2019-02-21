@@ -2,6 +2,7 @@
 
 namespace MotogpBundle\Controller;
 
+use MotogpBundle\Entity\ModalityClassification;
 use MotogpBundle\Entity\Newsletter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -95,7 +96,7 @@ class PublicController extends Controller
             $d->score = $score;
             $d->index = $index + 1;
             $data[] = $d;
-            if ($index <= 11 && $d->rider->getRiderTeam()->isMain()) {
+            if ($index <= 11 && $d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain()) {
                 $insertedIds = [$d->rider->getId()];
             }
 
@@ -107,12 +108,10 @@ class PublicController extends Controller
 
 
         if (count($data) > 12) {
-
-            $reverse = array();
             $reverse = array_reverse($data);
 
             foreach ($reverse as $index => $d) {
-                if ($d->rider->getRiderTeam()->isMain() && !in_array($d->rider->getId(), $insertedIds)) {
+                if ($d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain() && $d->rider->getRiderTeam()->isMain() && !in_array($d->rider->getId(), $insertedIds)) {
                     $d->missing = true;
                     $data[$reverseIndex] = $d;
                     $reverseIndex--;
@@ -124,6 +123,79 @@ class PublicController extends Controller
 
     }
 
+    private function getGeneralScoreClassification($modality, $classification) {
+
+        $MAX_SCORES = 12;
+
+        $em = $this->getDoctrine()->getManager();
+
+        $currentSeason = $em->getRepository(Season::class)->findOneBy(array('current' => true));
+
+        $scores = [];
+        $riders = [];
+
+        foreach ($currentSeason->getRaces() as $cr) {
+            foreach ($cr->getScores() as $score) {
+
+
+                if ($cr->getModality()->getId() != $modality->getId())
+                    continue;
+
+                if (!$cr->getModalityClassification() || ($cr->getModalityClassification()->getId() != $classification->getId()))
+                    continue;
+
+                $id = (string)$score->getRider()->getId();
+
+                $riders[$score->getRider()->getId()] = $score->getRider();
+
+                if (isset($scores[$id])) {
+                    $scores[$id] += $score->getScore();
+                } else {
+                    $scores[$id] = $score->getScore();
+                }
+            }
+        }
+
+        uasort($scores, function($a, $b) {
+            return $a < $b;
+        });
+
+
+        $data = [];
+        $index = 0;
+        $insertedIds = [];
+
+        foreach ($scores as $rider => $score) {
+            $d = new \stdClass();
+            $d->rider = $riders[$rider];
+            $d->score = $score;
+            $d->index = $index + 1;
+            $data[] = $d;
+            if ($index <= ($MAX_SCORES - 1) && $d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain()) {
+                $insertedIds = [$d->rider->getId()];
+            }
+
+            $index++;
+        }
+
+
+        $reverseIndex = $MAX_SCORES - 1;
+
+        if (count($data) > $MAX_SCORES) {
+            $reverse = array_reverse($data);
+
+            foreach ($reverse as $index => $d) {
+                if ($d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain() && $d->rider->getRiderTeam()->isMain() && !in_array($d->rider->getId(), $insertedIds)) {
+                    $d->missing = true;
+                    $data[$reverseIndex] = $d;
+                    $reverseIndex--;
+                }
+            }
+        }
+
+        return $data;
+
+    }
 
     private function getGeneralScoreTeams($modality) {
         $em = $this->getDoctrine()->getManager();
@@ -136,7 +208,7 @@ class PublicController extends Controller
         foreach ($currentSeason->getRaces() as $cr) {
             foreach ($cr->getScores() as $score) {
 
-                if ($cr->getModality()->getId() != $modality->getId())
+                if ($cr->getModality()->getId() != $modality->getId() | !$score->getRider()->getRiderTeam())
                     continue;
 
                 $id = (string)$score->getRider()->getRiderTeam()->getId();
@@ -169,7 +241,6 @@ class PublicController extends Controller
 
         return $data;
     }
-
 
     /**
      * @Route("/")
@@ -216,6 +287,13 @@ class PublicController extends Controller
         $teamScore = $this->getGeneralScoreTeams($modality);
 
 
+        if ($modality->getSlug() == 'fim-jr') {
+            $generalScore = [];
+            $classificationModalities = $em->getRepository(ModalityClassification::class)->findAll();
+            foreach ($classificationModalities as $cm) {
+                $generalScore[$cm->getId()] = $this->getGeneralScoreClassification($modality, $cm);
+            }
+        }
 
         return $this->render(
             'MotogpBundle:Default:index.html.twig',
@@ -272,6 +350,40 @@ class PublicController extends Controller
             ]
         );
 
+
+    }
+
+    public function imagesByYearAction(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $modalitySlug = $request->get('modality');
+
+        $year = $request->get('year');
+        $modality = $this->getModality($modalitySlug);
+
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('imagenes_'.str_replace('-', '_',  $modalitySlug));
+
+        $circuits = $em->getRepository(Circuit::class)->getCircuitsWithGalleryInModalityAndYear($modality, $year);
+
+        return $this->render(
+            'MotogpBundle:Default:Images/images.html.twig',
+            [
+                'gallery' => $gallery,
+                'circuits' => $circuits,
+                'riders' => $homeRiders,
+                'modality' => $modality,
+                'team' => $this->getMainTeam(),
+                'year' => $year
+            ]
+        );
 
     }
 
@@ -495,6 +607,41 @@ class PublicController extends Controller
             ]
         );
 
+    }
+
+
+    public function postsByYearAction(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $modalitySlug = $request->get('modality');
+
+        $year = $request->get('year');
+
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
+
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('noticias_'.str_replace('-', '_',  $modalitySlug));
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
+        $circuits = $em->getRepository(Circuit::class)->getCircuitsWithPostsInModalityAndYear($modality, $year);
+
+
+        return $this->render(
+            'MotogpBundle:Default:Posts/posts.html.twig',
+            [
+                'gallery' => $gallery,
+                'circuits' => $circuits,
+                'modality' => $modality,
+                'team' => $this->getMainTeam(),
+                'riders' => $homeRiders,
+                'year' => $year
+            ]
+        );
 
     }
 
@@ -559,8 +706,6 @@ class PublicController extends Controller
         $staff = $em->getRepository(Team::class)->getAllInModality($modality);
 
         $teamCategories = $em->getRepository(TeamCategory::class)->findBy(array(), array('_order' => 'ASC'));
-
-
 
         return $this->render(
             'MotogpBundle:Default:Team/team-staff.html.twig',
@@ -666,37 +811,5 @@ class PublicController extends Controller
         $cacheManager = $this->get('liip_imagine.cache.manager');
         $cacheManager->remove();
     }
-
-//    /**
-//     * @Route("/imagecache-test/{id}")
-//     */
-//    public function imageCacheTest(Newsletter $newsletter) {
-//
-//        $media = $newsletter->getModality()->getHeaderImage();
-//
-//        $provider = $this->get($media->getProviderName());
-//
-//        $url = preg_replace("#^/#", '', $provider->generatePublicUrl($media, 'headerimage_std'));
-//
-//        $this->updateCache($url, 'email_header');
-//
-//        $locale = 'es';
-//
-//        $data = [
-//            'name' => $locale == 'es' ? $newsletter->getName() : $newsletter->getNameEN(),
-//            'title' => $locale == 'es' ? $newsletter->getName() : $newsletter->getNameEN(),
-//            'featuredMedia' => $newsletter->getFeaturedMedia(),
-//            'medias' => $newsletter->getMedia(),
-//            'modality' => $newsletter->getModality(),
-//            'newsletter' => $newsletter,
-//            'body' => $locale == 'es' ? $newsletter->getDescription() : $newsletter->getDescriptionEN(),
-//            'post' => $newsletter->getPost(),
-//            'locale' => $locale,
-//            'url_scheme' => 'http://cmsmotogp.test'
-//        ];
-//
-//        return $this->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data);
-//
-//    }
 
 }

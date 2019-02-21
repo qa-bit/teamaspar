@@ -1,0 +1,20 @@
+{% trans_default_domain 'topmenu' %}
+{% set imagesYears = modality | modality_years_with_images %}
+{% if imagesYears | length  < 2 %}
+    <li>
+        <a class="{{ (route == 'images' or route == 'image') ? 'active' : '' }} nav-link dropdown-toggle" href="{{ url('images', {'modality': modality.slug}) }}">{{ "images" | trans }}</a>
+    </li>
+{% else %}
+    <li class="nav-item dropdown">
+        <a class="{{ route == 'posts' ? 'active' : '' }} nav-link dropdown-toggle" href="#" id="imagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ "images" | trans }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul style="list-style-type: none">
+                {% for y in imagesYears %}
+                    <li><a class="dropdown-item" href="{{ url('images_by_year', {'year' : y, 'modality' : modality.slug}) }}">{{ y }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </li>
+{% endif %}
