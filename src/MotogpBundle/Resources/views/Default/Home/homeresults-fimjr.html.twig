@@ -2,7 +2,7 @@
     {% if scores | length %}
         <div class="col-xs-12 col-md-6 homeresult">
             <div>
-                <h5 class="title">{{ ()locale == 'es' ? scores[0].rider.modalityClassification.name : scores[0].rider.modalityClassification.nameEN) | upper }}</h5>
+                <h5 class="title">{{ (locale == 'es' ? scores[0].rider.modalityClassification.name : scores[0].rider.modalityClassification.nameEN) | upper }}</h5>
                 <div class="sep"></div>
                 <table class="results">
                     {% set l = 1 %}
