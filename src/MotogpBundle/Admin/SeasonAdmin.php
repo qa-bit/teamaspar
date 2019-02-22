@@ -11,6 +11,15 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class SeasonAdmin extends AbstractAdmin
 {
+
+    protected $datagridValues = [
+
+        '_sort_order' => 'DESC',
+
+        '_sort_by' => 'name',
+    ];
+
+
     /**
      * @param DatagridMapper $datagridMapper
      */

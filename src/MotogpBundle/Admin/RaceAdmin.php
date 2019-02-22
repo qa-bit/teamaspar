@@ -32,6 +32,7 @@ class RaceAdmin extends AbstractAdmin
             ->add('end')
             ->add('season')
             ->add('circuit')
+            ->add('modality')
         ;
     }
 

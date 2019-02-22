@@ -45,6 +45,7 @@ class Season
 
     /**
      * @ORM\OneToMany(targetEntity="Race", mappedBy="season", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OrderBy({"name"="DESC"})
      */
     protected $races;
 

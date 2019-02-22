@@ -56,8 +56,14 @@ $(document).ready(function () {
         for (var i=0; i < riders[modality].length; i++) {
             var rider = riders[modality][i];
             if (!riderExists(rider)) {
-                if (!(selectedModality == FIMJR && selectedModalityClassification != rider.modalityClassification))
+                if (selectedModality != FIMJR )
                     addRider(rider);
+                else {
+                    console.error(selectedModalityClassification == rider.modalityClassification);
+                    if (selectedModalityClassification == rider.modalityClassification) {
+                        addRider(rider);
+                    }
+                }
             }
         }
     };
@@ -72,14 +78,11 @@ $(document).ready(function () {
 
         if (parseInt(modality) == FIMJR) {
             selector.parent().parent().show();
-
-            if (!selector.val()) {
-                var first = selector.find('option').eq(1).attr('value');
-                selector.val(first);
-                selectedModalityClassification = first;
-            }
-
-
+            // if (!selector.val()) {
+            //     var first = selector.find('option').eq(1).attr('value');
+            //     selector.val(first);
+            //     selectedModalityClassification = first;
+            // }
         } else {
             selector.val();
             selector.parent().parent().hide();

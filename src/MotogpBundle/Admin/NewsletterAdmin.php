@@ -213,27 +213,13 @@ class NewsletterAdmin extends AbstractAdmin
         $groups = $object->getGroups();
 
         $post = $object->getPost();
-
-//        if ( $groups === null || !count($groups)) {
-//
-//            $groups_error = 'Elija al menos un grupo.';
-//            $errorElement->with( 'groups' )->addViolation( $groups_error )->end();
-//
-//        }
-
+        
         if ( $categories === null || !count($categories)) {
 
             $error = 'Elija al menos una categoría.';
             $errorElement->with( 'customerTypes' )->addViolation( $error )->end();
 
         }
-
-//        if ( $post === null) {
-//
-//            $error = 'Seleccione una publicación.';
-//            $errorElement->with( 'post' )->addViolation( $error )->end();
-//
-//        }
 
     }
 

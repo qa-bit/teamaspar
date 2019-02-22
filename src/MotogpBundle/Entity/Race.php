@@ -36,6 +36,7 @@ class Race
 
     /**
      * @ORM\ManyToOne(targetEntity="Season", cascade={"persist"}, inversedBy="races")
+     * @ORM\OrderBy({"id" = "DESC"})
      */
     protected $season;
     
