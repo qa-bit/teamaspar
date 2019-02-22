@@ -1,7 +1,8 @@
 <div class="homemotos">
     <div class="homemoto-img relative">
-        <img style="width:100%" class="img img-responsive" src="{{ asset('/bundles/motogp/img/assets/motos_home_' ~ modality.slug ~ '.png') }}?v=1" />
-
+        {% if modality.slug != 'fim-jr' %}
+            <img style="width:100%" class="img img-responsive" src="{{ asset('/bundles/motogp/img/assets/motos_home_' ~ modality.slug ~ '.png') }}?v=1" />
+        {% endif %}
     </div>
     <div class="homemoto-link bg-white">
         <img class="link tcenter" href="{{ url('motos', {'modality' : modality.slug }) }}" src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" alt="">

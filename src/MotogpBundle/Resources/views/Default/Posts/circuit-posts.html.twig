@@ -1,18 +1,19 @@
 {% set posts = [] %}
 
+{% set newsYears = modality | modality_years_with_news %}
+
 {% if year is not defined %}
-    {% set year = ("now" | date('Y')) %}
+    {% set year = newsYears[0] %}
 {% endif %}
 
 {% for p in circuit.posts %}
     {% set postYear = p.publishedAt | date('Y') %}
     {% if p.modality.id == modality.id
-
+        and postYear == year
     %}
         {% set posts = posts | merge([p]) %}
     {% endif %}
 {% endfor %}
-
 
 {% if posts | length %}
     <div class="circuit-gallery col-xs-12 col-sm-6 col-md-4">

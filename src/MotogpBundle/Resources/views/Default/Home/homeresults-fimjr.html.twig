@@ -1,9 +1,9 @@
 {% for scores in generalScore %}
-    {% if scores | length %}
-        <div class="col-xs-12 col-md-6 homeresult">
-            <div>
+    <div class="col-xs-12 col-md-6 homeresult">
+        <div>
+            {% if scores | length and scores[0].rider.modalityClassification %}
                 <h5 class="title">{{ (locale == 'es' ? scores[0].rider.modalityClassification.name : scores[0].rider.modalityClassification.nameEN) | upper }}</h5>
-                <div class="sep"></div>
+
                 <table class="results">
                     {% set l = 1 %}
                     {% for s in scores %}
@@ -22,7 +22,10 @@
                         {% endif %}
                     {% endfor %}
                 </table>
-            </div>
+                {% else %}
+                    <h5 class="title">{{ "no_classification_data" | trans | upper }}</h5>
+                    <div class="sep"></div>
+            {% endif %}
         </div>
-    {% endif %}
+    </div>
 {% endfor %}

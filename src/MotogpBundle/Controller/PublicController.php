@@ -34,7 +34,6 @@ class PublicController extends Controller
         return $team;
     }
 
-
     private function getModality($modalitySlug) {
         $em = $this->getDoctrine()->getManager();
 
@@ -49,7 +48,6 @@ class PublicController extends Controller
         return false;
 
     }
-
 
     private function getGeneralScore($modality) {
 
@@ -316,8 +314,7 @@ class PublicController extends Controller
 
 
     }
-
-
+    
     /**
      * @Route("/images")
      */

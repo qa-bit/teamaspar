@@ -1,7 +1,9 @@
 {% set galleries = [] %}
 
+{% set iYears = modality | modality_years_with_images %}
+
 {% if year is not defined %}
-    {% set year = ("now" | date('Y')) %}
+    {% set year = iYears[0] %}
 {% endif %}
 
 {% for p in circuit.galleries %}
