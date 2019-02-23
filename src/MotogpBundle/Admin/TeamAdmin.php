@@ -27,7 +27,8 @@ class TeamAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
-
+            ->add('rider', null, ['admin_code' => 'motogp.admin.rider'])
+            ->add('teamCategory')
         ;
     }
 
@@ -42,6 +43,7 @@ class TeamAdmin extends AbstractAdmin
             ->add('modalities')
             ->add('rider', null, ['admin_code' => 'motogp.admin.rider'])
             ->add('teamCategory', null, array('editable' => true))
+            ->add('order', null, ['editable' => true ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),

@@ -72,7 +72,7 @@ class Rider
     * @var Team
     *
     * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Team", mappedBy="rider", cascade={"all"}, orphanRemoval=true)
-    * @ORM\OrderBy({"_order" = "DESC"})
+    * @ORM\OrderBy({"_order" = "ASC"})
     */
    private $staffMembers;
 

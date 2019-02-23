@@ -183,12 +183,7 @@ class NewsletterAdmin extends AbstractAdmin
     }
     
     public function postPersist($object) {
-        $action = $this->getForm()->get('actions')->getData();
-        if ($action == 'update_and_send') {
-            //$this->sendMail($object, 'en');
-            //$this->sendMail($object, 'es');
-            //$object->setLastSendAt(new \DateTime());
-        }
+        
     }
 
     public function postUpdate($object) {
@@ -209,10 +204,6 @@ class NewsletterAdmin extends AbstractAdmin
     public function validate(ErrorElement $errorElement, $object ) {
 
         $categories = $object->getCustomerType();
-
-        $groups = $object->getGroups();
-
-        $post = $object->getPost();
         
         if ( $categories === null || !count($categories)) {
 
