@@ -8,6 +8,28 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'MGP';
+    src: url('mgp.ttf') format('ttf'),
+    url('mgp.ttf') format('ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hemi Head Rg';
+    src: url('HemiHeadRg-BoldItalic.woff2') format('woff2'),
+    url('HemiHeadRg-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+.hemi-head {
+    font-family: 'Hemi Head Rg';
+    font-weight: bold;
+    font-style: italic;
+}
+
 /*@font-face {*/
     /*font-family: 'Mark';*/
     /*src: url('Mark-SmallCaps-Black.woff2') format('woff2'),*/

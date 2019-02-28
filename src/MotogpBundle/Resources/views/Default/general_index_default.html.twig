@@ -61,7 +61,7 @@
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/swiper/dist/css/swiper.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/css/jquery.fancybox.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/helpers/css/jquery.fancybox-thumbs.css') }}" />
-        <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/fonts/fontfaces.css') }}?v={{ "now" | date('dmyhji') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/fonts/fontfaces.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/lazyyt.css') }}" />
     {% endblock %}
 
@@ -110,8 +110,19 @@
                     class="col-xs-12 absolute general-index-links"
                     style="background: url('{{ asset('/bundles/motogp/img/general_index_clear.jpg') }}')"
             >
-                <p class="hemi-head">{{ "site_construction" | trans | upper}}</p>
-
+                <div class="left col-xs-6">
+                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-2'}) }}">
+                        <img src="{{ asset('/bundles/motogp/img/motogp_big.png')}}?v=20" alt="" />
+                    </a>
+                </div>
+                <div class="right col-xs-6">
+                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}">
+                        <img id="image-moto-3" src="{{ asset('/bundles/motogp/img/moto3_big.png')}}?v=2" alt="" />
+                    </a>
+                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}">
+                        <img id="image-fim-jr" src="{{ asset('/bundles/motogp/img/fim_jr.png')}}?v=2" alt="" />
+                    </a>
+                </div>
             </div>
         </div>
         {% include "MotogpBundle:Default:footer.html.twig" with {'modality' : team.riders[0].modality }%}
@@ -142,15 +153,7 @@
     </div>
 </div>
 <style>
-    .hemi-head {
-        text-align: center;
-        font-size: 6em;
-        position: fixed;
-        top: 43%;
-        width: 100%;
-        color: #f5f5f5;
-        text-shadow: 0 0 0.3em black;
-    }
-</style>
 
+
+</style>
 </html>
