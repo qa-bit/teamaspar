@@ -2,6 +2,10 @@ index:
     locales: { "es": "/es/{modality}", "en": "/en/{modality}" }
     defaults: { _controller: MotogpBundle:Public:index, modality : '' }
 
+indexTest:
+    locales: { "es": "/indexTest", "en": "/indexTestEN" }
+    defaults: { _controller: MotogpBundle:Public:indexTest, modality : '' }
+
 motogp_public_index:
     locales: { "es": "/es/{modality}", "en": "/en/{modality}" }
     defaults: { _controller: MotogpBundle:Public:index }

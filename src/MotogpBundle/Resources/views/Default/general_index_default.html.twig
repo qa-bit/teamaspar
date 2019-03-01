@@ -111,16 +111,19 @@
                     style="background: url('{{ asset('/bundles/motogp/img/general_index_clear.jpg') }}')"
             >
                 <div class="left col-xs-6">
-                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-2'}) }}">
-                        <img src="{{ asset('/bundles/motogp/img/motogp_big.png')}}?v=20" alt="" />
+                    <a class="logo-block col-xs-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-2'}) }}">
+                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/moto-2_big.png')}}?v={{ "now" | date('ymdhji') }}" />
+                    </a>
+                    <a class="logo-block col-xs-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}">
+                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/moto3_big.png')}}?v={{ "now" | date('ymdhji') }}" />
                     </a>
                 </div>
                 <div class="right col-xs-6">
-                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}">
-                        <img id="image-moto-3" src="{{ asset('/bundles/motogp/img/moto3_big.png')}}?v=2" alt="" />
+                    <a class="logo-block col-xs-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-e'}) }}">
+                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/moto-e.png')}}?v={{ "now" | date('ymdhji') }}" />
                     </a>
-                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}">
-                        <img id="image-fim-jr" src="{{ asset('/bundles/motogp/img/fim_jr.png')}}?v=2" alt="" />
+                    <a class="logo-block col-xs-8" href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}">
+                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/fim_jr.png')}}?v={{ "now" | date('ymdhji') }}" />
                     </a>
                 </div>
             </div>

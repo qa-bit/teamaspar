@@ -13,7 +13,7 @@
     a {
       height: 69%;
       padding: 0 2em;
-      color: black !important;
+      color: $menu-golden !important;
       text-transform: uppercase;
       font-size: .7em;
       margin: 1em 0;
@@ -63,7 +63,7 @@
     padding: .5em .33em;
     vertical-align: bottom;
     top : 1em;
-    filter: saturate(0);
+    filter: saturate(0) invert(1);
     transition : all .33s;
 
     &:hover {
@@ -81,10 +81,14 @@
 
 #header {
   box-shadow : 0 0 16px rgba(0, 0, 0, 0.8);
-  background: $menu-grey;
+  background: $menu-black;
+  border-top : 2px solid $menu-black;
+  border-right : 2px solid $menu-black;
+  border-left : 2px solid $menu-black;
   border-bottom : 2px solid $menu-golden;
   position:relative;
   z-index : 9999;
+  border-radius : 0 !important;
 }
 
 .header-options {

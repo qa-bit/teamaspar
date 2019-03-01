@@ -3,7 +3,7 @@
 </div>
 <div class="homeblock col-xs-12" style="background:url('{{ asset('bundles/motogp/img/assets/fondo_humo.jpg') }}')">
     <div class="home-block-wrapper col-xs-12" >
-        <div class="home-block-white col-xs-12" style="background:url('{{ asset('bundles/motogp/img/assets/fondo_blanco.jpg') }}')">
+        <div class="home-block-white col-xs-12" {#style="background:url('{{ asset('bundles/motogp/img/assets/fondo_blanco.jpg') }}')"#}>
 
             {% include "MotogpBundle:Default:Home/homeposts.html.twig" with {'posts' : posts} %}
             {% include "MotogpBundle:Default:Home/homegalleries.html.twig" with {'sliders' : posts} %}

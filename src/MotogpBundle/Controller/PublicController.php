@@ -240,6 +240,22 @@ class PublicController extends Controller
         return $data;
     }
 
+
+    public function indexTestAction(Request $request)
+    {
+
+        $modalitySlug = $request->get('modality');
+
+        if (!$modalitySlug) {
+            return $this->render(
+                'MotogpBundle:Default:general_index_default.html.twig',
+                [
+                    'team' => $this->getMainTeam()
+                ]
+            );
+        }
+    }
+
     /**
      * @Route("/")
      */
