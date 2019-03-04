@@ -27,34 +27,39 @@
         <div class="white-background">
             <div class="w100 rider-description">
                 <div id="{{ r.name | lower }}-{{ r.surname | lower }}">
-                    <div class="row info w100 relative" style="height:30em">
-                        <div class="w100" style="min-height:30em;">
-                            <div class="rider-media col-nopad bg-w100 col-xs-12 col-md-5" style="position:absolute;height:100%;background : url('{% path r.featuredMedia, 'big' %}')">
-                                <img class="only-mobile img img-responsive" src="{% path r.featuredMedia, 'big' %}"/>
+                    <div class="row info w100 relative">
+                        <div class="w100">
+                            <div class="rider-media col-nopad bg-w100 col-xs-12 col-md-6">
+                                <div class="col-xs-11 tcenter">
+                                    <img class="img img-responsive" src="{% path r.featuredMedia, 'big' %}?v={{ "now" | date('dmyhij') }}"/>
+                                </div>
                             </div>
 
-                            <div class="col-nopad col-xs-12 col-md-7 col-md-offset-5 rider-name">
-                                <h3><span class="right-arrow">&#9654;&nbsp;</span><b>{{ r.name }} {{ r.surname }} #{{ r.number }}</b></h3>
-                                <ul class="rider-info">
-                                    <li>
-                                        <span class="title">{{ 'birthDate' | trans }}:</span>
-                                        <span>{{ r.birthDate | date('d/m/Y') }} - {{ r.birthPlace }} -  {{  r.country }} {{ 'age' | trans }}: {{ r.getAge() }} </span>
-                                    </li>
-                                    {{ forms.list_isset(locale, r, 'firstRace') }}
-                                    {{ forms.list_isset(locale, r, 'firstGrandPrix') }}
-                                    {{ forms.list_isset(locale, r, 'firstVictory') }}
-                                    {{ forms.list_isset(locale, r, 'lastVictory') }}
-                                    {{ forms.list_isset(locale, r, 'firstPole') }}
-                                    {{ forms.list_isset(locale, r, 'firstFastLap') }}
-                                    {{ forms.list_isset(locale, r, 'firstPodium') }}
-                                    {{ forms.list_isset(locale, r, 'victorys') }}
-                                    {{ forms.list_isset(locale, r, 'podiums') }}
-                                    {{ forms.list_isset(locale, r, 'poles') }}
-                                    {{ forms.list_isset(locale, r, 'firstRace') }}
-                                    {{ forms.list_isset(locale, r, 'fastLaps') }}
-                                    {{ forms.list_isset(locale, r, 'bestGeneralResult') }}
-                                    {{ forms.list_isset(locale, r, 'gpss') }}
-                                </ul>
+                            <div class="col-nopad col-xs-12 col-md-6 rider-name">
+                                <div class="col-xs-10 tcenter">
+                                    <h2><span class="right-arrow">&#9654;&nbsp;</span><b style="text-transform: uppercase">{{ r.name }} {{ r.surname }} #{{ r.number }}</b></h2>
+                                    <br>
+                                    <ul class="rider-info">
+                                        <li>
+                                            <span class="title">{{ 'birthDate' | trans }}:</span>
+                                            <span>{{ r.birthDate | date('d/m/Y') }} - {{ r.birthPlace }} -  {{  r.country }} {{ 'age' | trans }}: {{ r.getAge() }} </span>
+                                        </li>
+                                        {{ forms.list_isset(locale, r, 'firstRace') }}
+                                        {{ forms.list_isset(locale, r, 'firstGrandPrix') }}
+                                        {{ forms.list_isset(locale, r, 'firstVictory') }}
+                                        {{ forms.list_isset(locale, r, 'lastVictory') }}
+                                        {{ forms.list_isset(locale, r, 'firstPole') }}
+                                        {{ forms.list_isset(locale, r, 'firstFastLap') }}
+                                        {{ forms.list_isset(locale, r, 'firstPodium') }}
+                                        {{ forms.list_isset(locale, r, 'victorys') }}
+                                        {{ forms.list_isset(locale, r, 'podiums') }}
+                                        {{ forms.list_isset(locale, r, 'poles') }}
+                                        {{ forms.list_isset(locale, r, 'firstRace') }}
+                                        {{ forms.list_isset(locale, r, 'fastLaps') }}
+                                        {{ forms.list_isset(locale, r, 'bestGeneralResult') }}
+                                        {{ forms.list_isset(locale, r, 'gpss') }}
+                                    </ul>
+                                </div>
                             </div>
 
                         </div>
@@ -85,7 +90,7 @@
 
                 {% if r.description or r.descriptionEN %}
                     <div class="row info rider-biografy">
-                        <h3><span class="right-arrow">&#9654;&nbsp;</span><b>{{ 'biografy' | trans }}</b></h3>
+                        <h2><span class="right-arrow">&#9654;&nbsp;</span><b>{{ 'biografy' | trans }}</b></h2>
                         <div>{{ locale == 'es' ? (r.description | raw) : (r.descriptionEN | raw )}}</div>
                     </div>
                 {% endif %}
@@ -96,11 +101,11 @@
 
     {#{% set g = [] %}#}
     {#{% for gl in galleries %}#}
-        {#{% for m in gl.medias %}#}
-            {#{% if m.rider is not null and m.rider.id == r.id %}#}
-                {#{% set g = g | merge([m]) %}#}
-            {#{% endif %}#}
-        {#{% endfor %}#}
+    {#{% for m in gl.medias %}#}
+    {#{% if m.rider is not null and m.rider.id == r.id %}#}
+    {#{% set g = g | merge([m]) %}#}
+    {#{% endif %}#}
+    {#{% endfor %}#}
     {#{% endfor %}#}
 
     {% if medias | length %}
