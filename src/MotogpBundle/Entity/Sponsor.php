@@ -41,6 +41,14 @@ class Sponsor
      */
     private $webUrlEN;
 
+
+    /**
+     * @var integer
+     * @ORM\Column(name="_level", type="integer", nullable=false)
+     */
+
+    private $level;
+
     /**
      * @return string
      */
@@ -119,5 +127,21 @@ class Sponsor
         $this->enabled = $enabled;
     }
 
+    /**
+     * @return int
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * @param int $level
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+    }
+    
 }
 

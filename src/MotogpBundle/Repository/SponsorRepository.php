@@ -60,4 +60,36 @@ class SponsorRepository extends \Doctrine\ORM\EntityRepository
             ;
     }
 
+    public function getColorByModalityAndLevel($modality, $level)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.modalities', 'm')
+            ->where('m.id = :modality')
+            ->andWhere('s.enabled = true')
+            ->andWhere('s.bn != true')
+            ->andWhere('s.level = :level')
+            ->setParameter('modality', $modality->getId())
+            ->setParameter('level', $level)
+            ->orderBy('s._order', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function getBNByModalityAndLevel($modality, $level)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.modalities', 'm')
+            ->where('m.id = :modality')
+            ->andWhere('s.bn = true')
+            ->andWhere('s.enabled = true')
+            ->andWhere('s.level = :level')
+            ->setParameter('modality', $modality->getId())
+            ->setParameter('level', $level)
+            ->orderBy('s._order', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }

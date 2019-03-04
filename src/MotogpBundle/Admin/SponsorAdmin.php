@@ -11,6 +11,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use MotogpBundle\Admin\Media\LogoAdminTrait;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SponsorAdmin extends AbstractAdmin
 {
@@ -23,7 +24,10 @@ class SponsorAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
-            ->add('webUrl')
+            ->add('modalities')
+            ->add('bn')
+            ->add('level')
+            ->add('_order')
         ;
     }
 
@@ -37,7 +41,8 @@ class SponsorAdmin extends AbstractAdmin
             ->add('webUrl')
             ->add('modalities')
             ->add('bn', null, ['editable' => true ])
-            ->add('order', null, ['editable' => true ])
+            ->add('_order', null, ['editable' => true, 'orderable' => true ])
+            ->add('level', null, ['editable' => true ])
 
             ->add('_action', null, array(
                 'actions' => array(
@@ -70,6 +75,7 @@ class SponsorAdmin extends AbstractAdmin
             ->add('webUrlEN')
             ->add('_order')
             ->add('bn', 'checkbox', ['label' => 'B/N', 'required' => false ])
+            ->add('level',ChoiceType::class, ['choices' => [3 => 3, 2 => 2, 1 => 1]])
             ->add('enabled', 'checkbox', ['label' => 'Habilitado', 'required' => false ])
         ;
     }

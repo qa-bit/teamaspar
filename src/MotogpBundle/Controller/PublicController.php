@@ -256,6 +256,23 @@ class PublicController extends Controller
         }
     }
 
+
+    public function getSponsors($modality) {
+        $em = $this->getDoctrine()->getManager();
+
+        $sponsors = [1 => [], 2 => [], 3 => []];
+
+        for ($i = 3; $i>0; $i--){
+            $colorSponsors = $em->getRepository(Sponsor::class)->getColorByModalityAndLevel($modality, $i);
+            $bnSponsors = $em->getRepository(Sponsor::class)->getBNByModalityAndLevel($modality, $i);
+            $sponsors[$i]['color'] = $colorSponsors;
+            $sponsors[$i]['bn'] = $bnSponsors;
+        }
+
+        return $sponsors;
+
+    }
+
     /**
      * @Route("/")
      */
@@ -292,9 +309,7 @@ class PublicController extends Controller
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
-        $colorSponsors = $em->getRepository(Sponsor::class)->getColorByModality($modality);
-
-        $bnSponsors = $em->getRepository(Sponsor::class)->getBNByModality($modality);
+        $sponsors = $this->getSponsors($modality);
 
 
         $generalScore = $this->getGeneralScore($modality);
@@ -319,8 +334,7 @@ class PublicController extends Controller
                 'scores' => $scores,
                 'homeRiders' => $homeRiders,
                 'riders' => $homeRiders,
-                'bnSponsors' => $bnSponsors,
-                'colorSponsors' => $colorSponsors,
+                'sponsors' => $sponsors,
                 'modality' => $modality,
                 'generalScore' => $generalScore,
                 'teamScore' => $teamScore,
@@ -564,9 +578,7 @@ class PublicController extends Controller
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
-        $colorSponsors = $em->getRepository(Sponsor::class)->getColorByModality($modality);
-
-        $bnSponsors = $em->getRepository(Sponsor::class)->getBNByModality($modality);
+        $sponsors = $this->getSponsors($modality);
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('sponsor_'.str_replace('-', '_',  $modalitySlug));
 
@@ -575,9 +587,8 @@ class PublicController extends Controller
             'MotogpBundle:Default:Sponsor/sponsor.html.twig',
             [
                 'team' => $this->getMainTeam(),
-                'colorSponsors' => $colorSponsors,
+                'sponsors' => $sponsors,
                 'gallery' => $gallery,
-                'bnSponsors' => $bnSponsors,
                 'riders' => $homeRiders,
                 'modality' => $modality
             ]

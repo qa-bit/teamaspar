@@ -9,6 +9,30 @@
     {% endif %}
 {% endmacro %}
 
+
+{% macro sponsorblock(level, modality, lsponsors) %}
+    <div class="col-xs-12 sponsors-block-{{ level }}">
+        {% if lsponsors.color | length %}
+            <div class="no-padding col-xs-12 col-md-12 sponsor-logo color text-center">
+                {% for s in lsponsors.color %}
+                    <a href="{{ url('partner', {'slug' : s.slug, 'modality' : modality.slug }) }}">
+                        <img src="{% path s.logo, 'big' %}" />
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if lsponsors.bn | length %}
+            <div class="no-padding col-xs-12 col-md-12 sponsor-logo bn text-center">
+                {% for s in lsponsors.bn %}
+                    <a href="{{ url('partner', {'slug' : s.slug, 'modality': modality. slug }) }}">
+                        <img src="{% path s.logo, 'big' %}" alt="" />
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endmacro %}
+
 {% import _self as forms %}
 
 {% extends "MotogpBundle:Default:base.html.twig" %}
@@ -21,23 +45,10 @@
         <div class="white-background">
             <div class="homesponsors">
                 <img class="sponsor1 tcenter img img-responsive" src="{{ asset('/bundles/motogp/img/assets/sponsor-' ~ modality.slug ~ '.png') }}" alt="" />
-
-                <div class="col-xs-12 sponsor-block">
-                    <div class="col-xs-12 col-md-12 sponsor-logo color text-center">
-                        {% for s in colorSponsors %}
-                            <a href="{{ url('partner', {'slug' : s.slug, 'modality' : modality.slug}) }}">
-                                <img src="{% path s.logo, 'big' %}" />
-                            </a>
-                        {% endfor %}
-                    </div>
-                    <div class="col-xs-12 col-md-12 sponsor-logo bn text-center">
-                        {% for s in bnSponsors %}
-                            <a href="{{ url('partner', {'slug' : s.slug, 'modality' : modality.slug}) }}">
-                                <img src="{% path s.logo, 'big' %}" alt="" />
-                            </a>
-                        {% endfor %}
-                    </div>
-                </div>
+                <br>
+                {% for i in range(1, 3) %}
+                    {{ forms.sponsorblock(i, modality, sponsors[i]) }}
+                {% endfor %}
             </div>
         </div>
     </div>

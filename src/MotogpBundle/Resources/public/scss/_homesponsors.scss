@@ -7,8 +7,7 @@
 
   .sponsor-logo {
     text-align : center;
-    padding : 2.2em;
-
+    padding : 1em;
     img {
       height: 3em;
       width: auto;
@@ -57,10 +56,22 @@
     }
   }
 
+
+  .sponsors-block-3 {
+    font-size : 1em;
+  }
+  .sponsors-block-2 {
+    font-size : 1.3em;
+  }
+
+  .sponsors-block-1 {
+    font-size : 1.6em;
+  }
+
 }
 
 .sponsors-block {
-  width: 82%;
+  width: 90%;
   display: table;
   margin: auto;
   float: none;
