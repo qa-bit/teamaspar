@@ -1,7 +1,15 @@
+{% set mdata = {'moto-2' : 'KTM MOTO2', 'moto-3' : 'KTM MOTO3', 'fim-jr' : ''} %}
 <div class="homemotos">
     <div class="homemoto-img relative">
         {% if modality.slug != 'fim-jr' %}
-            <img style="width:100%" class="img img-responsive" src="{{ asset('/bundles/motogp/img/assets/motos_home_' ~ modality.slug ~ '.png') }}?v=1" />
+            <label class="golden-text only-desktop lleft">
+                {{ mdata[modality.slug] }}
+            </label>
+            <label class="golden-text only-desktop rright">
+                {{ mdata[modality.slug] }}
+            </label>
+            <img style="width:100%" class="img img-responsive" src="{{ asset('/bundles/motogp/img/assets/motos_home_' ~ modality.slug ~ '.png') }}?v={{ "now" | date('dmyhj') }}" />
+
         {% endif %}
     </div>
     <div class="homemoto-link bg-white">
@@ -11,3 +19,19 @@
         <img class="link tcenter" href="{{ url('motos', {'modality' : modality.slug }) }}" src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" alt="">
     </div>
 </div>
+
+<style>
+    .lleft {
+        position: absolute;
+        top: 7em;
+        left: 25em;
+        font-weight: lighter;
+    }
+
+    .rright {
+        position: absolute;
+        top: 7em;
+        right: 25em;
+        font-weight: lighter;
+    }
+</style>

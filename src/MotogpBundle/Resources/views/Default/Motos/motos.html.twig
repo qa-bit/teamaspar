@@ -1,14 +1,21 @@
 {% extends "MotogpBundle:Default:base.html.twig" %}
+{% set mdata = {'moto-2' : 'KTM MOTO2', 'moto-3' : 'KTM MOTO3', 'fim-jr' : ''} %}
 {% block title %}{{ "owner" | trans }} - {{ modality.slug | capitalize }} - {{ 'motos' | trans  }}{% endblock %}
 {% block body %}
     {{ parent() }}
     <section id="slider-motos" class="clearfix top-slider">
         <div id="swiper-inicio" class="swiper-container" style="width:100%;height:49vw" auto-height="true">
+            <label class="golden-text only-desktop lleft">
+                {{ mdata[modality.slug] }}
+            </label>
+            <label class="golden-text only-desktop rright">
+                {{ mdata[modality.slug] }}
+            </label>
             <div class="swiper-wrapper">
 
                 <div
                         class="swiper-slide dark lazy cover"
-                        data-src="{{ asset('/bundles/motogp/img/assets/motos_' ~ modality.slug ~ '.jpg') }}"
+                        data-src="{{ asset('/bundles/motogp/img/assets/motos_' ~ modality.slug ~ '.jpg') }}?v={{ "now" | date('dmyhij') }}"
                         aria-role="img"
                 >
                 </div>
@@ -39,5 +46,23 @@
         <img src="{{ asset('/bundles/motogp/img/assets/up.png') }}" alt="" class="up-arrow">
         <br/><br/>
     </div>
+
+    <style>
+        .lleft {
+            position: absolute;
+            top: 7em;
+            left: 25em;
+            font-weight: lighter;
+            z-index: 999999;
+        }
+
+        .rright {
+            position: absolute;
+            top: 7em;
+            right: 25em;
+            font-weight: lighter;
+            z-index: 999999;
+        }
+    </style>
     {% include 'MotogpBundle:Default:footer.html.twig' %}
 {% endblock %}

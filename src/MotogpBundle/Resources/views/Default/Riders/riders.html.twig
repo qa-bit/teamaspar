@@ -90,7 +90,7 @@
 
                 {% if r.description or r.descriptionEN %}
                     <div class="row info rider-biografy">
-                        <h2><span class="right-arrow">&#9654;&nbsp;</span><b>{{ 'biografy' | trans }}</b></h2>
+                        <h3><span class="right-arrow">&#9654;&nbsp;</span><b>{{ 'biografy' | trans }}</b></h3>
                         <div>{{ locale == 'es' ? (r.description | raw) : (r.descriptionEN | raw )}}</div>
                     </div>
                 {% endif %}
