@@ -57,12 +57,17 @@ body {
   padding : 0 9vw;
 }
 
-.white-background {
-  background: url(/bundles/motogp/img/assets/fondo_blanco.jpg);
+
+.standard-background, .white-background {
   padding : 3em;
   width : 100%;
   max-width : 100%;
   display : table;
+}
+
+.white-background {
+  background: url(/bundles/motogp/img/assets/fondo_blanco.jpg);
+
 }
 
 .white-background-2 {
@@ -101,6 +106,11 @@ body {
   background-size: auto 100% !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
+}
+
+
+.golden-text {
+  color : $menu-golden;
 }
 
 .btn-info {

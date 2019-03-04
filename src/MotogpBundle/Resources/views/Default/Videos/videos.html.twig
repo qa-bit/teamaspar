@@ -15,7 +15,7 @@
     </script>
 
     <div class="smoke-background">
-        <div class="white-background">
+        <div class="standard-background">
             <div class="video-gallery">
                 {% for v in videos %}
                     {% if v.isFacebook(locale) %}
@@ -26,7 +26,7 @@
                 {% endfor %}
             </div>
             <div class="text-center w100">
-                <img src="{{ asset('/bundles/motogp/img/assets/up.png') }}" alt="" class="up-arrow">
+                <img src="{{ asset('/bundles/motogp/img/assets/up_inverse.png') }}" alt="" class="up-arrow">
             </div>
         </div>
     </div>

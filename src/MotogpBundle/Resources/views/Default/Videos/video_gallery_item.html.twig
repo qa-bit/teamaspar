@@ -3,8 +3,8 @@
     <div class="video-gallery-item col-xs-12 col-sm-6">
         <div class="lazyYT" data-youtube-id="{{ url }}" ></div>
         <div class="col-xs-12 text-center video-description">
-            <p class="header"><b>{{ locale == 'es' ? (video.circuit.name ?? video.name) : (video.circuit.nameEN ?? video.nameEN) }}</b></p>
-            <p> {{ locale == 'es' ? video.name : video.nameEN }}</p>
+            <p class="header golden-text"><b>{{ locale == 'es' ? (video.circuit.name ?? video.name) : (video.circuit.nameEN ?? video.nameEN) }}</b></p>
+            <p class="golden-text"> {{ locale == 'es' ? video.name : video.nameEN }}</p>
         </div>
     </div>
 {% endif %}
