@@ -9,7 +9,7 @@
     text-align : center;
     padding : 1em;
     img {
-      height: 3em;
+      height: 4.5em;
       width: auto;
       margin : 1em;
     }
@@ -36,7 +36,7 @@
       filter : saturate(0);
       transition : filter .33s;
       opacity : .8;
-      height : 2em !important;
+      height : 3em !important;
       margin : 1em !important;
       &:hover {
         filter: saturate(1);
