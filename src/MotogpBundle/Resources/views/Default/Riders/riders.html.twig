@@ -93,17 +93,18 @@
         </div>
     </div>
     </div
-    {% set g = [] %}
-    {% for gl in galleries %}
-        {% for m in gl.medias %}
-            {% if m.rider is not null and m.rider.id == r.id %}
-                {% set g = g | merge([m]) %}
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
 
-    {% if g | length %}
-        {% include 'MotogpBundle:Default:Riders/rider-gallery.html.twig' with {'gallery' : g} %}
+    {#{% set g = [] %}#}
+    {#{% for gl in galleries %}#}
+        {#{% for m in gl.medias %}#}
+            {#{% if m.rider is not null and m.rider.id == r.id %}#}
+                {#{% set g = g | merge([m]) %}#}
+            {#{% endif %}#}
+        {#{% endfor %}#}
+    {#{% endfor %}#}
+
+    {% if medias | length %}
+        {% include 'MotogpBundle:Default:Riders/rider-gallery.html.twig' with {'medias' : medias} %}
     {% endif %}
 
     {% include 'MotogpBundle:Default:footer.html.twig' %}

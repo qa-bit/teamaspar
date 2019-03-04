@@ -2,6 +2,8 @@
 
 namespace MotogpBundle\Controller;
 
+use Application\Sonata\MediaBundle\Entity\GalleryMedia;
+use Application\Sonata\MediaBundle\Entity\Media;
 use MotogpBundle\Entity\ModalityClassification;
 use MotogpBundle\Entity\Newsletter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -504,9 +506,9 @@ class PublicController extends Controller
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('riders_'.str_replace('-', '_',  $modalitySlug));
 
-        $galleries  = $em->getRepository(Gallery::class)->findAll();
 
         $rider = $em->getRepository(Rider::class)->findOneBySlug($request->get('slug'));
+        $medias  = $em->getRepository(GalleryMedia::class)->findAllLastRiderMedia($rider);
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
@@ -515,7 +517,7 @@ class PublicController extends Controller
             'MotogpBundle:Default:Riders/riders.html.twig',
             [
                 'gallery' => $gallery,
-                'galleries' => $galleries,
+                'medias' => $medias,
                 'riders' => $homeRiders,
                 'rider' => $rider,
                 'modality' => $modality,

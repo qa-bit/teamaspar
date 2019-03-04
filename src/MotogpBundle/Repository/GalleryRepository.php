@@ -19,4 +19,25 @@ class GalleryRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
             ;
     }
+
+    public function findAllLastGalleries()
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.slug IS NULL')
+            ->orderBy('g.createdAt', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findAllLastRiderGalleries($rider)
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.rider = :rider')
+            ->orderBy('g.createdAt', 'ASC')
+            ->setParameter('rider', $rider->getId())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

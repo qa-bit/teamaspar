@@ -11,6 +11,7 @@
     <entity
         name="Application\Sonata\MediaBundle\Entity\GalleryMedia"
         table="gallery_media__media"
+        repository-class="MotogpBundle\Repository\GalleryMediaRepository"
         >
 
         <id name="id" type="integer" column="id">

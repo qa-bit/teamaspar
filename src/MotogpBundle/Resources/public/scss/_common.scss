@@ -136,7 +136,7 @@ body {
 .body-block {
 }
 
-html[modality="moto-3"],html[modality="moto-2"]  {
+html[modality="moto-3"], html[modality="moto-2"], html[modality="fim-jr"]   {
 
   .modality-list img {
 
@@ -150,6 +150,13 @@ html[modality="moto-3"],html[modality="moto-2"]  {
       width : auto;
     }
 
+  }
+}
+
+html[modality="moto-3"], html[modality="moto-2"] {
+  .modality-list img[fimjr] {
+    height : 2em;
+    width : auto;
   }
 }
 

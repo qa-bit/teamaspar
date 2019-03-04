@@ -18,6 +18,11 @@ $smv-width-static-total : 982px;
     img {
       height: 2.5em;
       margin-right : 1em;
+      transition: filter .33s;
+      &:hover {
+        filter : saturate(1.8);
+        transition: filter .33s;
+      }
     }
   }
 }

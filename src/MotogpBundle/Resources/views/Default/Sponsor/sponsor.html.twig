@@ -9,7 +9,6 @@
     {% endif %}
 {% endmacro %}
 
-
 {% macro sponsorblock(level, modality, lsponsors) %}
     <div class="col-xs-12 sponsors-block-{{ level }}">
         {% if lsponsors.color | length %}
@@ -44,8 +43,7 @@
     <div class="smoke-background">
         <div class="white-background">
             <div class="homesponsors">
-                <img class="sponsor1 tcenter img img-responsive" src="{{ asset('/bundles/motogp/img/assets/sponsor-' ~ modality.slug ~ '.png') }}" alt="" />
-                <br>
+                {#<img class="sponsor1 tcenter img img-responsive" src="{{ asset('/bundles/motogp/img/assets/sponsor-' ~ modality.slug ~ '.png') }}" alt="" />#}
                 {% for i in range(1, 3) %}
                     {{ forms.sponsorblock(i, modality, sponsors[i]) }}
                 {% endfor %}

@@ -45,6 +45,7 @@ class Gallery
      * @var PostMedia
      *
      * @ORM\OneToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryMedia", mappedBy="owner", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OrderBy
      */
     private $medias;
 
