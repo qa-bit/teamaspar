@@ -60,12 +60,39 @@
   .sponsors-block-3 {
     font-size : 1em;
   }
+
   .sponsors-block-2 {
-    font-size : 1.3em;
+    font-size : 1em;
+    width: 100%;
+    margin: auto;
+    display: table;
+    float: none;
+    clear: both;
+    padding:0;
+    .sponsor-logo img {
+      height : auto;
+      width : 26.4%;
+    }
+
+    a {
+      border: none;
+      text-decoration: none;
+      display: inline !important;
+    }
   }
 
   .sponsors-block-1 {
-    font-size : 1.6em;
+    font-size : 1em;
+    width: 52.8%;
+    margin: auto;
+    display: table;
+    float: none;
+    clear: both;
+    padding:0;
+    .sponsor-logo img {
+      height : auto;
+      width : 100%;
+    }
   }
 
 }
@@ -75,4 +102,9 @@
   display: table;
   margin: auto;
   float: none;
+}
+
+
+.no-padding {
+  padding : 0 !important;
 }

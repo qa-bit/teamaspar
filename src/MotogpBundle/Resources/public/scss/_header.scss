@@ -63,15 +63,14 @@
     padding: .5em .33em;
     vertical-align: bottom;
     top : 1em;
-    filter: saturate(0) invert(1);
     transition : all .33s;
 
     &:hover {
-      filter : saturate(1);
+      filter : saturate(2);
     }
 
     &.current {
-      filter: saturate(1);
+      filter: saturate(2);
       height : 3em;
       top : .66em;
       transition : all .33s;
