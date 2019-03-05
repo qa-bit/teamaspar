@@ -1,105 +1,109 @@
-$breakpoint-tablet : "769px";
+$breakpoint-tablet: "769px";
 .menu-mobile {
 
 }
 
 @media (max-width: 1023px) {
 
+  .header-sponsor {
+    right: 0;
+    display: none;
+  }
+
+  .hemi-head {
+    top: 33% !important;;
+  }
+
   .rider-biografy > div {
-    padding : .5em;
+    padding: .5em;
     text-align: justify;
   }
 
   .rider-description .rider-name, .track-records {
-    padding : 3em 1em;
+    padding: 3em 1em;
     ul {
-      padding : 0 1.2em;
+      padding: 0 1.2em;
     }
   }
 
-  .track-records>div {
-    padding : 0;
+  .track-records > div {
+    padding: 0;
   }
 
-
   html[route="index"] #swiper-inicio {
-    margin-bottom : 1em;
+    margin-bottom: 1em;
   }
 
   .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
-    background-color : transparent;
+    background-color: transparent;
   }
 
-
-  .staff-tabs .tab>div {
-    padding-top : 4em;
+  .staff-tabs .tab > div {
+    padding-top: 4em;
   }
 
   #header {
-    box-shadow : none;
-    border-bottom : 0;
-  }
-
-  #header, #header .container-fluid {
-    background : transparent !important;
+    box-shadow: none;
+    border-bottom: 0;
+    border : none !important;
   }
 
   .container-fluid {
-    padding : 0;
-    margin : 0!important;
+    padding: 0;
+    margin: 0 !important;
   }
 
   .navbar {
     .container {
-      margin : 0;
-      padding : 0;
+      margin: 0;
+      padding: 0;
     }
 
     ul.nav {
-      margin : 0 !important;
-      float : right !important;;
+      margin: 0 !important;
+      float: right !important;;
       li a {
-        margin : 0;
-        display:table;
+        margin: 0;
+        display: table;
       }
     }
 
     .dropdown-menu {
       padding-bottom: 0;
-      padding-top : 0;
-      position : static;
+      padding-top: 0;
+      position: static;
       ul {
-        list-style-type : none;
+        list-style-type: none;
         padding-left: 0 !important;
       }
     }
 
     .navbar-collapse {
-      margin : 0 !important;
+      margin: 0 !important;
       padding: 0 !important;
+      background: #f4f4f4;
     }
 
   }
 
   article.tcenter {
-    width : 100% !important;
+    width: 100% !important;
     max-width: 100% !important;
   }
 
   .navbar-header {
     float: none;
-    background : white;
   }
   .navbar-toggle {
     display: block;
   }
   .navbar-collapse {
     border-top: 1px solid transparent;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   .navbar-collapse.collapse {
-    display: none!important;
+    display: none !important;
   }
 
   .navbar-collapse.collapse[aria-expanded="true"] {
@@ -107,22 +111,27 @@ $breakpoint-tablet : "769px";
   }
 
   .navbar-nav {
-    float: none!important;
+    float: none !important;
     margin: 7.5px -15px;
   }
-  .navbar-nav>li {
+  .navbar-nav > li {
     float: none;
-    border-bottom : 1px solid white;
+    border-bottom: 1px solid white;
   }
-  .navbar-nav>li>a {
+  .navbar-nav > li > a {
     padding-top: 1em;
     padding-bottom: 1em;
-    padding-right : 14em;
-    width : 100%;
+    padding-right: 14em;
+    width: 100%;
   }
 
-  .navbar-nav li a:hover {
-    //color : white !important;
+
+  .navbar ul.nav li a {
+    color : black !important;
+  }
+
+  .navbar ul.nav li a.active {
+    color : $menu-golden !important;
   }
 
   .navbar-brand {
@@ -134,14 +143,14 @@ $breakpoint-tablet : "769px";
   }
 
   .navbar-toggle {
-    border : none;
-    background : none;
-    background-color : white;
+    border: none;
+    background: none;
+    background-color: white;
   }
 
-  .nav>li {
-    display : table;
-    width : 100%;
+  .nav > li {
+    display: table;
+    width: 100%;
   }
 
   .modality-list {
@@ -154,53 +163,50 @@ $breakpoint-tablet : "769px";
       height: 2em !important;
       top: .8em !important;
       left: 1em !important;
-      filter : saturate(0);
+      filter: saturate(0);
     }
 
-
-    .dropdown-menu li a:hover, .dropdown-submenu>a {
-      color : transparent !important;
+    .dropdown-menu li a:hover, .dropdown-submenu > a {
+      color: transparent !important;
     }
 
     .navbar-nav li a.dropdown-toggle:hover {
-      color : transparent !important;
+      color: transparent !important;
     }
 
   }
 
-  ul.nav{
+  ul.nav {
     background: #F4F4F4;
     a {
-      border-right : none !important;
+      border-right: none !important;
     }
   }
 
   .cover {
-    background-position : center;
+    background-position: center;
   }
 
-  .homepost, .homeposts, .home-block-white,.smoke-background, .white-background {
-    padding : 0 !important;
+  .homepost, .homeposts, .home-block-white, .smoke-background, .white-background {
+    padding: 0 !important;
   }
 
   .row {
-    margin : 0;
+    margin: 0;
   }
 
   .circuit-gallery {
-    padding-top : 1em;
+    padding-top: 1em;
   }
-
-
 
   .dropdown-toggle {
-    width : 100%;
+    width: 100%;
   }
 
-  .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover,
+  .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover,
   .dropdown-toggle.parent, .open .dropdown-toggle.parent {
-    background-color : #918F90 !important;
-    color : white !important;
+    background-color: #918F90 !important;
+    color: white !important;
   }
 
   .navbar-nav li a.active.dropdown-toggle {
@@ -208,25 +214,21 @@ $breakpoint-tablet : "769px";
     color: white !important;
   }
 
-
-
   .dropdown-toggle {
-    background-image : url('/bundles/motogp/img/assets/menu_plus.png');
+    background-image: url('/bundles/motogp/img/assets/menu_plus.png');
   }
 
-
   .dropdown-submenu .dropdown-toggle {
-    background-image : url('/bundles/motogp/img/assets/menu_plus_black.png') !important;
+    background-image: url('/bundles/motogp/img/assets/menu_plus_black.png') !important;
   }
 
   .dropdown-submenu.open .dropdown-toggle {
-    background-image : url('/bundles/motogp/img/assets/menu_minus_black.png') !important;
+    background-image: url('/bundles/motogp/img/assets/menu_minus_black.png') !important;
   }
 
   .open .dropdown-toggle, .default-open .dropdown-toggle {
-    background-image : url('/bundles/motogp/img/assets/menu_minus.png');
+    background-image: url('/bundles/motogp/img/assets/menu_minus.png');
   }
-
 
   .dropdown-menu li {
     &:nth-child(even) {
@@ -237,19 +239,18 @@ $breakpoint-tablet : "769px";
     }
 
     a {
-      padding : .75em 5em;
+      padding: .75em 5em;
     }
     a.active {
-      width : 100%;
-      font-weight : bolder;
+      width: 100%;
+      font-weight: bolder;
     }
   }
 
-  .default-open>.dropdown-menu {
+  .default-open > .dropdown-menu {
     display: block !important;
-    width : 100%;
+    width: 100%;
   }
-
 
   .modality-list img {
     height: 2.66em !important;
@@ -261,104 +262,99 @@ $breakpoint-tablet : "769px";
     display: none;
   }
 
-
   .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-    background-color : transparent;
+    background-color: transparent;
   }
 
   .rider-wrapper .rider-image {
     height: auto;
     width: 100%;
-    display : block;
+    display: block;
   }
 
   .rider-media {
-    background : transparent !important;
+    background: transparent !important;
   }
-
 
 }
 
-@media screen and (max-width:1023px) {
-
+@media screen and (max-width: 1023px) {
 
   .motos-gallery-item {
-    width : 50% !important;
-    padding-top : .5em !important;
+    width: 50% !important;
+    padding-top: .5em !important;
   }
-
 
   .only-desktop {
-    display : none !important;
+    display: none !important;
   }
 
-
   .homeblock .home-block-wrapper {
-    padding : 0em;
+    padding: 0em;
   }
 
   .home-block-white {
-    padding-left : 0;
-    padding-right : 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .homeblock .homegalleries {
-    display : table;
-    height : auto;
+    display: table;
+    height: auto;
 
     .homegallery {
-      padding-bottom : 2em;
-      height : auto;
+      padding-bottom: 2em;
+      height: auto;
     }
   }
 
-  .moto-bg  {
-    display : none;
+  .moto-bg {
+    display: none;
   }
 
   .homeresult {
     display: table;
-    padding : 1em 0 !important;
-    >div {
-      display : table-cell;
+    padding: 1em 0 !important;
+    > div {
+      display: table-cell;
       width: 100%;
       vertical-align: middle;
     }
   }
 
   .smw {
-    display : none;
+    display: none;
   }
 
   .homeresult > div {
-    font-size : 1.6em;
-    height : 16em;
+    font-size: 1.6em;
+    height: 16em;
   }
 
   .section-separator {
-    display : none;
+    display: none;
   }
 
   .homepost {
-    margin-bottom : 1em;
+    margin-bottom: 1em;
   }
 
   .post .white-background {
-    padding : 1em !important;
+    padding: 1em !important;
   }
 
   .up-arrow {
-    display : none;
+    display: none;
   }
 
   .footer-upper ul {
-    padding : 0;
+    padding: 0;
   }
 
   .team-categories {
-    width : 100%;
+    width: 100%;
     .staff-member {
-      width : 100% !important;
+      width: 100% !important;
     }
   }
 
@@ -370,9 +366,9 @@ $breakpoint-tablet : "769px";
 
   .team-staff-menu ul {
 
-    padding-left : 0;
+    padding-left: 0;
     display: table;
-    margin : auto;
+    margin: auto;
     li {
       display: table;
       float: left;
@@ -381,86 +377,85 @@ $breakpoint-tablet : "769px";
   }
 
   .staff-member {
-    width : 100%;
+    width: 100%;
   }
 
   form {
     padding-top: 5em;
-    padding-bottom : 5em;
+    padding-bottom: 5em;
     width: 100%;
-    display : table;
+    display: table;
   }
 
   .homegalleries, .homegallery {
 
-    padding : 1em 0 !important;
-    max-width : 100%;
-    display : block;
+    padding: 1em 0 !important;
+    max-width: 100%;
+    display: block;
     .page-l, .page-r {
-      display : none !important;
+      display: none !important;
     }
 
     .swiper-pagination-bullets {
-      display : block !important;
+      display: block !important;
     }
 
   }
 
   .rider-media {
-    position : static !important;
+    position: static !important;
   }
 
   .rider-description .row {
-    height : auto !important;
+    height: auto !important;
   }
 
   #slider-motos .cover {
     background-size: cover !important;
-    background-position : center center;
+    background-position: center center;
   }
 
   .moto-description-separator {
-     display : none !important;
+    display: none !important;
   }
 
-
   .homegalleries {
-    display : block !important;
+    display: block !important;
     max-width: 100%;
     overflow: hidden;
   }
 
   .navbar-nav {
-    display : block;
+    display: block;
   }
 
 }
 
-@media screen and (min-width:1024px) {
+@media screen and (min-width: 1024px) {
   .only-mobile {
-    display : none;
+    display: none;
   }
 }
 
-@media screen and (min-width:1024px) and ( max-width: 1120px ) {
+@media screen and (min-width: 1024px) and (max-width: 1120px) {
   .navbar-brand {
-    width : 9em;
-    position : static;
+    width: 9em;
+    position: static;
   }
   .social-media-widgets-inner > div {
-    width : 27%;
+    width: 27%;
     overflow: hidden;
   }
 
   .moto-bg {
-    display : none;
+    display: none;
   }
 }
 
-@media screen and (max-width:1023px) and ( orientation : portrait ) {
+@media screen and (max-width: 1023px) and (orientation: portrait) {
 
   .swiper-container {
-    height : 14em !important;
+    height: 14em !important;
   }
 
   .staff-history {
@@ -474,14 +469,11 @@ $breakpoint-tablet : "769px";
     font-size: .5em;
   }
 
-
-
 }
-
 
 @media screen and (max-width: 1023px) {
   .home-rider {
-    display:none !important;
+    display: none !important;
   }
 
   .home-rider-info {
@@ -489,11 +481,11 @@ $breakpoint-tablet : "769px";
   }
 
   .powered-by {
-    position : static !important;
+    position: static !important;
   }
 
   .home-rider-image-mobile {
-    display : table !important;
+    display: table !important;
     width: 100%;
     height: auto;
   }
@@ -506,12 +498,11 @@ $breakpoint-tablet : "769px";
     background: linear-gradient(to top, rgba(66, 66, 66, 1) 0%, rgba(66, 66, 66, 0.01) 38%, rgba(66, 66, 66, 0) 100%) !important;
   }
 
-
   .dropdown-submenu {
-    position : static;
+    position: static;
   }
 
-  .dropdown-submenu>.dropdown-menu {
+  .dropdown-submenu > .dropdown-menu {
     position: static;
     box-shadow: none;
     background: transparent;
@@ -523,7 +514,7 @@ $breakpoint-tablet : "769px";
   //  display: block;
   //}
 
-  .dropdown-submenu:hover>a:after {
+  .dropdown-submenu:hover > a:after {
     border-left-color: #fff;
   }
 
@@ -531,14 +522,13 @@ $breakpoint-tablet : "769px";
     float: none;
   }
 
-  .dropdown-submenu.pull-left>.dropdown-menu {
+  .dropdown-submenu.pull-left > .dropdown-menu {
     left: -100%;
     margin-left: 10px;
     -webkit-border-radius: 6px 0 6px 6px;
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
   }
-
 
   .dropdown-toggle {
     background-repeat: no-repeat;
@@ -547,24 +537,22 @@ $breakpoint-tablet : "769px";
   }
 
   .dropdown-submenu .dropdown-menu {
-    display : none;
+    display: none;
   }
 
   .dropdown-submenu.open .dropdown-menu {
-    display : block !important;
+    display: block !important;
   }
 
 }
 
-
-@media screen and (max-width: 1024px) and (orientation: landscape){
+@media screen and (max-width: 1024px) and (orientation: landscape) {
   .navbar .navbar-collapse {
     overflow-y: auto;
   }
 }
 
-
-@media screen and (min-width : 640px) and (max-width: 1024px) {
+@media screen and (min-width: 640px) and (max-width: 1024px) {
   .navbar-brand img {
     position: relative;
     top: -.5em;

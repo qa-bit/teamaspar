@@ -45,11 +45,10 @@ $homepost-height : 14em;
       background-repeat: no-repeat !important;
       height: $homepost-height;
       padding: 0;
-      filter: saturate(0);
       transition : filter .33s;
 
       &:hover{
-        filter: saturate(1);
+        filter: saturate(1.01);
         transition : filter .33s;
       }
     }
