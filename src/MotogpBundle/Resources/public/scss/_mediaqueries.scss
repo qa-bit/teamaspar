@@ -559,5 +559,13 @@ $breakpoint-tablet: "769px";
     height: 2.33em;
     margin: auto;
   }
+
+}
+
+
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .col-xxs-12 {
+    width : 100% !important;
+  }
 }
 
