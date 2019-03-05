@@ -194,8 +194,6 @@ input[type="checkbox"] {
 }
 
 
-
-
 @media screen and (orientation : portrait) {
   .general-links-wrapper {
     height: 100vh;
@@ -225,20 +223,20 @@ input[type="checkbox"] {
     .left img {
       float: right;
       transition: filter 0.33s;
-      filter: saturate(0);
+      filter: saturate(1);
       &:hover {
         transition: filter .33s;
-        filter: saturate(1);
+        filter: saturate(2);
       }
     }
 
     .right img {
       float: left;
       transition: filter .33s;
-      filter: saturate(0);
+      filter: saturate(1);
       &:hover {
         transition: filter .33s;
-        filter: saturate(1);
+        filter: saturate(2);
       }
     }
   }
