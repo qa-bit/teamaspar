@@ -10,6 +10,7 @@
 {% endmacro %}
 
 {% macro sponsorblock(level, modality, lsponsors) %}
+    {% if level == 1 %}<div class="sponsors-block-wrapper">{% endif %}
     <div class="col-xs-12 sponsors-block-{{ level }}">
         {% if lsponsors.color | length %}
             <div class="no-padding col-xs-12 col-md-12 sponsor-logo color text-center">
@@ -30,6 +31,7 @@
             </div>
         {% endif %}
     </div>
+    {% if level == 1 %}</div>{% endif %}
 {% endmacro %}
 
 {% import _self as forms %}
