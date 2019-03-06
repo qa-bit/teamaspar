@@ -8,14 +8,14 @@
             <label class="golden-text only-desktop rright">
                 {{ mdata[modality.slug] }}
             </label>
-            <img style="width:100%" class="img img-responsive" src="{{ asset('/bundles/motogp/img/assets/motos_home_' ~ modality.slug ~ '.png') }}?v={{ "now" | date('dmyhj') }}" />
+            <img style="width:100%" class="img img-responsive" src="{{ asset('/bundles/motogp/img/assets/motos_home_' ~ modality.slug ~ 'b.png') }}?v={{ "now" | date('dmyhj') }}" />
 
         {% endif %}
     </div>
-    <div class="homemoto-link bg-white">
+    <div class="homemoto-link">
         <img class="link tcenter" href="{{ url('motos', {'modality' : modality.slug }) }}" src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" alt="">
     </div>
-    <div class="homemoto-link bg-white">
+    <div class="homemoto-link">
         <img class="link tcenter" href="{{ url('motos', {'modality' : modality.slug }) }}" src="{{ asset('/bundles/motogp/img/assets/plus.png') }}" alt="">
     </div>
 </div>
