@@ -285,7 +285,7 @@ class PublicController extends Controller
 
         if (!$modalitySlug) {
             return $this->render(
-                'MotogpBundle:Default:general_index.html.twig',
+                'MotogpBundle:Default:general_index_default.html.twig',
                 [
                     'team' => $this->getMainTeam()
                 ]
