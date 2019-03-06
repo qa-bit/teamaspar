@@ -1,8 +1,9 @@
 .navbar-brand {
   width: 14em;
   position: absolute;
-  bottom: 2em;
+  bottom: 0;
   left: 4em;
+  display: table;
 }
 
 .navbar-nav {
@@ -49,6 +50,7 @@
   display: table;
   margin: auto;
   float: none;
+  margin-top : .66em;
 
   li {
     float : left;
@@ -59,21 +61,24 @@
   img {
     position : relative;
     width: auto;
-    height: 2em;
+    height : 2.66em;
     padding: .5em .33em;
     vertical-align: bottom;
-    top : 1em;
-    transition : all .33s;
+    transition : filter .33s;
+    filter: saturate(.8);
+    //opacity : 0.8;
+    //top : .66em;
 
     &:hover {
       filter : saturate(2);
+      //opacity : 1;
+      transition : filter .33s;
     }
 
     &.current {
       filter: saturate(2);
-      height : 3em;
-      top : .66em;
-      transition : all .33s;
+      //opacity : 1;
+      transition : filter .33s;
     }
   }
 }

@@ -133,33 +133,6 @@ body {
   padding: .33em;
 }
 
-.body-block {
-}
-
-html[modality="moto-3"], html[modality="moto-2"], html[modality="fim-jr"]   {
-
-  .modality-list img {
-
-    @media screen and (min-width : 1024px) {
-      height: auto;
-      width: 3.5em;
-    }
-
-    &.current {
-      height : 2.66em;
-      width : auto;
-    }
-
-  }
-}
-
-html[modality="moto-3"], html[modality="moto-2"] {
-  .modality-list img[fimjr] {
-    height : 2em;
-    width : auto;
-  }
-}
-
 input[type="checkbox"] {
   width : 1em;
 }
@@ -183,14 +156,10 @@ input[type="checkbox"] {
 }
 
 
-
 @media screen and (orientation : landscape) {
   .general-index-links {
     background : transparent !important;
   }
-
-
-
 }
 
 
@@ -249,4 +218,8 @@ input[type="checkbox"] {
       padding : 2em 3em;
     }
   }
+}
+
+.white-text {
+  color : #fdfdfd;
 }

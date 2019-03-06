@@ -24,7 +24,7 @@
     {% endif %}
 
     <div class="smoke-background">
-        <div class="white-background">
+        <div class="standard-background white-text">
             <div class="w100 rider-description">
                 <div id="{{ r.name | lower }}-{{ r.surname | lower }}">
                     <div class="row info w100 relative">
@@ -67,7 +67,7 @@
 
                     {% if r.records | length %}
                         <div class="row track-records">
-                            <h3><span class="right-arrow">&#9654;&nbsp;</span><b>{{ 'trackRecords' | trans }}</b></h3>
+                            <h3 class="white-text"><span class="right-arrow">&#9654;&nbsp;</span><b>{{ 'trackRecords' | trans }}</b></h3>
 
                             {%  for key, record in r.getGroupedRecords() %}
                                 {% if loop.index == 1 or (loop.index % 10  == 0)%}
@@ -90,23 +90,13 @@
 
                 {% if r.description or r.descriptionEN %}
                     <div class="row info rider-biografy">
-                        <h3><span class="right-arrow">&#9654;&nbsp;</span><b>{{ 'biografy' | trans }}</b></h3>
+                        <h3 class="white-text"><span class="right-arrow">&#9654;&nbsp;</span><b>{{ 'biografy' | trans }}</b></h3>
                         <div>{{ locale == 'es' ? (r.description | raw) : (r.descriptionEN | raw )}}</div>
                     </div>
                 {% endif %}
             </div>
         </div>
     </div>
-    </div
-
-    {#{% set g = [] %}#}
-    {#{% for gl in galleries %}#}
-    {#{% for m in gl.medias %}#}
-    {#{% if m.rider is not null and m.rider.id == r.id %}#}
-    {#{% set g = g | merge([m]) %}#}
-    {#{% endif %}#}
-    {#{% endfor %}#}
-    {#{% endfor %}#}
 
     {% if medias | length %}
         {% include 'MotogpBundle:Default:Riders/rider-gallery.html.twig' with {'medias' : medias} %}
