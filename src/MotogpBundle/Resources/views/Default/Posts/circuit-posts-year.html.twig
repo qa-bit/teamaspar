@@ -2,10 +2,6 @@
 
 {% set newsYears = modality | modality_years_with_news %}
 
-{% if year is not defined %}
-    {% set year = newsYears[0] %}
-{% endif %}
-
 {% for p in circuit.posts %}
     {% set postYear = p.publishedAt | date('Y') %}
     {% if p.modality.id == modality.id

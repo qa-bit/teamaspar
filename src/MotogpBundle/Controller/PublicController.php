@@ -95,9 +95,10 @@ class PublicController extends Controller
             $d->rider = $riders[$rider];
             $d->score = $score;
             $d->index = $index + 1;
+            $d->riderId = $riders[$rider]->getId();
             $data[] = $d;
-            if ($index <= 11 && $d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain()) {
-                $insertedIds = [$d->rider->getId()];
+            if ($d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain()) {
+                $insertedIds[] = $d->rider->getId();
             }
 
             $index++;
@@ -106,14 +107,14 @@ class PublicController extends Controller
 
         $reverseIndex = 11;
 
-
         if (count($data) > 12) {
             $reverse = array_reverse($data);
-
             foreach ($reverse as $index => $d) {
-                if ($d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain() && $d->rider->getRiderTeam()->isMain() && !in_array($d->rider->getId(), $insertedIds)) {
+                if ($d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain()
+                    && !in_array($d->rider->getId(), $insertedIds)) {
                     $d->missing = true;
                     $data[$reverseIndex] = $d;
+                    $insertedIds = [$d->rider->getId()];
                     $reverseIndex--;
                 }
             }
@@ -172,9 +173,8 @@ class PublicController extends Controller
             $d->index = $index + 1;
             $data[] = $d;
             if ($index <= ($MAX_SCORES - 1) && $d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain()) {
-                $insertedIds = [$d->rider->getId()];
+                $insertedIds[] = $d->rider->getId();
             }
-
             $index++;
         }
 
@@ -192,6 +192,7 @@ class PublicController extends Controller
                 }
             }
         }
+        
 
         return $data;
 
@@ -403,7 +404,7 @@ class PublicController extends Controller
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithGalleryInModalityAndYear($modality, $year);
 
         return $this->render(
-            'MotogpBundle:Default:Images/images.html.twig',
+            'MotogpBundle:Default:Images/images_byyear.html.twig',
             [
                 'gallery' => $gallery,
                 'circuits' => $circuits,
@@ -658,7 +659,7 @@ class PublicController extends Controller
         
 
         return $this->render(
-            'MotogpBundle:Default:Posts/posts.html.twig',
+            'MotogpBundle:Default:Posts/posts_by_year.html.twig',
             [
                 'gallery' => $gallery,
                 'circuits' => $circuits,

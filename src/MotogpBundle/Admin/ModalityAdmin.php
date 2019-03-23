@@ -48,7 +48,7 @@ class ModalityAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-           ->tab('Información')
+            ->tab('Información')
             ->with(null)
             ->add('name', null, [
                     'required' => true
@@ -73,6 +73,14 @@ class ModalityAdmin extends AbstractAdmin
                 'required' => false,
                 'attr' => ['container_classes' => 'clearfix col-md-6']
             ))
+            ->end()
+            ->end()
+            ->tab('SEO')
+            ->with(null)
+            ->add('seoTitle')
+            ->add('seoTitleEN')
+            ->add('seoKeywords')
+            ->add('seoKeywordsEN')
             ->end()
             ->end()
             ->tab('SEO')

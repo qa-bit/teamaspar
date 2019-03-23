@@ -15,6 +15,12 @@ use MotogpBundle\Entity\Rider;
 class GalleryAdmin extends AbstractAdmin
 {
 
+    protected $datagridValues = [
+        '_page' => 1,
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'id',
+    ];
+
 
     use HasMediasAdminTrait, FeaturedMediaAdminTrait;
     

@@ -73,7 +73,7 @@ class CircuitRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('modality', $modality->getId())
             ->setParameter('start', $firstDay)
             ->setParameter('end', $lastDay)
-            ->addOrderBy('c.id', 'ASC')
+//            ->addOrderBy('c.id', 'ASC')
             ->addOrderBy('g.publishedAt', 'DESC')
             ->getQuery()
             ->getResult()

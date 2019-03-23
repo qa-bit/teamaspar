@@ -1,0 +1,44 @@
+{% extends "MotogpBundle:Default:base.html.twig" %}
+{% block title %}{{ "owner" | trans }} - {{ modality.slug | capitalize }} - {{ "news" | trans }}{% endblock %}
+{% block body %}
+    {{ parent() }}
+    {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}
+    <div class="smoke-background">
+        <div class="standard-background">
+            <div class="circuit-galleries">
+                {% set cpost = [] %}
+
+                {% for c in circuits %}
+                    {% if c.posts is not empty %}
+                        {% set cpost = cpost | merge([c]) %}
+                    {% endif %}
+                {% endfor %}
+
+                {% for cb in cpost | batch(3, '') %}
+                    <div class="row col-xs-12">
+                        {% for c in cb %}
+                            {% if c.id is defined %}
+                                {% include "MotogpBundle:Default:Posts/circuit-posts-year.html.twig" with {'circuit' : c, 'year' : year} %}
+                             {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+
+            </div>
+            <div class="form-group col-xs-12">
+                <br><br>
+            </div>
+            <div class="text-center col-xs-12">
+                <img src="{{ asset('/bundles/motogp/img/assets/up_inverse.png') }}" alt="" class="up-arrow">
+            </div>
+        </div>
+    </div>
+    </div>
+    {% include 'MotogpBundle:Default:footer.html.twig' %}
+    <div class="relative">
+        <div class="moto-bg moto-bg-footer">
+            <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral_sama.png') }}" style="position:absolute!important"/>
+        </div>
+    </div>
+{% endblock %}

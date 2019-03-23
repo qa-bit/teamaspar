@@ -8,7 +8,7 @@
             <div class="circuit-galleries">
                 {% for c in circuits %}
                     {% if c.galleries | length %}
-                        {% include "MotogpBundle:Default:Galleries/circuit-gallery-all.html.twig" with {'circuit' : c} %}
+                        {% include "MotogpBundle:Default:Galleries/circuit-gallery.html.twig" with {'circuit' : c} %}
                     {% endif %}
                 {% endfor %}
             </div>

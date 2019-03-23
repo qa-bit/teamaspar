@@ -16,7 +16,7 @@ images:
 
 images_by_year:
     locales: { "es": "/es/{modality}/{year}/imagenes", "en": "/en/{modality}/{year}images" }
-    defaults: { _controller: MotogpBundle:Public:images }
+    defaults: { _controller: MotogpBundle:Public:imagesByYear }
 
 videos:
     locales: { "es": "/es/{modality}/videos", "en": "/en/{modality}/videos" }
