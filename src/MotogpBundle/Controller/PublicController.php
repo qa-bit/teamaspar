@@ -53,6 +53,7 @@ class PublicController extends Controller
 
     private function getGeneralScore($modality) {
 
+        $MAX_SCORES = 12;
 
         $em = $this->getDoctrine()->getManager();
 
@@ -97,7 +98,7 @@ class PublicController extends Controller
             $d->index = $index + 1;
             $d->riderId = $riders[$rider]->getId();
             $data[] = $d;
-            if ($d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain()) {
+            if ($index <= ($MAX_SCORES - 1) && $d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain()) {
                 $insertedIds[] = $d->rider->getId();
             }
 
@@ -105,9 +106,9 @@ class PublicController extends Controller
         }
 
 
-        $reverseIndex = 11;
+        $reverseIndex = $MAX_SCORES - 1;
 
-        if (count($data) > 12) {
+        if (count($data) > $MAX_SCORES) {
             $reverse = array_reverse($data);
             foreach ($reverse as $index => $d) {
                 if ($d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain()
@@ -192,7 +193,7 @@ class PublicController extends Controller
                 }
             }
         }
-        
+
 
         return $data;
 
