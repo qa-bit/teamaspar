@@ -10,6 +10,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use MotogpBundle\Admin\Media\FooterImageAdminTrait;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class ModalityAdmin extends AbstractAdmin
 {
@@ -83,12 +85,13 @@ class ModalityAdmin extends AbstractAdmin
             ->add('seoKeywordsEN')
             ->end()
             ->end()
-            ->tab('SEO')
+            ->tab('Resultados')
             ->with(null)
-            ->add('seoTitle')
-            ->add('seoTitleEN')
-            ->add('seoKeywords')
-            ->add('seoKeywordsEN')
+            ->add('showResults', CheckboxType::class, ['required' => false, 'label' => 'Mostrar resultados en home'])
+            ->add('worldTitles', IntegerType::class, ['required' => false, 'label' => 'Títulos mundiales'])
+            ->add('worldSubChampionships', IntegerType::class, ['required' => false, 'label' => 'Subcampeonatos mundiales'])
+            ->add('wins', IntegerType::class, ['required' => false])
+            ->add('podiums', IntegerType::class, ['required' => false])
             ->end()
             ->end()
         ;

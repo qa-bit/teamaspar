@@ -82,6 +82,13 @@ class Modality
      */
     private $podiums;
 
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $showResults;
+
     /**
      * @return string
      */
@@ -89,6 +96,23 @@ class Modality
     {
         return $this->facebook;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isShowResults()
+    {
+        return $this->showResults;
+    }
+
+    /**
+     * @param boolean $showResults
+     */
+    public function setShowResults($showResults)
+    {
+        $this->showResults = $showResults;
+    }
+    
 
     /**
      * @param string $facebook

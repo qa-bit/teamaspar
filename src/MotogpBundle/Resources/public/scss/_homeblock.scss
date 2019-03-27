@@ -282,6 +282,89 @@ $homepost-height : 14em;
   height: 40em !important;
   background-size: 100% auto !important;
   background-repeat: no-repeat !important;
-  /* border: 1px solid red; */
   background-position: 0 100% !important;
+}
+
+
+.homestats {
+  background: $menu-golden;
+  padding: 2em 0;
+  display: table;
+  width: 100%;
+}
+
+.homestat, .homestat-title {
+  display: inline-block;
+  vertical-align: top;
+  span {
+    position : relative;
+    top : .33em;
+  }
+}
+
+
+.homestat {
+  font-size : 2.5em;
+  font-weight: bold;
+  padding-right : .3em;
+}
+
+.homestat-title {
+  font-size: 1.2em;
+  line-height: 1em;
+  position : relative;
+  top : 1.2em;
+  width : 11em;
+
+  &.single-word {
+    top: 1em;
+  }
+}
+
+.statblock {
+  margin:auto;
+  float : none;
+  display: table;
+  background: $menu-golden;
+  >div { float: left;}
+}
+
+.statlogo {
+  width : 5em;
+  float: left;
+  margin : 0 3em;
+}
+
+
+@media screen and (max-width: 1023px) {
+
+  .homestats {
+    font-size : .8em;
+  }
+
+  .homestats .no-padding {
+    width : 50%;
+  }
+
+  .statlogo {
+     display : none;
+  }
+}
+
+
+@media screen and (max-width: 810px) {
+
+
+  .homestats .no-padding {
+    width : 100%;
+    text-align: center;
+  }
+
+  .homestat-title {
+    text-align: left;
+  }
+
+  .homestat {
+    width: 2em;
+  }
 }

@@ -1,6 +1,51 @@
 <div class="moto-bg">
     <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral_sama.png') }}" />
 </div>
+
+{% if
+modality.showResults
+%}
+    <div class="homestats">
+        <div class="tcenter">
+            <div class="statblock">
+                <div class="no-padding">
+                    <div class="homestat">
+                        <span>{{ modality.worldTitles }}</span>
+                    </div>
+                    <div class="homestat-title">{{ ("World Titles" | trans | upper) | raw }}</div>
+                </div>
+                <div class="no-padding">
+                    <div class="homestat">
+                        <span>{{ modality.worldSubChampionships }}</span>
+                    </div>
+                    <div class="homestat-title">
+                        {{ ("World Sub Championships" | trans | upper ) | raw}}
+                    </div>
+                </div>
+                <div class="statlogo">
+                    <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/40anniversary.png') }}" />
+                </div>
+                <div class="no-padding">
+                    <div class="homestat">
+                        <span>{{ modality.wins }}</span>
+                    </div>
+                    <div class="homestat-title single-word">
+                        <br>{{ "Wins" | trans | raw | upper}}
+                    </div>
+                </div>
+                <div class="no-padding">
+                    <div class="homestat">
+                        <span>{{ modality.wins }}</span>
+                    </div>
+                    <div class="homestat-title single-word">
+                        <br>{{ "Podiums" | trans | raw | upper}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
 <div class="homeblock col-xs-12" style="background:url('{{ asset('bundles/motogp/img/assets/fondo_humo.jpg') }}')">
     <div class="home-block-wrapper col-xs-12" >
         <div class="home-block-white col-xs-12" {#style="background:url('{{ asset('bundles/motogp/img/assets/fondo_blanco.jpg') }}')"#}>
