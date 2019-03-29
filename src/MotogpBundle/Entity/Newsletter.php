@@ -10,6 +10,7 @@ use MotogpBundle\Entity\Traits\InGroupsTrait;
 use MotogpBundle\Entity\Traits\HasMediaTrait;
 use MotogpBundle\Entity\TeamQuotation;
 use MotogpBundle\Entity\Traits\InModalityTrait;
+use Application\Sonata\MediaBundle\Entity\PostMedia;
 
 /**
  * Newsletter
@@ -21,11 +22,20 @@ class Newsletter
 {
    use ContentTrait, InGroupsTrait, HasMediaTrait, InModalityTrait;
 
+
+    const LOCALE_SEND = [
+        "All_Languages",
+        "Spanish",
+        "English"
+    ];
+
     public function __construct()
     {
         $this->medias = new ArrayCollection();
         $this->customerTypes = new ArrayCollection();
         $this->teamQuotations = new ArrayCollection();
+        $this->histories = new ArrayCollection();
+        $this->sendTo = 0;
     }
 
     /**
@@ -44,6 +54,11 @@ class Newsletter
      * @ORM\OneToMany(targetEntity="TeamQuotation", cascade={"persist"}, mappedBy="newsletter", cascade={"all"}, orphanRemoval=true)
      */
     protected $teamQuotations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="NewsletterHistory", cascade={"persist"}, mappedBy="newsletter", cascade={"all"}, orphanRemoval=true)
+     */
+    protected $histories;
 
     /**
      * @var boolean
@@ -87,6 +102,13 @@ class Newsletter
      * @ORM\Column(type="text", nullable=true)
      */
     private $errorMessage;
+
+
+    /**
+     * @var int
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $sendTo;
 
 
 
@@ -311,6 +333,37 @@ class Newsletter
         $this->queued = $queued;
     }
 
-    
+    /**
+     * @return int
+     */
+    public function getSendTo()
+    {
+        return $this->sendTo;
+    }
+
+    /**
+     * @param int $sendTo
+     */
+    public function setSendTo($sendTo)
+    {
+        $this->sendTo = $sendTo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHistories()
+    {
+        return $this->histories;
+    }
+
+    /**
+     * @param mixed $histories
+     */
+    public function setHistories($histories)
+    {
+        $this->histories = $histories;
+    }
+
 }
 

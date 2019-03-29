@@ -272,6 +272,21 @@ services:
             - [setContainer, ["@service_container"]]
         public: true
 
+    motogp.admin.newsletter_history:
+        class: MotogpBundle\Admin\NewsletterHistoryAdmin
+        arguments: [~, MotogpBundle\Entity\NewsletterHistory, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: NewsletterHistory }
+        public: true
+
+    motogp.admin.newsletter_mail_info:
+        class: MotogpBundle\Admin\NewsletterMailingInfoAdmin
+        arguments: [~, MotogpBundle\Entity\NewsletterMailInfo, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: NewsletterMailingInfo }
+        public: true
+
+
     motogp.image_path_extension:
         class: MotogpBundle\Twig\ImagePathExtension
         public: false

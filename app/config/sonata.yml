@@ -46,6 +46,8 @@ sonata_admin:
                     - motogp.admin.customer
                     - motogp.admin.customer_group
                     - motogp.admin.newsletter
+                    - motogp.admin.newsletter_mail_info
+                    - motogp.admin.newsletter_history
             config:
                 label: Configuración
                 items:
@@ -59,6 +61,7 @@ sonata_admin:
                     - motogp.admin.moto
                     - motogp.admin.rider_external
                     - motogp.admin.modality_classification
+
                 roles: [ROLE_SUPER_ADMIN]
 
             newsletterss:

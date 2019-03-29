@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManager;
 use MotogpBundle\Entity\Customer;
 use MotogpBundle\Entity\Traits\InModalityTrait;
 
-class Newsletters
+class NewslettersV2
 {
 
     const MAIL_SUBJECT_PREFIX = 'Sama Qatar Ángel Nieto Team ';
@@ -83,8 +83,47 @@ class Newsletters
             }
         }
 
+
         return $recipients;
 
+    }
+
+
+    public function sendCustomerEmail($newsletter, $customerId, $html, $message) {
+
+        $failures ='';
+
+        $customer  = $this->em->getRepository(Customer::class)->findOneBy(['email' => $customerId]);
+
+        $html = str_replace('CUSTOMER', $customer->getId(), $html);
+        $html = str_replace('NEWSLETTER', $newsletter->getId(), $html);
+
+        $message
+            ->setBcc(null)
+            ->setTo($customer->getEmail())
+            ->setContentType("text/html")
+            ->setBody($html)
+        ;
+
+        try {
+            $mail = $this->mailer->send($message, $failures);
+            dump('CMS NEWSLETTER EMAIL');
+            dump($customerId);
+            dump($mail);
+            dump('!CMS NEWSLETTER EMAIL');
+
+            return $mail;
+
+        } catch(\Swift_TransportException $e) {
+
+            return ['errors' => $e->getMessage()];
+        }
+
+    }
+
+
+    public function sendMailBCC() {
+        
     }
 
     public function sendMail(Newsletter $newsletter, $locale)
@@ -93,7 +132,7 @@ class Newsletters
         $recipients = $this->getRecipients($newsletter, $locale);
 
         if (!count($recipients))
-            return true;
+            return ['sent' => false];
 
         /**
          * @var Post
@@ -121,7 +160,9 @@ class Newsletters
         $subjectTitle = $post ? "$circuitName $tagAbbr - $postTitle" : $postTitle;
 
         $mod = $post ? $post->getModality() : $newsletter->getModality();
-        
+
+
+        $errors = "";
 
         try {
             $message = \Swift_Message::newInstance()
@@ -130,7 +171,8 @@ class Newsletters
                 ->setBcc($recipients)
                 ->setReplyTo($from)
                 ->setContentType("text/html")
-                ->setBody($html);
+                ->setBody($html)
+            ;
 
         } catch(\Swift_RfcComplianceException $e) {
             return ['sent' => false, 'errors' => $e->getMessage()];
@@ -144,22 +186,28 @@ class Newsletters
 
         $failures ='';
 
-        try {
-            $mail = $this->mailer->send($message, $failures);
-            $spool = $this->mailer->getTransport()->getSpool();
-            $spool->flushQueue($this->transport);
+        $sents = [];
 
-        } catch(\Swift_TransportException $e) {
-            
-            return ['sent' => false, 'errors' => $e->getMessage()];
+        foreach ($recipients as $key => $value) {
+            $mail = $this->sendCustomerEmail($newsletter, $key, $html, $message);
+
+            if ($mail == true) {
+                $sents[] = $key;
+            } else {
+                $failures.= $mail['errors'].$key;
+            }
         }
-
         
-        if ($mail) {
-            return ['sent' => true];
+        dump('CMS NEWSLETTERS COUNT');
+        dump(count($sents));
+        dump('CMS NEWSLETTERS FAILURE');
+        dump($failures);
+        
+        if (count($sents)) {
+            return ['sent' => true, 'errors' => $failures];
         }
 
-        return ['sent' => false];
+        return ['sent' => false, 'errors' => $failures];
 
     }
 
@@ -179,10 +227,7 @@ class Newsletters
             'url_scheme' => $this->url_scheme
         ];
 
-        return $this
-            ->templating
-            ->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data, 'text/html')
-        ;
+        return $this->templating->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data, 'text/html');
     }
     
     

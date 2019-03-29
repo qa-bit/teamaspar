@@ -99,3 +99,8 @@ newsletters_unsubscribe_confirmation:
     defaults: { _controller: MotogpBundle:Newsletters:confirmUnsubscription }
 
 
+newsletters_logo:
+    locales: { "en": "/newsletters_logo", "es": "/newsletters_logo" }
+    defaults: { _controller: MotogpBundle:Newsletters:renderStatsImage}
+
+

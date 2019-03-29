@@ -88,7 +88,7 @@ swiftmailer:
             password: '%mailer_password%'
             port: 465
             encryption: ssl
-            spool: { type: memory }
+            spool: { type: file, path : '%kernel.project_dir%/var/spool' }
         mailer_contact:
             transport: '%mailer_contact_transport%'
             host: '%mailer_contact_host%'

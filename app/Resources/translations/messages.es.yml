@@ -14,6 +14,8 @@ Modality Classification: Clasificación modalidad
 "Order": Orden
 "Categories": Categorías
 "Name E N": Nombre inglés
+Full Name: Nombre y apellidos
+media: Medio
 "Description": Descripción
 "Description E N": Descripción inglés
 "Url E N": Url inglés
@@ -29,6 +31,11 @@ Modality Classification: Clasificación modalidad
 "Rider List": "Lista de pilotos"
 "Post": "Publicaciones"
 "Team Category": "Categoría (equipo)"
+Locale: Idioma
+Send To: Enviar a
+All_Languages: Todos los idiomas
+English: Inglés
+Spanish: Español
 "Season": Temporada
 "Circuit": Circuito
 "Seo Title": Título
@@ -110,3 +117,7 @@ World Titles: Títulos <br> mundiales
 World Sub Championships: Subcampeonatos<br>mundiales
 Wins: Victorias
 Podiums: Podios
+Newsletter List: Newsletters
+Newsletter Mail Info List: Email notificación
+NewsletterMailingInfo: Email notificación
+NewsletterHistory: Histórico newsletter

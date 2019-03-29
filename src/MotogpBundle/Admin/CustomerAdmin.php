@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Sonata\AdminBundle\Form\Type\Filter\ChoiceType as ChoiceFilter;
 
 class CustomerAdmin extends AbstractAdmin
 {
@@ -18,11 +19,20 @@ class CustomerAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            //->add('id')
-//            ->add('fullname')
             ->add('email')
             ->add('phone')
             ->add('groups')
+            ->add('type', null, [], 'choice', [
+                'choices' => [ 'public' => 'public',
+                    'sponsor' => 'sponsor',
+                    'media' => 'media']])
+            ->add('locale', null, [], 'choice', [
+                'choices' => [
+                    '' => '',
+                    'es' => 'es',
+                    'en' => 'en'
+                ]
+            ])
         ;
     }
 
@@ -32,12 +42,13 @@ class CustomerAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-           // ->add('id')
+            // ->add('id')
             ->add('fullName')
             ->add('email')
             ->add('userConfirmed', null, ['editable' => true])
             ->add('adminConfirmed', null, ['editable' => true])
             ->add('type')
+            ->add('locale', null, ['label' => 'Idioma'])
             ->add('groups')
             ->add('_action', null, array(
                 'actions' => array(

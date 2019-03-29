@@ -3,11 +3,13 @@
 namespace MotogpBundle\Controller;
 
 use MotogpBundle\Entity\Newsletter;
+use MotogpBundle\Entity\NewsletterHistory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use MotogpBundle\Entity\Gallery;
 use MotogpBundle\Entity\Modality;
@@ -30,6 +32,61 @@ class NewslettersController extends Controller
         $team = $em->getRepository(RiderTeam::class)->findMain();
 
         return $team;
+    }
+
+    public function getLogoResponse() {
+        $img = "logo_newsletters.png";
+
+        $filepath = $this->get('kernel')->getRootDir()."/../web/media/newsletters/".$img;
+
+        $response = new Response();
+        $disposition = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_INLINE, $img);
+        $response->headers->set('Content-Disposition', $disposition);
+        $response->headers->set('Content-Type', 'image/png');
+        $response->setContent(file_get_contents($filepath));
+        return $response;
+    }
+
+    public function renderStatsImageAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $customerId = $request->get('customer');
+        $newsletterId = $request->get('newsletter');
+        $ip = $request->getClientIp();
+        $userAgent = $request->headers->get('User-Agent');
+
+
+        if (!$newsletterId || !$customerId) {
+            return $this->getLogoResponse();
+        }
+
+        $customer = $em->getRepository(Customer::class)->find($customerId);
+        $newsletter  =$em->getRepository(Newsletter::class)->find($newsletterId);
+
+
+        if (!$newsletter || !$customer) {
+            return $this->getLogoResponse();
+        }
+
+        $newsletterHistory = $em->getRepository(NewsletterHistory::class)->findOneBy(
+            ['customer' => $customer, 'newsletter' => $newsletter]
+        );
+
+
+        if (!$newsletterHistory) {
+            $newsletterHistory = new NewsletterHistory();
+            $newsletterHistory->setCustomer($customer);
+            $newsletterHistory->setNewsletter($newsletter);
+            $newsletterHistory->setIp($ip);
+            $newsletterHistory->setUserAgent($userAgent);
+            $em->persist($newsletterHistory);
+            $em->flush();
+        }
+
+
+       return $this->getLogoResponse();
+
     }
 
     public function registerFormAction(Request $request)

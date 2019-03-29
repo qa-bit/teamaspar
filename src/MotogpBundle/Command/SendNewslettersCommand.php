@@ -15,12 +15,14 @@ class SendNewslettersCommand extends ContainerAwareCommand
 
     //TODO: get available locales from app config
     const LOCALES = ['en', 'es'];
+    const LOCALE_EN = 1;
+    const LOCALE_ES = 2;
 
     protected function configure()
     {
         $this
             ->setName('motogp:newsletters:send')
-            ->setDescription('...')
+            ->setDescription('send queued newsletters')
             ->addArgument('argument', InputArgument::OPTIONAL, 'Argument description')
             ->addOption('option', null, InputOption::VALUE_NONE, 'Option description')
         ;
@@ -37,13 +39,18 @@ class SendNewslettersCommand extends ContainerAwareCommand
         foreach ($newsletters as $newsletter) {
             $sent = false;
 
+            $this->output->writeln("CMS NEWSLETTERS UPDATING IMAGE CACHE");
             $newsletter->setQueued(false);
             $this->updateCache();
             $this->em->flush();
-
+            $this->output->writeln("CMS NEWSLETTERS UPDATING IMAGE UPDATED");
 
             foreach (self::LOCALES as $locale) {
-                $this->output->writeln('sending '.$newsletter->getName(). ' '.$locale);
+
+                if ($newsletter->getSendTo() == self::LOCALE_EN && $locale == 'en') continue;
+                if ($newsletter->getSendTo() == self::LOCALE_ES && $locale == 'es') continue;
+
+                $this->output->writeln('CMS NEWSLETTERS SENDING '.$newsletter->getName(). ' '.$locale);
 
                 $sent = $this->nm->sendMail($newsletter, $locale);
 
@@ -52,10 +59,9 @@ class SendNewslettersCommand extends ContainerAwareCommand
             if ($sent['sent'] == true) {
                 $newsletter->setLastSendAt(new \DateTime());
                 $newsletter->setFailed(false);
-                $newsletter->setErrorMessage('');
+                $newsletter->setErrorMessage($sent['errors'] ?? '');
                 $this->output->writeln('sent', $sent);
-            } else {
-                dump($sent);
+            } else {;
                 $newsletter->setQueued(false);
                 $newsletter->setFailed(true);
                 $newsletter->setLastSendAt(null);

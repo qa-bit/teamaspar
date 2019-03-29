@@ -4,6 +4,7 @@ namespace MotogpBundle\Admin;
 
 use MotogpBundle\Entity\Customer;
 use MotogpBundle\Entity\CustomerType;
+use MotogpBundle\Entity\Newsletter;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -88,6 +89,7 @@ class NewsletterAdmin extends AbstractAdmin
 
             ->add('customerTypes', null, ['required' => true])
             ->add('groups')
+            ->add('sendTo', ChoiceType::class, ['choices' => array_flip(Newsletter::LOCALE_SEND)])
             ->add('actions', ChoiceType::class, array(
                 'mapped' => false,
                 'label' => 'Acción',

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: egm
- * Date: 7/02/18
- * Time: 12:06
- */
 
 namespace MotogpBundle\Entity\Traits;
 
