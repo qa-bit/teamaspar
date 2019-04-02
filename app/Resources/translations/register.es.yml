@@ -24,3 +24,20 @@ unsubscribe_confirm_email_text: Por favor, pulse en el siquiente enlace para dar
 unsubscribe_confirm_email_link: Darse de baja
 unsubscribe_success_text1: Baja realizada correctamente
 unsubscribe_wrong: Clave de confirmación errónea
+
+es: Español
+en: Inglés
+public: Aficionado
+sponsor: Partner
+mediaType: Tipo (medio)
+media: Medio
+media_type: Tipo de medio
+media_pr: Prensa
+media_radio: Radio
+media_tv: TV
+media_web: Web
+media_other: Otro
+name_in_use: Este nombre ya está registrado.
+confirmation_confirm_email: Nuevo inscrito a newsletters
+confirmation_confirm_email_text: Información personal:
+register_notification_email_link: Haga click en este enlace para confirmar el registro.

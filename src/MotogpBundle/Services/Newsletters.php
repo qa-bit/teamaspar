@@ -100,9 +100,8 @@ class Newsletters
          */
         $post = $newsletter->getPost();
         $from = $this->mailer_user;
-        $html = $this->renderNewsletter($newsletter, $locale);
-
-
+        $html = str_replace('NEWSLETTER', $newsletter->getId(), $this->renderNewsletter($newsletter, $locale));
+        
         $html = str_replace('http://localhost', $this->url_scheme, $html);
 
         $circuitName = $newsletter->getPost() && $newsletter->getPost()->getCircuit() ?

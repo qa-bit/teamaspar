@@ -24,3 +24,6 @@ unsubscribe_confirm_email_text: Please, click on the following link to cancel yo
 unsubscribe_confirm_email_link: Cancel subscription
 unsubscribe_success_text1: Subscription canceled succesfully
 unsubscribe_wrong: Wrong confirmation key
+confirmation_confirm_email: Nuevo inscrito a newsletters
+confirmation_confirm_email_text: Información personal:
+register_notification_email_link: Haga click en este enlace para confirmar el registro.

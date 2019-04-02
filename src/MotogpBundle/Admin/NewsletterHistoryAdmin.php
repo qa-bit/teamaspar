@@ -14,6 +14,12 @@ use Sonata\CoreBundle\Form\Type\DatePickerType;
 class NewsletterHistoryAdmin extends AbstractAdmin
 {
 
+
+    protected $datagridValues = array(
+        '_per_page' => 9000
+    );
+
+
     /**
      * @param ListMapper $listMapper
      */
@@ -51,5 +57,12 @@ class NewsletterHistoryAdmin extends AbstractAdmin
             ->add('userAgent')
         ;
     }
+
+
+    public function getActionButtons($action, $object = null)
+    {
+        return [];
+    }
+
 
 }

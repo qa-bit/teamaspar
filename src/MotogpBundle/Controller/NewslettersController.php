@@ -4,6 +4,7 @@ namespace MotogpBundle\Controller;
 
 use MotogpBundle\Entity\Newsletter;
 use MotogpBundle\Entity\NewsletterHistory;
+use MotogpBundle\Entity\NewsletterMailInfo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +25,9 @@ use Symfony\Component\Translation\Translator;
 
 class NewslettersController extends Controller
 {
+
+    const MAIL_SUBJECT_PREFIX = 'Sama Qatar Ángel Nieto Team ';
+    const MAIL_CONFIRMATION_SUBJECT = 'Confirmación de registro';
 
     private function getMainTeam($modality = null)
     {
@@ -65,16 +69,19 @@ class NewslettersController extends Controller
         $newsletter  =$em->getRepository(Newsletter::class)->find($newsletterId);
 
 
-        if (!$newsletter || !$customer) {
+        if (!$newsletter && !$customer) {
             return $this->getLogoResponse();
         }
+
+
+
 
         $newsletterHistory = $em->getRepository(NewsletterHistory::class)->findOneBy(
             ['customer' => $customer, 'newsletter' => $newsletter]
         );
 
 
-        if (!$newsletterHistory) {
+        if (!$customer || !$newsletterHistory) {
             $newsletterHistory = new NewsletterHistory();
             $newsletterHistory->setCustomer($customer);
             $newsletterHistory->setNewsletter($newsletter);
@@ -86,6 +93,54 @@ class NewslettersController extends Controller
 
 
        return $this->getLogoResponse();
+
+    }
+
+    public function sendNotificationEmails($customer) {
+
+
+        $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
+        $this->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
+
+
+        $notificationEmails = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository(NewsletterMailInfo::class)
+            ->findBy(['active' => true])
+        ;
+
+        $from = $this->getParameter('mailer_user');
+
+        $data = ['customer' => $customer];
+
+
+
+        $mailHtml = $this->renderView('MotogpBundle:Default:Register/notification-email.html.twig', $data, 'text/html');
+
+        foreach ($notificationEmails as $no) {
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject(self::MAIL_SUBJECT_PREFIX . ' - nuevo inscrito a newsletters')
+                ->setFrom($from)
+                ->setTo($no->getEmail())
+                ->setReplyTo($from)
+                ->setContentType("text/html")
+                ->setBody($mailHtml)
+            ;
+
+            $this->get('mailer')->send($message);
+
+        }
+
+
+        try {
+            $spool = $this->get('mailer')->getTransport()->getSpool();
+            $transport = $this->get('swiftmailer.transport.real');
+            $spool->flushQueue($transport);
+        } catch (\Swift_TransportException $e) {
+            die();
+        }
 
     }
 
@@ -140,18 +195,22 @@ class NewslettersController extends Controller
             $from = $this->getParameter('mailer_user');
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('ANGEL NIETO TEAM - Confirmación de registro')
+                ->setSubject(self::MAIL_SUBJECT_PREFIX.' - '.self::MAIL_CONFIRMATION_SUBJECT)
                 ->setFrom($from)
                 ->setTo($customer->getEmail())
                 ->setReplyTo($from)
                 ->setContentType("text/html")
-                ->setBody($this->renderView('MotogpBundle:Default:Register/confirmation-email.html.twig', $data, 'text/html'));
+                ->setBody($this->renderView('MotogpBundle:Default:Register/confirmation-email.html.twig', $data, 'text/html'))
+            ;
+
 
 
             $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
             $this->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
 
             $result = $this->get('mailer')->send($message);
+
+
             $spool = $this->get('mailer')->getTransport()->getSpool();
             $transport = $this->get('swiftmailer.transport.real');
 
@@ -218,6 +277,8 @@ class NewslettersController extends Controller
             $customer->setUserConfirmed(true);
             $em->persist($customer);
             $em->flush();
+
+            $this->sendNotificationEmails($customer);
         }
 
         return $this->render('MotogpBundle:Default/Register:confirm-success.html.twig', array(
@@ -366,7 +427,7 @@ class NewslettersController extends Controller
         $message = $locale == 'es' ? "Confirmación de baja" : 'Cancel subscription';
 
         $message = \Swift_Message::newInstance()
-            ->setSubject('ANGEL NIETO TEAM'.' '.$message)
+            ->setSubject('SAMA QATAR ANGEL NIETO TEAM'.' '.$message)
             ->setFrom($from)
             ->setTo($customer->getEmail())
             ->setReplyTo($from)

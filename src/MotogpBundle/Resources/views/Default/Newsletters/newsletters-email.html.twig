@@ -177,7 +177,7 @@
                                 <a class="smalltext" target="_blank" href="{{ url('newsletters_unsubscribe', {'modality' : mod.slug, 'locale' : locale }) }}">
                                     {{ locale == 'es' ? 'Darse de baja de nuestras newsletters' : 'Unsubscribe from this list' | trans }}
                                 </a>
-                                {#<img class="tcenter" src="{{ url('newsletters_logo.es') }}?v={{ 'now' | date('ymdhis') }}&customer=CUSTOMER&newsletter=NEWSLETTER" />#}
+                                <img class="tcenter" src="{{ url('newsletters_logo.es') }}?v={{ 'now' | date('ymdhis') }}&customer=CUSTOMER&newsletter=NEWSLETTER" />
                             </td>
                         </tr>
                     </table>

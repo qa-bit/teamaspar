@@ -1,0 +1,23 @@
+{% trans_default_domain 'register' %}
+
+<div>
+    <h4>{{ "confirmation_confirm_email" | trans }}</h4>
+
+    <div>
+        <p>{{ "confirmation_confirm_email_text" | trans }}</p>
+        <ul>
+            <li><b>Nombre:</b> {{ customer.name }} {{ customer.surname }}</li>
+            <li><b>Email:</b> {{ customer.email }}</li>
+            <li><b>Teléfono:</b> {{ customer.phone }}</li>
+            <li><b>Tipo:</b> {{ customer.type | trans }}</li>
+            {% if customer.type == 'media' %}
+                <li><b>Tipo medio:</b> {{ customer.mediaType | trans }}</li>
+            {% endif %}
+            <li><b>Idioma:</b> {{ customer.locale | trans }}</li>
+            <li><b>ID Inscrito:</b> <a href="{{ url('admin_motogp_customer_edit', {'id': customer.id}) }}">{{ customer.id }}</a></li>
+        </ul>
+        <a href="{{ url('admin_motogp_customer_edit', {'id': customer.id}) }}">{{ "register_notification_email_link" | trans }}</a>
+    </div>
+</div>
+<br><br>
+<img src="{{ app.request.getSchemeAndHttpHost() ~ asset('/bundles/motogp/img/branding.png') }}" />

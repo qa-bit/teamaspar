@@ -274,10 +274,12 @@ services:
 
     motogp.admin.newsletter_history:
         class: MotogpBundle\Admin\NewsletterHistoryAdmin
-        arguments: [~, MotogpBundle\Entity\NewsletterHistory, SonataAdminBundle:CRUD]
+        arguments: [~, MotogpBundle\Entity\NewsletterHistory, MotogpBundle\Controller\Admin\NewsletterHistoryAdminController]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: NewsletterHistory }
         public: true
+        calls:
+            - [ setTemplate, [list, "MotogpBundle:Admin:list/list_newsletters.html.twig"]]
 
     motogp.admin.newsletter_mail_info:
         class: MotogpBundle\Admin\NewsletterMailingInfoAdmin
@@ -285,7 +287,6 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: NewsletterMailingInfo }
         public: true
-
 
     motogp.image_path_extension:
         class: MotogpBundle\Twig\ImagePathExtension

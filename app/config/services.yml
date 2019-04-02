@@ -29,6 +29,11 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    MotogpBundle\Controller\Admin\:
+        resource: '../../src/MotogpBundle/Controller/Admin'
+        public: true
+        tags: ['controller.service_arguments']
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
