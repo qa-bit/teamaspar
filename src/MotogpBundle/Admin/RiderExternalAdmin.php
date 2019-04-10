@@ -27,6 +27,7 @@ class RiderExternalAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
+            ->add('modality')
         ;
     }
 
@@ -41,6 +42,7 @@ class RiderExternalAdmin extends AbstractAdmin
             ->add('surname')
             ->add('riderTeam', null, ['admin_code' => 'motogp.admin.rider_team'])
             ->add('modality')
+            ->add('modalityClassification')
             ->add('moto')
             ->add('_action', null, array(
                 'actions' => array(

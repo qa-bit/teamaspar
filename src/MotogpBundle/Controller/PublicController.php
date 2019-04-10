@@ -133,6 +133,7 @@ class PublicController extends Controller
 
         $currentSeason = $em->getRepository(Season::class)->findOneBy(array('current' => true));
 
+
         $scores = [];
         $riders = [];
 
@@ -193,7 +194,6 @@ class PublicController extends Controller
                 }
             }
         }
-
 
         return $data;
 

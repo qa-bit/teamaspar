@@ -37,6 +37,7 @@ class RiderAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
+            ->add('modality')
         ;
     }
 
@@ -52,7 +53,7 @@ class RiderAdmin extends AbstractAdmin
             ->add('modality')
             ->add('moto')
             ->add('order', null, array('editable' => true))
-            ->add('modalityClassification')
+            ->add('modalityClassification', null, ['editable' => true])
             ->add('showInHome', null, array('editable' => true, 'label' => 'Mostrar en inicio'))
             ->add('_action', null, array(
                 'actions' => array(
