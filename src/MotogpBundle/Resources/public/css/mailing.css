@@ -1,22 +1,28 @@
 body {
     font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
     background : white;
-    font-size : 1rem;
+    font-size : 1em;
 }
 
 h1 {
     color : #004E96;
     font-weight: lighter;
-    font-size : 1.5rem !important;
+    font-size : 1.5em !important;
 }
 
 h2 {
-    font-size : 1.3rem !important;
+    font-size : 1.3em !important;
+}
+
+@media screen and (max-width:900px) {
+    body {
+        font-size : 1.5em;
+    }
 }
 
 .smalltext{
     color : #555;
-    font-size : 12px;
+    font-size : 0.8em;
     text-align : center;
 }
 
