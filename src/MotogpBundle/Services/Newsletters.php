@@ -162,6 +162,15 @@ class Newsletters
 
     }
 
+    private function getDescription($locale, $newsletter) {
+        $content = $locale == 'es' ? $newsletter->getDescription() : $newsletter->getDescriptionEN();
+        
+        $content = preg_replace("/font-size:[0-9]+\.?[0-9]*pt/", '', $content);
+
+        return $content;
+
+    }
+
     public function renderNewsletter(Newsletter $newsletter, $locale = 'es')
     {
 
@@ -172,7 +181,7 @@ class Newsletters
             'medias' => $newsletter->getMedia(),
             'modality' => $newsletter->getModality(),
             'newsletter' => $newsletter,
-            'body' => $locale == 'es' ? $newsletter->getDescription() : $newsletter->getDescriptionEN(),
+            'body' => $this->getDescription($locale, $newsletter),
             'post' => $newsletter->getPost(),
             'locale' => $locale,
             'url_scheme' => $this->url_scheme
