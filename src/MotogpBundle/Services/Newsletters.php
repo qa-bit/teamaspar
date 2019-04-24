@@ -165,7 +165,7 @@ class Newsletters
     private function getDescription($locale, $newsletter) {
         $content = $locale == 'es' ? $newsletter->getDescription() : $newsletter->getDescriptionEN();
         
-        $content = preg_replace("/font-size:[0-9]+\.?[0-9]*pt/", '', $content);
+        $content = preg_replace("/font-size:[0-9]+\.?[0-9]*(pt|px)/", '', $content);
 
         return $content;
 

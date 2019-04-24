@@ -3,12 +3,27 @@
 {% if post %}
     {% set mod = post.modality %}
 {% endif %}
-
+ {% block headStyles %}
+     <style type="text/css">
+         @media only screen and (max-width: 848px)  {
+             p, p span {font-size : 32px !important;}
+             h1 { font-size : 42px !important;}
+             h2 { font-size : 38px !important;}
+             h3 { font-size : 36px !important;}
+             h4 { font-size : 34px !important;}
+             h5 { font-size : 32px !important; font-weight: bold}
+             .smalltext {
+                 font-size : 20px !important;
+             }
+         }
+     </style>
+ {% endblock %}
 {% extends 'HampeZurbInkBundle:FoundationForEmails:2/base.html.twig' %}
 {% block preHtml %}
     {{ zurb_ink_styles.add("@MotogpBundle/Resources/public/css/mailing.css") }}
 {% endblock %}
 {% block content %}
+
     <container>
         <spacer size="16"></spacer>
         <wrapper class="primary">
@@ -29,16 +44,16 @@
 
             <row>
                 <columns>
-                    {% set img_url = featuredMedia | media_public_url('featured_xlarge') %}
+                    {#{% set img_url = featuredMedia | media_public_url('headerimage_std') %}#}
                     {% if img_url %}
                         {% if post %}
                             <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
                                 <img width="848" src="{{ img_url  |  imagine_nocache_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
                             </a>
-                            {% else %}
-                                <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
-                                    <img src="{{ img_url  |  imagine_nocache_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
-                                </a>
+                        {% else %}
+                            <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
+                                <img src="{{ img_url  |  imagine_nocache_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
+                            </a>
                         {% endif %}
                     {% endif %}
                 </columns>
