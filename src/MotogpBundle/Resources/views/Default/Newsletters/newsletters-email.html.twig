@@ -43,7 +43,7 @@
 
             <row>
                 <columns>
-                    {% set img_url = p.featuredMedia | media_public_url('featured_xlarge') %}
+                    {% set img_url = featuredMedia | media_public_url('featured_xlarge') %}
                     {{ img_url }}
                     {% if img_url %}
                         {% if post %}
