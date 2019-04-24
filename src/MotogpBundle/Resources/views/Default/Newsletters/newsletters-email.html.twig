@@ -44,7 +44,6 @@
             <row>
                 <columns>
                     {% set img_url = featuredMedia | media_public_url('featured_xlarge') %}
-                    {{ img_url }}
                     {% if img_url %}
                         {% if post %}
                             <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
