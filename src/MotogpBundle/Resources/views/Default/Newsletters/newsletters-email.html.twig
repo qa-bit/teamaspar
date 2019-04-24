@@ -17,6 +17,7 @@
              }
          }
      </style>
+ {% endblock %}
 {% extends 'HampeZurbInkBundle:FoundationForEmails:2/base.html.twig' %}
 {% block preHtml %}
     {{ zurb_ink_styles.add("@MotogpBundle/Resources/public/css/mailing.css") }}
@@ -49,10 +50,10 @@
                             <a href="{{ url('post', {'slug' : locale == 'es' ? post.slug : post.slugEN, 'modality': post.modality.slug, 'locale' : locale}) }}">
                                 <img width="848" src="{{ img_url  |  imagine_nocache_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
                             </a>
-                            {% else %}
-                                <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
-                                    <img src="{{ img_url  |  imagine_nocache_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
-                                </a>
+                        {% else %}
+                            <a href="{{ url('index', {'locale' : locale, 'modality' : mod.slug }) }}">
+                                <img src="{{ img_url  |  imagine_nocache_filter('email_header') }}?v={{ 'now' | date('ymdhis') }}" />
+                            </a>
                         {% endif %}
                     {% endif %}
                 </columns>
