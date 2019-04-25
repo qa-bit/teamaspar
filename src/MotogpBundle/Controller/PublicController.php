@@ -195,6 +195,8 @@ class PublicController extends Controller
             }
         }
 
+
+
         return $data;
 
     }
@@ -324,7 +326,7 @@ class PublicController extends Controller
             $generalScore = [];
             $classificationModalities = $em->getRepository(ModalityClassification::class)->findAll();
             foreach ($classificationModalities as $cm) {
-                $generalScore[$cm->getId()] = $this->getGeneralScoreClassification($modality, $cm);
+                $generalScore[$cm->getName()][] = $this->getGeneralScoreClassification($modality, $cm);
             }
         }
 

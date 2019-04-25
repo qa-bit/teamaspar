@@ -1,31 +1,30 @@
-{% for scores in generalScore %}
+{% for scores, values in generalScore %}
     <div class="col-xs-12 col-md-6 homeresult">
         <div>
-            {% if scores | length and scores[0].rider.modalityClassification %}
-                <h5 class="title">{{ (locale == 'es' ? scores[0].rider.modalityClassification.name : scores[0].rider.modalityClassification.nameEN) | upper }}</h5>
-
-                <table class="results">
+            <h5 class="title">{{ scores | upper }}</h5>
+            <div class="sep"></div>
+            <table class="results">
+                {% for value in values %}
                     {% set l = 1 %}
-                    {% for s in scores %}
-                        {% if loop.index < 13 %}
-                            <tr>
-                                <td class="score-index">{{ s.index }}</td>
-                                <td class="score-rider">{{ s.rider.name | truncate(1, false, '.') }} {{ s.rider.surName | upper}} </td>
-                                <td class="score-circuit">
-                                    {% if s.rider.riderTeam %}
-                                        {{ s.rider.riderTeam.name | truncate(25, false,'') | upper}}
-                                    {% endif %}
-                                </td>
-                                <td class="text-right"><span class="score-score">{{ s.score }}</span> pts</td>
-                            </tr>
-                            {% set l = l + 1 %}
+                    {% for scoreValue in value %}
+                        {% if scoreValue.rider.modalityClassification and scoreValue.rider.modalityClassification.name == scores %}
+                            {% if loop.index < 13 %}
+                                <tr>
+                                    <td class="score-index">{{ scoreValue.index }}</td>
+                                    <td class="score-rider">{{ scoreValue.rider.name | truncate(1, false, '.') }} {{ scoreValue.rider.surName | upper}} </td>
+                                    <td class="score-circuit">
+                                        {% if scoreValue.rider.riderTeam %}
+                                            {{ scoreValue.rider.riderTeam.name | truncate(25, false,'') | upper}}
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-right"><span class="score-score">{{ scoreValue.score }}</span> pts</td>
+                                </tr>
+                                {% set l = l + 1 %}
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
-                </table>
-                {% else %}
-                    <h5 class="title">{{ "no_classification_data" | trans | upper }}</h5>
-                    <div class="sep"></div>
-            {% endif %}
+                {% endfor %}
+            </table>
         </div>
     </div>
 {% endfor %}
