@@ -7,10 +7,10 @@
                 {% for value in values %}
                     {% set l = 1 %}
                     {% for scoreValue in value %}
-                        {% if scoreValue.rider.modalityClassification and scoreValue.rider.modalityClassification.name == scores %}
+                        {% if scoreValue.rider.modalityClassification %}
                             {% if loop.index < 13 %}
                                 <tr>
-                                    <td class="score-index">{{ scoreValue.index }}</td>
+                                    <td title="{{ scoreValue.rider.modalityClassification }}" class="score-index">{{ scoreValue.index }}</td>
                                     <td class="score-rider">{{ scoreValue.rider.name | truncate(1, false, '.') }} {{ scoreValue.rider.surName | upper}} </td>
                                     <td class="score-circuit">
                                         {% if scoreValue.rider.riderTeam %}
