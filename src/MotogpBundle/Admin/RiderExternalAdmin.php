@@ -245,7 +245,7 @@ class RiderExternalAdmin extends AbstractAdmin
     public function createQuery($context = 'list')
     {
         $query = parent::createQuery($context);
-        $query->innerJoin($query->getRootAliases()[0] . '.riderTeam', 'r')
+        $query->leftJoin($query->getRootAliases()[0] . '.riderTeam', 'r')
             ->andWhere(
                 $query->expr()->isNull('r.main')
             );
