@@ -138,7 +138,9 @@ class PublicController extends Controller
         $riders = [];
 
         foreach ($currentSeason->getRaces() as $cr) {
+
             foreach ($cr->getScores() as $score) {
+
 
 
                 if ($cr->getModality()->getId() != $modality->getId())
@@ -146,6 +148,11 @@ class PublicController extends Controller
 
                 if (!$cr->getModalityClassification() || ($cr->getModalityClassification()->getId() != $classification->getId()))
                     continue;
+
+
+                if ($score->getRider()->getModalityClassification() != $cr->getModalityClassification()) {
+                    continue;
+                }
 
                 $id = (string)$score->getRider()->getId();
 
@@ -159,6 +166,7 @@ class PublicController extends Controller
             }
         }
 
+        
         uasort($scores, function($a, $b) {
             return $a < $b;
         });
