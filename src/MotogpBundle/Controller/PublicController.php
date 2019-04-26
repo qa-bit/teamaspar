@@ -106,7 +106,7 @@ class PublicController extends Controller
 
             $index++;
         }
-        
+
         return $this->reorderScores($data, $MAX_SCORES, $ridersInTeamCount, $insertedIds);
 
     }
@@ -252,13 +252,37 @@ class PublicController extends Controller
 
         $data = [];
 
+        $mainScore = null;
 
         foreach ($scores as $team => $score) {
             $d = new \stdClass();
             $d->team = $teams[$team];
             $d->score = $score;
 
+            if ($d->team->getId() == 1) {
+                $mainScore = $d;
+            }
+
             $data[] = $d;
+        }
+
+        $count = 0;
+        $found = false;
+
+        foreach ($data as $score) {
+
+            if ($count >= 11)
+                continue;
+
+            if ($score->team->getId() == 1) {
+                $found = true;
+            }
+
+            $count++;
+        }
+
+        if (!$found) {
+            $data[11] = $mainScore;
         }
 
         return $data;
