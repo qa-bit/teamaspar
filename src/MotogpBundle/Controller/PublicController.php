@@ -58,6 +58,8 @@ class PublicController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $currentSeason = $em->getRepository(Season::class)->findOneBy(array('current' => true));
+        $ridersInTeamCount = count($em->getRepository(Rider::class)->findBy(array('riderTeam' => 1, 'modality' => $modality)));
+
 
         $scores = [];
         $riders = [];
@@ -104,24 +106,8 @@ class PublicController extends Controller
 
             $index++;
         }
-
-
-        $reverseIndex = $MAX_SCORES - 1;
-
-        if (count($data) > $MAX_SCORES) {
-            $reverse = array_reverse($data);
-            foreach ($reverse as $index => $d) {
-                if ($d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain()
-                    && !in_array($d->rider->getId(), $insertedIds)) {
-                    $d->missing = true;
-                    $data[$reverseIndex] = $d;
-                    $insertedIds = [$d->rider->getId()];
-                    $reverseIndex--;
-                }
-            }
-        }
-
-        return $data;
+        
+        return $this->reorderScores($data, $MAX_SCORES, $ridersInTeamCount, $insertedIds);
 
     }
 
@@ -133,6 +119,8 @@ class PublicController extends Controller
 
         $currentSeason = $em->getRepository(Season::class)->findOneBy(array('current' => true));
 
+        $ridersInTeamCount = count($em->getRepository(Rider::class)->findBy(array('riderTeam' => 1, 'modalityClassification' => $classification)));
+
 
         $scores = [];
         $riders = [];
@@ -140,7 +128,6 @@ class PublicController extends Controller
         foreach ($currentSeason->getRaces() as $cr) {
 
             foreach ($cr->getScores() as $score) {
-
 
 
                 if ($cr->getModality()->getId() != $modality->getId())
@@ -151,7 +138,7 @@ class PublicController extends Controller
 
 
                 if ($score->getRider()->getModalityClassification() != $cr->getModalityClassification()) {
-                    continue;
+                   continue;
                 }
 
                 $id = (string)$score->getRider()->getId();
@@ -189,24 +176,47 @@ class PublicController extends Controller
         }
 
 
+       return $this->reorderScores($data, $MAX_SCORES, $ridersInTeamCount, $insertedIds);
+
+    }
+
+
+    private function reorderScores($data, $MAX_SCORES, $ridersInTeamCount, $insertedIds) {
         $reverseIndex = $MAX_SCORES - 1;
 
-        if (count($data) > $MAX_SCORES) {
-            $reverse = array_reverse($data);
 
-            foreach ($reverse as $index => $d) {
-                if ($d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain() && $d->rider->getRiderTeam()->isMain() && !in_array($d->rider->getId(), $insertedIds)) {
-                    $d->missing = true;
-                    $data[$reverseIndex] = $d;
-                    $reverseIndex--;
+        $missings = [];
+        $teamRiders = 0;
+        $count = 0;
+
+        while($teamRiders < $ridersInTeamCount || $count > 10) {
+            if (count($data) > $MAX_SCORES) {
+                $reverse = array_reverse($data);
+
+                foreach ($reverse as $index => $d) {
+                    if ($d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain() && !in_array($d->rider->getId(), $insertedIds)) {
+                        if (!in_array($d->rider->getId(), $missings)) {
+                            $d->missing = true;
+                            if ($data[$reverseIndex]->rider->getRiderTeam() && $data[$reverseIndex]->rider->getRiderTeam()->isMain()) {
+                                $data[$reverseIndex - 1] = $data[$reverseIndex];
+                                $data[$reverseIndex] = $d;
+                            }
+                            $data[$reverseIndex] = $d;
+                            $missings[] = $d->rider->getId();
+                            $reverseIndex--;
+                            $teamRiders++;
+                        }
+                    } else if ($d->rider->getRiderTeam() && $d->rider->getRiderTeam()->isMain()) {
+                        $teamRiders++;
+                    }
                 }
             }
+
+            $count++;
         }
 
 
-
         return $data;
-
     }
 
     private function getGeneralScoreTeams($modality) {
@@ -337,6 +347,8 @@ class PublicController extends Controller
                 $generalScore[$cm->getName()][] = $this->getGeneralScoreClassification($modality, $cm);
             }
         }
+
+
 
         return $this->render(
             'MotogpBundle:Default:index.html.twig',
