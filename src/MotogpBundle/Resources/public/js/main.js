@@ -1,6 +1,7 @@
 
 var $socialHtmlTwitter = $('.smw-twitter').html();
 var $socialHtmlInstagram = $('.smw-instagram').html();
+var $socialHtmlFacebook = $('.smw-facebook').html();
 
 var widgets = function () {
 
@@ -13,20 +14,25 @@ var widgets = function () {
         return;
 
     var px = wwidth * 0.3;
+    var pxh = wwidth * 0.4;
     var pxd = wwidth * 0.3;
 
     $('.smw-twitter').html(null);
     $('.smw-instagram').html(null);
 
 
-    $socialHtmlTwitter_A = $socialHtmlTwitter.replace(/320/g, px).replace(/200/g, pxd);
+    $socialHtmlTwitter_A = $socialHtmlTwitter.replace(/320/g, px).replace(/200/g, pxd).replace(/300/g, pxh);
     $socialHtmlInstagram_A = $socialHtmlInstagram.replace(/320/g, px).replace(/200/g, pxd);
+    $socialHtmlFacebook_A = $socialHtmlFacebook.replace(/500/g, px).replace(/700/g, pxh);
 
     $('.smw-twitter').html($socialHtmlTwitter_A);
     $('.smw-instagram').html($socialHtmlInstagram_A);
+    
 
     $('.smw-box').css({'width' : px + 'px'});
-    $('.social-media-widgets .social-media-widgets-inner').css({'width' : (px * 3) + 'px', 'max-height' : px + 'px'});
+    $('.social-media-widgets .social-media-widgets-inner').css({'width' : (px * 3) + 'px', 'max-height' : pxh + 'px'});
+
+    $('.social-media-widgets-inner > div').css({'height' : pxh + 'px'})
 
 };
 

@@ -208,6 +208,13 @@ input[type="checkbox"] {
         filter: saturate(2);
       }
     }
+
+    .right img[moto-e] {
+      &:hover {
+        transition : filter .33s;
+        filter : hue-rotate(53deg) saturate(1.5);
+      }
+    }
   }
 
   @media screen and (max-width: 980px) {
