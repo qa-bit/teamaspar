@@ -12,7 +12,7 @@
 {% block body %}
     {{ parent() }}
     <div class="smoke-background col-xs-12 post">
-        <div class="white-background col-xs-12" style="display:block">
+        <div class="col-xs-12" style="display:block">
             {% if post.featuredMedia %}
                 <div class="post-featured-image">
                     <img src="{%  path post.featuredMedia, 'xlarge'  %}" />
@@ -20,11 +20,13 @@
             {% endif %}
 
             {#{% include "MotogpBundle:Default:Posts/post-gallery.html.twig" with {'post' : post }%}#}
-            <div style="margin-top:4em;">
+            <div style="margin-top: 4em;
+    background: rgba(255,255,255,0.7);
+    padding: 1em;">
                 {% if post.circuit  %}
-                    <h6 style="color:grey"><b>{{ locale == 'es' ? post.circuit.name : post.circuit.nameEN }}</b></h6>
+                    <h6 style="color:grey;{% if post.upperCase %}text-transform:uppercase;{% endif %}"><b>{{ locale == 'es' ? post.circuit.name : post.circuit.nameEN }}</b></h6>
                 {% endif %}
-                <h4><b>{{ locale == 'es' ? post.name : post.nameEN }}</b></h4>
+                <h4 style="{% if post.upperCase %}text-transform:uppercase;{% endif %}"><b>{{ locale == 'es' ? post.name : post.nameEN }}</b></h4>
 
                 <div class="w100 form-group">
                     {{ locale == 'es' ? (post.description | raw) : (post.descriptionEN | raw ) }}

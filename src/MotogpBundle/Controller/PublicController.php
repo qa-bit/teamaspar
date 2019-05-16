@@ -415,12 +415,14 @@ class PublicController extends Controller
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('imagenes_'.str_replace('-', '_',  $modalitySlug));
 
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithGalleryInModality($modality);
+        $sponsors = $this->getSponsors($modality);
 
         return $this->render(
             'MotogpBundle:Default:Images/images.html.twig',
             [
                 'gallery' => $gallery,
                 'circuits' => $circuits,
+                'sponsors' => $sponsors,
                 'riders' => $homeRiders,
                 'modality' => $modality,
                 'team' => $this->getMainTeam()
@@ -449,6 +451,7 @@ class PublicController extends Controller
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('imagenes_'.str_replace('-', '_',  $modalitySlug));
 
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithGalleryInModalityAndYear($modality, $year);
+        $sponsors = $this->getSponsors($modality);
 
         return $this->render(
             'MotogpBundle:Default:Images/images_byyear.html.twig',
@@ -457,6 +460,7 @@ class PublicController extends Controller
                 'circuits' => $circuits,
                 'riders' => $homeRiders,
                 'modality' => $modality,
+                'sponsors' => $sponsors,
                 'team' => $this->getMainTeam(),
                 'year' => $year
             ]
@@ -484,6 +488,7 @@ class PublicController extends Controller
         $videos = $em->getRepository(Video::class)->getAllInModality($modality);
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+        $sponsors = $this->getSponsors($modality);
 
 
         return $this->render(
@@ -492,6 +497,7 @@ class PublicController extends Controller
                 'gallery' => $gallery,
                 'videos' => $videos,
                 'riders' => $homeRiders,
+                'sponsors' => $sponsors,
                 'modality' => $modality,
                 'team' => $this->getMainTeam()
             ]
@@ -522,6 +528,7 @@ class PublicController extends Controller
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('motos_'.str_replace('-', '_',  $modalitySlug));
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+        $sponsors = $this->getSponsors($modality);
 
 
         return $this->render(
@@ -530,6 +537,7 @@ class PublicController extends Controller
                 'gallery' => $gallery,
                 'riders' => $homeRiders,
                 'modality' => $modality,
+                'sponsors' => $sponsors,
                 'team' => $this->getMainTeam()
             ]
         );
@@ -559,6 +567,7 @@ class PublicController extends Controller
         $medias  = $em->getRepository(GalleryMedia::class)->findAllLastRiderMedia($rider);
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+        $sponsors = $this->getSponsors($modality);
 
 
         return $this->render(
@@ -569,6 +578,7 @@ class PublicController extends Controller
                 'riders' => $homeRiders,
                 'rider' => $rider,
                 'modality' => $modality,
+                'sponsors' => $sponsors,
                 'team' => $this->getMainTeam()
             ]
         );
@@ -596,6 +606,7 @@ class PublicController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
         $sponsor = $em->getRepository(Sponsor::class)->findOneBySlug($request->get('slug'));
+        $sponsors = $this->getSponsors($modality);
 
 
         return $this->render(
@@ -604,6 +615,7 @@ class PublicController extends Controller
                 'sponsor' => $sponsor,
                 'riders' => $homeRiders,
                 'modality' => $modality,
+                'sponsors' => $sponsors,
                 'team' => $this->getMainTeam()
 
             ]
@@ -668,7 +680,7 @@ class PublicController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithPostsInModality($modality);
-
+        $sponsors = $this->getSponsors($modality);
 
         return $this->render(
             'MotogpBundle:Default:Posts/posts.html.twig',
@@ -676,6 +688,7 @@ class PublicController extends Controller
                 'gallery' => $gallery,
                 'circuits' => $circuits,
                 'modality' => $modality,
+                'sponsors' => $sponsors,
                 'team' => $this->getMainTeam(),
                 'riders' => $homeRiders
             ]
@@ -703,7 +716,9 @@ class PublicController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithPostsInModalityAndYear($modality, $year);
-        
+
+        $sponsors = $this->getSponsors($modality);
+
 
         return $this->render(
             'MotogpBundle:Default:Posts/posts_by_year.html.twig',
@@ -743,6 +758,9 @@ class PublicController extends Controller
             ? $em->getRepository(Post::class)->findOneBySlug($request->get('slug'))
             : $em->getRepository(Post::class)->findOneBySlugEN($request->get('slug'));
 
+        $sponsors = $this->getSponsors($modality);
+
+
 
         return $this->render(
             'MotogpBundle:Default:Posts/post.html.twig',
@@ -750,7 +768,8 @@ class PublicController extends Controller
                 'post' => $post,
                 'riders' => $homeRiders,
                 'team' => $this->getMainTeam(),
-                'modality' => $modality
+                'modality' => $modality,
+                'sponsors' => $sponsors
             ]
         );
 
@@ -780,6 +799,8 @@ class PublicController extends Controller
         $staff = $em->getRepository(Team::class)->getAllInModality($modality);
 
         $teamCategories = $em->getRepository(TeamCategory::class)->findBy(array(), array('_order' => 'ASC'));
+        $sponsors = $this->getSponsors($modality);
+
 
         return $this->render(
             'MotogpBundle:Default:Team/team-staff.html.twig',
@@ -789,6 +810,7 @@ class PublicController extends Controller
                 'riders' => $riders,
                 'staff' => $staff,
                 'teamCategories' => $teamCategories,
+                'sponsors' => $sponsors,
                 'modality' => $modality
             ]
         );
@@ -812,7 +834,7 @@ class PublicController extends Controller
             return $this->redirectToRoute('index');
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
-
+        $sponsors = $this->getSponsors($modality);
 
 
         return $this->render(
@@ -820,7 +842,8 @@ class PublicController extends Controller
             [
                 'team' => $this->getMainTeam(),
                 'riders' => $homeRiders,
-                'modality' => $modality
+                'modality' => $modality,
+                'sponsors' => $sponsors
             ]
         );
 
@@ -841,13 +864,16 @@ class PublicController extends Controller
             return $this->redirectToRoute('index');
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+        $sponsors = $this->getSponsors($modality);
+
 
         return $this->render(
             'MotogpBundle:StaticContent:privacy.html.twig',
             [
                 'team' => $this->getMainTeam(),
                 'riders' => $homeRiders,
-                'modality' => $modality
+                'modality' => $modality,
+                'sponsors' => $sponsors
             ]
         );
 
@@ -869,13 +895,17 @@ class PublicController extends Controller
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
+        $sponsors = $this->getSponsors($modality);
+
+
 
         return $this->render(
             'MotogpBundle:StaticContent:terms.html.twig',
             [
                 'team' => $this->getMainTeam(),
                 'riders' => $homeRiders,
-                'modality' => $modality
+                'modality' => $modality,
+                'sponsors' => $sponsors
             ]
         );
     }

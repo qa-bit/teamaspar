@@ -14,6 +14,7 @@ use MotogpBundle\Entity\Rider;
 use Cocur\Slugify\Slugify;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\CoreBundle\Validator\ErrorElement;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class PostAdmin extends AbstractAdmin
 {
@@ -92,6 +93,7 @@ class PostAdmin extends AbstractAdmin
                         )
                         ->add('name', null, ['label' => 'Título', 'required' => true])
                         ->add('nameEN', null, ['label' => 'Título (Inglés)', 'required' => true])
+                        ->add('upperCase', CheckboxType::class, ['label' => 'Mostrar título en mayúsculas', 'required' => false])
                         ->add('description', 'ckeditor', array(
                             'label' => 'Contenido'
                         ))

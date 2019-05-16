@@ -83,6 +83,13 @@ class Post
      */
     private $publishedAt;
 
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $upperCase;
+
     /**
      * @return Media
      */
@@ -183,6 +190,22 @@ class Post
     public function setCircuitOrder($circuitOrder)
     {
         $this->circuitOrder = $circuitOrder;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isUpperCase()
+    {
+        return $this->upperCase;
+    }
+
+    /**
+     * @param boolean $upperCase
+     */
+    public function setUpperCase($upperCase)
+    {
+        $this->upperCase = $upperCase;
     }
     
 }

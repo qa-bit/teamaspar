@@ -20,7 +20,7 @@ use MotogpBundle\Entity\Customer;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Translation\Translator;
-
+use MotogpBundle\Entity\Sponsor;
 
 
 class NewslettersController extends Controller
@@ -162,6 +162,8 @@ class NewslettersController extends Controller
         $form = $this->createForm('MotogpBundle\Form\RegisterType', $customer);
         $form->handleRequest($request);
 
+        $sponsors = $this->getSponsors($modality);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -204,12 +206,10 @@ class NewslettersController extends Controller
             ;
 
 
-
             $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
             $this->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
 
             $result = $this->get('mailer')->send($message);
-
 
             $spool = $this->get('mailer')->getTransport()->getSpool();
             $transport = $this->get('swiftmailer.transport.real');
@@ -229,6 +229,7 @@ class NewslettersController extends Controller
             'riders' => $homeRiders,
             'gallery' => $gallery,
             'modality' => $modality,
+            'sponsors' => $sponsors,
             'team' => $this->getMainTeam()
         ));
     }
@@ -393,6 +394,22 @@ class NewslettersController extends Controller
         }
 
         return new Response(Response::HTTP_BAD_REQUEST);
+    }
+
+    public function getSponsors($modality) {
+        $em = $this->getDoctrine()->getManager();
+
+        $sponsors = [1 => [], 2 => [], 3 => []];
+
+        for ($i = 3; $i>0; $i--){
+            $colorSponsors = $em->getRepository(Sponsor::class)->getColorByModalityAndLevel($modality, $i);
+            $bnSponsors = $em->getRepository(Sponsor::class)->getBNByModalityAndLevel($modality, $i);
+            $sponsors[$i]['color'] = $colorSponsors;
+            $sponsors[$i]['bn'] = $bnSponsors;
+        }
+
+        return $sponsors;
+
     }
 
     protected function sendUnsubscribeEmail($customer, $modalitySlug) {

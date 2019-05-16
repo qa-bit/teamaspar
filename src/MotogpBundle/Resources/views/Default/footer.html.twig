@@ -1,4 +1,7 @@
 {% trans_default_domain 'footer' %}
+{% if sponsors is defined %}
+    {% include "MotogpBundle:Default:Home/homesponsors.html.twig" %}
+{% endif %}
 <footer>
     <div class="footer-upper">
         <ul>
