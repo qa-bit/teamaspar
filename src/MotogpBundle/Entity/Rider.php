@@ -16,6 +16,7 @@ use MotogpBundle\Entity\Traits\HasQuotationImageTrait;
 use Application\Sonata\MediaBundle\Entity\RiderMedia;
 use Doctrine\Common\Collections\ArrayCollection;
 use MotogpBundle\Entity\ModalityClassification;
+use MotogpBundle\Entity\RiderChampionship;
 
 /**
  * Rider
@@ -35,13 +36,14 @@ class Rider
        HasHomeImageTrait,
        HasQuotationImageTrait,
        HasPreviewImageTrait,
-       InMotoTrait;
-
+       InMotoTrait
+   ;
 
    public function __construct()
    {
       $this->showInHome = false;
       $this->records = new ArrayCollection();
+      $this->championships = new ArrayCollection();
       $this->medias = new ArrayCollection();
    }
 
@@ -59,6 +61,12 @@ class Rider
     * @ORM\OrderBy({"year" = "ASC"})
     */
    protected $records;
+
+   /**
+    * @ORM\OneToMany(targetEntity="RiderChampionship", cascade={"all"}, mappedBy="rider", orphanRemoval=true)
+    * @ORM\OrderBy({"year" = "ASC"})
+    */
+   protected $championships;
 
 
    /**
@@ -1016,6 +1024,39 @@ class Rider
       return $this;
    }
 
+
+   /**
+    * @return mixed
+    */
+   public function getChampionships()
+   {
+      return $this->championships;
+   }
+
+   /**
+    * @param mixed $records
+    */
+   public function setChampionships($championship)
+   {
+      $this->records = $championship;
+   }
+
+   /**
+    * @param $score
+    * @return $this
+    */
+   public function addChampionship($championship)
+   {
+
+
+      if ( $this->championships !== null && !$this->championships->contains($championship) ) {
+         $championship->setRider($this);
+         $this->championships->add($championship);
+      }
+
+      return $this;
+   }
+
    /**
     * @return int
     */
@@ -1084,6 +1125,16 @@ class Rider
          $r[$record->getYear()][] = $record;
       }
       
+      return $r;
+   }
+
+   public function getGroupedChampionships() {
+      $r = [];
+
+      foreach ($this->championships as $record){
+         $r[$record->getYear()][] = $record;
+      }
+
       return $r;
    }
 

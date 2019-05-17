@@ -649,7 +649,7 @@ class PublicController extends Controller
             'MotogpBundle:Default:Sponsor/sponsor.html.twig',
             [
                 'team' => $this->getMainTeam(),
-                'sponsors' => $sponsors,
+                'partners' => $sponsors,
                 'gallery' => $gallery,
                 'riders' => $homeRiders,
                 'modality' => $modality

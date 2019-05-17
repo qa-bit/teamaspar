@@ -20,15 +20,14 @@ use Cocur\Slugify\Slugify;
 
 class RiderAdmin extends AbstractAdmin
 {
-
-
+    
     use HasMediasAdminTrait,
         FeaturedMediaAdminTrait,
         LogoAdminTrait,
         HomeImageAdminTrait,
         PreviewImageAdminTrait,
         QuotationImageAdminTrait
-        ;
+    ;
 
     /**
      * @param DatagridMapper $datagridMapper
@@ -214,6 +213,19 @@ class RiderAdmin extends AbstractAdmin
             )
             ->end()
             ->end()
+            ->tab('Campeonatos')
+            ->with(null)
+            ->add('championships','sonata_type_collection',
+                [
+                    'label' => 'Campeonatos',
+                ],
+                [
+                    'edit' => 'inline',
+                    'inline' => 'table'
+                ]
+            )
+            ->end()
+            ->end()
             ->tab('Imágenes')
             ->with(null)
                 ->add('featuredMedia', 'sonata_type_admin', array(
@@ -307,11 +319,13 @@ class RiderAdmin extends AbstractAdmin
             $r->setRider($object);
         }
 
+        foreach ($object->getChampionships() as $r) {
+            $r->setRider($object);
+        }
+
     }
 
     public function preUpdate($object) {
-
-
         $this->saveHook($object);
     }
 
@@ -333,12 +347,7 @@ class RiderAdmin extends AbstractAdmin
         $query->innerJoin($query->getRootAliases()[0] . '.riderTeam', 'r')
             ->andWhere('r.main = :m')
             ->setParameter('m', '1');
-
-
-
         return $query;
     }
-    
-    
 
 }
