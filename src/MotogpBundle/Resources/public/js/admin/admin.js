@@ -19,16 +19,20 @@ $(document).ready(function () {
             });
         },
         CKEDITORConfig : function () {
-            CKEDITOR.on('dialogDefinition', function (ev) {
-                var dialogName = ev.data.name;
-                var dialog = ev.data.definition.dialog;
 
-                if (dialogName == 'image') {
-                    dialog.on('show', function () {
-                        this.selectPage('Upload');
-                    });
-                }
-            });
+            if (typeof CKEDITOR != 'undefined') {
+
+                CKEDITOR.on('dialogDefinition', function (ev) {
+                    var dialogName = ev.data.name;
+                    var dialog = ev.data.definition.dialog;
+
+                    if (dialogName == 'image') {
+                        dialog.on('show', function () {
+                            this.selectPage('Upload');
+                        });
+                    }
+                });
+            }
         }
     };
     Admin.newsletterAdmin();
