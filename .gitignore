@@ -30,3 +30,4 @@ src/Application/Sonata/MediaBundle/Resources/views/
 src/MotogpBundle/Resources/public/vendor/node_modules/
 web/media/
 web/var/
+components/
