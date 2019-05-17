@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var Admin = {
-        'newsletterAdmin' : function () {
+        newsletterAdmin : function () {
 
             var $body = $('body');
 
@@ -17,8 +17,20 @@ $(document).ready(function () {
                     riderSelect.val(null).trigger('change', {'triggered' : true});
                 }
             });
+        },
+        CKEDITORConfig : function () {
+            CKEDITOR.on('dialogDefinition', function (ev) {
+                var dialogName = ev.data.name;
+                var dialog = ev.data.definition.dialog;
+
+                if (dialogName == 'image') {
+                    dialog.on('show', function () {
+                        this.selectPage('Upload');
+                    });
+                }
+            });
         }
     };
-
     Admin.newsletterAdmin();
+    Admin.CKEDITORConfig();
 });

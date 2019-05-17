@@ -25,6 +25,7 @@
         "friendsofsymfony/user-bundle": "^2.0",
         "greg0ire/enum": "^2.2",
         "hampe/zurb-ink-bundle": "^2.2",
+        "helios-ag/fm-elfinder-bundle": "^9.3",
         "imagine/imagine": "0.6.3",
         "incenteev/composer-parameter-handler": "^2.0",
         "leafo/scssphp": "^0.7.5",

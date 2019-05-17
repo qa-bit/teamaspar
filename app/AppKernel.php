@@ -34,6 +34,7 @@ class AppKernel extends Kernel
             new ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            new FM\ElfinderBundle\FMElfinderBundle(),
             new AppBundle\AppBundle(),
             new MotogpBundle\MotogpBundle(),
         ];
