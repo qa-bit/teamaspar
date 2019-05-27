@@ -6,10 +6,22 @@
     <div class="smoke-background">
         <div class="standard-background">
             <div class="circuit-galleries">
+                {% set cpost = [] %}
+
                 {% for c in circuits %}
-                    {% if c.galleries | length %}
-                        {% include "MotogpBundle:Default:Galleries/circuit-gallery.html.twig" with {'circuit' : c} %}
+                    {% if c.galleries is not empty %}
+                        {% set cpost = cpost | merge([c]) %}
                     {% endif %}
+                {% endfor %}
+
+                {% for cb in cpost | batch(3, '') %}
+                    <div class="row col-xs-12">
+                        {% for c in cb %}
+                            {% if c.id is defined %}
+                                {% include "MotogpBundle:Default:Posts/circuit-posts.html.twig" with {'circuit' : c} %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 {% endfor %}
             </div>
             <br><br>

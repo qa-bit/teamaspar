@@ -23,9 +23,9 @@
     <div class="tabs staff-tabs">
         <div id="history" class="tab active">
             <div class="smoke-background">
-                <div class="white-background white-background-2">
+                <div class="golden-text">
                     <div class="w100">
-                        <h3 class="text-center"><b>{{ "history" | trans }}</b></h3>
+                        <h2 class="text-center golden-text"><b>{{ "history" | trans | upper }}</b></h2>
                         <div class="col-xs-12">
                             <div class="section-separator" style="margin-bottom:2em;padding:.5em 0"></div>
                         </div>
@@ -46,7 +46,11 @@
                     <span class="rider-name">{{ r.name }}</span><span class="rider-surname">{{ r.surname }}</span>
                 </div>
                 <div class="col-xs-12 rider-image-wrapper">
-                    <img class="rider-image tcenter" src="{% path r.featuredMedia, 'big' %}" alt="" />
+                    {% set riderImage = r.featuredMedia %}
+                    {% if r.teamStaffImage and r.teamStaffImage.providerReference %}
+                        {% set riderImage = r.teamStaffImage %}
+                    {% endif %}
+                    <img class="rider-image tcenter" src="{% path riderImage, 'big' %}" alt="" />
                 </div>
                 <div class="rider-staff-members col-xs-12 col-md-10 tcenter">
                     {% for t in r.staffMembers %}
@@ -68,12 +72,10 @@
         <div id="chart" class="tab">
             <div class="smoke-background">
                 <div class="standard-background">
-                    <h3 class="text-center"><b>{{ "organization_chart" | trans }}</b></h3>
+                    <h2 class="text-center golden-text"><b>{{ "organization_chart" | trans | upper }}</b></h2>
                     <div class="col-xs-12">
                         <div class="section-separator" style="margin-bottom:2em;padding:.5em 0"></div>
                     </div>
-
-
                     {% set levels = [] %}
                     {% set hasNull = false %}
 
@@ -85,11 +87,9 @@
                         {% endif %}
                     {% endfor %}
 
-
                     {% if hasNull %}
                         {% set levels = levels | merge([null]) %}
                     {% endif %}
-                    
 
                     {% for level in levels %}
                         <div class="team-categories">
@@ -124,4 +124,19 @@
         </div>
     </div>
     {% include 'MotogpBundle:Default:footer.html.twig' %}
+
+    <style>
+
+        h2.golden-text {
+            padding-top : 1em;
+        }
+
+        .staff-history {
+            font-size : 1.1em;
+        }
+
+        .staff-member {
+            font-size : 1.1em;
+        }
+    </style>
 {% endblock %}

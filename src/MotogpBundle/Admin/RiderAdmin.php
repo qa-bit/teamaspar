@@ -8,6 +8,7 @@ use MotogpBundle\Admin\Media\HomeImageAdminTrait;
 use MotogpBundle\Admin\Media\LogoAdminTrait;
 use MotogpBundle\Admin\Media\PreviewImageAdminTrait;
 use MotogpBundle\Admin\Media\QuotationImageAdminTrait;
+use MotogpBundle\Admin\Media\TeamStaffImageAdminTrait;
 use MotogpBundle\Entity\RiderTeam;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -26,7 +27,8 @@ class RiderAdmin extends AbstractAdmin
         LogoAdminTrait,
         HomeImageAdminTrait,
         PreviewImageAdminTrait,
-        QuotationImageAdminTrait
+        QuotationImageAdminTrait,
+        TeamStaffImageAdminTrait
     ;
 
     /**
@@ -69,8 +71,7 @@ class RiderAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
 
-
-
+        
         $formMapper
             ->tab('Información')
             ->with(null)
@@ -253,6 +254,11 @@ class RiderAdmin extends AbstractAdmin
                     'required' => false,
                     'attr' => ['container_classes' => 'clearfix col-md-4']
                 ))
+                ->add('teamStaffImage', 'sonata_type_admin', array(
+                    'label' => 'Imágen Team-Staff',
+                    'required' => false,
+                    'attr' => ['container_classes' => 'clearfix col-md-4']
+                ))
                 ->add('medias', 'sonata_type_collection',['label' => 'Imágenes (slider)',],
                     [
                         'edit' => 'inline',
@@ -311,6 +317,7 @@ class RiderAdmin extends AbstractAdmin
         $this->saveHomeImage($object);
         $this->savePreviewImage($object);
         $this->saveQuotationImage($object);
+        $this->saveTeamStaffImage($object);
 
         $object->setExternal(false);
 

@@ -571,3 +571,11 @@ $breakpoint-tablet: "769px";
   }
 }
 
+
+@media screen and (max-height: 1200px) {
+
+  #slider-motos #swiper-inicio {
+    max-height: 34vw !important;
+  }
+
+}

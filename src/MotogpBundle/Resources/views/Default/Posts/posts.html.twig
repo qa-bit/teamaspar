@@ -7,7 +7,6 @@
         <div class="standard-background">
             <div class="circuit-galleries">
                 {% set cpost = [] %}
-
                 {% for c in circuits %}
                     {% if c.posts is not empty %}
                         {% set cpost = cpost | merge([c]) %}
@@ -23,8 +22,6 @@
                         {% endfor %}
                     </div>
                 {% endfor %}
-
-
             </div>
             <div class="form-group col-xs-12">
                 <br><br>

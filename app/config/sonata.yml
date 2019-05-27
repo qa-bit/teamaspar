@@ -61,6 +61,7 @@ sonata_admin:
                     - motogp.admin.moto
                     - motogp.admin.rider_external
                     - motogp.admin.modality_classification
+                    - motogp.admin.document
 
                 roles: [ROLE_SUPER_ADMIN]
 
@@ -248,6 +249,18 @@ sonata_media:
                 medium:   { width: 500 , quality: 70}
                 big:   { width: 1280 , quality: 70}
                 xlarge:   { width: 2600 , quality: 70}
+        teamstaffimage:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 100 , quality: 70}
+                icon: { width: 256, quality: 70}
+                medium:   { width: 500 , quality: 70}
+                big:   { width: 1280 , quality: 70}
+                xlarge:   { width: 2600 , quality: 70}
+        mgp_document:
+            providers: [sonata.media.provider.file]
+
 
     cdn:
         server:

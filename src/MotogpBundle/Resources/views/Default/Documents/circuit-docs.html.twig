@@ -1,0 +1,57 @@
+{% set posts = [] %}
+
+{% set newsYears = modality | modality_years_with_news %}
+
+{% if year is not defined %}
+    {% set year = newsYears[0] %}
+{% endif %}
+
+{% for p in circuit.documents %}
+    {% set postYear = p.createdAt | date('Y') %}
+    {% if p.modality.id == modality.id
+    and postYear == year
+    %}
+        {% set posts = posts | merge([p]) %}
+    {% endif %}
+{% endfor %}
+
+{% if posts | length %}
+    <div class="circuit-gallery col-xs-12 col-sm-6 col-md-4">
+        <div class="circuit-gallery-inner">
+            <div class="w100 circuit-gallery-featured" style="background:url('{% path circuit.featuredMedia, 'big' %}');">
+            </div>
+            <div class="col-xs-12 col-sm-6 circuit-gallery-description">
+                <h6>{{ ( locale == 'es' ? circuit.name : circuit.nameEN ) | truncate(80, true, '...') }}</h6>
+                <div class="sep"></div>
+                <div class="trow">
+                    <h3>{{ locale == 'es' ? circuit.subtitle : circuit.subtitleEN }}</h3>
+                </div>
+                <div class="toggle-galleries">
+                    <div class="toggler closed"></div>
+                </div>
+            </div>
+        </div>
+        <div class="circuit-galleries-list">
+            <ul>
+                {% for p in posts %}
+                    {% if p.createdAt | date('Y') == year %}
+                        <li>
+
+                            {% set f = 'fa-file-pdf-o' %}
+                            {% if p.document.contentType == 'image/png' or p.document.contentType == 'image/jpg' or p.document.contentType == 'image/jpeg'%}
+                                {% set f ="fa-image" %}
+                            {% endif %}
+
+                            <a target="_blank" download href="{{ p.getDocumentUrl() }}">
+                                <i class="fa {{ f }}"></i>&nbsp;
+                                {% spaceless %}
+                                   {{ p.name }}
+                                {% endspaceless %}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

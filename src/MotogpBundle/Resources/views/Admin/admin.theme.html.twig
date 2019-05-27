@@ -40,6 +40,10 @@
         <div id="logo">
             {% include 'MotogpBundle:Admin:featured_media_admin.html.twig' with {'title' : 'una imagen para newsletters'}%}
         </div>
+        {% elseif sonata_admin.name == 'teamStaffImage' %}
+        <div id="logo">
+            {% include 'MotogpBundle:Admin:featured_media_admin.html.twig' with {'title' : 'una imagen para team-staff'}%}
+        </div>
         {% else %}
         {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}
     {% endif %}

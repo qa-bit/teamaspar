@@ -9,7 +9,7 @@
                 {% set cpost = [] %}
 
                 {% for c in circuits %}
-                    {% if c.galleries is not empty %}
+                    {% if c.documents is not empty %}
                         {% set cpost = cpost | merge([c]) %}
                     {% endif %}
                 {% endfor %}

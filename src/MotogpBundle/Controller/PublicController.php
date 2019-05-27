@@ -28,7 +28,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PublicController extends Controller
 {
 
-    private function getMainTeam($modality = null) {
+    protected function getMainTeam($modality = null) {
 
         $em = $this->getDoctrine()->getManager();
         $team  = $em->getRepository(RiderTeam::class)->findMain();
@@ -36,7 +36,7 @@ class PublicController extends Controller
         return $team;
     }
 
-    private function getModality($modalitySlug) {
+    protected function getModality($modalitySlug) {
         $em = $this->getDoctrine()->getManager();
 
         $m = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
@@ -916,4 +916,11 @@ class PublicController extends Controller
         $cacheManager->remove();
     }
 
+
+    /**
+     * @Route("/uploads/media/mgp_document/{cid}/{mid}/{slug}")
+     */
+    public function getFileAction() {
+
+    }
 }

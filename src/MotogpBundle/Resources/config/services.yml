@@ -234,6 +234,13 @@ services:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Logo, show_in_dashboard: false}
         public: true
 
+    motogp.admin.teamStaffImage:
+        class: Application\Sonata\MediaBundle\Admin\TeamStaffImageAdmin
+        arguments: [~, Application\Sonata\MediaBundle\Entity\TeamStaffImage, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TeamStaffImage, show_in_dashboard: false}
+        public: true
+
     motogp.admin.previewimage:
         class: Application\Sonata\MediaBundle\Admin\PreviewImageAdmin
         arguments: [~, Application\Sonata\MediaBundle\Entity\PreviewImage, SonataAdminBundle:CRUD]
@@ -322,4 +329,11 @@ services:
         arguments: [~, MotogpBundle\Entity\TeamQuotation, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: TeamQuotation }
+        public: true
+
+    motogp.admin.document:
+        class: MotogpBundle\Admin\DocumentAdmin
+        arguments: [~, MotogpBundle\Entity\Document, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Document }
         public: true

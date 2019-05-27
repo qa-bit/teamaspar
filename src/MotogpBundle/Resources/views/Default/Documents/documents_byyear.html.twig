@@ -2,14 +2,14 @@
 {% block title %}{{ "owner" | trans }} - {{ modality.slug | capitalize }} - {{ "images" | trans }}{% endblock %}
 {% block body %}
     {{ parent() }}
-    {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}
+    {#{% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}#}
     <div class="smoke-background">
         <div class="standard-background">
             <div class="circuit-galleries">
                 {% set cpost = [] %}
 
                 {% for c in circuits %}
-                    {% if c.galleries is not empty %}
+                    {% if c.documents is not empty %}
                         {% set cpost = cpost | merge([c]) %}
                     {% endif %}
                 {% endfor %}
@@ -18,7 +18,7 @@
                     <div class="row col-xs-12">
                         {% for c in cb %}
                             {% if c.id is defined %}
-                                {% include "MotogpBundle:Default:Posts/circuit-posts.html.twig" with {'circuit' : c} %}
+                                {% include "MotogpBundle:Default:Documents/circuit-docs.html.twig" with {'circuit' : c} %}
                             {% endif %}
                         {% endfor %}
                     </div>

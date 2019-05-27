@@ -23,22 +23,22 @@ class MediaImage extends BaseMedia
     /**
      * @var int $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $uploadFile;
+    protected $uploadFile;
 
     /**
      * @var string
      */
-    private $url;
+    protected $url;
 
     /**
      * @var string
      */
-    private $descriptionEN;
+    protected $descriptionEN;
 
 
     /**

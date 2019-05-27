@@ -5,6 +5,7 @@ namespace MotogpBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
 use MotogpBundle\Entity\Traits\HasMediaTrait;
+use MotogpBundle\Entity\Traits\HasTeamStaffImageTrait;
 use MotogpBundle\Entity\Traits\InModalityTrait;
 use MotogpBundle\Entity\Traits\InRiderTeamTrait;
 use MotogpBundle\Entity\Traits\InTeamCategoryTrait;
@@ -36,6 +37,7 @@ class Rider
        HasHomeImageTrait,
        HasQuotationImageTrait,
        HasPreviewImageTrait,
+       HasTeamStaffImageTrait,
        InMotoTrait
    ;
 

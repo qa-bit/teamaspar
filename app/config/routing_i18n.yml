@@ -18,6 +18,14 @@ images_by_year:
     locales: { "es": "/es/{modality}/{year}/imagenes", "en": "/en/{modality}/{year}images" }
     defaults: { _controller: MotogpBundle:Public:imagesByYear }
 
+docs:
+    locales: { "es": "/es/{modality}/documentos", "en": "/en/{modality}/docs" }
+    defaults: { _controller: MotogpBundle:Document:documents }
+
+docs_by_year:
+    locales: { "es": "/es/{modality}/{year}/documentos", "en": "/en/{modality}/{year}/docs" }
+    defaults: { _controller: MotogpBundle:Document:documentsByYear }
+
 videos:
     locales: { "es": "/es/{modality}/videos", "en": "/en/{modality}/videos" }
     defaults: { _controller: MotogpBundle:Public:videos }

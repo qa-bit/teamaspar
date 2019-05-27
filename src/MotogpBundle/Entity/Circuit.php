@@ -59,6 +59,14 @@ class Circuit
     private $posts;
 
     /**
+     * @var Gallery
+     *
+     * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Document", mappedBy="circuit", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OrderBy({"publishedAt" = "DESC"})
+     */
+    private $documents;
+
+    /**
      * @return string
      */
     public function getSubtitle()
@@ -160,6 +168,22 @@ class Circuit
     public function setSubtitleEN($subtitleEN)
     {
         $this->subtitleEN = $subtitleEN;
+    }
+
+    /**
+     * @return \MotogpBundle\Entity\Gallery
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
+    }
+
+    /**
+     * @param \MotogpBundle\Entity\Gallery $documents
+     */
+    public function setDocuments($documents)
+    {
+        $this->documents = $documents;
     }
     
     

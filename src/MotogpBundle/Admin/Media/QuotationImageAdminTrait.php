@@ -6,6 +6,7 @@ trait QuotationImageAdminTrait  {
 
     private function saveQuotationImage($object) {
 
+        
         $quotationImageAdmin = $this
             ->getConfigurationPool()
             ->getAdminByAdminCode('motogp.admin.quotationImage');
@@ -19,6 +20,7 @@ trait QuotationImageAdminTrait  {
         
 
         if ($object->getQuotationImage() && $object->getQuotationImage()->getUploadFile() ) {
+            
             $quotationImageAdmin->saveHook($object->getQuotationImage());
         }
     }
