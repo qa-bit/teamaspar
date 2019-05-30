@@ -1,0 +1,91 @@
+{% trans_default_domain 'register' %}
+<div class="tab-content">
+    {{ form_start(form) }}
+    <div class="col-xs-12 col-md-12">
+        <div class="w100">
+            <h4 class="golden-text">{{ "subscribe_1" | trans }}</h4>
+            <h4 class="golden-text">{{ "subscribe_2" | trans }}</h4>
+            <h4 class="golden-text">{{ "subscribe_3" | trans }}</h4>
+        </div>
+        <br><br>
+    </div>
+    <div class="col-xs-12 col-md-12 tcenter">
+
+        <div class="col-xs-12 col-md-6">
+            <fieldset class="form-group hidden">
+                <label class="w100">{{ 'type' | trans | capitalize}}</label>
+                {{ form_widget(form.type, {'attr' : {'class' : 'form-control type-select'}}) }}
+                {{ form_errors(form.type) }}
+            </fieldset>
+            {% if mode == 'media' %}
+                <fieldset class="form-group">
+                    <label class="w100">{{ 'media_type' | trans | capitalize}}</label>
+                    {{ form_widget(form.mediaType, {'attr' : {'class' : 'form-control'}}) }}
+                    {{ form_errors(form.mediaType) }}
+                </fieldset>
+            {% endif %}
+
+            {% if mode == 'partner' %}
+                <fieldset class="form-group">
+                    <label class="w100">{{ 'enterprise' | trans | capitalize}}</label>
+                    {{ form_widget(form.sponsor, {'attr' : {'class' : 'form-control', 'required' : true }}) }}
+                    {{ form_errors(form.sponsor) }}
+                </fieldset>
+            {% endif %}
+            <fieldset class="form-group">
+                <label class="w100">{{ 'name' | trans | capitalize}}</label>
+                {{ form_widget(form.name, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.name) }}
+            </fieldset>
+            <fieldset class="form-group">
+                <label class="w100">{{ 'surname' | trans | capitalize}}</label>
+                {{ form_widget(form.surname, {'attr' : {'class' : 'form-control surname'}}) }}
+                {{ form_errors(form.surname) }}
+            </fieldset>
+            <fieldset class="form-group">
+                <label class="w100">{{ 'email' | trans | capitalize}}</label>
+                {{ form_widget(form.email, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.email) }}
+            </fieldset>
+            {% if form.phone is defined %}
+                <fieldset class="form-group">
+                    <label class="w100">{{ 'phone' | trans | capitalize}}</label>
+                    {{ form_widget(form.phone, {'attr' : {'class' : 'form-control'}}) }}
+                    {{ form_errors(form.phone) }}
+                </fieldset>
+            {% endif %}
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <fieldset class="form-group-checkbox col-xs-12 no-padding">
+                <div class="col-xs-1">
+                    {{ form_widget(form.accept, {'attr' : {'class' : 'form-control'}}) }}
+                </div>
+                <div class="col-xs-10">
+                    <label class="w100 pad5">{{ 'accept' | trans | capitalize}}</label>
+                </div>
+                {{ form_errors(form.accept) }}
+            </fieldset>
+            <fieldset class="form-group-checkbox col-xs-12 no-padding">
+                <div class="col-xs-1">
+                    {{ form_widget(form.iagree, {'attr' : {'class' : 'form-control'}}) }}
+                </div>
+                <div class="col-xs-10">
+                    <label class="w100 pad5">{{ 'iagree' | trans | capitalize}}</label>
+                </div>
+                {{ form_errors(form.iagree) }}
+            </fieldset>
+
+        </div>
+
+        <fieldset class="form-group col-xs-12 no-padding">
+            <div class="text-center">
+                <br><br>
+                <button class="btn btn-info" type="submit">{{ 'send' | trans | upper }}</button>
+            </div>
+        </fieldset>
+    </div>
+    <div class="hidden">
+        {{ form_widget(form.locale, {'attr' : {'class' : 'form-control', 'value' : locale}}) }}
+        {{ form_rest(form) }}
+    </div>
+</div>

@@ -3,9 +3,9 @@ name: Nombre
 surname: Apellidos
 MediaType: Tipo (medio)
 email: Email
-phone: Teléfono
+phone: Teléfono (por favor, incluye código de país)
 message: Mensaje
-send: Enviar
+send: Registrarse
 register_success_text1: Registro completado con éxito
 register_success_text2: Para completar el alta, debes confirmar la suscripción haciendo clic en el correo electrónico que te hemos enviado.
 accept: Acepto recibir newsletters periódicamente.
@@ -41,3 +41,15 @@ name_in_use: Este nombre ya está registrado.
 confirmation_confirm_email: Nuevo inscrito a newsletters
 confirmation_confirm_email_text: Información personal:
 register_notification_email_link: Haga click en este enlace para confirmar el registro.
+iagree: He leido y acepto la política de privacidad
+personal_information: Información personal
+business_information: Información del medio
+company_publication: Empresa / publicación
+company_address: Dirección de la empresa
+postal_code : Código postal
+country: País
+website: Página web
+company_type: Tipo de medio
+circuit: GP
+password: Contraseña
+repeat_password: Repetir contraseña

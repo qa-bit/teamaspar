@@ -29,6 +29,15 @@ class NewslettersController extends Controller
     const MAIL_SUBJECT_PREFIX = 'Sama Qatar Ángel Nieto Team ';
     const MAIL_CONFIRMATION_SUBJECT = 'Confirmación de registro';
 
+    const MODES = [
+        'fan'      => 'public',
+        'sponsor'  => 'partner',
+        'media'    => 'media',
+        'gp_guest' => 'gpguest',
+        'partner'  => 'partner'
+    ];
+
+
     private function getMainTeam($modality = null)
     {
 
@@ -147,6 +156,27 @@ class NewslettersController extends Controller
     public function registerFormAction(Request $request)
     {
 
+        $mode = 'fan';
+
+
+        switch ($request->attributes->get('_route')) {
+            case 'public_register_media' : {
+                $mode = 'media';
+                break;
+            }
+            case 'public_register_partner' : {
+                $mode = 'partner';
+                break;
+            }
+            case 'public_register_gpguest' : {
+                $mode = 'gp_guest';
+                break;
+            }
+        }
+
+        $locale = $request->get('_locale');
+
+
         $em = $this->getDoctrine()->getManager();
 
         $modalitySlug = $request->get('modality');
@@ -158,6 +188,16 @@ class NewslettersController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
         $customer = new Customer();
+
+        $customer->setLocale($locale);
+        $customer->setCountry(strtoupper($locale));
+
+        if ($locale == 'en') {
+            $customer->setCountry('GB');
+        }
+
+        $customer->setType(self::MODES[$mode]);
+
 
         $form = $this->createForm('MotogpBundle\Form\RegisterType', $customer);
         $form->handleRequest($request);
@@ -230,7 +270,8 @@ class NewslettersController extends Controller
             'gallery' => $gallery,
             'modality' => $modality,
             'sponsors' => $sponsors,
-            'team' => $this->getMainTeam()
+            'team' => $this->getMainTeam(),
+            'mode' => $mode
         ));
     }
 

@@ -3,6 +3,8 @@
 namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MotogpBundle\Entity\Traits\InCircuitTrait;
+use MotogpBundle\Entity\Traits\InSponsorTrait;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use MotogpBundle\Entity\Traits\InGroupsTrait;
 
@@ -21,7 +23,7 @@ use MotogpBundle\Entity\Traits\InGroupsTrait;
 class Customer
 {
 
-    use InGroupsTrait;
+    use InGroupsTrait, InCircuitTrait, InSponsorTrait;
 
     /**
      * @var int
@@ -104,6 +106,39 @@ class Customer
      * @ORM\Column(type="string", nullable=true)
      */
     private $locale;
+
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $country;
+
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $postalCode;
+
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $webUrl;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $businessName;
 
 
     /**
@@ -321,6 +356,86 @@ class Customer
     {
         $this->deactivationHash = $deactivationHash;
     }
-    
+
+    /**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param string $postalCode
+     */
+    public function setPostalCode($postalCode)
+    {
+        $this->postalCode = $postalCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWebUrl()
+    {
+        return $this->webUrl;
+    }
+
+    /**
+     * @param string $webUrl
+     */
+    public function setWebUrl($webUrl)
+    {
+        $this->webUrl = $webUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBusinessName()
+    {
+        return $this->businessName;
+    }
+
+    /**
+     * @param string $businessName
+     */
+    public function setBusinessName($businessName)
+    {
+        $this->businessName = $businessName;
+    }
+
 
 }

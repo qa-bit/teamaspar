@@ -21,3 +21,4 @@ parameters:
     mailer_contact_encryption: tls
     scheme_url: ~
     secret: ThisTokenIsNotSoSecretChangeIt
+    devmode: false

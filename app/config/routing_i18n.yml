@@ -74,6 +74,23 @@ public_register:
     locales: { "en": "/en/{modality}/register", "es": "/es/{modality}/registro" }
     defaults: { _controller: MotogpBundle:Newsletters:registerForm}
 
+public_register_fan:
+    locales: { "en": "/en/{modality}/register/fan", "es": "/es/{modality}/registro/fan" }
+    defaults: { _controller: MotogpBundle:Newsletters:registerForm}
+
+public_register_media:
+    locales: { "en": "/en/{modality}/register/media", "es": "/es/{modality}/registro/media" }
+    defaults: { _controller: MotogpBundle:Newsletters:registerForm}
+
+public_register_partner:
+    locales: { "en": "/en/{modality}/register/partner", "es": "/es/{modality}/registro/partner" }
+    defaults: { _controller: MotogpBundle:Newsletters:registerForm}
+
+public_register_gpguest:
+    locales: { "en": "/en/{modality}/register/gpguest", "es": "/es/{modality}/registro/gpguest" }
+    defaults: { _controller: MotogpBundle:Newsletters:registerForm}
+
+
 public_contact_success:
     locales: { "en": "/en/{modality}/contact/success", "es": "/es/{modality}/contacto/enviado" }
     defaults: { _controller: MotogpBundle:Contact:contactFormSuccess}

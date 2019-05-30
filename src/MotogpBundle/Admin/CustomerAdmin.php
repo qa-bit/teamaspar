@@ -13,6 +13,15 @@ use Sonata\AdminBundle\Form\Type\Filter\ChoiceType as ChoiceFilter;
 
 class CustomerAdmin extends AbstractAdmin
 {
+
+    protected $datagridValues = [
+        
+        '_sort_order' => 'DESC',
+
+        '_sort_by' => 'id',
+    ];
+
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -23,9 +32,12 @@ class CustomerAdmin extends AbstractAdmin
             ->add('phone')
             ->add('groups')
             ->add('type', null, [], 'choice', [
-                'choices' => [ 'public' => 'public',
+                'choices' => [
+                    'public' => 'public',
                     'sponsor' => 'sponsor',
-                    'media' => 'media']])
+                    'media' => 'media',
+                    'gpguest' => 'gpguest'
+                ]])
             ->add('locale', null, [], 'choice', [
                 'choices' => [
                     '' => '',
@@ -65,6 +77,8 @@ class CustomerAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->tab('personal_info')
+            ->with(' ')
             ->add('name' ,'text', array('required' => true, 'attr' => ['container_classes' => 'col-md-6']))
             ->add('surname' ,'text', array('required' => false, 'attr' => ['container_classes' => 'col-md-6']))
             ->add('phone' ,'text', array('required' => false, 'attr' => ['container_classes' => 'col-md-6']))
@@ -73,7 +87,8 @@ class CustomerAdmin extends AbstractAdmin
                 'choices'  => array(
                     'public' => 'public',
                     'sponsor' => 'sponsor',
-                    'media' => 'media'
+                    'media' => 'media',
+                    'gpguest' => 'gpguest'
                 ),'attr' => ['container_classes' => 'col-md-4'],
             ))
             ->add('mediaType', ChoiceType::class, array(
@@ -96,6 +111,18 @@ class CustomerAdmin extends AbstractAdmin
             ->add('groups')
             ->add('userConfirmed', 'checkbox', ['label' => 'Confirmado (usuario)', 'attr' => ['container_classes' => 'col-md-6'] ])
             ->add('adminConfirmed', 'checkbox', ['mapped' => 'Confirmado (administración)', 'attr' => ['container_classes' => 'col-md-6']])
+            ->add('sponsor', null, ['required' => false, 'label' => '(Tipo Partner)'])
+            ->add('circuit', null, ['required' => false, 'label' => '(Tipo GP GUEST)'])
+            ->end()
+            ->end()
+            ->tab('enterprise_info')
+                ->with(' ')
+                ->add('businessName')
+                ->add('country')
+                ->add('address')
+                ->add('postalCode')
+            ->end()
+            ->end()
         ;
     }
 

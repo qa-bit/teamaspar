@@ -27,3 +27,12 @@ unsubscribe_wrong: Wrong confirmation key
 confirmation_confirm_email: Nuevo inscrito a newsletters
 confirmation_confirm_email_text: Información personal:
 register_notification_email_link: Haga click en este enlace para confirmar el registro.
+iagree: I have read and agree to the terms and conditions.
+personal_information: Personal information
+business_information: Business information
+company_publication: Company / publication
+company_address: Company address
+postal_code : Postal code
+country: Country
+website: Website (if aplicable)
+company_type: Your company media type
