@@ -6,8 +6,8 @@ email: Email
 phone: Teléfono (por favor, incluye código de país)
 message: Mensaje
 send: Registrarse
-register_success_text1: Registro completado con éxito
-register_success_text2: Para completar el alta, debes confirmar la suscripción haciendo clic en el correo electrónico que te hemos enviado.
+register_success_text1: Su solicitud está pendiente de aprobación por el Ángel Nieto Team.
+register_success_text2: Pronto nos pondremos en contacto con usted para confirmarla.
 accept: Acepto recibir newsletters periódicamente.
 subscribe_1: ¿Quieres estar al día de las novedades del Ángel Nieto Team?
 subscribe_2: ¿Quieres ser el primero en enterarte de nuestros sorteos?
@@ -41,7 +41,7 @@ name_in_use: Este nombre ya está registrado.
 confirmation_confirm_email: Nuevo inscrito a newsletters
 confirmation_confirm_email_text: Información personal:
 register_notification_email_link: Haga click en este enlace para confirmar el registro.
-iagree: He leido y acepto la política de privacidad
+iagree: He leido y acepto la
 personal_information: Información personal
 business_information: Información del medio
 company_publication: Empresa / publicación
@@ -53,3 +53,15 @@ company_type: Tipo de medio
 circuit: GP
 password: Contraseña
 repeat_password: Repetir contraseña
+gp: Gran Premio
+privacy_policy: Política de privacidad
+username: Nombre de usuario
+locale: Quiero recibir los comunicados en
+
+r_confirmation: Su solicitud de acceso a la página de invitados del Ángel Nieto Team ha sido aceptada.
+r_confirmation2: Puede acceder al área privada, donde podrá encontrar toda la información sobre el Gran Premio (centro de acreditaciones, horarios, planos del circuito…) a través de:
+r_confirmationlink: el siguiente enlace
+r_seeyou: ¡Nos vemos en el circuito!
+r_yourusername: Su nombre de usuario
+r_yourpassword: Su contraseña
+r_confirmation_simple: Su solicitud de subscripción a nuestras newsletters ha sido aceptada.

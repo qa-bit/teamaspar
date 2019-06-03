@@ -1,0 +1,17 @@
+{% trans_default_domain 'register' %}
+
+<div>
+    {% if customer.type == "gpguest" %}
+        <h4>{{ "r_confirmation" | trans }}</h4>
+        <div>
+            <p>{{ "r_yourusername" | trans  }}: {{ customer.user.username }}</p>
+            <p>{{ "r_yourpassword" | trans  }}: {{ customer.user.pass }}</p>
+            <p>{{ "r_confirmation2" | trans }} <a href="{{ url('docs_by_year.' ~ customer.locale , {'modality' : customer.modality.slug, 'year' : ('now' | date('Y'))}) }}">{{ "r_confirmationlink" | trans }}</a></p>
+            <p>{{ "r_seeyou" | trans }}</p>
+        </div>
+        {% else %}
+            <h4>{{ "r_confirmation_simple" | trans }}</h4>
+    {% endif %}
+</div>
+<br><br>
+<img src="{{ app.request.getSchemeAndHttpHost() ~ asset('/bundles/motogp/img/branding.png') }}" />

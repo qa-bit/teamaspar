@@ -35,6 +35,24 @@ class PublicController extends Controller
 
         return $team;
     }
+    
+    
+    
+    public function redirectUserAction() {
+        if ($this->isGranted('ROLE_ADMIN')) {
+
+            return $this->redirectToRoute('sonata_admin_dashboard');
+        } else {
+
+            if ($this->isGranted('ROLE_PUBLIC_DOCUMENTS')) {
+                $customer = $user = $this->getUser()->getCustomer();
+                return $this->redirectToRoute('docs_by_year', ['modality' => $customer->getModality()->getSlug(), 'year' => (new \DateTime())->format('Y')]);
+            }
+            
+
+        }
+
+    }
 
     protected function getModality($modalitySlug) {
         $em = $this->getDoctrine()->getManager();
@@ -188,6 +206,8 @@ class PublicController extends Controller
         $missings = [];
         $teamRiders = 0;
         $count = 0;
+        
+        if (!count($data)) return [];
 
         while($teamRiders < $ridersInTeamCount || $count > 10) {
             if (count($data) > $MAX_SCORES) {

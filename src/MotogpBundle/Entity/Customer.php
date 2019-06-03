@@ -4,6 +4,7 @@ namespace MotogpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\InCircuitTrait;
+use MotogpBundle\Entity\Traits\InModalityTrait;
 use MotogpBundle\Entity\Traits\InSponsorTrait;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use MotogpBundle\Entity\Traits\InGroupsTrait;
@@ -23,7 +24,13 @@ use MotogpBundle\Entity\Traits\InGroupsTrait;
 class Customer
 {
 
-    use InGroupsTrait, InCircuitTrait, InSponsorTrait;
+    use InGroupsTrait, InCircuitTrait, InSponsorTrait, InModalityTrait;
+
+    public function __construct()
+    {
+        $this->user = null;
+
+    }
 
     /**
      * @var int
@@ -87,6 +94,13 @@ class Customer
      */
     private $adminConfirmed;
 
+
+    /**
+     * @var string
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $adminConfirmedTest;
+
     /**
      * @var string
      * @ORM\Column(type="string", nullable=true)
@@ -139,6 +153,13 @@ class Customer
      * @ORM\Column(type="string", nullable=true)
      */
     private $businessName;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", cascade={"persist"}, inversedBy="customer")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    protected $user;
 
 
     /**
@@ -437,5 +458,38 @@ class Customer
         $this->businessName = $businessName;
     }
 
+    /**
+     * @return string
+     */
+    public function getAdminConfirmedTest()
+    {
+        return $this->adminConfirmedTest;
+    }
+
+    /**
+     * @param string $adminConfirmedTest
+     */
+    public function setAdminConfirmedTest($adminConfirmedTest)
+    {
+        $this->adminConfirmedTest = $adminConfirmedTest;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    
 
 }

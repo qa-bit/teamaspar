@@ -2,6 +2,8 @@
 
 namespace MotogpBundle\Admin;
 
+use FOS\UserBundle\Util\PasswordUpdaterInterface;
+use MotogpBundle\Services\Newsletters;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -15,11 +17,16 @@ class CustomerAdmin extends AbstractAdmin
 {
 
     protected $datagridValues = [
-        
         '_sort_order' => 'DESC',
-
         '_sort_by' => 'id',
     ];
+
+    public function __construct($code, $class, $baseControllerName, Newsletters $newsletter, PasswordUpdaterInterface $passwordUpdater)
+    {
+        parent::__construct($code, $class, $baseControllerName);
+        $this->ns = $newsletter;
+        $this->passwordUpdater = $passwordUpdater;
+    }
 
 
     /**
@@ -110,7 +117,7 @@ class CustomerAdmin extends AbstractAdmin
             ))
             ->add('groups')
             ->add('userConfirmed', 'checkbox', ['label' => 'Confirmado (usuario)', 'attr' => ['container_classes' => 'col-md-6'] ])
-            ->add('adminConfirmed', 'checkbox', ['mapped' => 'Confirmado (administración)', 'attr' => ['container_classes' => 'col-md-6']])
+            ->add('adminConfirmed', 'checkbox', ['required' => false, 'mapped' => 'Confirmado (administración)', 'attr' => ['container_classes' => 'col-md-6']])
             ->add('sponsor', null, ['required' => false, 'label' => '(Tipo Partner)'])
             ->add('circuit', null, ['required' => false, 'label' => '(Tipo GP GUEST)'])
             ->end()
@@ -140,4 +147,38 @@ class CustomerAdmin extends AbstractAdmin
 
         ;
     }
+
+
+    public function saveHook($object) {
+        if (!$object->getAdminConfirmedTest()) {
+
+            if ($object->getAdminConfirmed()) {
+                $this->ns->sendConfirmEMail($object);
+                $object->setAdminConfirmedTest(true);
+
+                if ($object->getUser()) {
+                    $object->getUser()->setEnabled(true);
+                    $object->getUser()->setPlainPassword($object->getUser()->getPass());
+                    $this->passwordUpdater->hashPassword($object->getUser());
+                }
+            }
+
+        }
+    }
+
+    public function prePersist($object)
+    {
+        parent::prePersist($object);
+        $this->saveHook($object);
+
+    }
+
+    public function preUpdate($object)
+    {
+        parent::preUpdate($object);
+        $this->saveHook($object);
+
+    }
+
+
 }

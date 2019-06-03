@@ -34,6 +34,11 @@
                 {{ form_widget(form.email, {'attr' : {'class' : 'form-control'}}) }}
                 {{ form_errors(form.email) }}
             </fieldset>
+            <fieldset class="form-group">
+                <label class="w100">{{ 'country' | trans | capitalize}}</label>
+                {{ form_widget(form.country, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.country) }}
+            </fieldset>
             {% if form.phone is defined %}
                 <fieldset class="form-group">
                     <label class="w100">{{ 'phone' | trans | capitalize}}</label>
@@ -42,9 +47,14 @@
                 </fieldset>
             {% endif %}
             <fieldset class="form-group">
-                <label class="w100">{{ 'circuit' | trans | capitalize}}</label>
+                <label class="w100">{{ 'gp' | trans | capitalize}}</label>
                 {{ form_widget(form.circuit, {'attr' : {'class' : 'form-control', 'required' : true }}) }}
                 {{ form_errors(form.circuit) }}
+            </fieldset>
+            <fieldset class="form-group">
+                <label class="w100">{{ 'locale' | trans | capitalize}}</label>
+                {{ form_widget(form.locale, {'attr' : {'class' : 'form-control', 'required' : true }}) }}
+                {{ form_errors(form.locale) }}
             </fieldset>
         </div>
         <div class="col-xs-12 col-md-6">
@@ -78,7 +88,12 @@
                     {{ form_widget(form.iagree, {'attr' : {'class' : 'form-control'}}) }}
                 </div>
                 <div class="col-xs-10">
-                    <label class="w100 pad5">{{ 'iagree' | trans | capitalize}}</label>
+                    <label class="w100 pad5">
+                        {{ 'iagree' | trans | capitalize}}
+                        <a target="_blank" class="golden-text" href="{{ url('privacy.' ~ locale, {'modality' : modality.slug }) }}">
+                            <u>{{ "privacy_policy" | trans | lower}}</u>
+                        </a>
+                    </label>
                 </div>
                 {{ form_errors(form.iagree) }}
             </fieldset>

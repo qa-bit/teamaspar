@@ -12,7 +12,7 @@ use MotogpBundle\Entity\Traits\InModalityTrait;
 class Newsletters
 {
 
-    const MAIL_SUBJECT_PREFIX = 'Sama Qatar Ángel Nieto Team ';
+    const MAIL_SUBJECT_PREFIX = 'Sama Qatar Ángel Nieto Team';
 
     public function __construct(
         TwigEngine $templating,
@@ -192,8 +192,77 @@ class Newsletters
             ->render('MotogpBundle:Default:Newsletters/newsletters-email.html.twig', $data, 'text/html')
         ;
     }
-    
-    
+
+
+    public function sendConfirmEMail(Customer $customer)
+    {
+
+        $locale = $customer->getLocale();
+
+        $from = $this->mailer_user;
+
+        $html = $this->renderConfirmEmail($customer);
+
+        $html = str_replace('http://localhost', $this->url_scheme, $html);
+
+        
+        $subjectTitle = $locale == 'es' ? 'Registro aceptado' : 'Registration accepted';
+
+
+        try {
+            $message = \Swift_Message::newInstance()
+                ->setSubject($subjectTitle)
+                ->setTo($customer->getEmail())
+                ->setFrom($from, self::MAIL_SUBJECT_PREFIX )
+                ->setReplyTo($from)
+                ->setContentType("text/html")
+                ->setBody($html);
+
+        } catch(\Swift_RfcComplianceException $e) {
+            return ['sent' => false, 'errors' => $e->getMessage()];
+        }
+
+
+
+        $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
+
+        $this->mailer->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
+
+        $failures ='';
+
+        try {
+            $mail = $this->mailer->send($message, $failures);
+            $spool = $this->mailer->getTransport()->getSpool();
+            $spool->flushQueue($this->transport);
+
+        } catch(\Swift_TransportException $e) {
+
+            return ['sent' => false, 'errors' => $e->getMessage()];
+        }
+
+
+        if ($mail) {
+            return ['sent' => true];
+        }
+
+        return ['sent' => false];
+
+    }
+
+    public function renderConfirmEmail(Customer $customer, $locale = 'es')
+    {
+
+        $data = [
+            'customer' => $customer,
+            'locale' => $locale,
+            'url_scheme' => $this->url_scheme
+        ];
+
+        return $this
+            ->templating
+            ->render('MotogpBundle:Default:Register/admin-confirmed-email.html.twig', $data, 'text/html')
+            ;
+    }
 
 
 }

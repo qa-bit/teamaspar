@@ -42,7 +42,7 @@
                                 {% set f ="fa-image" %}
                             {% endif %}
 
-                            <a target="_blank" download href="{{ p.getDocumentUrl() }}">
+                            <a target="_blank" download href="{%  path p.document, 'reference' %}">
                                 <i class="fa {{ f }}"></i>&nbsp;
                                 {% spaceless %}
                                    {{ p.name }}

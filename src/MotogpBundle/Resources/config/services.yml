@@ -98,7 +98,7 @@ services:
 
     motogp.admin.customer:
         class: MotogpBundle\Admin\CustomerAdmin
-        arguments: [~, MotogpBundle\Entity\Customer, SonataAdminBundle:CRUD]
+        arguments: [~, MotogpBundle\Entity\Customer, SonataAdminBundle:CRUD, '@motogp.newsletters_manager', "@FOS\\UserBundle\\Util\\PasswordUpdaterInterface"]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Newsletters, label: Usuarios }
         public: true

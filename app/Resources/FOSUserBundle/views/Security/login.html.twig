@@ -40,7 +40,7 @@
                     <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
                 </div>
             </div>
-            <input type="hidden" name="_target_path" value="{{ url('sonata_admin_dashboard') }}" />
+            <input type="hidden" name="_target_path" value="{{ url('redirect_user.es') }}" />
         </form>
 
         {% if error %}

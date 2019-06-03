@@ -14,6 +14,19 @@
                     {% endif %}
                 {% endfor %}
 
+                {% if app.user.customer %}
+
+                    {% set cpost = [] %}
+
+                    {% for c in circuits %}
+                        {% if c.documents is not empty and c.id == app.user.customer.circuit.id %}
+                            {% set cpost = cpost | merge([c]) %}
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+
+
                 {% for cb in cpost | batch(3, '') %}
                     <div class="row col-xs-12">
                         {% for c in cb %}

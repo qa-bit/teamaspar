@@ -11,6 +11,7 @@ use MotogpBundle\Entity\Rider;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class NewsletterMailingInfoAdmin extends AbstractAdmin
 {
@@ -25,6 +26,7 @@ class NewsletterMailingInfoAdmin extends AbstractAdmin
             ->add('name')
             ->add('surname')
             ->add('active', null, ['editable' => true])
+            ->add('customerType')
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -40,12 +42,20 @@ class NewsletterMailingInfoAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
 
+        $types = [
+            'public' => 'public',
+            'sponsor' => 'sponsor',
+            'media' => 'media',
+            'gpguest' => 'gpguest'
+        ];
+
         $formMapper
             ->tab('Información')
             ->with(null)
             ->add('email')
             ->add('name')
             ->add('surname')
+            ->add('customerType', ChoiceType::class, ['choices' => $types, 'required' => true ])
             ->add('active', CheckboxType::class, ['required' => false ])
         ;
     }

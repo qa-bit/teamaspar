@@ -49,6 +49,12 @@
                     {{ form_errors(form.phone) }}
                 </fieldset>
             {% endif %}
+
+            <fieldset class="form-group">
+                <label class="w100">{{ 'locale' | trans | capitalize}}</label>
+                {{ form_widget(form.locale, {'attr' : {'class' : 'form-control', 'required' : true }}) }}
+                {{ form_errors(form.locale) }}
+            </fieldset>
         </div>
         <div class="col-xs-12 col-md-6 form-group" style="padding-left: 3em;">
             <h4>{{ "business_information" | trans | upper }}</h4>
@@ -91,6 +97,8 @@
                 {{ form_errors(form.mediaType) }}
             </fieldset>
 
+
+
         </div>
 
         <div class="col-xs-12">
@@ -108,7 +116,12 @@
                     {{ form_widget(form.iagree, {'attr' : {'class' : 'form-control'}}) }}
                 </div>
                 <div class="col-xs-10">
-                    <label class="w100 pad5">{{ 'iagree' | trans | capitalize}}</label>
+                    <label class="w100 pad5">
+                        {{ 'iagree' | trans | capitalize}}
+                        <a target="_blank" class="golden-text" href="{{ url('privacy.' ~ locale, {'modality' : modality.slug }) }}">
+                            <u>{{ "privacy_policy" | trans | lower}}</u>
+                        </a>
+                    </label>
                 </div>
                 {{ form_errors(form.iagree) }}
             </fieldset>

@@ -2,6 +2,10 @@ index:
     locales: { "es": "/es/{modality}", "en": "/en/{modality}" }
     defaults: { _controller: MotogpBundle:Public:index, modality : '' }
 
+redirect_user:
+    locales: { "es": "/redirect", "en": "redirect" }
+    defaults: { _controller: MotogpBundle:Public:redirectUser }
+
 #indexTest:
 #    locales: { "es": "/indexTest", "en": "/indexTestEN" }
 #    defaults: { _controller: MotogpBundle:Public:indexTest, modality : '' }

@@ -2,6 +2,8 @@
 
 namespace MotogpBundle\Controller;
 
+use AppBundle\Entity\User;
+use FOS\UserBundle\Util\PasswordUpdaterInterface;
 use MotogpBundle\Entity\Newsletter;
 use MotogpBundle\Entity\NewsletterHistory;
 use MotogpBundle\Entity\NewsletterMailInfo;
@@ -34,7 +36,7 @@ class NewslettersController extends Controller
         'sponsor'  => 'partner',
         'media'    => 'media',
         'gp_guest' => 'gpguest',
-        'partner'  => 'partner'
+        'partner'  => 'sponsor'
     ];
 
 
@@ -83,8 +85,6 @@ class NewslettersController extends Controller
         }
 
 
-
-
         $newsletterHistory = $em->getRepository(NewsletterHistory::class)->findOneBy(
             ['customer' => $customer, 'newsletter' => $newsletter]
         );
@@ -116,16 +116,16 @@ class NewslettersController extends Controller
             ->getDoctrine()
             ->getManager()
             ->getRepository(NewsletterMailInfo::class)
-            ->findBy(['active' => true])
+            ->findBy(['active' => true, 'customerType' => $customer->getType()])
         ;
 
         $from = $this->getParameter('mailer_user');
 
         $data = ['customer' => $customer];
 
-
-
         $mailHtml = $this->renderView('MotogpBundle:Default:Register/notification-email.html.twig', $data, 'text/html');
+
+
 
         foreach ($notificationEmails as $no) {
 
@@ -153,11 +153,54 @@ class NewslettersController extends Controller
 
     }
 
+    public function checkUser($form) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $baseUserName = $form['username']->getData();
+        $baseUserMail = $form['email']->getData();
+
+        $existsEmail =  $em->getRepository(User::class)->findOneByEmail($baseUserMail);
+        $existsUsername =  $em->getRepository(User::class)->findOneByUsername($baseUserName);
+
+        if ($existsUsername) {
+            $form->get('username')->addError(new FormError('Nombre de usuario en uso'));
+            return false;
+        }
+
+        if ($existsEmail) {
+            $form->get('email')->addError(new FormError('Email en uso'));
+            return false;
+        }
+
+        return true;
+    }
+
+
+    public function setPass(User $user, string $password) {
+//        $user->setPlainPassword($password);
+//        $this->passwordUpdater->hashPassword($user);
+//
+//        return $user;
+    }
+
+
+    protected function getModality($modalitySlug) {
+        $em = $this->getDoctrine()->getManager();
+
+        return $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+
+    }
+
     public function registerFormAction(Request $request)
     {
 
-        $mode = 'fan';
+        $modalitySlug = $request->get('modality');
 
+        $modality = $this->getModality($modalitySlug);
+
+        $mode = 'fan';
 
         switch ($request->attributes->get('_route')) {
             case 'public_register_media' : {
@@ -198,11 +241,30 @@ class NewslettersController extends Controller
 
         $customer->setType(self::MODES[$mode]);
 
-
         $form = $this->createForm('MotogpBundle\Form\RegisterType', $customer);
         $form->handleRequest($request);
 
         $sponsors = $this->getSponsors($modality);
+
+        $user = null;
+
+
+        if ($form->isSubmitted()) {
+            if ($customer->getType() == 'gpguest') {
+                $customer->setModality($modality);
+                $this->checkUser($form);
+                $user = new User();
+
+                $user->setUsername($form['username']->getData());
+                $user->setEmail($customer->getEmail());
+                $user->setPassword($this->get('security.password_encoder')->encodePassword($user, $form->get('password')->getData()));
+                $user->setRoles(['ROLE_PUBLIC_DOCUMENTS']);
+                $user->setEnabled(false);
+                $user->setPass($form->get('password')->getData());
+                $user->setCustomer($customer);
+                $user->setPlainPassword($form->get('password')->getData());
+            }
+        }
 
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -229,7 +291,8 @@ class NewslettersController extends Controller
 
             $data = array(
                 'name' => $customer->getName(),
-                'url' => $url . '?cc=' . $hash
+                'url' => $url . '?cc=' . $hash,
+                'password' => $form->get('password')
             );
 
 
@@ -257,6 +320,13 @@ class NewslettersController extends Controller
             $spool->flushQueue($transport);
 
             $em->persist($customer);
+
+
+            if ($user) {
+                $customer->setUser($user);
+                $em->persist($user);
+            }
+
             $em->flush();
 
             return $this->redirectToRoute('public_register_success', ['modality' => $modalitySlug]);
@@ -314,12 +384,12 @@ class NewslettersController extends Controller
 
         $customer = $em->getRepository(Customer::class)->findOneByActivationHash($hash);
 
+
         if ($customer) {
             $customer->setActivationHash(null);
             $customer->setUserConfirmed(true);
             $em->persist($customer);
             $em->flush();
-
             $this->sendNotificationEmails($customer);
         }
 
@@ -442,7 +512,7 @@ class NewslettersController extends Controller
 
         $sponsors = [1 => [], 2 => [], 3 => []];
 
-        for ($i = 3; $i>0; $i--){
+        for ($i = 3; $i > 0; $i--){
             $colorSponsors = $em->getRepository(Sponsor::class)->getColorByModalityAndLevel($modality, $i);
             $bnSponsors = $em->getRepository(Sponsor::class)->getBNByModalityAndLevel($modality, $i);
             $sponsors[$i]['color'] = $colorSponsors;
@@ -490,7 +560,8 @@ class NewslettersController extends Controller
             ->setTo($customer->getEmail())
             ->setReplyTo($from)
             ->setContentType("text/html")
-            ->setBody($this->renderView('MotogpBundle:Default:Register/unsubscribe-email.html.twig', $data, 'text/html'));
+            ->setBody($this->renderView('MotogpBundle:Default:Register/unsubscribe-email.html.twig', $data, 'text/html'))
+        ;
 
 
         $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();

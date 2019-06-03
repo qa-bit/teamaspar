@@ -20,6 +20,7 @@ class NewsletterMailInfo
     public function __construct()
     {
         $this->active = false;
+        $this->customerType = 'public';
     }
 
     /**
@@ -45,6 +46,14 @@ class NewsletterMailInfo
      * @ORM\Column(type="boolean", nullable=false)
      */
     private $active;
+
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $customerType;
+    
 
     /**
      * @return string
@@ -113,5 +122,21 @@ class NewsletterMailInfo
     public function __toString()
     {
         return (string) $this->getEmail();
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomerType()
+    {
+        return $this->customerType;
+    }
+
+    /**
+     * @param string $customerType
+     */
+    public function setCustomerType($customerType)
+    {
+        $this->customerType = $customerType;
     }
 }

@@ -14,6 +14,39 @@
                 <li><b>Tipo medio:</b> {{ customer.mediaType | trans }}</li>
             {% endif %}
             <li><b>Idioma:</b> {{ customer.locale | trans }}</li>
+            {% if customer.circuit %}
+                <li><b>GP:</b> {{ customer.circuit | trans }}</li>
+            {% endif %}
+
+            {% if customer.businessName %}
+                <li><b>Empresa/Publicación:</b> {{ customer.businessName | trans }}</li>
+            {% endif %}
+
+
+            {% if customer.sponsor %}
+                 <li><b>Partner:</b> {{ customer.sponsor | trans }}</li>
+            {% endif %}
+
+            {% if customer.country %}
+                 <li><b>País:</b> {{ customer.country | trans }}</li>
+            {% endif %}
+
+            {% if customer.address %}
+                 <li><b>Dirección:</b> {{ customer.address | trans }}</li>
+            {% endif %}
+
+            {% if customer.phone %}
+                <li><b>Teléfono:</b> {{ customer.phone | trans }}</li>
+            {% endif %}
+
+            {% if customer.postalCode %}
+                 <li><b>Código Postal:</b> {{ customer.postalCode | trans }}</li>
+            {% endif %}
+
+            {% if customer.webUrl %}
+                 <li><b>Página web:</b> {{ customer.webUrl | trans }}</li>
+            {% endif %}
+
             <li><b>ID Inscrito:</b> <a href="{{ url('admin_motogp_customer_edit', {'id': customer.id}) }}">{{ customer.id }}</a></li>
         </ul>
         <a href="{{ url('admin_motogp_customer_edit', {'id': customer.id}) }}">{{ "register_notification_email_link" | trans }}</a>

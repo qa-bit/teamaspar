@@ -65,7 +65,7 @@ class DocumentController extends PublicController
     public function documentsByYearAction(Request $request)
     {
 
-        if (!$this->isGranted('ROLE_ADMIN')) {
+        if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_PUBLIC_DOCUMENTS')) {
             return $this->redirect('/login');
         }
 

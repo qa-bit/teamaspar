@@ -27,6 +27,11 @@ class RegisterType extends AbstractType
 
         $preferred_choices = $customer->getLocale() == 'es' ? ['ES', 'GB'] : ['GB', 'ES'];
 
+        $localeOptions = $customer->getLocale() == 'es'
+            ? ['es' => 'Español', 'en' => 'Inglés']
+            : ['en' => 'English', 'es' => 'Español']
+        ;
+
         $builder
             ->add('name' ,'text', array('required' => true))
             ->add('surname' ,'text', array('required' => false))
@@ -34,7 +39,8 @@ class RegisterType extends AbstractType
             ->add('accept', 'checkbox', ['mapped' => false])
             ->add('iagree', 'checkbox', ['mapped' => false, 'required' => true])
             ->add('email' ,'email', array('required' => true))
-            ->add('locale' ,'text', array('required' => true))
+            ->add('locale' , ChoiceType::class, ['choices' => array_flip($localeOptions), 'required' => true])
+            ->add('country', CountryType::class, ['required' => true,  'preferred_choices' => $preferred_choices ])
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
                     'public' => 'public',
@@ -55,7 +61,7 @@ class RegisterType extends AbstractType
             )
         ;
 
-        if ($customer->getType() == 'partner') {
+        if ($customer->getType() == 'sponsor') {
             $builder
                 ->add('sponsor', null, ['required' => true, 'preferred_choices' => [33]])
             ;
@@ -87,7 +93,6 @@ class RegisterType extends AbstractType
         if ($customer->getType() == 'media') {
             
             $builder
-                ->add('country', CountryType::class, ['required' => true,  'preferred_choices' => $preferred_choices ])
                 ->add('address', null, ['required' => true])
                 ->add('postalCode', null, ['required' => true])
                 ->add('webUrl', null, ['required' => true])

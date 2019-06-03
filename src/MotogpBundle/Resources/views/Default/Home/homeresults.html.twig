@@ -33,7 +33,7 @@
             <table class="results">
                 {% set l = 1 %}
                 {% for s in teamScore %}
-                    {% if loop.index < 13 %}
+                    {% if loop.index < 13 and s.team is defined %}
                         <tr>
                             <td class="score-index">{{ l }}</td>
                             <td class="score-rider">{{ s.team.name | upper }} </td>
