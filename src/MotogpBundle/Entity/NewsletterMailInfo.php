@@ -10,7 +10,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * NewsletterMailInfo
  *
  * @ORM\Table(name="newsletter_mail_info")
- * @UniqueEntity("email")
  * @ORM\Entity(repositoryClass="MotogpBundle\Repository\NewsletterMailInfoRepository")
  */
 class NewsletterMailInfo
