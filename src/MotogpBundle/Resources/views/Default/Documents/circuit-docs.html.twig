@@ -41,8 +41,7 @@
                             {% if p.document.contentType == 'image/png' or p.document.contentType == 'image/jpg' or p.document.contentType == 'image/jpeg'%}
                                 {% set f ="fa-image" %}
                             {% endif %}
-
-                            <a target="_blank" download href="{%  path p.document, 'reference' %}">
+                            <a target="_blank" download="{{ p.document.name }}" href="{%  path p.document, 'reference' %}">
                                 <i class="fa {{ f }}"></i>&nbsp;
                                 {% spaceless %}
                                    {{ p.name }}

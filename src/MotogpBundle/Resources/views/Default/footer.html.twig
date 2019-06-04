@@ -9,7 +9,11 @@
             <li><a href="{{ url('privacy', {'modality' : modality.slug }) }}">{{ "privacy_policy" | trans }}</a></li>
             <li><a href="{{ url('cookies', {'modality' : modality.slug }) }}">{{ "cookies_policy" | trans }}</a></li>
             <li><a href="{{ url('public_contact', {'modality' : modality.slug }) }}">{{ "contact" | trans }}</a></li>
-            <li><a href="{{ url('fos_user_security_login') }}"><i class="fa fa-sign-in"></i></a></li>
+            {% if is_granted('ROLE_USER')%}
+                <li><a title="{{ "logout" | trans }}" href="/logout"><i class="fa fa-sign-out"></i></a></li>
+            {% else %}
+                <li><a href="{{ url('fos_user_security_login') }}"><i class="fa fa-sign-in"></i></a></li>
+            {% endif %}
         </ul>
     </div>
     <div class="footer-bottom">

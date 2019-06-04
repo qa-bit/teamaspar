@@ -65,3 +65,6 @@ r_seeyou: ¡Nos vemos en el circuito!
 r_yourusername: Su nombre de usuario
 r_yourpassword: Su contraseña
 r_confirmation_simple: Su solicitud de subscripción a nuestras newsletters ha sido aceptada.
+login: iniciar sesión
+already_has_account: ¿Ya tienes cuenta?
+The password fields must match.: Las contraseñas deben coincidir

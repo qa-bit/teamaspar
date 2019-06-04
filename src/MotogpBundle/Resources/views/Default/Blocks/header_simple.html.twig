@@ -127,6 +127,9 @@
 
                                 <li><a class="{{ route == 'partners' ? 'active' : '' }}"  href="{{ url('partners', {'modality': m.slug}) }}">Partners</a></li>
                                 <li><a class="{{ route == 'register' ? 'active' : '' }}"  href="{{ url('public_register', {'modality': m.slug}) }}">{{ "register" | trans }}</a></li>
+                                {% if is_granted('ROLE_USER')%}
+                                    <li><a title="{{ "logout" | trans }}" href="/logout"><i class="fa fa-sign-out"></i></a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </li>

@@ -564,13 +564,11 @@ $breakpoint-tablet: "769px";
 
 }
 
-
 @media screen and (max-width: 640px) and (orientation: portrait) {
   .col-xxs-12 {
     width : 100% !important;
   }
 }
-
 
 @media screen and (max-height: 1200px) {
 
@@ -578,4 +576,11 @@ $breakpoint-tablet: "769px";
     max-height: 34vw !important;
   }
 
+}
+
+@media screen and (max-width: 1023px) {
+  .body-block {
+    width: 100%;
+    width: 100vw;
+  }
 }

@@ -1,55 +1,152 @@
 <!DOCTYPE html>
-<html action="{% block action %} {% endblock %}" environment={{ app.environment }}>
+{% set currentRoute = app.request.get('_route') %}
+<html route="{{ currentRoute }}">
 <head>
+
+    {% set locale = (app.request.locale  ? app.request.locale : ( app.request.cookies.get('LC') ?  app.request.cookies.get('LC') : 'es' )) | lower %}
+    {% set params = {} %}
+
+    {%  for key, value in app.request.attributes.get('_route_params') %}
+        {% if key != '_locale' %}
+            {% set params = params | merge({(key) : (value)}) %}
+        {% endif %}
+    {% endfor %}
+
+    {% set esURL = url('index', {'locale': 'es'} | merge(params)) %}
+    {% set enURL = url('index', {'locale': 'en'} | merge(params)) %}
+
     <meta charset="UTF-8" />
-    <title>{% block title %}MOTOGP - LOGIN{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+
+    {% if app.environment == 'dev' or devmode %}
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    {% endif %}
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta charset="UTF-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="keywords"     content="{% block keywords %}{% endblock %}" />
+    <meta name="description"  content="{% block description %}{% endblock %}" />
+    <meta property="og:title" content="{% block ogtitle %}{% endblock %}" />
+    <meta property="og:image" content="{% block ogimage %}{% endblock %}" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115754752-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-115754752-1');
+    </script>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/font-awesome/css/font-awesome.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/swiper/dist/css/swiper.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/css/jquery.fancybox.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/fancybox/dist/helpers/css/jquery.fancybox-thumbs.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/fonts/fontfaces.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/lazyyt.css') }}" />
+    {% endblock %}
+
+    {% stylesheets filter="scssphp" output="bundles/motogp/css/app-v11.css"
+    "bundles/motogp/scss/_variables.scss"
+    "bundles/motogp/scss/main.scss"
+    %}
+
+    {% if app.environment == 'dev' %}
+        <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('d-m-y-h-m-i-s') }}" />
+    {% else %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endif %}
+
+    {% endstylesheets %}
+
+    {% block meta %}
+    {% endblock %}
 </head>
-<style>
-    .tcenter {
-        display:table;margin:auto;float:none
-    }
-</style>
-<body>
-{% block header %}
+<body {% block body_attrs %}{% endblock %}>
+<div class="header-block">
+    {% block header %}
+        {#{% include "MotogpBundle:Default:Blocks/header_simple.html.twig" %}#}
+    {% endblock  %}
 
-{% endblock  %}
-{% block body %}
-    <br><br>
-    <div class="col-md-5 well tcenter form-group" style="">
-        <img class="tcenter" src="{{ asset('/bundles/motogp/img/logo.png')}}" />
-        <form class="form-group dtable" action="{{ path("fos_user_security_check") }}" method="post">
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% block afterheader %}
+    {% endblock %}
+</div>
+<div class="body-block">
+    {% block body %}
+        <div class="relative">
 
-            <div class="form-group col-md-12">
-                <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-                <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-            </div>
+            <div
+                    class="col-xs-12 absolute"
+                    style="background-size:cover;background-repeat:no-repeat;height:100vh;background-position: center center !important; background: url('{{ asset('/bundles/motogp/img/index_qatar.jpg') }}');"
+            >
+                <br><br>
+                <div class="col-md-5 login-form tcenter form-group golden-text" style="">
+                    <div class="col-xs-12">
+                        <a class="col-xs-6" href="{{ url('index') }}">
+                            <img  class="img img-responsive pull-left" src="{{ asset('/bundles/motogp/img/branding.png')}}?v=2" alt="" />
+                        </a>
+                        <a  class="col-xs-6 header-sponsor" href="{{ url('index') }}">
+                            <img  class="img img-responsive pull-left" src="{{ asset('/bundles/motogp/img/sama.png')}}?v=6" alt="" />
+                        </a>
+                    </div>
+                    <br><br><br>
+                    <form class="form-group dtable" action="{{ path("fos_user_security_check") }}" method="post">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                        <div class="form-group col-md-12">
+                            <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                        </div>
 
 
-            <div class="form-group col-md-12">
-                <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-                <input class="form-control" type="password" id="password" name="_password" required="required" />
-            </div>
+                        <div class="form-group col-md-12">
+                            <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                            <input class="form-control" type="password" id="password" name="_password" required="required" />
+                        </div>
 
-            <div class="form group col-md-12">
-                <input class="btn btn-info" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
-                <div class="pull-right" style="padding-top:.33em;">
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                    <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+                        <div class="form group col-md-12">
+                            <input class="btn btn-info col-xs-12" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+                            <div class="pull-right" style="padding-top:.33em;">
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="_target_path" value="{{ url('redirect_user.es') }}" />
+                    </form>
+
+                    {% if error %}
+                        <div class="alert alert-danger dtable col-md-12">
+                            Nombre de usuario o contraseña incorrectos.
+                        </div>
+                    {% endif %}
                 </div>
             </div>
-            <input type="hidden" name="_target_path" value="{{ url('redirect_user.es') }}" />
-        </form>
-
-        {% if error %}
-            <div class="alert alert-danger dtable col-md-12">
-                Nombre de usuario o contraseña incorrectos.
-            </div>
-        {% endif %}
-    </div>
-{% endblock %}
+        </div>
+        {#{% include "MotogpBundle:Default:footer.html.twig" with {'modality' : team.riders[0].modality }%}#}
+    {% endblock %}
+</div>
+<style>
+    body {
+        opacity : 1;
+    }
+</style>
 </body>
-{% block javascripts %}{% endblock %}
-</html>

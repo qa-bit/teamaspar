@@ -60,6 +60,9 @@
                 {% if is_granted('ROLE_PUBLIC_DOCUMENTS') or is_granted('ROLE_PUBLIC_DOCUMENTS_ALL')%}
                  <li><a class="{{ route == 'doc_by_year' ? 'active' : '' }}"   href="{{ url('docs_by_year', {'modality': modality.slug, 'year' : ("now" | date('Y'))}) }}"><i class="fa fa-file-pdf-o"></i></a></li>
                 {% endif %}
+                {% if is_granted('ROLE_USER')%}
+                    <li><a title="{{ "logout" | trans }}" href="/logout"><i class="fa fa-sign-out"></i></a></li>
+                {% endif %}
             </ul>
             {% include blocksPath ~ 'navbar-mobile.html.twig' %}
         </div>

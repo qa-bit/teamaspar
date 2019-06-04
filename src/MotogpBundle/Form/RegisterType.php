@@ -34,7 +34,7 @@ class RegisterType extends AbstractType
 
         $builder
             ->add('name' ,'text', array('required' => true))
-            ->add('surname' ,'text', array('required' => false))
+            ->add('surname' ,'text', array('required' => true))
             ->add('mediaType' ,'text', array('required' => false))
             ->add('accept', 'checkbox', ['mapped' => false])
             ->add('iagree', 'checkbox', ['mapped' => false, 'required' => true])
