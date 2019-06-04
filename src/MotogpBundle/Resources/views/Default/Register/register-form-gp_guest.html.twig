@@ -1,4 +1,9 @@
 {% trans_default_domain 'register' %}
+<div class="col-xs-12">
+    <h4>
+        {{ "already_has_account" | trans }} <a class="golden-text" href="{{ url('fos_user_security_login') }}">&nbsp;&nbsp;<i class="fa fa-sign-in"></i>&nbsp;{{ "login" | trans }}</a>
+    </h4>
+</div>
 <div class="tab-content">
     {{ form_start(form) }}
     <div class="col-xs-12 col-md-12">

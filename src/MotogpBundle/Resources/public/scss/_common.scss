@@ -113,6 +113,15 @@ body {
   color : $menu-golden;
 }
 
+a.golden-text {
+  &:hover {
+    text-decoration: none;;
+    font-weight: bolder;
+    transition : all .33s;
+    color: $menu-golden;
+  }
+}
+
 .btn-info {
   background : $menu-golden;
   transition : background .33s;
@@ -247,10 +256,12 @@ input[type="checkbox"] {
   border-radius: 0;
   box-shadow: 0 0 1em #1d1a1e;
   padding: 2em;
-  background: rgba(0,0,0, 0.6);
+  background: rgba(0,0,0, 0.75);
   margin : 4em auto;
+  max-width: 30em;
 
   .btn {
+    margin-top: 2em;
     color : black;
     font-weight: bold;
     border : none;

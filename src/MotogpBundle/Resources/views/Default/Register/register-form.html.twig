@@ -29,11 +29,6 @@
                 <div class="w100">
                     <br><br>
                     <div class="col-xs-12 col-md-11 tcenter section text-center">
-                        <div class="col-xs-12">
-                            <h4>
-                                {{ "already_has_account" | trans }} <a class="golden-text" href="{{ url('fos_user_security_login') }}">&nbsp;&nbsp;<i class="fa fa-sign-in"></i>&nbsp;{{ "login" | trans }}</a>
-                            </h4>
-                        </div>
                         {% include "MotogpBundle:Default:Register/register-form-" ~ mode ~ ".html.twig" %}
                     </div>
                 </div>
