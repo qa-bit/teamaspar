@@ -230,3 +230,13 @@ input[type="checkbox"] {
 .white-text {
   color : #fdfdfd;
 }
+
+.select-link {
+  width : auto !important;
+  background: rgba(0, 0, 0, 0.66);
+  color : $menu-golden;
+  border : 1px solid $menu-golden;
+  display : table;
+  margin : auto;
+  margin-bottom : 4em;
+}

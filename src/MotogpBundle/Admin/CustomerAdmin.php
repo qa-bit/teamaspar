@@ -153,6 +153,7 @@ class CustomerAdmin extends AbstractAdmin
         if (!$object->getAdminConfirmedTest()) {
 
             if ($object->getAdminConfirmed()) {
+
                 $this->ns->sendConfirmEMail($object);
                 $object->setAdminConfirmedTest(true);
 
@@ -161,6 +162,7 @@ class CustomerAdmin extends AbstractAdmin
                     $object->getUser()->setPlainPassword($object->getUser()->getPass());
                     $this->passwordUpdater->hashPassword($object->getUser());
                 }
+
             }
 
         }

@@ -5,6 +5,20 @@
     {#{% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}#}
     <div class="smoke-background">
         <div class="standard-background">
+
+
+            <div class="col-xs-12 text-center form-group">
+                <select id="modality_doc_selector" class="select-link form-control">
+                    {% for m in modalities %}
+                        <option value="{{ url('docs_by_year', {'modality' : m.slug, 'year' : ("now" | date('Y'))}) }}" {% if modality.slug == m.slug%}selected{% endif %} >
+                            {{ m.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+            </div>
+
+
             <div class="circuit-galleries">
                 {% set cpost = [] %}
 
@@ -25,8 +39,6 @@
                     {% endfor %}
 
                 {% endif %}
-
-
                 {% for cb in cpost | batch(3, '') %}
                     <div class="row col-xs-12">
                         {% for c in cb %}
@@ -36,6 +48,13 @@
                         {% endfor %}
                     </div>
                 {% endfor %}
+                {% if cpost | length  < 1%}
+                    <div class="col-xs-12 text-center">
+                        <h4 class="text-center w100 golden-text" style="padding: 4em">
+                            {{ "no_documents" | trans }}
+                        </h4>
+                    </div>
+                {% endif %}
             </div>
             <br><br>
             <div class="text-center">

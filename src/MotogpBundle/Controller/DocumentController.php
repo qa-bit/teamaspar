@@ -65,7 +65,7 @@ class DocumentController extends PublicController
     public function documentsByYearAction(Request $request)
     {
 
-        if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_PUBLIC_DOCUMENTS')) {
+        if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_PUBLIC_DOCUMENTS') && !$this->isGranted('ROLE_PUBLIC_DOCUMENTS_ALL')) {
             return $this->redirect('/login');
         }
 
@@ -76,6 +76,8 @@ class DocumentController extends PublicController
         $year = $request->get('year');
         $modality = $this->getModality($modalitySlug);
 
+        $modalities = $em->getRepository(Modality::class)->findBy(['active' => true]);
+        
 
         if (!$modality)
             return $this->redirectToRoute('index');
@@ -96,7 +98,8 @@ class DocumentController extends PublicController
                 'modality' => $modality,
                 'sponsors' => $sponsors,
                 'team' => $this->getMainTeam(),
-                'year' => $year
+                'year' => $year,
+                'modalities' => $modalities
             ]
         );
 

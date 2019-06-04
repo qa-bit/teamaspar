@@ -247,6 +247,14 @@ $(document).ready(function () {
 
 
         },
+        selectLinks : function () {
+            $('body').on('change', '.select-link', function () {
+                var href = $(this).val();
+                if (href) {
+                    window.location = href;
+                }
+            });
+        },
         menus : function () {
             $('.dropdown-submenu a').on('click', function (e) {
 
@@ -330,6 +338,7 @@ $(document).ready(function () {
             this.newsletters();
             this.socialMedia();
             this.menus();
+            this.selectLinks();
 
 
             $(window).delay(200).queue(function (next) {

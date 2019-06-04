@@ -48,9 +48,14 @@ class PublicController extends Controller
                 $customer = $user = $this->getUser()->getCustomer();
                 return $this->redirectToRoute('docs_by_year', ['modality' => $customer->getModality()->getSlug(), 'year' => (new \DateTime())->format('Y')]);
             }
-            
 
+            else if ($this->isGranted('ROLE_PUBLIC_DOCUMENTS_ALL')) {
+                return $this->redirectToRoute('docs_by_year', ['modality' => 'moto-3', 'year' => (new \DateTime())->format('Y')]);
+
+            }
         }
+
+        return $this->redirectToRoute('index');
 
     }
 

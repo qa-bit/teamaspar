@@ -56,6 +56,10 @@
                 <li><a class="{{ route == 'team_staff' ? 'active' : '' }}" href="{{ url('team_staff', {'modality': modality.slug}) }}">Team-staff</a></li>
                 <li><a class="{{ route == 'partners' ? 'active' : '' }}"   href="{{ url('partners', {'modality': modality.slug}) }}">Partners</a></li>
                 <li><a class="{{ route == 'register' ? 'active' : '' }}"   href="{{ url('public_register', {'modality': modality.slug}) }}">{{ "register" | trans }}</a></li>
+
+                {% if is_granted('ROLE_PUBLIC_DOCUMENTS') or is_granted('ROLE_PUBLIC_DOCUMENTS_ALL')%}
+                 <li><a class="{{ route == 'doc_by_year' ? 'active' : '' }}"   href="{{ url('docs_by_year', {'modality': modality.slug, 'year' : ("now" | date('Y'))}) }}"><i class="fa fa-file-pdf-o"></i></a></li>
+                {% endif %}
             </ul>
             {% include blocksPath ~ 'navbar-mobile.html.twig' %}
         </div>
