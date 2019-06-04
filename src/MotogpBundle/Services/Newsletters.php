@@ -82,7 +82,7 @@ class Newsletters
                     $recipients[$c->getEmail()] = $c->getName();
             }
         }
-
+        
         return $recipients;
 
     }
