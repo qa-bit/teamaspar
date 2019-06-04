@@ -289,10 +289,18 @@ class NewslettersController extends Controller
                 UrlGeneratorInterface::ABSOLUTE_URL
             );
 
+            $password = null ;
+
+            try {
+                $password = $form->get('password');
+                } catch (\Exception $e) {
+
+            }
+
             $data = array(
                 'name' => $customer->getName(),
                 'url' => $url . '?cc=' . $hash,
-                'password' => $form->get('password')
+                'password' => $password
             );
 
 

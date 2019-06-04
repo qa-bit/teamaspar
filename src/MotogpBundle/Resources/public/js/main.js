@@ -219,20 +219,20 @@ $(document).ready(function () {
 
                 var val = obj.val();
 
-                if (val == 'public') {
-                    $('#motogpbundle_register_surname').parent().show();
-                    $('#motogpbundle_register_mediaType').parent().hide();
-                }
-
-                if (val == 'media') {
-                    $('#motogpbundle_register_surname').parent().hide();
-                    $('#motogpbundle_register_mediaType').parent().show();
-                }
-
-                if (val == 'sponsor') {
-                    $('#motogpbundle_register_surname').parent().hide();
-                    $('#motogpbundle_register_mediaType').parent().hide();
-                }
+                // if (val == 'public') {
+                //     $('#motogpbundle_register_surname').parent().show();
+                //     $('#motogpbundle_register_mediaType').parent().hide();
+                // }
+                //
+                // if (val == 'media') {
+                //     $('#motogpbundle_register_surname').parent().hide();
+                //     $('#motogpbundle_register_mediaType').parent().show();
+                // }
+                //
+                // if (val == 'sponsor') {
+                //     $('#motogpbundle_register_surname').parent().hide();
+                //     $('#motogpbundle_register_mediaType').parent().hide();
+                // }
             }
 
 
