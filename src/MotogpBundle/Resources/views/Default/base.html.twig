@@ -77,9 +77,9 @@
         "bundles/motogp/scss/mainmoto-e.scss"
         %}
         {% if app.environment == 'dev' %}
-            <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('d-m-y-h-m-i-s') }}" />
+            <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('dmyhmis') }}" />
         {% else %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
+            <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('dmyhmis') }}" />
         {% endif %}
         {% endstylesheets %}
 
@@ -90,9 +90,10 @@
         "bundles/motogp/scss/main.scss"
         %}
         {% if app.environment == 'dev' %}
-            <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('d-m-y-h-m-i-s') }}" />
+            <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('dmyhmis') }}" />
         {% else %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
+            <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('dmyhmis') }}" />
+
         {% endif %}
         {% endstylesheets %}
 
