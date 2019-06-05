@@ -1,0 +1,100 @@
+@import "variables_moto-e";
+@import "common";
+@import "sliders";
+@import "header";
+@import "homeblock";
+@import "circuitgalleries";
+@import "videogallery";
+@import "footer";
+@import "motos";
+@import "riders";
+@import "staff";
+@import "blog";
+@import "mediaqueries";
+@import "bootstrapXL";
+@import "register";
+
+.homeblock, .smoke-background {
+  background: white !important;
+}
+
+.navbar-nav li a {
+  color : white !important;
+  &:hover {
+    color : $menu-golden !important;
+  }
+}
+
+.homeblock .homeposts .homepost:nth-child(1) .homepost-content, .homeblock .homeposts .homepost  .homepost-content {
+  background : $menu-black !important;
+}
+
+.homeposts h4, .post-content {
+  color : white !important;
+}
+
+.circuit-galleries .circuit-gallery .circuit-gallery-description {
+  background: $menu-black !important;
+}
+
+.circuit-galleries .circuit-gallery-description h3 {
+  color: white !important;
+}
+
+.homeblock .homeposts .homepost:nth-child(1) .sep, .homeblock .homeposts .homepost:nth-child(3) .sep {
+  border-color: $menu-golden !important;
+}
+
+.homeblock .homeresults .homeresult > div {
+  border: 1px solid transparent;
+  box-shadow: 0 0 16px black;
+  background-position: 0 40% !important;
+  height: 18em;
+  background: white !important;
+
+  border-top : 4px solid $menu-black;
+
+  .sep {
+    display : none;
+  }
+
+  .title {
+    color : $menu-black;
+  }
+}
+
+.circuit-gallery {
+  padding: 0 !important;
+  margin: .33em;
+  box-shadow: 0 0 1em;
+  min-height: 26em;
+}
+
+.slider-caption {
+  color : $menu-golden !important;
+}
+
+.slider-caption h2 a, .slider-caption label a {
+  color : $menu-golden !important;
+}
+
+
+.home-riders .home-rider-info .surname {
+  color : $menu-golden
+}
+
+.home-riders .home-rider-info-left {
+  background: linear-gradient(to right, rgba(94, 72, 35, 0) 0%, rgba(94, 72, 35, 0.01) 1%, rgb(0, 43, 69) 100%);
+}
+
+.social-rider .link {
+  filter: saturate(0) !important;
+}
+
+.score-circuit {
+  color : $menu-black !important;
+}
+
+.home-riders .circle {
+  display: none !important;
+}

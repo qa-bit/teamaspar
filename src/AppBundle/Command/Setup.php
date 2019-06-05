@@ -42,9 +42,9 @@ class Setup extends ContainerAwareCommand
         $modalities = [
             'Moto GP',
             'Moto 3',
-            'FIM-JR'
+            'FIM-JR',
+            'Moto E'
         ];
-
 
         $customerTypes = [
             ['slug' => 'public', 'name' => 'Público'],
@@ -52,7 +52,7 @@ class Setup extends ContainerAwareCommand
             ['slug' => 'media', 'name' => 'Medio'],
         ];
 
-        $slugs = ['moto-2', 'moto-3', 'fim-jr'];
+        $slugs = ['moto-2', 'moto-3', 'fim-jr', 'moto-e'];
 
         $galleries =  ['inicio', 'contacto', 'noticias', 'videos', 'imagenes', 'motos', 'staff', 'sponsor', 'riders', 'register'];
 
@@ -98,6 +98,8 @@ class Setup extends ContainerAwareCommand
             foreach ($modalities as $m) {
                 $mod = $em->getRepository(Modality::class)->findOneByName($m);
 
+                dump($m);
+
                 $name = $g.' - '.$mod->getName();
 
                 $old = $em->getRepository(Gallery::class)->findOneByName($name);
@@ -124,9 +126,7 @@ class Setup extends ContainerAwareCommand
             $mt->setName('Ángel Nieto Team');
             $mt->setNameEN('Ángel Nieto Team');
             $mt->setMain(true);
-
             $em->persist($mt);
-
             $em->flush();
 
         }

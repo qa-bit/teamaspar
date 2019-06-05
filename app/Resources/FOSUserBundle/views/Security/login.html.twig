@@ -134,8 +134,10 @@
                     </form>
 
                     {% if error %}
-                        <div class="alert alert-danger dtable col-md-12">
-                            Nombre de usuario o contraseña incorrectos.
+                        <div class="col-xs-12">
+                            <p style="color:white" class="text-center">
+                                <b><i class="fa fa-warning"></i>&nbsp;{{ error.message | trans }}</b>
+                            </p>
                         </div>
                     {% endif %}
                 </div>

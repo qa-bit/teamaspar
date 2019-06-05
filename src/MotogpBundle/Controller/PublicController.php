@@ -211,10 +211,11 @@ class PublicController extends Controller
         $missings = [];
         $teamRiders = 0;
         $count = 0;
+        $iters = 0;
         
         if (!count($data)) return [];
 
-        while($teamRiders < $ridersInTeamCount || $count > 10) {
+        while($iters < 1024 && ($teamRiders < $ridersInTeamCount || $count > 10)) {
             if (count($data) > $MAX_SCORES) {
                 $reverse = array_reverse($data);
 
@@ -236,9 +237,11 @@ class PublicController extends Controller
                     }
                 }
             }
-
             $count++;
+            $iters++;
         }
+
+        
 
 
         return $data;

@@ -65,18 +65,38 @@
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/css/lazyyt.css') }}" />
     {% endblock %}
 
-    {% stylesheets filter="scssphp" output="bundles/motogp/css/app-v11.css"
-    "bundles/motogp/scss/_variables.scss"
-    "bundles/motogp/scss/main.scss"
-    %}
 
-    {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('d-m-y-h-m-i-s') }}" />
+    {% set modalityPrefix = (modality is defined ? modality.slug : null) %}
+    {% set assetPrefix = modalityPrefix == 'moto-e' ? (modalityPrefix ~ '/') : null %}
+
+
+    {% if modalityPrefix == 'moto-e' %}
+        {%
+        stylesheets filter="scssphp"
+        output="bundles/motogp/css/app-v11.css"
+        "bundles/motogp/scss/mainmoto-e.scss"
+        %}
+        {% if app.environment == 'dev' %}
+            <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('d-m-y-h-m-i-s') }}" />
+        {% else %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endif %}
+        {% endstylesheets %}
+
     {% else %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endif %}
+        {%
+        stylesheets filter="scssphp"
+        output="bundles/motogp/css/app-v11.css"
+        "bundles/motogp/scss/main.scss"
+        %}
+        {% if app.environment == 'dev' %}
+            <link rel="stylesheet" href="{{ asset_url }}?v={{ 'now' | date('d-m-y-h-m-i-s') }}" />
+        {% else %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endif %}
+        {% endstylesheets %}
 
-    {% endstylesheets %}
+    {% endif %}
 
     {% block meta %}
     {% endblock %}
