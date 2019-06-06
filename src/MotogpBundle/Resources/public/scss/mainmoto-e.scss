@@ -47,10 +47,11 @@
 
 .homeblock .homeresults .homeresult > div {
   border: 1px solid transparent;
-  box-shadow: 0 0 16px black;
+  box-shadow: $box-shadow;
   background-position: 0 40% !important;
   height: 18em;
   background: white !important;
+  font-weight: bolder;
 
   border-top : 4px solid $menu-black;
 
@@ -66,7 +67,7 @@
 .circuit-gallery {
   padding: 0 !important;
   margin: .33em;
-  box-shadow: 0 0 1em;
+  box-shadow: $box-shadow;
   min-height: 26em;
 }
 
