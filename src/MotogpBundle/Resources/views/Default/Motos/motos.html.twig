@@ -1,5 +1,5 @@
 {% extends "MotogpBundle:Default:base.html.twig" %}
-{% set mdata = {'moto-2' : 'KTM MOTO2', 'moto-3' : 'KTM RC250GP', 'fim-jr' : ''} %}
+{% set mdata = {'moto-2' : 'KTM MOTO2', 'moto-3' : 'KTM RC250GP', 'fim-jr' : '', 'moto-e' : 'EGO CORSA'} %}
 {% block title %}{{ "owner" | trans }} - {{ modality.slug | capitalize }} - {{ 'motos' | trans  }}{% endblock %}
 {% block body %}
     {{ parent() }}
@@ -42,10 +42,7 @@
     </div>
 
     {% include 'MotogpBundle:Default:Motos/motos-gallery.html.twig' with {'gallery' : gallery} %}
-    <div class="text-center">
-        <img src="{{ asset('/bundles/motogp/img/assets/up.png') }}" alt="" class="up-arrow">
-        <br/><br/>
-    </div>
+
 
     <style>
         .lleft {

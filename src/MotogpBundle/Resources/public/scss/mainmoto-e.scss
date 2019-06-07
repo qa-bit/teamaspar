@@ -16,6 +16,56 @@
 
 html[modality="moto-e"] {
 
+  .register-nav {
+    background : $menu-black;
+    li a {
+      color : white !important;
+    }
+  }
+
+  .register-wrapper h4 {
+    color : $menu-black;
+  }
+
+  .modality-list img:hover {
+    transition : all .33s;
+    opacity : 0.6;
+  }
+
+
+  .select-link {
+    background: white;
+  }
+
+  .register-wrapper {
+    .btn { color: white; }
+  }
+
+  .rider-wrapper {
+    background: white;
+    color: $menu-black;
+  }
+
+  .staff-tabs .rider-name {
+    color : $menu-black;
+  }
+
+  .rider-description  {
+    color : $menu-blue;
+    h2 {
+      b {color : $menu-black !important;}
+    }
+  }
+
+  .staff-tabs .golden-text {
+    color : $menu-blue;
+  }
+
+  .rider-biografy h3, .rider-description span.title {
+    color : $menu-black;
+  }
+
+
   .homeblock, .smoke-background {
     background: white !important;
   }
@@ -37,7 +87,7 @@ html[modality="moto-e"] {
     background: $menu-black !important;
   }
 
- .post-content {
+  .post-content {
     color: white !important;
   }
 
@@ -107,8 +157,27 @@ html[modality="moto-e"] {
     color: $menu-black !important;
   }
 
+  .score-index {
+    color: $menu-black !important;
+  }
+
   .sponsors-block-wrapper {
     background: white !important;
+  }
+
+
+  .moto-description h5 {
+    color : $menu-golden;
+
+    &.golden-text {
+      font-weight: bolder;
+      color : $menu-golden;
+      text-transform: uppercase;
+    }
+  }
+
+  .moto-description p {
+    color : $menu-black;
   }
 
 }

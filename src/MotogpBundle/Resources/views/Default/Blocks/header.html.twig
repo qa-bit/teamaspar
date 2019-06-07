@@ -9,6 +9,10 @@
     {% set motoname = 'ktm '%}
 {% endif %}
 
+{% if modality.slug == 'moto-e' %}
+    {% set motoname = 'energica' %}
+{% endif %}
+
 {% set blocksPath = 'MotogpBundle:Default:Blocks/' %}
 
 <nav id="header" class="navbar navbar-default">
@@ -35,6 +39,8 @@
                 <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-2'}) }}"><img  {% if modality.slug == 'moto-2' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/motogp.png?v=10')}}" alt="" /></a></li>
                 <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}"><img {% if modality.slug == 'moto-3' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/moto3.png?v=10')}}" alt="" /></a></li>
                 <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}"><img fimjr {% if modality.slug == 'fim-jr' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/fim_jr.png?v=10')}}" alt="" /></a></li>
+                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-e'}) }}"><img fimjr {% if modality.slug == 'moto-e' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/motoe.png?v=10')}}" alt="" /></a></li>
+
             </ul>
             <ul class="nav navbar-nav only-desktop">
                 {% include blocksPath ~ 'header_posts.html.twig' %}
