@@ -14,88 +14,97 @@
 @import "bootstrapXL";
 @import "register";
 
-.homeblock, .smoke-background {
-  background: white !important;
-}
+html[modality="moto-e"] {
 
-.navbar-nav li a {
-  color : white !important;
-  &:hover {
+  .homeblock, .smoke-background {
+    background: white !important;
+  }
+
+  .navbar-nav li a {
+    color: white !important;
+    &:hover {
+      color: $menu-golden !important;
+    }
+    border-right: none !important;
+
+  }
+
+  .dropdown-menu a.dropdown-item {
     color : $menu-golden !important;
   }
-}
 
-.homeblock .homeposts .homepost:nth-child(1) .homepost-content, .homeblock .homeposts .homepost  .homepost-content {
-  background : $menu-black !important;
-}
-
-.homeposts h4, .post-content {
-  color : white !important;
-}
-
-.circuit-galleries .circuit-gallery .circuit-gallery-description {
-  background: $menu-black !important;
-}
-
-.circuit-galleries .circuit-gallery-description h3 {
-  color: white !important;
-}
-
-.homeblock .homeposts .homepost:nth-child(1) .sep, .homeblock .homeposts .homepost:nth-child(3) .sep {
-  border-color: $menu-golden !important;
-}
-
-.homeblock .homeresults .homeresult > div {
-  border: 1px solid transparent;
-  box-shadow: $box-shadow;
-  background-position: 0 40% !important;
-  height: 18em;
-  background: white !important;
-  font-weight: bolder;
-
-  border-top : 4px solid $menu-black;
-
-  .sep {
-    display : none;
+  .homeblock .homeposts .homepost:nth-child(1) .homepost-content, .homeblock .homeposts .homepost .homepost-content {
+    background: $menu-black !important;
   }
 
-  .title {
-    color : $menu-black;
+ .post-content {
+    color: white !important;
   }
-}
 
-.circuit-gallery {
-  padding: 0 !important;
-  margin: .33em;
-  box-shadow: $box-shadow;
-  min-height: 26em;
-}
+  .homeposts h4 {
+    color : $menu-golden !important;
+  }
 
-.slider-caption {
-  color : $menu-golden !important;
-}
+  .circuit-galleries .circuit-gallery .circuit-gallery-description {
+    background: $menu-black !important;
+  }
 
-.slider-caption h2 a, .slider-caption label a {
-  color : $menu-golden !important;
-}
+  .circuit-galleries .circuit-gallery-description h3 {
+    color: white !important;
+  }
 
+  .homeblock .homeposts .homepost:nth-child(1) .sep, .homeblock .homeposts .homepost:nth-child(3) .sep {
+    border-color: $menu-golden !important;
+  }
 
-.home-riders .home-rider-info .surname {
-  color : $menu-golden
-}
+  .homeblock .homeresults .homeresult > div {
+    border: 1px solid transparent;
+    box-shadow: $box-shadow;
+    background-position: 0 40% !important;
+    height: 18em;
+    background: white !important;
+    font-weight: bolder;
 
-.home-riders .home-rider-info-left {
-  background: linear-gradient(to right, rgba(94, 72, 35, 0) 0%, rgba(94, 72, 35, 0.01) 1%, rgb(0, 43, 69) 100%);
-}
+    border-top: 4px solid $menu-black;
 
-.social-rider .link {
-  filter: saturate(0) !important;
-}
+    .sep {
+      display: none;
+    }
 
-.score-circuit {
-  color : $menu-black !important;
-}
+    .title {
+      color: $menu-black;
+    }
+  }
 
-.home-riders .circle {
-  display: none !important;
+  .circuit-gallery {
+    padding: 0 !important;
+    margin: .33em;
+    box-shadow: $box-shadow;
+    min-height: 26em;
+  }
+
+  .home-riders .home-rider-info .surname {
+    color: $menu-golden
+  }
+
+  .home-riders .home-rider-info-left {
+    background: linear-gradient(to right, rgba(94, 72, 35, 0) 0%, rgba(94, 72, 35, 0.01) 1%, rgb(0, 43, 69) 100%);
+  }
+
+  .social-rider .link {
+    filter: saturate(0) !important;
+  }
+
+  .score-circuit {
+    color: $menu-black !important;
+  }
+
+  .home-riders .circle {
+    display: none !important;
+  }
+
+  .score-score {
+    color: $menu-black !important;
+  }
+
 }

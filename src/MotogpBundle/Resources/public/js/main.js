@@ -71,6 +71,10 @@ $(document).ready(function () {
         swiper : function () {
             window.swipers = {};
 
+
+            var modalitySlug = $('html').attr('modality');
+
+
             $('.swiper-container').each(function () {
                 var numsliders = $(this).find('.swiper-slide').length;
 
@@ -80,6 +84,11 @@ $(document).ready(function () {
 
                 var prevPage = $('<div><img src="/bundles/motogp/img/assets/prev.png" /></div>');
                 var nextPage = $('<div><img src="/bundles/motogp/img/assets/next.png" /></div>');
+
+                if (modalitySlug == 'moto-e') {
+                    var prevPage = $('<div><img src="/bundles/motogp/img/moto-e/assets/prev.png" /></div>');
+                    var nextPage = $('<div><img src="/bundles/motogp/img/moto-e/assets/next.png" /></div>');
+                }
 
                 prevPage.attr('id', paginationId + '-left').addClass('page-lr page-l');
                 nextPage.attr('id', paginationId + '-right').addClass('page-lr page-r');
