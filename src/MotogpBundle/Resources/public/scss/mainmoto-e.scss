@@ -70,7 +70,7 @@ html[modality="moto-e"] {
     background: white !important;
   }
 
-  .navbar-nav li a {
+  .navbar-nav .only-desktop li a {
     color: white !important;
     &:hover {
       color: $menu-golden !important;
