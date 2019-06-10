@@ -38,6 +38,10 @@ motos:
     locales: { "es": "/es/{modality}/motos", "en": "/en/{modality}/motos" }
     defaults: { _controller: MotogpBundle:Public:motos }
 
+modality_info:
+    locales: { "es": "/es/info/{modality}", "en": "/en/info/{modality}" }
+    defaults: { _controller: MotogpBundle:Public:modalityInfo }
+
 riders:
     locales: { "es": "/es/{modality}/piloto/{slug}", "en": "/en/{modality}/rider/{slug}" }
     defaults: { _controller: MotogpBundle:Public:riders }
@@ -94,7 +98,6 @@ public_register_gpguest:
     locales: { "en": "/en/{modality}/register/gpguest", "es": "/es/{modality}/registro/gpguest" }
     defaults: { _controller: MotogpBundle:Newsletters:registerForm}
 
-
 public_contact_success:
     locales: { "en": "/en/{modality}/contact/success", "es": "/es/{modality}/contacto/enviado" }
     defaults: { _controller: MotogpBundle:Contact:contactFormSuccess}
@@ -127,9 +130,6 @@ newsletters_unsubscribe_confirmation:
     locales: { "en": "/en/{modality}/unsubscribe-confirm", "es": "/es/{modality}/confirmacion-baja-newsletters" }
     defaults: { _controller: MotogpBundle:Newsletters:confirmUnsubscription }
 
-
 newsletters_logo:
     locales: { "en": "/newsletters_logo", "es": "/newsletters_logo" }
     defaults: { _controller: MotogpBundle:Newsletters:renderStatsImage}
-
-

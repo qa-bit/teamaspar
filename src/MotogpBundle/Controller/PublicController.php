@@ -338,7 +338,7 @@ class PublicController extends Controller
 
         $sponsors = [1 => [], 2 => [], 3 => []];
 
-        for ($i = 3; $i>0; $i--){
+        for ($i = 3; $i > 0; $i--){
             $colorSponsors = $em->getRepository(Sponsor::class)->getColorByModalityAndLevel($modality, $i);
             $bnSponsors = $em->getRepository(Sponsor::class)->getBNByModalityAndLevel($modality, $i);
             $sponsors[$i]['color'] = $colorSponsors;
@@ -527,6 +527,43 @@ class PublicController extends Controller
                 'riders' => $homeRiders,
                 'sponsors' => $sponsors,
                 'modality' => $modality,
+                'team' => $this->getMainTeam()
+            ]
+        );
+
+
+    }
+
+
+    /**
+     * @Route("/modality-info")
+     */
+    public function modalityInfoAction(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $modalitySlug = $request->get('modality');
+
+
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality)
+            return $this->redirectToRoute('index');
+
+        $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('info_'.str_replace('-', '_',  $modalitySlug));
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+        $sponsors = $this->getSponsors($modality);
+
+
+        return $this->render(
+            'MotogpBundle:Default:Motos/modality-info.html.twig',
+            [
+                'gallery' => $gallery,
+                'riders' => $homeRiders,
+                'modality' => $modality,
+                'sponsors' => $sponsors,
                 'team' => $this->getMainTeam()
             ]
         );

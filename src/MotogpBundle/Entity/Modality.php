@@ -89,6 +89,26 @@ class Modality
      */
     private $showResults;
 
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $infoEn;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $infoEs;
+
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showInfo;
+
     /**
      * @return string
      */
@@ -265,6 +285,53 @@ class Modality
     {
         $this->podiums = $podiums;
     }
-    
 
+    /**
+     * @return boolean
+     */
+    public function isShowInfo()
+    {
+        return $this->showInfo;
+    }
+
+    /**
+     * @param boolean $showInfo
+     */
+    public function setShowInfo($showInfo)
+    {
+        $this->showInfo = $showInfo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInfoEn()
+    {
+        return $this->infoEn;
+    }
+
+    /**
+     * @param string $infoEn
+     */
+    public function setInfoEn($infoEn)
+    {
+        $this->infoEn = $infoEn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInfoEs()
+    {
+        return $this->infoEs;
+    }
+
+    /**
+     * @param string $infoEs
+     */
+    public function setInfoEs($infoEs)
+    {
+        $this->infoEs = $infoEs;
+    }
+    
 }

@@ -35,7 +35,7 @@
     {% include 'MotogpBundle:Default:footer.html.twig' %}
     <div class="relative">
         <div class="moto-bg moto-bg-footer">
-            <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral_sama.png') }}" style="position:absolute!important"/>
+            <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral_' ~ modality.slug ~ '.png') }}" style="position:absolute!important"/>
         </div>
     </div>
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace MotogpBundle\Admin;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use MotogpBundle\Admin\Media\HeaderImageAdminTrait;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -75,6 +76,13 @@ class ModalityAdmin extends AbstractAdmin
                 'required' => false,
                 'attr' => ['container_classes' => 'clearfix col-md-6']
             ))
+            ->end()
+            ->end()
+            ->tab('Info')
+                ->with(null)
+                ->add('infoEs', CKEditorType::class)
+                ->add('infoEn', CKEditorType::class)
+                ->add('showInfo', CheckboxType::class)
             ->end()
             ->end()
             ->tab('SEO')

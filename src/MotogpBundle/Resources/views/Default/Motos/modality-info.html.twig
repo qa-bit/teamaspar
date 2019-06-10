@@ -1,0 +1,47 @@
+{% extends "MotogpBundle:Default:base.html.twig" %}
+{% set mdata = {'moto-2' : 'KTM MOTO2', 'moto-3' : 'KTM RC250GP', 'fim-jr' : '', 'moto-e' : 'EGO CORSA'} %}
+{% block title %}{{ "owner" | trans }} - {{ modality.slug | capitalize }} - {{ 'motos' | trans  }}{% endblock %}
+{% block body %}
+    {{ parent() }}
+    {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery, 'reverse_order' : true} %}
+
+    <div class="smoke-background">
+        <div class="motos-wrapper w100">
+            <div class=" modality-description">
+               {% if locale == 'es' %}
+                   {{ modality.infoEs | raw}}
+               {% else %}
+                   {{ modality.infoEn | raw }}
+               {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="relative">
+        <div class="moto-bg moto-bg-motos">
+            <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral_' ~ modality.slug ~ '.png') }}" />
+        </div>
+    </div>
+
+    {#{% include 'MotogpBundle:Default:Motos/motos-gallery.html.twig' with {'gallery' : gallery} %}#}
+
+
+    <style>
+        .lleft {
+            position: absolute;
+            top: 7em;
+            left: 25em;
+            font-weight: lighter;
+            z-index: 999999;
+        }
+
+        .rright {
+            position: absolute;
+            top: 7em;
+            right: 25em;
+            font-weight: lighter;
+            z-index: 999999;
+        }
+    </style>
+    {% include 'MotogpBundle:Default:footer.html.twig' %}
+{% endblock %}

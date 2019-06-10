@@ -198,4 +198,20 @@ html[modality="moto-e"] {
     background : #002b45;
   }
 
+
+  .modality-description {
+    display: table;
+    margin: auto;
+    padding-top : 3em;
+    h1, h2, h3, h4, h5, h6 {
+      color : $menu-golden;
+      margin-bottom : 1em;
+      width: 100%;
+    }
+    p {
+      text-align: justify;
+      color : $menu-black;
+    }
+  }
+
 }

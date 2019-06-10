@@ -46,6 +46,9 @@
                 {% include blocksPath ~ 'header_posts.html.twig' %}
                 {% include blocksPath ~ 'header_images.html.twig' %}
                 <li><a class="{{ route == 'videos' ? 'active' : '' }}" href="{{ url('videos', {'modality': modality.slug}) }}">{{ "videos" | trans }}</a></li>
+                {% if modality.showInfo %}
+                    <li><a class="{{ route == 'modality_info' ? 'active' : '' }}" href="{{ url('modality_info', {'modality': modality.slug}) }}">{{ modality.name | trans }}</a></li>
+                {% endif %}
                 {% if modality.slug != 'fim-jr' %}
                     <li><a class="{{ route == 'motos' ? 'active' : '' }}" href="{{ url('motos', {'modality': modality.slug}) }}">{{ motoname }}</a></li>
                 {% endif %}
