@@ -256,6 +256,37 @@ $(document).ready(function () {
 
 
         },
+        partnerSelection : function () {
+            var checkPartner = function (node) {
+                if (!node.val()) {
+                    $('.sponsorText').show();
+                } else {
+                    $('.sponsorText').hide();
+                    $('.sponsorText input').val(null);
+                }
+            };
+
+            $(document).on('ready', function () {
+                var node = $('.partner');
+                if (!$('.sponsorText input').val()) {
+
+                    node.find('option[value=""]').remove();
+                    var otherText = node.attr('locale') == 'es' ? 'Otro' : 'Other';
+                    node.append('<option value="">' + otherText + '</option>');
+                    checkPartner(node);
+                } else {
+                    node.find('option[value=""]').remove();
+                    var otherText = node.attr('locale') == 'es' ? 'Otro' : 'Other';
+                    node.append('<option value="">' + otherText + '</option>');
+                    node.val(null);
+                }
+
+                $(node).on('change', function () {
+                    checkPartner($(this));
+                })
+
+            });
+        },
         selectLinks : function () {
             $('body').on('change', '.select-link', function () {
                 var href = $(this).val();
@@ -348,8 +379,7 @@ $(document).ready(function () {
             this.socialMedia();
             this.menus();
             this.selectLinks();
-
-
+            this.partnerSelection();
             $(window).delay(200).queue(function (next) {
                 
                 if ( $('html').attr('route') == 'team_staff' && $hash ) {

@@ -119,6 +119,7 @@ class CustomerAdmin extends AbstractAdmin
             ->add('userConfirmed', 'checkbox', ['label' => 'Confirmado (usuario)', 'attr' => ['container_classes' => 'col-md-6'] ])
             ->add('adminConfirmed', 'checkbox', ['required' => false, 'mapped' => 'Confirmado (administración)', 'attr' => ['container_classes' => 'col-md-6']])
             ->add('sponsor', null, ['required' => false, 'label' => '(Tipo Partner)'])
+            ->add('sponsorText', null, ['required' => false, 'label' => '(Otro Partner)'])
             ->add('circuit', null, ['required' => false, 'label' => '(Tipo GP GUEST)'])
             ->end()
             ->end()

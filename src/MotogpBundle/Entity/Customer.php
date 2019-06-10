@@ -163,6 +163,13 @@ class Customer
 
 
     /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $sponsorText;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -490,6 +497,20 @@ class Customer
         $this->user = $user;
     }
 
-    
+    /**
+     * @return string
+     */
+    public function getSponsorText()
+    {
+        return $this->sponsorText;
+    }
+
+    /**
+     * @param string $sponsorText
+     */
+    public function setSponsorText($sponsorText)
+    {
+        $this->sponsorText = $sponsorText;
+    }
 
 }

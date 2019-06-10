@@ -27,6 +27,10 @@
                  <li><b>Partner:</b> {{ customer.sponsor | trans }}</li>
             {% endif %}
 
+            {% if customer.sponsorText %}
+                <li><b>Partner:</b> {{ customer.sponsorText | trans }}</li>
+            {% endif %}
+
             {% if customer.country %}
                  <li><b>País:</b> {{ customer.country | trans }}</li>
             {% endif %}

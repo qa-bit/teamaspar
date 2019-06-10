@@ -78,6 +78,8 @@ class RegisterType extends AbstractType
             $builder
                 ->add('circuit', null, array('required' => true))
                 ->add('username', 'text', ['required' => true, 'mapped' => false])
+                ->add('sponsor', null, ['required' => false, 'preferred_choices' => [33]])
+                ->add('sponsorText', null, ['required' => false])
                 ->add('password', RepeatedType::class, [
                     'type' => PasswordType::class,
                     'invalid_message' => 'The password fields must match.',
