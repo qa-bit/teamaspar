@@ -11,11 +11,17 @@
             <a class="{{ modality.slug == m.slug ? 'active' : '' }} nav-link dropdown-toggle parent" href="#" id="navbarDropdown-mod-{{ m.slug }}" role="button" data-toggle="dropdown">
                 {{ m.name }}
             </a>
+            {% if m.slug == 'moto-e' %}
+                {% set motoname = 'energica' %}
+            {% endif %}
             <div class="dropdown-menu multi-level" aria-labelledby="navbarDropdown-mod-{{ m.slug }}">
                 <ul>
                     <li><a class="{{ (route == 'posts' or route == 'post') ? 'active' : '' }}" href="{{ url('posts', {'modality': m.slug}) }}">{{ "news" | trans }}</a></li>
                     <li><a class="{{ route == 'images' ? 'active' : '' }}" href="{{ url('images', {'modality': m.slug}) }}">{{ "images" | trans }}</a></li>
                     <li><a class="{{ route == 'videos' ? 'active' : '' }}" href="{{ url('videos', {'modality': m.slug}) }}">{{ "videos" | trans }}</a></li>
+                    {% if modality.showInfo %}
+                        <li><a class="{{ route == 'modality_info' ? 'active' : '' }}" href="{{ url('modality_info', {'modality': modality.slug}) }}">{{ modality.name | trans }}</a></li>
+                    {% endif %}
                     {% if m.slug != 'fim-jr' %}
                         <li><a class="{{ route == 'motos' ? 'active' : '' }}" href="{{ url('motos', {'modality': m.slug}) }}">{{ motoname }}</a></li>
                     {% endif %}
