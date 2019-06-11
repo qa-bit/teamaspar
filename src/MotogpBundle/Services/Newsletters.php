@@ -12,7 +12,8 @@ use MotogpBundle\Entity\Traits\InModalityTrait;
 class Newsletters
 {
 
-    const MAIL_SUBJECT_PREFIX = 'Sama Qatar Ángel Nieto Team';
+    const MAIL_SUBJECT_PREFIX = 'Sama Qatar Ángel Nieto Team ';
+    const MAIL_SUBJECT_PREFIX_MOTO_E = 'Openbank Ángel Nieto Team ';
 
     public function __construct(
         TwigEngine $templating,
@@ -120,16 +121,23 @@ class Newsletters
         $subjectTitle = $post ? "$circuitName $tagAbbr - $postTitle" : $postTitle;
 
         $mod = $post ? $post->getModality() : $newsletter->getModality();
+
+        $mailPrefix = $mod->getSlug() == 'moto-e' ?
+            self::MAIL_SUBJECT_PREFIX_MOTO_E :
+            self::MAIL_SUBJECT_PREFIX
+        ;
         
 
         try {
             $message = \Swift_Message::newInstance()
                 ->setSubject($subjectTitle)
-                ->setFrom($from, self::MAIL_SUBJECT_PREFIX . $mod)
+                ->setFrom($from,$mailPrefix. $mod)
                 ->setBcc($recipients)
                 ->setReplyTo($from)
                 ->setContentType("text/html")
-                ->setBody($html);
+                ->setBody($html)
+
+            ;
 
         } catch(\Swift_RfcComplianceException $e) {
             return ['sent' => false, 'errors' => $e->getMessage()];
