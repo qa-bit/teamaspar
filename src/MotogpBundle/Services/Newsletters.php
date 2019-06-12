@@ -83,7 +83,8 @@ class Newsletters
                     $recipients[$c->getEmail()] = $c->getName();
             }
         }
-        
+
+
         return $recipients;
 
     }
@@ -126,7 +127,9 @@ class Newsletters
             self::MAIL_SUBJECT_PREFIX_MOTO_E :
             self::MAIL_SUBJECT_PREFIX
         ;
-        
+
+
+
 
         try {
             $message = \Swift_Message::newInstance()
@@ -163,6 +166,7 @@ class Newsletters
 
         
         if ($mail) {
+            dump($recipients);
             return ['sent' => true];
         }
 
