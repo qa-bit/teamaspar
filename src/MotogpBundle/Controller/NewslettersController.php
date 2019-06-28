@@ -31,6 +31,8 @@ class NewslettersController extends Controller
     const MAIL_SUBJECT_PREFIX = 'Sama Qatar Ángel Nieto Team ';
     const MAIL_CONFIRMATION_SUBJECT = 'Confirmación de registro';
 
+    const MAIL_SUBJECT_PREFIX_MOTO_E = "Openbank Ángel Nieto Team";
+
     const MODES = [
         'fan'      => 'public',
         'sponsor'  => 'partner',
@@ -105,7 +107,7 @@ class NewslettersController extends Controller
 
     }
 
-    public function sendNotificationEmails($customer) {
+    public function sendNotificationEmails(Customer $customer) {
 
 
         $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
@@ -126,11 +128,15 @@ class NewslettersController extends Controller
         $mailHtml = $this->renderView('MotogpBundle:Default:Register/notification-email.html.twig', $data, 'text/html');
 
 
+        $mailModality = $customer->getModality() && $customer->getModality()->getSlug()  == 'moto-e'
+            ? self::MAIL_SUBJECT_PREFIX_MOTO_E
+            : self::MAIL_SUBJECT_PREFIX
+        ;
 
         foreach ($notificationEmails as $no) {
 
             $message = \Swift_Message::newInstance()
-                ->setSubject(self::MAIL_SUBJECT_PREFIX . ' - nuevo inscrito a newsletters')
+                ->setSubject($mailModality. ' - nuevo inscrito a newsletters')
                 ->setFrom($from)
                 ->setTo($no->getEmail())
                 ->setReplyTo($from)
@@ -231,6 +237,7 @@ class NewslettersController extends Controller
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
 
         $customer = new Customer();
+        $customer->setModality($modality);
 
         $customer->setLocale($locale);
         $customer->setCountry(strtoupper($locale));
@@ -307,8 +314,15 @@ class NewslettersController extends Controller
             $mail = $this->getParameter('general_mailing');
             $from = $this->getParameter('mailer_user');
 
+
+            $mailModality = $modalitySlug  == 'moto-e'
+                ? self::MAIL_SUBJECT_PREFIX_MOTO_E
+                : self::MAIL_SUBJECT_PREFIX
+            ;
+
+
             $message = \Swift_Message::newInstance()
-                ->setSubject(self::MAIL_SUBJECT_PREFIX.' - '.self::MAIL_CONFIRMATION_SUBJECT)
+                ->setSubject($mailModality.' - '.self::MAIL_CONFIRMATION_SUBJECT)
                 ->setFrom($from)
                 ->setTo($customer->getEmail())
                 ->setReplyTo($from)

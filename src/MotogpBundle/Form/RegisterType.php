@@ -64,6 +64,7 @@ class RegisterType extends AbstractType
         if ($customer->getType() == 'sponsor') {
             $builder
                 ->add('sponsor', null, ['required' => true, 'preferred_choices' => [33]])
+                ->add('sponsorText', null, ['required' => false])
             ;
         }
 

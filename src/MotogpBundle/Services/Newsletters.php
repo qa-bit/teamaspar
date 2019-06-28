@@ -220,12 +220,17 @@ class Newsletters
         
         $subjectTitle = $locale == 'es' ? 'Registro aceptado' : 'Registration accepted';
 
+        $mailModality = $customer->getModality() && $customer->getModality()->getSlug()  == 'moto-e'
+            ? self::MAIL_SUBJECT_PREFIX_MOTO_E
+            : self::MAIL_SUBJECT_PREFIX
+        ;
+
 
         try {
             $message = \Swift_Message::newInstance()
                 ->setSubject($subjectTitle)
                 ->setTo($customer->getEmail())
-                ->setFrom($from, self::MAIL_SUBJECT_PREFIX )
+                ->setFrom($from, $mailModality )
                 ->setReplyTo($from)
                 ->setContentType("text/html")
                 ->setBody($html);

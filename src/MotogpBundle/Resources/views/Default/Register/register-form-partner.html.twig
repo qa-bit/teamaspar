@@ -46,8 +46,13 @@
             </fieldset>
             <fieldset class="form-group">
                 <label class="w100">{{ 'partner' | trans | capitalize}}</label>
-                {{ form_widget(form.sponsor, {'attr' : {'class' : 'form-control', 'required' : true }}) }}
+                {{ form_widget(form.sponsor, {'attr' : {'class' : 'form-control partner', 'locale' : locale }}) }}
                 {{ form_errors(form.sponsor) }}
+            </fieldset>
+            <fieldset class="form-group sponsorText">
+                <label class="w100">{{ 'partner' | trans | capitalize}}</label>
+                {{ form_widget(form.sponsorText, {'attr' : {'class' : 'form-control' }}) }}
+                {{ form_errors(form.sponsorText) }}
             </fieldset>
             <fieldset class="form-group">
                 <label class="w100">{{ 'locale' | trans | capitalize}}</label>
