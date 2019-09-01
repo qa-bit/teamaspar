@@ -18,10 +18,8 @@
 
             </div>
 
-
             <div class="circuit-galleries">
                 {% set cpost = [] %}
-
                 {% for c in circuits %}
                     {% if c.documents is not empty %}
                         {% set cpost = cpost | merge([c]) %}
@@ -48,6 +46,8 @@
                         {% endfor %}
                     </div>
                 {% endfor %}
+
+
                 {% if cpost | length  < 1%}
                     <div class="col-xs-12 text-center">
                         <h4 class="text-center w100 golden-text" style="padding: 4em">

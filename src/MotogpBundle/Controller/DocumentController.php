@@ -45,6 +45,10 @@ class DocumentController extends PublicController
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('imagenes_'.str_replace('-', '_',  $modalitySlug));
 
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithDocumentsInModality($modality);
+
+        dump($circuits);
+        die();
+
         $sponsors = $this->getSponsors($modality);
 
         return $this->render(
@@ -87,6 +91,7 @@ class DocumentController extends PublicController
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('imagenes_'.str_replace('-', '_',  $modalitySlug));
 
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithDocumentsInModalityAndYear($modality, $year);
+
         $sponsors = $this->getSponsors($modality);
 
         return $this->render(

@@ -6,12 +6,12 @@
     {% set year = newsYears[0] %}
 {% endif %}
 
-{% for p in circuit.documents %}
-    {% set postYear = p.createdAt | date('Y') %}
-    {% if p.modality.id == modality.id
-    and postYear == year
+{% for document in circuit.documents %}
+    {% set postYear = document.createdAt | date('Y') %}
+    {% if modality.id in document.modalityids
+        and postYear == year
     %}
-        {% set posts = posts | merge([p]) %}
+        {% set posts = posts | merge([document]) %}
     {% endif %}
 {% endfor %}
 
@@ -44,7 +44,7 @@
                             <a target="_blank" download="{{ p.document.name }}" href="{%  path p.document, 'reference' %}">
                                 <i class="fa {{ f }}"></i>&nbsp;
                                 {% spaceless %}
-                                   {{ p.name }}
+                                    {{ locale == 'es' ? p.name : p.nameEN }}
                                 {% endspaceless %}
                             </a>
                         </li>

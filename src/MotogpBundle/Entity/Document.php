@@ -2,9 +2,11 @@
 
 namespace MotogpBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use MotogpBundle\Entity\Traits\ContentTrait;
 use MotogpBundle\Entity\Traits\InCircuitTrait;
+use MotogpBundle\Entity\Traits\InModalitiesTrait;
 use MotogpBundle\Entity\Traits\InModalityTrait;
 use MotogpBundle\Entity\Traits\InRaceTrait;
 use MotogpBundle\Entity\Traits\InRiderTrait;
@@ -19,11 +21,17 @@ use MotogpBundle\Entity\Traits\InSeasonTrait;
  */
 class Document
 {
-    use ContentTrait, InModalityTrait, InSeasonTrait, InCircuitTrait;
+    use ContentTrait, InModalityTrait, InSeasonTrait, InCircuitTrait {
+    }
 
     const LOCALES = [
         "Spanish",
         "English"
+    ];
+
+    const LOCALES_E = [
+        "Español",
+        "Inglés"
     ];
 
     const LOCALES2 = [
@@ -37,6 +45,8 @@ class Document
         $this->updatedAt = new \DateTime();
         $this->publishedAt = new \DateTime();
         $this->locale = 0;
+        $this->locales = [0];
+        $this->modalities = new ArrayCollection();
     }
 
     /**
@@ -74,6 +84,47 @@ class Document
      */
     private $locale;
 
+
+    /**
+     * @var array
+     * @ORM\Column(type="json_array", nullable=true)
+     */
+    private $locales;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Modality", cascade={"persist"})
+     */
+    protected $modalities;
+
+
+
+    /**
+     * @param $category
+     * @return $this
+     */
+    public function addModality($category)
+    {
+        if (!$this->modalities->contains($category)) {
+            $this->modalities->add($category);
+        }
+    }
+
+
+    public function removeModality($category)
+    {
+        $this->modalities->remove($category);
+        return $this;
+    }
+
+    public function getModalities() {
+        return $this->modalities;
+    }
+
+    public function setModalities($modalities) {
+        $this->modalities = $modalities;
+    }
+
     /**
      * @return string
      */
@@ -105,6 +156,11 @@ class Document
     public function setDocument($document)
     {
         $this->document = $document;
+    }
+
+
+    public function addLocale($locale) {
+        $this->locales[] = $locale;
     }
 
     /**
@@ -156,8 +212,43 @@ class Document
     public function getPublishedAt() {
         return $this->createdAt;
     }
-    
-    
+
+    /**
+     * @return array
+     */
+    public function getLocales(): array
+    {
+        return $this->locales;
+    }
+
+    /**
+     * @param array $locales
+     */
+    public function setLocales(array $locales)
+    {
+        $this->locales = $locales;
+    }
+
+
+    public function getLocalesTxt() {
+        $txt = '';
+        foreach ($this->getLocales() as $l) {
+            $txt .= self::LOCALES_E[$l].' ';
+        }
+
+        return $txt;
+    }
+
+
+    public function getModalityIds() {
+        $ids = [];
+
+        foreach ($this->modalities as $m) {
+            $ids[] = $m->getId();
+        }
+
+        return $ids;
+    }
 
 
 }

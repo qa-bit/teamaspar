@@ -32,7 +32,7 @@ trait InModalitiesTrait {
 
     /**
      * Get Modality
-     * @return ModalityInterface
+     * @return Modality
      */
     public function getModality()
     {

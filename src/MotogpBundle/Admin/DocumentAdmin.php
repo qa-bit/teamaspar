@@ -8,7 +8,9 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType as SCollectionType;
 use Sonata\MediaBundle\Form\Type\MediaType;
 
 class DocumentAdmin extends AbstractAdmin
@@ -17,7 +19,8 @@ class DocumentAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
-            ->add('modality')
+            ->add('modalities')
+            ->add('locales')
             ->add('circuit')
         ;
     }
@@ -26,9 +29,9 @@ class DocumentAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('name')
-            ->add('modality')
+            ->add('modalities')
+            ->add('localesTxt', null, ['label' => 'Idiomas'])
             ->add('circuit')
-            ->add('locale2', null, ['label' => 'Idioma'])
             ->add('documenturl', 'url', ['label' => 'Fichero'])
 
             ->add('_action', null, [
@@ -44,8 +47,9 @@ class DocumentAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('name')
-            ->add('locale', ChoiceType::class, ['choices' => array_flip(Document::LOCALES)])
-            ->add('modality', null, ['required' => true])
+            ->add('nameEN')
+            ->add('modalities')
+
             ->add('circuit', null, ['required' => true])
             ->add('document', MediaType::class,
                 [
@@ -53,6 +57,14 @@ class DocumentAdmin extends AbstractAdmin
                     'context' => 'mgp_document',
                     'provider' => 'sonata.media.provider.file'
                 ])
+            ->add('locales', SCollectionType::class, [
+                'label' => 'Idiomas',
+                'entry_type' => ChoiceType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'entry_options' => [
+
+                    'choices' => ['Español' => 0, 'Inglés' => 1]]])
             ->end()
         ;
     }
