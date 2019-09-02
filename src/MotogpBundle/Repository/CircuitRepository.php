@@ -41,7 +41,7 @@ class CircuitRepository extends \Doctrine\ORM\EntityRepository
     {
 
         return $this->createQueryBuilder('c')
-            ->innerJoin('c.modalities', 'm')
+            ->leftJoin('c.modalities', 'm')
             ->leftJoin('c.posts', 'g')
             ->where('m.id = :modality')
             ->setParameter('modality', $modality->getId())
@@ -79,7 +79,7 @@ class CircuitRepository extends \Doctrine\ORM\EntityRepository
 
         return $this->createQueryBuilder('c')
             ->leftJoin('c.documents', 'g')
-            ->innerJoin('g.modalities', 'm')
+            ->leftJoin('g.modalities', 'm')
             ->where('m.id = :modality')
             ->andWhere('g.createdAt >= :start')
             ->andWhere('g.createdAt <= :end')
