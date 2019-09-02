@@ -61,7 +61,7 @@ class Circuit
     /**
      * @var Gallery
      *
-     * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Document", mappedBy="circuit", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="MotogpBundle\Entity\Document", mappedBy="circuit", cascade={"all"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"publishedAt" = "DESC"})
      */
     private $documents;

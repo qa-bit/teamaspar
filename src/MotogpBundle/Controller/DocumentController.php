@@ -93,6 +93,7 @@ class DocumentController extends PublicController
         $circuits = $em->getRepository(Circuit::class)->getCircuitsWithDocumentsInModalityAndYear($modality, $year);
 
         $sponsors = $this->getSponsors($modality);
+        
 
         return $this->render(
             'MotogpBundle:Default:Documents/documents_byyear.html.twig',

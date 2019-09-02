@@ -51,26 +51,6 @@ class CircuitRepository extends \Doctrine\ORM\EntityRepository
             ;
     }
 
-    public function getCircuitsWithGalleryInModalityAndYear($modality, $year)
-    {
-
-        $firstDay = new \DateTime('01-01-'.$year);
-        $lastDay  =  new \DateTime('31-12-'.$year.' 23:59:59');
-
-        return $this->createQueryBuilder('c')
-            ->leftJoin('c.galleries', 'g')
-            ->where('g.modality = :modality')
-            ->andWhere('g.createdAt >= :start')
-            ->andWhere('g.createdAt <= :end')
-            ->setParameter('modality', $modality->getId())
-            ->setParameter('start', $firstDay)
-            ->setParameter('end', $lastDay)
-            ->addOrderBy('g.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult()
-            ;
-    }
-
     public function getCircuitsWithDocumentsInModalityAndYear($modality, $year)
     {
 
@@ -91,6 +71,28 @@ class CircuitRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
         ;
     }
+
+    public function getCircuitsWithGalleryInModalityAndYear($modality, $year)
+    {
+
+        $firstDay = new \DateTime('01-01-'.$year);
+        $lastDay  =  new \DateTime('31-12-'.$year.' 23:59:59');
+
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.galleries', 'g')
+            ->where('g.modality = :modality')
+            ->andWhere('g.createdAt >= :start')
+            ->andWhere('g.createdAt <= :end')
+            ->setParameter('modality', $modality->getId())
+            ->setParameter('start', $firstDay)
+            ->setParameter('end', $lastDay)
+            ->addOrderBy('g.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
 
     
     public function getCircuitsWithPostsInModalityAndYear($modality, $year)

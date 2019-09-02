@@ -20,6 +20,7 @@
 
             <div class="circuit-galleries">
                 {% set cpost = [] %}
+
                 {% for c in circuits %}
                     {% if c.documents is not empty %}
                         {% set cpost = cpost | merge([c]) %}
