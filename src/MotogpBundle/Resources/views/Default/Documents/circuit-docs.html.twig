@@ -45,6 +45,7 @@
                                 <i class="fa {{ f }}"></i>&nbsp;
                                 {% spaceless %}
                                     {{ locale == 'es' ? p.name : p.nameEN }}
+                                    {{ locale == 'en' and  not p.nameEN ? p.name : p.nameEN }}
                                 {% endspaceless %}
                             </a>
                         </li>
