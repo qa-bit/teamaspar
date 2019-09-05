@@ -28,7 +28,7 @@ use MotogpBundle\Entity\Sponsor;
 class NewslettersController extends Controller
 {
 
-    const MAIL_SUBJECT_PREFIX = 'Sama Qatar Ángel Nieto Team ';
+    const MAIL_SUBJECT_PREFIX = 'Ángel Nieto Team ';
     const MAIL_CONFIRMATION_SUBJECT = 'Confirmación de registro';
 
     const MAIL_SUBJECT_PREFIX_MOTO_E = "Openbank Ángel Nieto Team";
@@ -577,7 +577,7 @@ class NewslettersController extends Controller
         $message = $locale == 'es' ? "Confirmación de baja" : 'Cancel subscription';
 
         $message = \Swift_Message::newInstance()
-            ->setSubject('SAMA QATAR ANGEL NIETO TEAM'.' '.$message)
+            ->setSubject('ANGEL NIETO TEAM'.' '.$message)
             ->setFrom($from)
             ->setTo($customer->getEmail())
             ->setReplyTo($from)

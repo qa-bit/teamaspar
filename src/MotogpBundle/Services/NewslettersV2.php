@@ -12,7 +12,7 @@ use MotogpBundle\Entity\Traits\InModalityTrait;
 class NewslettersV2
 {
 
-    const MAIL_SUBJECT_PREFIX = 'Sama Qatar Ángel Nieto Team ';
+    const MAIL_SUBJECT_PREFIX = 'Ángel Nieto Team ';
 
     public function __construct(
         TwigEngine $templating,
