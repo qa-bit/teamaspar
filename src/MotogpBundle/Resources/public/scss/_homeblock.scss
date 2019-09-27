@@ -221,7 +221,7 @@ $homepost-height : 14em;
 
         box-shadow : 0 0 16px black;
         background-position : 0 40% !important;
-        height: 18em;
+        min-height: 18em;
         background: url('/bundles/motogp/img/assets/fondo_humo.jpg');
         .title {
           color: white;
@@ -230,6 +230,10 @@ $homepost-height : 14em;
           padding-top: 1em;
           font-size : .8em;
         }
+
+        height: auto;
+        padding-bottom: .5em;
+
       }
 
 
@@ -334,7 +338,6 @@ $homepost-height : 14em;
   margin : 0 2.5em;
 }
 
-
 @media screen and (max-width: 1023px) {
 
   .homestats {
@@ -350,7 +353,6 @@ $homepost-height : 14em;
   }
 }
 
-
 @media screen and (max-width: 810px) {
 
 
@@ -365,5 +367,36 @@ $homepost-height : 14em;
 
   .homestat {
     width: 2em;
+  }
+}
+
+html[modality="moto-3"] {
+
+  .homemotos .lleft {
+    left : 25em !important;
+  }
+
+  .homemotos .rright {
+    right : 24em !important;
+  }
+
+}
+
+html[modality="moto-2"] {
+
+  .homemotos .lleft {
+    left : 25em !important;
+  }
+
+  .homemotos .rright {
+    right : 25em !important;
+  }
+
+}
+
+
+#swiper-inicio {
+  .lleft, .rright {
+    top : 5em !important;
   }
 }
