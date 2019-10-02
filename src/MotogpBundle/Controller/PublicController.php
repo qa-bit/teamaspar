@@ -975,6 +975,20 @@ class PublicController extends Controller
         );
     }
 
+    /**
+     * @Route("/instagram-feed")
+     */
+    public function instagramFeed(Request $request) {
+
+        return $this->render(
+            'MotogpBundle:StaticContent:instagramfeed.html.twig',
+            []
+        );
+    }
+
+
+
+
 
     protected function updateCache ($path, $filter) {
         $cacheManager = $this->get('liip_imagine.cache.manager');
