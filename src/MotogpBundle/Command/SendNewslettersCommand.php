@@ -21,6 +21,8 @@ class SendNewslettersCommand extends ContainerAwareCommand
     const LOCALE_EN = 1;
     const LOCALE_ES = 2;
 
+
+
     protected function configure()
     {
         $this
@@ -37,7 +39,7 @@ class SendNewslettersCommand extends ContainerAwareCommand
        // $cacheManager->resolve();
     }
     
-    protected function sendNewsLetters(LoggerInterface $logger) {
+    protected function sendNewsLetters() {
 
         try {
             $newsletters = $this->em->getRepository(Newsletter::class)->getQueued();
@@ -77,7 +79,7 @@ class SendNewslettersCommand extends ContainerAwareCommand
 
             $this->em->flush();
         } catch (\Exception $exception) {
-            $logger->critical($exception->getMessage());
+            var_dump($exception->getMessage());
 
         }
     }
