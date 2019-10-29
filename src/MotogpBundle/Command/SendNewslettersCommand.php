@@ -2,6 +2,7 @@
 
 namespace MotogpBundle\Command;
 
+use Psr\Log\LoggerInterface;
 use stringEncode\Exception;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -11,7 +12,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use MotogpBundle\Services\Newsletters;
 use MotogpBundle\Entity\Newsletter;
 
-error_reporting(0);
 
 class SendNewslettersCommand extends ContainerAwareCommand
 {
@@ -37,7 +37,7 @@ class SendNewslettersCommand extends ContainerAwareCommand
        // $cacheManager->resolve();
     }
     
-    protected function sendNewsLetters() {
+    protected function sendNewsLetters(LoggerInterface $logger) {
 
         try {
             $newsletters = $this->em->getRepository(Newsletter::class)->getQueued();
@@ -77,6 +77,7 @@ class SendNewslettersCommand extends ContainerAwareCommand
 
             $this->em->flush();
         } catch (\Exception $exception) {
+            $logger->critical($exception->getMessage());
 
         }
     }
