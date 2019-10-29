@@ -60,7 +60,7 @@
 
             {% set context = "newsletter" %}
 
-            {% if newsletter.gallery and newsletter.gallery.medias | length %}
+            {% if newsletter.gallery and newsletter.gallery.medias | default([])| length > 0 %}
                 {% set context = "gallery" %}
                 {% set medias = newsletter.gallery.medias %}
             {% endif %}
