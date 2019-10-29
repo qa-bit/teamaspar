@@ -2,6 +2,7 @@
 
 namespace MotogpBundle\Command;
 
+use stringEncode\Exception;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,6 +10,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use MotogpBundle\Services\Newsletters;
 use MotogpBundle\Entity\Newsletter;
+
+error_reporting(0);
 
 class SendNewslettersCommand extends ContainerAwareCommand
 {
@@ -35,41 +38,47 @@ class SendNewslettersCommand extends ContainerAwareCommand
     }
     
     protected function sendNewsLetters() {
-        $newsletters = $this->em->getRepository(Newsletter::class)->getQueued();
-        foreach ($newsletters as $newsletter) {
-            $sent = false;
 
-            $this->output->writeln("CMS NEWSLETTERS UPDATING IMAGE CACHE");
-            $newsletter->setQueued(false);
-            $this->updateCache();
-            $this->em->flush();
-            $this->output->writeln("CMS NEWSLETTERS UPDATING IMAGE UPDATED");
+        try {
+            $newsletters = $this->em->getRepository(Newsletter::class)->getQueued();
+            foreach ($newsletters as $newsletter) {
+                $sent = false;
 
-            foreach (self::LOCALES as $locale) {
-
-                if ($newsletter->getSendTo() == self::LOCALE_EN && $locale == 'en') continue;
-                if ($newsletter->getSendTo() == self::LOCALE_ES && $locale == 'es') continue;
-
-                $this->output->writeln('CMS NEWSLETTERS SENDING '.$newsletter->getName(). ' '.$locale);
-
-                $sent = $this->nm->sendMail($newsletter, $locale);
-
-            }
-
-            if ($sent['sent'] == true) {
-                $newsletter->setLastSendAt(new \DateTime());
-                $newsletter->setFailed(false);
-                $newsletter->setErrorMessage($sent['errors'] ?? '');
-                $this->output->writeln('sent', $sent);
-            } else {;
+                $this->output->writeln("CMS NEWSLETTERS UPDATING IMAGE CACHE");
                 $newsletter->setQueued(false);
-                $newsletter->setFailed(true);
-                $newsletter->setLastSendAt(null);
-                $newsletter->setErrorMessage($sent['errors']);
-            }
-        }
+                $this->updateCache();
+                $this->em->flush();
+                $this->output->writeln("CMS NEWSLETTERS UPDATING IMAGE UPDATED");
 
-        $this->em->flush();
+                foreach (self::LOCALES as $locale) {
+
+                    if ($newsletter->getSendTo() == self::LOCALE_EN && $locale == 'en') continue;
+                    if ($newsletter->getSendTo() == self::LOCALE_ES && $locale == 'es') continue;
+
+                    $this->output->writeln('CMS NEWSLETTERS SENDING ' . $newsletter->getName() . ' ' . $locale);
+
+                    $sent = $this->nm->sendMail($newsletter, $locale);
+
+                }
+
+                if ($sent['sent'] == true) {
+                    $newsletter->setLastSendAt(new \DateTime());
+                    $newsletter->setFailed(false);
+                    $newsletter->setErrorMessage($sent['errors'] ?? '');
+                    $this->output->writeln('sent', $sent);
+                } else {
+                    ;
+                    $newsletter->setQueued(false);
+                    $newsletter->setFailed(true);
+                    $newsletter->setLastSendAt(null);
+                    $newsletter->setErrorMessage($sent['errors']);
+                }
+            }
+
+            $this->em->flush();
+        } catch (\Exception $exception) {
+
+        }
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
