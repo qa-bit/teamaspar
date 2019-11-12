@@ -45,3 +45,5 @@ r_seeyou: See you at the circuit!
 r_yourusername: Your username
 r_yourpassword: Your password
 r_confirmation_simple: Your request to access the Ángel Nieto Team guests’ newsletters has been accepted.
+gpguest_agree_input: I’ve read and accept
+gpguest_agree_label: the paddock access policy
