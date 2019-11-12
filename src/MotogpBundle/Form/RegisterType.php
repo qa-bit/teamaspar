@@ -16,7 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegisterType extends AbstractType
 {
-    
+
     /**
      * {@inheritdoc}
      */
@@ -81,6 +81,7 @@ class RegisterType extends AbstractType
                 ->add('username', 'text', ['required' => true, 'mapped' => false])
                 ->add('sponsor', null, ['required' => false, 'preferred_choices' => [33]])
                 ->add('sponsorText', null, ['required' => false])
+                ->add('gpguest_agree', 'checkbox', ['mapped' => false, 'required' => true])
                 ->add('password', RepeatedType::class, [
                     'type' => PasswordType::class,
                     'invalid_message' => 'The password fields must match.',
@@ -94,15 +95,15 @@ class RegisterType extends AbstractType
         }
 
         if ($customer->getType() == 'media') {
-            
+
             $builder
                 ->add('address', null, ['required' => true])
                 ->add('postalCode', null, ['required' => true])
                 ->add('webUrl', null, ['required' => true])
                 ->add('businessName', null, ['required' => true])
-            ;   
+            ;
         }
-        
+
     }
 
     /**

@@ -35,9 +35,9 @@ class PublicController extends Controller
 
         return $team;
     }
-    
-    
-    
+
+
+
     public function redirectUserAction() {
         if ($this->isGranted('ROLE_ADMIN')) {
 
@@ -176,7 +176,7 @@ class PublicController extends Controller
             }
         }
 
-        
+
         uasort($scores, function($a, $b) {
             return $a < $b;
         });
@@ -212,7 +212,7 @@ class PublicController extends Controller
         $teamRiders = 0;
         $count = 0;
         $iters = 0;
-        
+
         if (!count($data)) return [];
 
         while($iters < 1024 && ($teamRiders < $ridersInTeamCount || $count > 10)) {
@@ -241,7 +241,7 @@ class PublicController extends Controller
             $iters++;
         }
 
-        
+
 
 
         return $data;
@@ -422,7 +422,7 @@ class PublicController extends Controller
 
 
     }
-    
+
     /**
      * @Route("/images")
      */
@@ -966,6 +966,37 @@ class PublicController extends Controller
 
         return $this->render(
             'MotogpBundle:StaticContent:terms.html.twig',
+            [
+                'team' => $this->getMainTeam(),
+                'riders' => $homeRiders,
+                'modality' => $modality,
+                'sponsors' => $sponsors
+            ]
+        );
+    }
+
+    /**
+     * @Route("/gpguest-agree")
+     */
+    public function gpGuestAgreeAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $modalitySlug = $request->get('modality');
+
+        $modality = $this->getModality($modalitySlug);
+
+        if (!$modality) {
+            return $this->redirectToRoute('index');
+        }
+
+        $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
+
+        $sponsors = $this->getSponsors($modality);
+
+
+        return $this->render(
+            'MotogpBundle:StaticContent:guest_agree.html.twig',
             [
                 'team' => $this->getMainTeam(),
                 'riders' => $homeRiders,

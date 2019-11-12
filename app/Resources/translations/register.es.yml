@@ -68,3 +68,5 @@ r_confirmation_simple: Su solicitud de subscripción a nuestras newsletters ha s
 login: iniciar sesión
 already_has_account: ¿Ya tienes cuenta?
 The password fields must match.: Las contraseñas deben coincidir
+gpguest_agree_input: He leído y acepto la
+gpguest_agree_label: política de acceso al paddock

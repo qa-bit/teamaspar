@@ -122,6 +122,10 @@ terms:
     locales: { "en": "/en/{modality}/terms-and-conditions", "es": "/es/{modality}/terminos-y-condiciones" }
     defaults: { _controller: MotogpBundle:Public:terms}
 
+gpguest_agree:
+    locales: { "en": "/en/{modality}/paddock-agree", "es": "/es/{modality}/acceso-paddock" }
+    defaults: { _controller: MotogpBundle:Public:gpGuestAgree}
+
 newsletters_unsubscribe:
     locales: { "en": "/en/{modality}/unsubscribe", "es": "/es/{modality}/baja-newsletters" }
     defaults: { _controller: MotogpBundle:Newsletters:requestUnsubscribe}

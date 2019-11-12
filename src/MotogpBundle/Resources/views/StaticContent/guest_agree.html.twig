@@ -1,0 +1,25 @@
+{% trans_default_domain 'riders' %}
+{% block title %}{{ "owner" | trans([], 'messages') }} - {{ "guest_agree" | trans([], 'messages') }} {% endblock %}
+{% macro list_isset(r, field) %}
+    {% if attribute(r, field) %}
+        <li>
+            <span class="title">{{ field | trans }}:</span>
+            <span>{{ attribute(r, field) }}</span>
+        </li>
+    {% endif %}
+{% endmacro %}
+{% import _self as forms %}
+{% extends "MotogpBundle:Default:base.html.twig" %}
+{% block body %}
+    {{ parent() }}
+    <div class="w100">
+        <div class="white-background" style="padding-top:4em">
+            <div class="homesponsors">
+                <div class="col-xs-12">
+                   {% include 'MotogpBundle:StaticContent:guest_agree_' ~ locale ~ '.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'MotogpBundle:Default:footer.html.twig' %}
+{% endblock %}

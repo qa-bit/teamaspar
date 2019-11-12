@@ -86,14 +86,12 @@ sponsors: Partners
 register: Registro
 motos: Motos
 contact: Contacto
-cookies: Cookies
 privacy: Politica de privacidad
 terms: Terminos y condiciones
 cookies_policy: Politica de cookies
 public: Aficionado
 sponsor: Partner
 mediaType: Tipo (medio)
-media: Medio
 media_type: Tipo de medio
 media_pr: Prensa
 media_radio: Radio
@@ -137,3 +135,7 @@ Info: Información
 Info Es: Información (Español)
 Info En: Información (Inglés)
 Show Info: Mostrar página información
+
+gpguest_read_agree: He leído y acepto la política de acceso al paddock
+guest_agree: Política de acceso al Paddock
+

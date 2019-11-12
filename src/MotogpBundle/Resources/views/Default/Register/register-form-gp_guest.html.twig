@@ -113,6 +113,21 @@
                 {{ form_errors(form.iagree) }}
             </fieldset>
 
+            <fieldset class="form-group-checkbox col-xs-12 no-padding">
+                <div class="col-xs-1">
+                    {{ form_widget(form.gpguest_agree, {'attr' : {'class' : 'form-control'}}) }}
+                </div>
+                <div class="col-xs-10">
+                    <label class="w100 pad5">
+                        {{ 'gpguest_agree_input' | trans | capitalize}}
+                        <a target="_blank" class="golden-text" href="{{ url('gpguest_agree.' ~ locale, {'modality' : modality.slug }) }}">
+                            <u>{{ "gpguest_agree_label" | trans | lower}}</u>
+                        </a>
+                    </label>
+                </div>
+                {{ form_errors(form.gpguest_agree) }}
+            </fieldset>
+
         </div>
 
         <fieldset class="form-group col-xs-12 no-padding">

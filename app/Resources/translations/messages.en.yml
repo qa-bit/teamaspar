@@ -12,7 +12,6 @@ sponsors: Sponsors
 register: register
 motos: Motos
 contact: Contact
-cookies: Cookies
 privacy: Privacy Policy
 terms: Terms and conditions
 cookies_policy: Cookies policy
@@ -35,3 +34,6 @@ World Sub Championships: WORLD CHAMPIONSHIP RUNNER-UPS
 Wins: WINS
 Podiums: PODIUMS
 no_documents: No documents yet.
+
+gpguest_read_agree: I’ve read and accept the paddock access policy
+guest_agree: Paddock Access Policy

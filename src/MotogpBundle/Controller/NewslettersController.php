@@ -33,11 +33,10 @@ class NewslettersController extends Controller
 
     const MAIL_SUBJECT_PREFIX_MOTO_E = "Openbank Ángel Nieto Team";
 
-    const MODES = [
-        'fan'      => 'public',
+    const MODES = ["fan"  => "public",
         'sponsor'  => 'partner',
         'media'    => 'media',
-        'gp_guest' => 'gpguest',
+        'gp_guest' => "gpguest",
         'partner'  => 'sponsor'
     ];
 
