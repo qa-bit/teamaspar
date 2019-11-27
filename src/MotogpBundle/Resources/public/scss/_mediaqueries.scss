@@ -33,11 +33,27 @@ $breakpoint-tablet: "769px";
   }
 
   html[route="index"] #swiper-inicio {
-    margin-bottom: 1em;
   }
 
   .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
     background-color: transparent;
+  }
+
+  .top-slider #swiper-inicio {
+    height : 100%;
+    height  : 100vh !important;
+  }
+
+  .swiper-pagination-bullet {
+    display: none !important;
+  }
+
+ .footer-upper ul li {
+    width : 100%;
+    border : none;
+    margin: 0 !important;
+    text-align: center;
+    padding : 1em;
   }
 
   .staff-tabs .tab > div {

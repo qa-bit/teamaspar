@@ -138,8 +138,14 @@ a.golden-text {
   bottom: 0;
   width: 100%;
   z-index: 999;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.92);
   padding: .33em;
+
+  i {
+    font-size : 2em;
+    color : #333;
+  }
+
 }
 
 input[type="checkbox"] {
