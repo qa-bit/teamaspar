@@ -171,6 +171,27 @@ input[type="checkbox"] {
 }
 
 
+.general-links-wrapper {
+  position: fixed;
+  height : 100%;
+  width  : 100%;
+  top    : 0;
+  bottom : 0;
+  background: url('/bundles/motogp/img/logo_aspar.png');
+  //border : 1px solid blue;
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-shadow: 0 0 2em rgba(0, 0, 0, 0.38);
+}
+
+
+.general-index-links {
+  width: 100%;
+  color : #666;
+  position: fixed;
+  text-align: center;
+}
+
 @media screen and (orientation : landscape) {
   .general-index-links {
     background : transparent !important;
@@ -181,7 +202,6 @@ input[type="checkbox"] {
 @media screen and (orientation : portrait) {
 
   .general-index-links {
-    height:100vh;
     background-position: center !important;
     background-size: cover !important;
     top : 0 !important;
@@ -192,9 +212,16 @@ input[type="checkbox"] {
 
 }
 
+@media screen and (max-width: 980px) {
+  .general-links-wrapper {
+    background-size: contain !important;
+  }
+
+}
+
 .general-index-links {
 
-  top : 30%;
+  bottom : 4em;
   .logo-block {
     display:table;
     margin: auto;
