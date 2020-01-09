@@ -84,7 +84,7 @@
 <body {% block body_attrs %}{% endblock %}>
 <div class="header-block">
     {% block header %}
-        {#        {% include "MotogpBundle:Default:Blocks/header_simple.html.twig" %}#}
+        {% include "MotogpBundle:Default:Blocks/header_simple.html.twig" %}
     {% endblock  %}
 
     {% block afterheader %}
@@ -93,38 +93,35 @@
 <div class="body-block">
     {% block body %}
         <div class="relative general-links-wrapper">
-            <div class="general-index-links">
-                <h1>Web en construcción.</h1>
-                {#            <img#}
-                {#                    class="img img-responsive general-index-image"#}
-                {#                    alt="angel nieto team"#}
-                {#                    src="{{ asset('/bundles/motogp/img/general_index_black.jpg') }}"#}
-                {#            />#}
+            <img
+                    class="img img-responsive general-index-image"
+                    alt="angel nieto team"
+                    src="{{ asset('/bundles/motogp/img/triunfo.jpg') }}"
+            />
 
-                {#            <div#}
-                {#                    class="col-xs-12 absolute general-index-links"#}
-                {#                    style="background-position: center center !important; background: url('{{ asset('/bundles/motogp/img/general_index_black.jpg') }}'); background-size : auto 100% !important;"#}
-                {#            >#}
-                {#                <div class="left col-xxs-12 col-xs-6 col-md-6 col-xl-6">#}
-                {#                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-2'}) }}">#}
-                {#                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/moto_2_golden.png')}}?v={{ "now" | date('ymdhji') }}" />#}
-                {#                    </a>#}
-                {#                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}">#}
-                {#                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/moto_3_golden.png')}}?v={{ "now" | date('ymdhji') }}" />#}
-                {#                    </a>#}
-                {#                </div>#}
-                {#                <div class="right col-xxs-12 col-xs-6 col-md-6 col-xl-6">#}
-                {#                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-e'}) }}">#}
-                {#                        <img moto-e class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/moto_e_golden.png')}}?v={{ "now" | date('ymdhji') }}" />#}
-                {#                    </a>#}
-                {#                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}">#}
-                {#                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/fim_jr_golden.png')}}?v={{ "now" | date('ymdhji') }}" />#}
-                {#                    </a>#}
-                {#                </div>#}
-                {#            </div>#}
+            <div
+                    class="col-xs-12 absolute general-index-links"
+                    style="background-position: center center !important; background: url('{{ asset('/bundles/motogp/img/triunfo.jpg') }}'); background-size : auto 100% !important;"
+            >
+                <div class="left col-xxs-12 col-xs-6 col-md-6 col-xl-6">
+                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-2'}) }}">
+                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/moto_2_golden.png')}}?v={{ "now" | date('ymdhji') }}" />
+                    </a>
+                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}">
+                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/moto_3_golden.png')}}?v={{ "now" | date('ymdhji') }}" />
+                    </a>
+                </div>
+                <div class="right col-xxs-12 col-xs-6 col-md-6 col-xl-6">
+                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-e'}) }}">
+                        <img moto-e class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/moto_e_golden.png')}}?v={{ "now" | date('ymdhji') }}" />
+                    </a>
+                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}">
+                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/fim_jr_golden.png')}}?v={{ "now" | date('ymdhji') }}" />
+                    </a>
+                </div>
             </div>
         </div>
-        {#        {% include "MotogpBundle:Default:footer.html.twig" with {'modality' : team.riders[0].modality }%}#}
+        {% include "MotogpBundle:Default:footer.html.twig" with {'modality' : team.riders[0].modality }%}
     {% endblock %}
 </div>
 </body>
