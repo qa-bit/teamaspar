@@ -6,7 +6,7 @@ sonata_block:
 
 
 sonata_admin:
-    title: 'Angel Nieto MOTOGP'
+    title: 'Aspar MOTOGP'
     title_logo: 'bundles/motogp/img/logo.png'
     templates:
             layout: MotogpBundle:Admin:standard_layout.html.twig

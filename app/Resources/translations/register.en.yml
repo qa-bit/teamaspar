@@ -6,10 +6,10 @@ email: Email
 phone: Phone
 message: Message
 send: Send
-register_success_text1: Your request is waiting for approval by the Angel Nieto Team.
+register_success_text1: Your request is waiting for approval by the Aspar Team.
 register_success_text2: We will contact you as soon as possible to confirm it.
 accept: I agree to receive newsletters periodically.
-subscribe_1: Do you want to be up to date with the Ángel Nieto Team news?
+subscribe_1: Do you want to be up to date with the Aspar Team news?
 subscribe_2: Do you want to be the first to know about our prizes?
 subscribe_3: Join our community!!
 register_confirm_email: Confirmation of subscription to our newsletter
@@ -38,12 +38,12 @@ website: Website (if aplicable)
 company_type: Your company media type
 gp: Grand Prix
 locale: Newsletter reception language
-r_confirmation: Your request to access the Ángel Nieto Team guests’ page has been accepted.
+r_confirmation: Your request to access the Aspar Team guests’ page has been accepted.
 r_confirmation2: You can access the private area, where you can find all the information about the Grand Prix (accreditation center, timetables, circuit plans ...) at:
 r_confirmationlink: this link
 r_seeyou: See you at the circuit!
 r_yourusername: Your username
 r_yourpassword: Your password
-r_confirmation_simple: Your request to access the Ángel Nieto Team guests’ newsletters has been accepted.
+r_confirmation_simple: Your request to access the Aspar Team guests’ newsletters has been accepted.
 gpguest_agree_input: I’ve read and accept
 gpguest_agree_label: the paddock access policy

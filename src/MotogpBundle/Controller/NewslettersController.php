@@ -28,10 +28,10 @@ use MotogpBundle\Entity\Sponsor;
 class NewslettersController extends Controller
 {
 
-    const MAIL_SUBJECT_PREFIX = 'Ángel Nieto Team ';
+    const MAIL_SUBJECT_PREFIX = 'Aspar Team ';
     const MAIL_CONFIRMATION_SUBJECT = 'Confirmación de registro';
 
-    const MAIL_SUBJECT_PREFIX_MOTO_E = "Openbank Ángel Nieto Team";
+    const MAIL_SUBJECT_PREFIX_MOTO_E = "Openbank Aspar Team";
 
     const MODES = ["fan"  => "public",
         'sponsor'  => 'partner',
@@ -51,7 +51,7 @@ class NewslettersController extends Controller
     }
 
     public function getLogoResponse() {
-        $img = "logo_newsletters.png";
+        $img = "logo_newsletters_aspar.png";
 
         $filepath = $this->get('kernel')->getRootDir()."/../web/media/newsletters/".$img;
 
@@ -576,7 +576,7 @@ class NewslettersController extends Controller
         $message = $locale == 'es' ? "Confirmación de baja" : 'Cancel subscription';
 
         $message = \Swift_Message::newInstance()
-            ->setSubject('ANGEL NIETO TEAM'.' '.$message)
+            ->setSubject('Aspar TEAM'.' '.$message)
             ->setFrom($from)
             ->setTo($customer->getEmail())
             ->setReplyTo($from)

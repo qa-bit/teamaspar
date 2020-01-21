@@ -123,8 +123,8 @@ class Setup extends ContainerAwareCommand
         if ($mt === null) {
             $mt = new RiderTeam();
 
-            $mt->setName('Ángel Nieto Team');
-            $mt->setNameEN('Ángel Nieto Team');
+            $mt->setName('Aspar Team');
+            $mt->setNameEN('Aspar Team');
             $mt->setMain(true);
             $em->persist($mt);
             $em->flush();
