@@ -10,15 +10,15 @@
             {#</a>#}
         {#{% endif %}#}
 
-        {#{% if modality.slug == 'fim-jr' %}#}
-            {#<a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}">#}
-                {#<img src="{{ asset('/bundles/motogp/img/assets/fim-jr.png')}}" alt="" />#}
+        {#{% if modality.slug == 'junior' %}#}
+            {#<a href="{{ url('index', {'locale' : locale, 'modality' : 'junior'}) }}">#}
+                {#<img src="{{ asset('/bundles/motogp/img/assets/junior.png')}}" alt="" />#}
             {#</a>#}
         {#{% endif %}#}
 
-        {#{% if modality.slug == 'fim-jr' %}#}
-            {#<a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}">#}
-                {#<img src="{{ asset('/bundles/motogp/img/assets/fim-jr.png')}}" alt="" />#}
+        {#{% if modality.slug == 'junior' %}#}
+            {#<a href="{{ url('index', {'locale' : locale, 'modality' : 'junior'}) }}">#}
+                {#<img src="{{ asset('/bundles/motogp/img/assets/junior.png')}}" alt="" />#}
             {#</a>#}
         {#{% endif %}#}
         <a href="{{ url('index', {'locale' : locale, 'modality' : modality.slug }) }}">
@@ -26,5 +26,5 @@
         </a>
     </li>
     {#<li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}"><img {% if modality.slug == 'moto-3' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/assets/moto3.png?v=2')}}" alt="" /></a></li>#}
-    {#<li><a href="{{ url('index', {'locale' : locale, 'modality' : 'fim-jr'}) }}"><img {% if modality.slug == 'fim-jr' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/assets/fimjr.png')}}" alt="" /></a></li>#}
+    {#<li><a href="{{ url('index', {'locale' : locale, 'modality' : 'junior'}) }}"><img {% if modality.slug == 'junior' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/assets/junior.png')}}" alt="" /></a></li>#}
 </ul>

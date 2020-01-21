@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var FIMJR = 6;
+    var JUNIOR = 6;
 
     if (!$('#race-records').size())
         return;
@@ -56,7 +56,7 @@ $(document).ready(function () {
         for (var i=0; i < riders[modality].length; i++) {
             var rider = riders[modality][i];
             if (!riderExists(rider)) {
-                if (selectedModality != FIMJR )
+                if (selectedModality != JUNIOR )
                     addRider(rider);
                 else {
                     console.error(selectedModalityClassification == rider.modalityClassification);
@@ -76,7 +76,7 @@ $(document).ready(function () {
         var selector = $('.race-modality-classification-selector');
         var modality = $('.race-modality-selector').val();
 
-        if (parseInt(modality) == FIMJR) {
+        if (parseInt(modality) == JUNIOR) {
             selector.parent().parent().show();
             // if (!selector.val()) {
             //     var first = selector.find('option').eq(1).attr('value');

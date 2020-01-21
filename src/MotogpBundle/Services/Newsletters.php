@@ -12,7 +12,7 @@ use MotogpBundle\Entity\Traits\InModalityTrait;
 class Newsletters
 {
 
-    const MAIL_SUBJECT_PREFIX = 'Aspar Team';
+    const MAIL_SUBJECT_PREFIX = 'Aspar Team ';
     const MAIL_SUBJECT_PREFIX_MOTO_E = 'Openbank Aspar Team ';
 
     public function __construct(

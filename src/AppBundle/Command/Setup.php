@@ -42,7 +42,7 @@ class Setup extends ContainerAwareCommand
         $modalities = [
             'Moto GP',
             'Moto 3',
-            'FIM-JR',
+            'JUNIOR',
             'Moto E'
         ];
 
@@ -52,7 +52,7 @@ class Setup extends ContainerAwareCommand
             ['slug' => 'media', 'name' => 'Medio'],
         ];
 
-        $slugs = ['moto-2', 'moto-3', 'fim-jr', 'moto-e'];
+        $slugs = ['moto-2', 'moto-3', 'junior', 'moto-e'];
 
         $galleries =  ['inicio', 'contacto', 'noticias', 'videos', 'imagenes', 'motos', 'staff', 'sponsor', 'riders', 'register'];
 

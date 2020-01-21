@@ -2,7 +2,7 @@
     {% set modalities = [
     {'name' : 'MOTO 2', 'slug' : 'moto-2'},
     {'name' : 'MOTO 3', 'slug' : 'moto-3'},
-    {'name' : 'FIM JR', 'slug' : 'fim-jr'},
+    {'name' : 'FIM JR', 'slug' : 'junior'},
     {'name' : 'MOTO E', 'slug' : 'moto-e'},
     ] %}
     {% for m in modalities %}
@@ -22,7 +22,7 @@
                     {% if modality.showInfo %}
                         <li><a class="{{ route == 'modality_info' ? 'active' : '' }}" href="{{ url('modality_info', {'modality': modality.slug}) }}">{{ modality.name | trans }}</a></li>
                     {% endif %}
-                    {% if m.slug != 'fim-jr' %}
+                    {% if m.slug != 'junior' %}
                         <li><a class="{{ route == 'motos' ? 'active' : '' }}" href="{{ url('motos', {'modality': m.slug}) }}">{{ motoname }}</a></li>
                     {% endif %}
 

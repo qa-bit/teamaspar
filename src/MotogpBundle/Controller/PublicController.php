@@ -392,7 +392,7 @@ class PublicController extends Controller
         $teamScore = $this->getGeneralScoreTeams($modality);
 
 
-        if ($modality->getSlug() == 'fim-jr') {
+        if ($modality->getSlug() == 'junior') {
             $generalScore = [];
             $classificationModalities = $em->getRepository(ModalityClassification::class)->findAll();
             foreach ($classificationModalities as $cm) {
@@ -581,7 +581,7 @@ class PublicController extends Controller
 
         $modalitySlug = $request->get('modality');
 
-        if ($modalitySlug == 'fim-jr') {
+        if ($modalitySlug == 'junior') {
             return $this->redirectToRoute('homepage');
         }
 
