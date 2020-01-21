@@ -18,7 +18,8 @@ class GetDataExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFilter('modality_home_riders', array($this, 'getHomeRiders')),
             new \Twig_SimpleFilter('modality_years_with_news', array($this, 'getModalityYearsWithNews')),
-            new \Twig_SimpleFilter('modality_years_with_images', array($this, 'getModalityYearsWithImages'))
+            new \Twig_SimpleFilter('modality_years_with_images', array($this, 'getModalityYearsWithImages')),
+            new \Twig_SimpleFilter('ga_code', array($this, 'gaCode'))
         );
     }
 
@@ -68,6 +69,16 @@ class GetDataExtension extends \Twig_Extension
         }
 
         return $years;
+    }
+
+
+    public function gaCode($host) {
+
+        if ($host === 'teamaspar.com' || $host === 'www.teamaspar.com') {
+            return "UA-42772029-1";
+        }
+
+        return "UA-115754752-1";
     }
 
 }

@@ -44,15 +44,15 @@
     <meta name="theme-color" content="#ffffff">
 
 
+    {%set UA = app.request.server.getHeaders['HOST'] | ga_code  %}
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115754752-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ UA }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
-        gtag('config', 'UA-115754752-1');
+        gtag('config', {{ UA }});
     </script>
 
     {% block stylesheets %}
