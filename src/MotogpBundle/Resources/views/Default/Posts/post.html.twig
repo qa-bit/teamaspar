@@ -2,8 +2,6 @@
 {% block title %}{{ "owner" | trans }} - {{ locale == 'es' ? post.seoTitle : post.seoTitleEN }} {% endblock %}
 {% block keywords %}{{ "owner" | trans }} - {{ locale == 'es' ? post.seoKeywords : post.seoKeywordsEN }} {% endblock %}
 
-{% set customUrl = url('post', {'locale': 'es', 'modality' : modality.slug, 'slug' : post.slug } ) %}
-{% set customUrlEN = url('post', {'locale': 'en', 'modality' : modality.slug, 'slug' : post.slugEN } ) %}
 
  {% block header %}
      {% include "MotogpBundle:Default:Blocks/header.html.twig" with {'customUrl' : customUrl, customUrlEN : customUrlEN } %}
@@ -15,7 +13,7 @@
         <div class="col-xs-12" style="display:block">
             {% if post.featuredMedia %}
                 <div class="post-featured-image">
-                    <img src="{%  path post.featuredMedia, 'xlarge'  %}" />
+                    <img src="{%  path post.featuredMedia, 'big'  %}" />
                 </div>
             {% endif %}
 
