@@ -4,7 +4,12 @@
 
 
  {% block header %}
-     {% include "MotogpBundle:Default:Blocks/header.html.twig" with {'customUrl' : customUrl, customUrlEN : customUrlEN } %}
+     {% set enURL = url('post.en', {'modality' : modality.slug, 'slug' : post.slugEN }) %}
+     {% set esURL = url('post.es', {'modality' : modality.slug, 'slug' : post.slug }) %}
+     {% if customUrl is defined %}
+        {% include "MotogpBundle:Default:Blocks/header.html.twig" with {'customUrl' : customUrl, customUrlEN : customUrlEN } %}
+     {% endif %}
+     {% include "MotogpBundle:Default:Blocks/header.html.twig" %}
  {% endblock  %}
 
 {% block body %}
