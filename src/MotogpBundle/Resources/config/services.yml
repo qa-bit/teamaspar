@@ -337,3 +337,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Document }
         public: true
+
+    motogp.admin.general_configuration:
+        class: MotogpBundle\Admin\GeneralConfigurationAdmin
+        arguments: [~, MotogpBundle\Entity\GeneralConfiguration, MotogpBundle:GeneralConfigurationAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: GeneralConfiguration }
+        public: true

@@ -51,6 +51,7 @@ sonata_admin:
             config:
                 label: Configuración
                 items:
+                    - motogp.admin.general_configuration
                     - motogp.admin.rider_team
                     - motogp.admin.rider_team_external
                     - motogp.admin.category

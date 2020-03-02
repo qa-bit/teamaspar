@@ -105,24 +105,81 @@
                     class="col-xs-12 absolute general-index-links"
                     style="background-position: center center !important; background: url('{{ asset('/bundles/motogp/img/triunfo.jpg') }}'); background-size : auto 100% !important;"
             >
-                <div class="left col-xxs-12 col-xs-6 col-md-6 col-xl-6">
-                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-2'}) }}">
+                <div class="col-xs-6 col-md-3">
+                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-2'})}}">
                         <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/moto_2_golden.png')}}?v={{ "now" | date('ymdhji') }}" />
                     </a>
-                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}">
-                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/moto_3_golden.png')}}?v={{ "now" | date('ymdhji') }}" />
-                    </a>
                 </div>
-                <div class="right col-xxs-12 col-xs-6 col-md-6 col-xl-6">
-                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'moto-e'}) }}">
-                        <img moto-e class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/moto_e_golden.png')}}?v={{ "now" | date('ymdhji') }}" />
-                    </a>
-                    <a class="logo-block col-xs-12 col-lg-8 col-xl-8" href="{{ url('index', {'locale' : locale, 'modality' : 'junior'}) }}">
-                        <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/fim_jr_golden.png')}}?v={{ "now" | date('ymdhji') }}" />
-                    </a>
+                <div class="col-xs-6 col-md-3">
+                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}"><img class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/moto_3_golden.png')}}?v={{ "now" | date('ymdhji') }}" /></a>
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-e'}) }}"><img moto-e class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/moto_e_golden.png')}}?v={{ "now" | date('ymdhji') }}" /></a>
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <a href="{{ url('index', {'locale' : locale, 'modality' : 'junior'}) }}"><img class="img img-responsive" src="{{ asset('/bundles/motogp/img/logos/fim_jr_golden.png')}}?v={{ "now" | date('ymdhji') }}" /></a>
+                </div>
+                {#                <div class="left col-xxs-12 col-xs-6 col-md-6 col-xl-6">#}
+                {#                    <a class="logo-block col-xs-12 col-lg-6 col-xl-6"  }}">#}
+                {#                        #}
+                {#                    </a>#}
+                {#                    <a class="logo-block col-xs-12 col-lg-6 col-xl-6" >#}
+                {#                    </a>#}
+                {#                </div>#}
+                {#                <div class="right col-xxs-12 col-xs-6 col-md-6 col-xl-6">#}
+                {#                    <a class="logo-block col-xs-12 col-lg-6 col-xl-6" >#}
+                {#                    </a>#}
+                {#                    <a class="logo-block col-xs-12 col-lg-6 col-xl-6" h>#}
+                {#                    </a>#}
+                {#                </div>#}
+
+            </div>
+
+        </div>
+
+        {% if
+            config.showResults
+        %}
+            <div class="homestats">
+                <div class="tcenter">
+                    <div class="statblock">
+                        <div class="no-padding">
+                            <div class="homestat">
+                                <span>{{ config.worldTitles }}</span>
+                            </div>
+                            <div class="homestat-title">{{ ("World Titles" | trans | upper) | raw }}</div>
+                        </div>
+                        <div class="no-padding">
+                            <div class="homestat">
+                                <span>{{ config.worldSubChampionships }}</span>
+                            </div>
+                            <div class="homestat-title">
+                                {{ ("World Sub Championships" | trans | upper ) | raw}}
+                            </div>
+                        </div>
+                        <div class="statlogo">
+                            <img class="img img-responsive" src="{{ asset('/bundles/motogp/img/40anniversary.png') }}" />
+                        </div>
+                        <div class="no-padding">
+                            <div class="homestat">
+                                <span>{{ config.wins }}</span>
+                            </div>
+                            <div class="homestat-title single-word">
+                                <br>{{ "Wins" | trans | raw | upper}}
+                            </div>
+                        </div>
+                        <div class="no-padding">
+                            <div class="homestat">
+                                <span>{{ config.podiums }}</span>
+                            </div>
+                            <div class="homestat-title single-word">
+                                <br>{{ "Podiums" | trans | raw | upper}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
         {% include "MotogpBundle:Default:footer.html.twig" with {'modality' : team.riders[0].modality }%}
     {% endblock %}
 </div>
@@ -151,7 +208,6 @@
     </div>
 </div>
 <style>
-
 
 </style>
 </html>

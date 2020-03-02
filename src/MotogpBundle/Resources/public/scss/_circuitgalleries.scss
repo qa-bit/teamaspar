@@ -75,10 +75,10 @@
 
     &:nth-child(even) .circuit-gallery-description {
 
-      background: rgb(211,177,103); /* Old browsers */
-      background: -moz-radial-gradient(center, ellipse cover, rgba(211,177,103,1) 0%, rgba(162,121,77,1) 100%); /* FF3.6-15 */
-      background: -webkit-radial-gradient(center, ellipse cover, rgba(211,177,103,1) 0%,rgba(162,121,77,1) 100%); /* Chrome10-25,Safari5.1-6 */
-      background: radial-gradient(ellipse at center, rgba(211,177,103,1) 0%,rgba(162,121,77,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      background: rgb(27, 28, 74); /* Old browsers */
+      background: -moz-radial-gradient(center, ellipse cover, rgba(27, 28, 74, 0.75) 0%, rgb(27, 28, 74) 100%); /* FF3.6-15 */
+      background: -webkit-radial-gradient(center, ellipse cover, rgba(27, 28, 74, 0.76) 0%, rgb(27, 28, 74) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: radial-gradient(ellipse at center, rgba(27, 28, 74, 0.76) 0%, rgb(27, 28, 74) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3b167', endColorstr='#a2794d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
 
@@ -87,7 +87,7 @@
       }
 
       h3 {
-        color : #3C3C3E;
+        color : white;
       }
 
       .sep {

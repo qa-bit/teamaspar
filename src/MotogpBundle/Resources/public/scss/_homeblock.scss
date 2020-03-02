@@ -8,6 +8,7 @@ $homepost-height : 14em;
   width: 100%;
   padding-left : 0;
   padding-right : 0;
+  background: white;
 
   .home-block-wrapper {
     width: 100%;
@@ -105,12 +106,12 @@ $homepost-height : 14em;
         border-color : white;
       }
       .homepost-content {
-        color: black;
-        background: rgb(211,177,103); /* Old browsers */
-        background: -moz-radial-gradient(center, ellipse cover, rgba(211,177,103,1) 0%, rgba(162,121,77,1) 100%); /* FF3.6-15 */
-        background: -webkit-radial-gradient(center, ellipse cover, rgba(211,177,103,1) 0%,rgba(162,121,77,1) 100%); /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at center, rgba(211,177,103,1) 0%,rgba(162,121,77,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3b167', endColorstr='#a2794d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        color: white;
+        background: #3a393c; /* Old browsers */
+        background: -moz-radial-gradient(center, ellipse cover, #3a393c 0%, #1d1a1e 100%); /* FF3.6-15 */
+        background: -webkit-radial-gradient(center, ellipse cover, #3a393c 0%, #1d1a1e 100%); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at center, #3a393c 0%, #1d1a1e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3a393c', endColorstr='#1d1a1e', GradientType=1); /* IE6-9 fallback on horizontal gradient */
       }
     }
 
@@ -222,9 +223,8 @@ $homepost-height : 14em;
         box-shadow : 0 0 16px black;
         background-position : 0 40% !important;
         min-height: 18em;
-        background: url('/bundles/motogp/img/assets/fondo_humo.jpg');
         .title {
-          color: white;
+          color: $menu-black;
           padding: .33em;
           text-align: center;
           padding-top: 1em;
@@ -251,8 +251,12 @@ $homepost-height : 14em;
           border-bottom : 1px solid #ccc;
         }
 
-        .score-rider, .score-score {
+       .score-score {
           color : $menu-golden;
+        }
+
+        .score-circuit, .score-rider {
+          color : $menu-black;
         }
       }
     }
@@ -295,6 +299,7 @@ $homepost-height : 14em;
   padding: 2em 0;
   display: table;
   width: 100%;
+  color : white;
 }
 
 .homestat, .homestat-title {

@@ -4,6 +4,7 @@ namespace MotogpBundle\Controller;
 
 use Application\Sonata\MediaBundle\Entity\GalleryMedia;
 use Application\Sonata\MediaBundle\Entity\Media;
+use MotogpBundle\Entity\GeneralConfiguration;
 use MotogpBundle\Entity\ModalityClassification;
 use MotogpBundle\Entity\Newsletter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -358,13 +359,19 @@ class PublicController extends Controller
         $modalitySlug = $request->get('modality');
 
         if (!$modalitySlug) {
+
+            $config = $this->getDoctrine()->getRepository(GeneralConfiguration::class)->find(1);
+
+
             return $this->render(
                 'MotogpBundle:Default:general_index_default.html.twig',
                 [
-                    'team' => $this->getMainTeam()
+                    'team' => $this->getMainTeam(),
+                    'config' => $config
                 ]
             );
         }
+
 
         $em = $this->getDoctrine()->getManager();
 

@@ -52,7 +52,7 @@ body {
 
 
 .smoke-background {
-  background: url('/bundles/motogp/img/assets/fondo_humo.jpg');
+  //background: url('/bundles/motogp/img/assets/fondo_humo.jpg');
   background-size : cover !important;
   padding : 0 9vw;
 }
@@ -172,13 +172,11 @@ input[type="checkbox"] {
 
 
 .general-links-wrapper {
-  position: fixed;
   height : 100%;
   width  : 100%;
   top    : 0;
   bottom : 0;
   background: url('/bundles/motogp/img/logo_aspar.png');
-  //border : 1px solid blue;
   background-position: center center;
   background-repeat: no-repeat;
   text-shadow: 0 0 2em rgba(0, 0, 0, 0.38);
@@ -188,8 +186,9 @@ input[type="checkbox"] {
 .general-index-links {
   width: 100%;
   color : #666;
-  position: fixed;
+  //position: fixed;
   text-align: center;
+  padding : 0 !important;
 }
 
 @media screen and (orientation : landscape) {
@@ -204,7 +203,7 @@ input[type="checkbox"] {
   .general-index-links {
     background-position: center !important;
     background-size: cover !important;
-    top : 0 !important;
+    top : 2em !important;
     padding-top : 33vh;
     padding-left : 0 !important;
     padding-right : 0 !important;
@@ -217,21 +216,21 @@ input[type="checkbox"] {
     background-size: contain !important;
   }
 
+  .general-index-links {
+    background : transparent !important;
+  }
+
 }
 
 .general-index-links {
 
-  bottom : 4em;
+  top : 70vh;
+
   .logo-block {
     display:table;
     margin: auto;
     float : none;
     padding : 3em;
-  }
-
-
-  img {
-    width : 33vw;
   }
 
 
@@ -243,36 +242,34 @@ input[type="checkbox"] {
 
   @media screen and (min-width: 981px) {
 
-    .left img {
-      float: right;
+    img {
       transition: filter 0.33s;
       filter: saturate(1);
       &:hover {
         transition: filter .33s;
-        filter: saturate(2);
+        filter: saturate(1.2);
       }
     }
 
-    .right img {
-      float: left;
+    .img {
       transition: filter .33s;
       filter: saturate(1);
       &:hover {
         transition: filter .33s;
-        filter: saturate(2);
+        filter: saturate(1.2);
       }
     }
 
-    .right img[moto-e] {
-      &:hover {
-        transition : filter .33s;
-        filter : hue-rotate(53deg) saturate(1.5);
-      }
-    }
+    //.img[moto-e] {
+    //  &:hover {
+    //    transition : filter .33s;
+    //    filter : hue-rotate(53deg) saturate(1.5);
+    //  }
+    //}
   }
 
   @media screen and (max-width: 980px) {
-    top: 0 !important;
+    top: 10vh !important;
     padding-top : 15vh;
 
     .logo-block {
@@ -329,4 +326,15 @@ input[type="checkbox"] {
 
 .well {
   border-radius : 0;
+}
+
+
+.homeblock, .smoke-background {
+  background: white !important;
+}
+
+.general-index-links {
+  .col-md-3 {
+    margin-bottom : 1em;
+  }
 }
