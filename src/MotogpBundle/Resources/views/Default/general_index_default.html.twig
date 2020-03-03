@@ -15,7 +15,7 @@
     {% set enURL = url('index', {'locale': 'en'} | merge(params)) %}
 
     <meta charset="UTF-8" />
-
+    <title>Aspar Team</title>
     {% if app.environment == 'dev' or devmode %}
         <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     {% endif %}
@@ -118,7 +118,6 @@
 
             </div>
         </div>
-
         <div class="relative w100">
             {% if
                 config.showResults
