@@ -2,7 +2,6 @@
   padding : 4em 2em;
 
   .btn-info {
-    color : black;
     font-weight: bolder;
     border : none;
     box-shadow : 0 0 1em rgba(0, 0, 0, 0.8);
@@ -32,7 +31,7 @@
       font-size : 2em;
       padding : 0 2em;
       a {
-        color : rgba(0, 0, 0, 0.65);
+        color : rgba(255, 255, 255, 0.65);
         border : none;
         transition : all .33s;
         font-weight: lighter;
@@ -42,13 +41,13 @@
       &.active {
         border : none;
         background: transparent;
-        color : black;
+        color : $menu-black;
         font-weight: bolder;
       }
 
       &.active a, a:hover {
         border : none;
-        color : black;
+        color : $menu-black;
         transform: scale(1.1);
         transition : all .33s;
         background-color: transparent !important;
