@@ -208,8 +208,10 @@ $(document).ready(function () {
                 var windowHeight = $(window).height();
                 var swiperHeight = windowHeight - topMenuHeight + 'px';
 
+                if (!$('.body-block').attr('static')) {
+                    $('.body-block').css({'padding-top': topMenuHeight});
+                }
 
-                $('.body-block').css({'padding-top' : topMenuHeight});
                 $('#swiper-inicio').css({'height' : swiperHeight});
                 $('body').css({'opacity' : 1});
             };

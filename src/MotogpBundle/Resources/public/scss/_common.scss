@@ -50,13 +50,10 @@ body {
   }
 }
 
-
 .smoke-background {
-  //background: url('/bundles/motogp/img/assets/fondo_humo.jpg');
   background-size : cover !important;
   padding : 0 9vw;
 }
-
 
 .standard-background, .white-background {
   padding : 3em;
@@ -153,9 +150,9 @@ input[type="checkbox"] {
 }
 
 .powered-by{
+
   text-align: center;
   width : 100%;
-
   a {
     color: #a6a6a6;
     text-decoration: none;
@@ -165,11 +162,9 @@ input[type="checkbox"] {
       color: $menu-golden;
       transition : color .33s;
     }
-
   }
 
 }
-
 
 .general-links-wrapper {
   height : 100%;
@@ -182,49 +177,16 @@ input[type="checkbox"] {
   text-shadow: 0 0 2em rgba(0, 0, 0, 0.38);
 }
 
-
 .general-index-links {
   width: 100%;
-  color : #666;
-  //position: fixed;
+  color: #666;
+  position: fixed;
   text-align: center;
-  padding : 0 !important;
-}
-
-@media screen and (orientation : landscape) {
-  .general-index-links {
-    background : transparent !important;
-  }
-}
-
-
-@media screen and (orientation : portrait) {
-
-  .general-index-links {
-    background-position: center !important;
-    background-size: cover !important;
-    top : 2em !important;
-    padding-top : 33vh;
-    padding-left : 0 !important;
-    padding-right : 0 !important;
-  }
-
-}
-
-@media screen and (max-width: 980px) {
-  .general-links-wrapper {
-    background-size: contain !important;
-  }
-
-  .general-index-links {
-    background : transparent !important;
-  }
-
+  padding: 0 !important;
+  bottom: 2em;
 }
 
 .general-index-links {
-
-  top : 70vh;
 
   .logo-block {
     display:table;
@@ -232,7 +194,6 @@ input[type="checkbox"] {
     float : none;
     padding : 3em;
   }
-
 
   @media screen and (orientation : portrait) {
     img {
@@ -269,7 +230,7 @@ input[type="checkbox"] {
   }
 
   @media screen and (max-width: 980px) {
-    top: 10vh !important;
+    top: 15vh !important;
     padding-top : 15vh;
 
     .logo-block {
@@ -291,7 +252,6 @@ input[type="checkbox"] {
   margin : auto;
   margin-bottom : 4em;
 }
-
 
 .login-form {
   border: none;
@@ -328,7 +288,6 @@ input[type="checkbox"] {
   border-radius : 0;
 }
 
-
 .homeblock, .smoke-background {
   background: white !important;
 }
@@ -345,4 +304,33 @@ input[type="checkbox"] {
 
 .register-wrapper h4 {
   color: $menu-black;
+}
+
+@media screen and (orientation : landscape) {
+  .general-index-links {
+    background : transparent !important;
+  }
+}
+
+@media screen and (orientation : portrait) {
+
+  .general-index-links {
+    background-position: center !important;
+    background-size: cover !important;
+    padding-top : 33vh;
+    padding-left : 0 !important;
+    padding-right : 0 !important;
+  }
+
+}
+
+@media screen and (max-width: 980px) {
+  .general-links-wrapper {
+    background-size: contain !important;
+  }
+
+  .general-index-links {
+    background : transparent !important;
+  }
+
 }
