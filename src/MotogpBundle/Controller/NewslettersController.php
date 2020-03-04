@@ -181,6 +181,24 @@ class NewslettersController extends Controller
         return true;
     }
 
+    public function checkGpGuest($form) {
+
+       $sponsor = $form->get('sponsor')->getViewData();
+       $circuit = $form->get('circuit')->getData();
+       
+        if (!$circuit) {
+            $form->get('circuit')->addError(new FormError('Por favor, seleccione un circuito'));
+            return false;
+        }
+
+        if ($sponsor === "-1") {
+            $form->get('sponsor')->addError(new FormError('Por favor, seleccione un sponsor'));
+            return false;
+        }
+
+        return true;
+    }
+
 
     public function setPass(User $user, string $password) {
 //        $user->setPlainPassword($password);
@@ -259,6 +277,7 @@ class NewslettersController extends Controller
             if ($customer->getType() == 'gpguest') {
                 $customer->setModality($modality);
                 $this->checkUser($form);
+                $this->checkGpGuest($form);
                 $user = new User();
 
                 $user->setUsername($form['username']->getData());

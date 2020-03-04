@@ -39,8 +39,8 @@ class RegisterType extends AbstractType
             ->add('accept', 'checkbox', ['mapped' => false])
             ->add('iagree', 'checkbox', ['mapped' => false, 'required' => true])
             ->add('email' ,'email', array('required' => true))
-            ->add('locale' , ChoiceType::class, ['choices' => array_flip($localeOptions), 'required' => true])
-            ->add('country', CountryType::class, ['required' => true,  'preferred_choices' => $preferred_choices ])
+            ->add('locale' , ChoiceType::class, ['choices' => array_flip($localeOptions), 'required' => false])
+            ->add('country', CountryType::class, ['required' => false,  'preferred_choices' => $preferred_choices ])
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
                     'public' => 'public',
@@ -77,9 +77,9 @@ class RegisterType extends AbstractType
 
         if ($customer->getType() == 'gpguest') {
             $builder
-                ->add('circuit', null, array('required' => true))
+                ->add('circuit', null, array('required' => false))
                 ->add('username', 'text', ['required' => true, 'mapped' => false])
-                ->add('sponsor', null, ['required' => false, 'preferred_choices' => [33]])
+                ->add('sponsor', null, ['required' => false])
                 ->add('sponsorText', null, ['required' => false])
                 ->add('gpguest_agree', 'checkbox', ['mapped' => false, 'required' => true])
                 ->add('password', RepeatedType::class, [

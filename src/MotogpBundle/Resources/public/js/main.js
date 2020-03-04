@@ -256,12 +256,12 @@ $(document).ready(function () {
                 var node = $('.partner');
                 if (!$('.sponsorText input').val()) {
 
-                    node.find('option[value=""]').remove();
+                    node.find('option[value=""]').attr('value', '-1');
                     var otherText = node.attr('locale') == 'es' ? 'Otro' : 'Other';
                     node.append('<option value="">' + otherText + '</option>');
                     checkPartner(node);
                 } else {
-                    node.find('option[value=""]').remove();
+                    node.find('option[value=""]').attr('value', '-1');
                     var otherText = node.attr('locale') == 'es' ? 'Otro' : 'Other';
                     node.append('<option value="">' + otherText + '</option>');
                     node.val(null);
