@@ -196,8 +196,15 @@ input[type="checkbox"] {
   }
 
   @media screen and (orientation : portrait) {
+
+    padding : 2.5em !important;
+    position : static !important;
+    display: table;
+    background : #ddd !important;
+
     img {
       width: 100%;
+      margin : 1em 0;
     }
   }
 
@@ -220,13 +227,6 @@ input[type="checkbox"] {
         filter: saturate(1.2);
       }
     }
-
-    //.img[moto-e] {
-    //  &:hover {
-    //    transition : filter .33s;
-    //    filter : hue-rotate(53deg) saturate(1.5);
-    //  }
-    //}
   }
 
   @media screen and (max-width: 980px) {
@@ -327,10 +327,6 @@ input[type="checkbox"] {
 @media screen and (max-width: 980px) {
   .general-links-wrapper {
     background-size: contain !important;
-  }
-
-  .general-index-links {
-    background : transparent !important;
   }
 
 }
