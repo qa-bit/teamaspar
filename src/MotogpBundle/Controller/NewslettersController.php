@@ -185,7 +185,7 @@ class NewslettersController extends Controller
 
        $sponsor = $form->get('sponsor')->getViewData();
        $circuit = $form->get('circuit')->getData();
-       
+
         if (!$circuit) {
             $form->get('circuit')->addError(new FormError('Por favor, seleccione un circuito'));
             return false;
