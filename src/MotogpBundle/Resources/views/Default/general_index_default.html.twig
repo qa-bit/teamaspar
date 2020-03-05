@@ -85,7 +85,8 @@
 <body {% block body_attrs %}{% endblock %}>
 <div class="header-block" style="position:static !important">
     {% block header %}
-        {% include "MotogpBundle:Default:Blocks/header_simple.html.twig" %}
+        {% set modality = {'slug' : ''} %}
+        {% include "MotogpBundle:Default:Blocks/header_default.html.twig" with { modality : modality, assetPrefix : null} %}
     {% endblock  %}
     {% block afterheader %}
     {% endblock %}

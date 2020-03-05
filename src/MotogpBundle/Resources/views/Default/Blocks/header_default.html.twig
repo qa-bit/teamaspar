@@ -1,0 +1,78 @@
+{% trans_default_domain 'topmenu' %}
+{% set route = app.request.get('_route') %}
+
+{% set motoname = '' %}
+
+{% if modality.slug == 'moto-2' %}
+    {% set motoname = 'speed up' %}
+{% else %}
+    {% set motoname = 'KTM '%}
+{% endif %}
+
+{% if modality.slug == 'moto-e' %}
+    {% set motoname = 'energica' %}
+{% endif %}
+
+{% set blocksPath = 'MotogpBundle:Default:Blocks/' %}
+
+<nav id="header" class="navbar navbar-default">
+    <div class="container-fluid" style="padding:.75em;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            {% include blocksPath ~ 'modality_list_mobile.html.twig' %}
+
+            <a class="navbar-brand" href="{{ url('index') }}">
+                <img  class="img img-responsive" src="{{ asset('/bundles/motogp/img/branding.png')}}?v=3" alt="" />
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="modality-list only-desktop">
+                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-2'}) }}"><img  {% if modality.slug == 'moto-2' %}class="current"{% endif %} src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/motogp.png?v=11')}}" alt="" /></a></li>
+                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}"><img {% if modality.slug == 'moto-3' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/moto3.png?v=11')}}" alt="" /></a></li>
+                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'junior'}) }}"><img junior {% if modality.slug == 'junior' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/fim_jr.png?v=11')}}" alt="" /></a></li>
+                <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-e'}) }}"><img junior {% if modality.slug == 'moto-e' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/motoe.png?v=11')}}" alt="" /></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="header-options">
+        <ul class="lang-selector only-desktop">
+            <li class="">
+                <img class="link" href="{{ (customUrlEN is defined) ? customUrlEN : enURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_en.png')}}" alt="" />
+            </li>
+            <li class="">
+                <img class="link" href="{{ (customUrl is defined) ? customUrl : esURL }}" src="{{ asset('/bundles/motogp/img/assets/lang_es.png')}}" alt="" />
+            </li>
+        </ul>
+        <ul class="social-links only-desktop">
+            <li>
+                <a href="{{ team.youtube }}" target="_blank">
+                    <img src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/social_youtube.png') }}?v=2" alt="" />
+                </a>
+            </li>
+            <li>
+                <a href="{{ team.instagram }}" target="_blank">
+                    <img src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/social_instagram.png') }}?v=2" alt="" />
+                </a>
+            </li>
+            <li>
+                <a href="{{ team.twitter }}" target="_blank">
+                    <img src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/social_twitter.png') }}?v=2" alt="" />
+                </a>
+            </li>
+            <li>
+                <a href="{{ team.facebook }}" target="_blank">
+                    <img src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/social_facebook.png') }}?v=2" alt="" />
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
