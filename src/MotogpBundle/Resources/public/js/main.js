@@ -104,6 +104,7 @@ $(document).ready(function () {
                     loop: false,
                     effect: 'fade',
                     autoplay : false,
+                    autoHeight : $(this).attr('autoheight'),
                     nextButton: '#' + paginationId + '-right',
                     prevButton: '#' + paginationId + '-left'
                 });

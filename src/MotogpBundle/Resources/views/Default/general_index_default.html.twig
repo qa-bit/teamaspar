@@ -94,11 +94,13 @@
 <div class="body-block" static="true">
     {% block body %}
         <div class="relative general-links-wrapper">
-            <img
-                    class="img img-responsive general-index-image"
-                    alt="Aspar team"
-                    src="{{ asset('/bundles/motogp/img/triunfo.jpg') }}"
-            />
+            {% include "MotogpBundle:Default:Blocks/index-slider.html.twig" with {'gallery' : gallery } %}
+
+            {#            <img#}
+{#                    class="img img-responsive general-index-image"#}
+{#                    alt="Aspar team"#}
+{#                    src="{{ asset('/bundles/motogp/img/triunfo.jpg') }}"#}
+{#            />#}
             <div
                     class="general-index-links"
             >

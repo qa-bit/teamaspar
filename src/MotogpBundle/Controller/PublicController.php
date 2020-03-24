@@ -357,23 +357,26 @@ class PublicController extends Controller
     {
 
         $modalitySlug = $request->get('modality');
+        $em = $this->getDoctrine()->getManager();
 
         if (!$modalitySlug) {
 
             $config = $this->getDoctrine()->getRepository(GeneralConfiguration::class)->find(1);
+            $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('index');
 
 
             return $this->render(
                 'MotogpBundle:Default:general_index_default.html.twig',
                 [
                     'team' => $this->getMainTeam(),
-                    'config' => $config
+                    'config' => $config,
+                    'gallery' => $gallery
                 ]
             );
         }
 
 
-        $em = $this->getDoctrine()->getManager();
+
 
         $modality = $this->getModality($modalitySlug);
 

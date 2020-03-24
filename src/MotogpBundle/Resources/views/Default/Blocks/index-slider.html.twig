@@ -1,6 +1,6 @@
 {% if gallery is not null  and gallery.medias | length > 0%}
-    <section id="slider-inicio" class="clearfix top-slider">
-        <div id="swiper-inicio" class="swiper-container" style="width:100%; height : 100vh">
+    <section id="slider-inicio" class="clearfix top-slider" >
+        <div id="swiper-inicio" class="swiper-container" autoheight="true" style="height: auto !important;">
             <div class="swiper-wrapper">
 
                 {% if reverse_order is defined and reverse_order %}
@@ -13,12 +13,9 @@
                     {% if m is not null %}
                         <div
                                 class="swiper-slide dark lazy cover"
-                                data-src="{% path m, 'xlarge' %}"
-                                aria-role="img"
-                                title="{{ locale == 'es' ? m.description : m.descriptionEN}}"
-                                arial-label="{{ locale == 'es' ? m.name : m.nameEN }}"
                         >
 
+                            <img style="width: 100%" src="{% path m, 'xlarge' %}" alt="{{ locale == 'es' ? m.description : m.descriptionEN}}">
                             <div class="slider-caption">
                                 {% if m.title %}
                                     {% set url = (locale == 'es' ? m.url : m.urlEN) %}
@@ -33,11 +30,7 @@
                                         </a>
                                     </label>
                                 {% endif %}
-                                {% if modality is defined %}
-                                    <div class="slider-modality">
-                                        <img src="{{ asset('/bundles/motogp/img/assets/logowhite-' ~ modality.slug ~ '.png') }}?v=4" alt="{{ modality.slug }}">
-                                    </div>
-                                {% endif %}
+                               
                             </div>
                         </div>
                     {% endif %}
@@ -46,8 +39,14 @@
             </div>
             <div id="sw" class="swiper-pagination"></div>
         </div>
-        <div class="slider-bottom-arrow relative">
-            <img src="{{ asset('/bundles/motogp/img/assets/down.png') }}" alt="">
-        </div>
+
     </section>
+    <style>
+        #sw-left, #sw-right {
+            display: none !important;
+        }
+        .swiper-container {
+            height: auto !important;
+        }
+    </style>
 {% endif %}
