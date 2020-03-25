@@ -103,7 +103,7 @@ $(document).ready(function () {
                     lazyLoading: true,
                     loop: false,
                     effect: 'fade',
-                    autoplay : false,
+                    autoplay : 3000,
                     autoHeight : $(this).attr('autoheight'),
                     nextButton: '#' + paginationId + '-right',
                     prevButton: '#' + paginationId + '-left'
