@@ -1,6 +1,6 @@
 {% set url = locale == 'es' ? video.url  : video.urlEN %}
 {% if url != '' %}
-    <div class="video-gallery-item col-xs-12 col-sm-6">
+    <div class="video-gallery-item col-xs-12 col-sm-6" vid="{{ video.id }}">
         <div class="fb-video" data-href="{{ url }}" data-show-text="false">
             <div class="fb-xfbml-parse-ignore">
             </div>
