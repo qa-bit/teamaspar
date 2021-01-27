@@ -351,6 +351,18 @@ $(document).ready(function () {
 
 
         },
+        flock: function () {
+            $('form').on('submit', function (e) {
+                if ($('.flock').length) {
+                    e.preventDefault();
+                    console.error('flock');
+
+                } else {
+                    console.log('submit');
+                }
+
+            })
+        },
         init : function () {
             this.resizeSliders();
             this.cookies();
@@ -367,6 +379,7 @@ $(document).ready(function () {
             this.menus();
             this.selectLinks();
             this.partnerSelection();
+            this.flock();
             $(window).delay(200).queue(function (next) {
                 
                 if ( $('html').attr('route') == 'team_staff' && $hash ) {

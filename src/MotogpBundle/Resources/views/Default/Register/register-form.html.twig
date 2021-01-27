@@ -25,19 +25,23 @@
 
         <div class="smoke-background">
 
-            <div class="golden-text register-wrapper">
+            <section class="golden-text register-wrapper flock">
                 <div class="w100">
                     <br><br>
                     <div class="col-xs-12 col-md-11 tcenter section text-center">
                         {% include "MotogpBundle:Default:Register/register-form-" ~ mode ~ ".html.twig" %}
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
     <style>
         .pad5 {
             padding : .5em;
+        }
+
+        .g-recaptcha {
+            padding: 1em;
         }
     </style>
     {% include 'MotogpBundle:Default:footer.html.twig' %}

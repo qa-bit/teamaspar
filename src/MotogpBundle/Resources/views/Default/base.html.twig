@@ -49,6 +49,14 @@
         gtag('config', '{{ UA }}');
     </script>
 
+    <script>
+        window.onReCaptchaSuccess = function () {
+            $('.section').removeClass('flock');
+            $('.contact-send').show();
+            $('.captcha').hide();
+        };
+    </script>
+
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('/bundles/motogp/vendor/node_modules/font-awesome/css/font-awesome.min.css') }}" />

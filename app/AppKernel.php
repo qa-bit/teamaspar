@@ -4,6 +4,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
+
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -37,6 +38,7 @@ class AppKernel extends Kernel
             new FM\ElfinderBundle\FMElfinderBundle(),
             new AppBundle\AppBundle(),
             new MotogpBundle\MotogpBundle(),
+            new \EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

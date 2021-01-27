@@ -22,3 +22,5 @@ parameters:
     scheme_url: ~
     secret: ThisTokenIsNotSoSecretChangeIt
     devmode: false
+    EWZ_RECAPTCHA_SITE_KEY:
+    EWZ_RECAPTCHA_SECRET:

@@ -2,6 +2,8 @@
 
 namespace MotogpBundle\Form;
 
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -57,8 +59,26 @@ class RegisterType extends AbstractType
                         'media_web'   => 'media_web',
                         'media_other' => 'media_other'
                     ),
-                )
-            )
+                ))
+            ->add('recaptcha', EWZRecaptchaType::class,
+                [
+                    'label'       => 'Captcha check:',
+                    'mapped'      => false,
+                    'constraints' => [
+                        new RecaptchaTrue()
+                    ],
+                    'attr'        => [
+                        'options' => [
+                            'type'  => 'image',
+                            'theme' => 'light',
+                            'defer' => false,
+                            'async' => false,
+                            'size'  => 2,
+                            'callback' => 'onReCaptchaSuccess'
+                        ]
+                    ]
+                ])
+
         ;
 
         if ($customer->getType() == 'sponsor') {

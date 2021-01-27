@@ -254,3 +254,7 @@ sonata_formatter:
         templates:
             browser: "MotogpBundle:Admin:ckeditor/browser.html.twig"
             upload: "MotogpBundle:Admin:ckeditor/uploads.html.twig"
+
+ewz_recaptcha:
+    public_key:  %EWZ_RECAPTCHA_SITE_KEY%
+    private_key: %EWZ_RECAPTCHA_SECRET%

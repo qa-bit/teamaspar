@@ -22,6 +22,7 @@
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-migrations-bundle": "^1.3",
         "doctrine/orm": "^2.5",
+        "excelwebzone/recaptcha-bundle": "1.5.13",
         "friendsofsymfony/user-bundle": "^2.0",
         "greg0ire/enum": "^2.2",
         "hampe/zurb-ink-bundle": "^2.2",
