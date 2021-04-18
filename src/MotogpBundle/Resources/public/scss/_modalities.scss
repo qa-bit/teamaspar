@@ -1,0 +1,23 @@
+html[modality="moto-3"], html[modality="junior"] {
+  #header {
+    box-shadow: 0 0 16px rgb(0 0 0 / 80%);
+    background: #ff0000;
+    border-top: 2px solid #ff0000;
+    border-right: 2px solid #ff0000;
+    border-left: 2px solid #ff0000;
+    border-bottom: 2px solid #ff0000;
+    position: relative;
+    z-index: 9999;
+    border-radius: 0 !important;
+  }
+  .navbar-nav li a {
+    color: white !important;
+  }
+
+  .navbar-nav li:not(:last-child) a {
+    border-right-color: white !important;
+  }
+ .modality-list img {
+    filter: saturate(0) invert(1) brightness(2);
+  }
+}

@@ -23,7 +23,9 @@ use MotogpBundle\Entity\TeamCategory;
 use MotogpBundle\Entity\Season;
 
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class PublicController extends Controller
@@ -1028,7 +1030,22 @@ class PublicController extends Controller
     }
 
 
+    /**
+     * @Route("/iproxy/asparteam")
+     */
+    public function iFeed(Request $request) {
 
+        $url = "https://www.instagram.com/asparteam/";
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        return new Response($output);
+
+    }
 
 
     protected function updateCache ($path, $filter) {

@@ -42,6 +42,7 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         kernelRootDir: "%kernel.root_dir%"
+        scheme_url : %scheme_url%
     form_themes:
         - '@SonataFormatter/Form/formatter.html.twig'
         - 'SonataCoreBundle:Form:datepicker.html.twig'

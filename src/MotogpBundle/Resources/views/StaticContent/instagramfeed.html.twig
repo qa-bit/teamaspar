@@ -64,6 +64,7 @@
     (function($){
         $(window).on('load', function(){
             $.instagramFeed({
+                'host' : '{{ scheme_url }}/iproxy/',
                 'username': 'asparteam',
                 'container': "#ifeed",
                 'display_profile': true,

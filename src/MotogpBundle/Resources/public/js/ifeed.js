@@ -57,13 +57,15 @@
         var is_tag = options.username == "",
             url = is_tag ? options.host + "explore/tags/"+ options.tag : options.host + options.username;
 
+        $.support.cors = true;
+
+
         $.get(url, function(data){
             data = data.split("window._sharedData = ")[1].split("<\/script>")[0];
             data = JSON.parse(data.substr(0, data.length - 1));
             data = data.entry_data.ProfilePage || data.entry_data.TagPage;
             data = data[0].graphql.user || data[0].graphql.hashtag;
 
-            console.error('data', data);
 
             if(options.get_data){
                 options.callback(data);
