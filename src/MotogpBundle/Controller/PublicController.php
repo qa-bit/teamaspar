@@ -1041,7 +1041,12 @@ class PublicController extends Controller
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $output = curl_exec($ch);
+
+        $info = curl_getinfo($ch);
+
         curl_close($ch);
+
+
 
         return new Response($output);
 
