@@ -2,14 +2,14 @@
 
 namespace MotogpBundle\Entity\Traits;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * ContentTrait
  */
-trait ContentTrait {
+trait ContentTrait
+{
 
     /**
      * @var int
@@ -21,7 +21,7 @@ trait ContentTrait {
      */
     private $id;
 
-    
+
     /**
      * @var string
      * @Groups("read")
@@ -110,7 +110,7 @@ trait ContentTrait {
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(type="string", nullable=true)
      */
     private $slug;
@@ -164,7 +164,7 @@ trait ContentTrait {
      */
     public function getNameEN()
     {
-        return $this->nameEN;
+        return $this->nameEN ?? $this->name;
     }
 
     /**
@@ -200,7 +200,7 @@ trait ContentTrait {
      */
     public function getDescriptionEN()
     {
-        return $this->descriptionEN;
+        return $this->descriptionEN ?? $this->description;
     }
 
     /**
@@ -355,10 +355,10 @@ trait ContentTrait {
         $this->slug = $slug;
     }
 
-    
+
     public function __toString()
     {
-       return $this->name ?? (string) null;
+        return $this->name ?? (string)null;
     }
 
     /**
@@ -376,5 +376,5 @@ trait ContentTrait {
     {
         $this->slugEN = $slugEN;
     }
-    
+
 }

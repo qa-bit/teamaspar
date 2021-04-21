@@ -10,6 +10,7 @@ html[modality="moto-3"], html[modality="junior"] {
     z-index: 9999;
     border-radius: 0 !important;
   }
+
   .navbar-nav li a {
     color: white !important;
   }
@@ -27,6 +28,8 @@ html[modality="moto-3"], html[modality="junior"] {
     filter: saturate(0) brightness(4);
   }
 
-  
+  .dropdown-menu li a.dropdown-item {
+    color : black !important;
+  }
 
 }

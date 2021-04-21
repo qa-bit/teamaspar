@@ -92,13 +92,14 @@ class PostAdmin extends AbstractAdmin
                             ]
                         )
                         ->add('name', null, ['label' => 'Título', 'required' => true])
-                        ->add('nameEN', null, ['label' => 'Título (Inglés)', 'required' => true])
+                        ->add('nameEN', null, ['label' => 'Título (Inglés)', 'required' => false])
                         ->add('upperCase', CheckboxType::class, ['label' => 'Mostrar título en mayúsculas', 'required' => false])
                         ->add('description', 'ckeditor', array(
                             'label' => 'Contenido'
                         ))
                         ->add('descriptionEN', 'ckeditor', array(
-                            'label' => 'Contenido Inglés'
+                            'label' => 'Contenido Inglés',
+                            'required' => false
                         ))
 
                         ->add('rider', null,
