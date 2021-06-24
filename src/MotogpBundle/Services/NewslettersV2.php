@@ -110,6 +110,7 @@ class NewslettersV2
             dump('CMS NEWSLETTER EMAIL');
             dump($customerId);
             dump($mail);
+            dump($failures);
             dump('!CMS NEWSLETTER EMAIL');
 
             return $mail;

@@ -160,12 +160,15 @@ class Newsletters
             $spool->flushQueue($this->transport);
 
         } catch(\Swift_TransportException $e) {
-            
+
+            echo $mailLogger->dump();
+
             return ['sent' => false, 'errors' => $e->getMessage()];
         }
 
         
         if ($mail) {
+            echo $mailLogger->dump();
             dump($recipients);
             return ['sent' => true];
         }
