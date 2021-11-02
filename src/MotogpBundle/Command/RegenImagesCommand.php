@@ -137,7 +137,7 @@ class RegenImagesCommand extends ContainerAwareCommand
         $off = 0;
 
 
-        for ($i=0; $i < $count; $i+=50) {
+        for ($i=6000; $i < $count; $i+=50) {
             $off = $i;
             $to = $i+50;
             $this->regenImages($input, $output, $off, $to);
