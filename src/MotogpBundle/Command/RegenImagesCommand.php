@@ -50,43 +50,55 @@ class RegenImagesCommand extends ContainerAwareCommand
     protected function updateCache () {
 //        $cacheManager = $this->getContainer()->get('liip_imagine.cache.manager');
 //        $cacheManager->remove();
-       // $cacheManager->resolve();
+        // $cacheManager->resolve();
     }
-    
-    protected function regenImages() {
 
-       $images = [];
+    protected function regenImages($input, $output) {
 
 
-       $images = array_merge($images, $this->em->getRepository(FeaturedMedia::class)->findAll());
-       $images = array_merge($images, $this->em->getRepository(FooterImage::class)->findAll());
-//       $images = array_merge($images, $this->em->getRepository(Gallery::class)->findAll());
-       $images = array_merge($images, $this->em->getRepository(GalleryMedia::class)->findAll());
-       $images = array_merge($images, $this->em->getRepository(HeaderImage::class)->findAll());
-       $images = array_merge($images, $this->em->getRepository(HomeImage::class)->findAll());
-       $images = array_merge($images, $this->em->getRepository(Logo::class)->findAll());
-//       $images = array_merge($images, $this->em->getRepository(Media::class)->findAll());
-//       $images = array_merge($images, $this->em->getRepository(MediaImage::class)->findAll());
-       $images = array_merge($images, $this->em->getRepository(NewsLetterMedia::class)->findAll());
-       $images = array_merge($images, $this->em->getRepository(PostMedia::class)->findAll());
-       $images = array_merge($images, $this->em->getRepository(PreviewImage::class)->findAll());
-       $images = array_merge($images, $this->em->getRepository(QuotationImage::class)->findAll());
-       $images = array_merge($images, $this->em->getRepository(RiderMedia::class)->findAll());
-       $images = array_merge($images, $this->em->getRepository(TeamStaffImage::class)->findAll());
+        $class = $argument = $input->getArgument('argument');
 
-       foreach ($images as $f) {
+        $images = [];
 
-           if ($f->getProviderMetadata() && $f->getProviderMetadata()['filename']) {
-               $fsUrl = __DIR__ . '/../../../web/uploads/' . $f->getProviderMetadata()['filename'];
-               if (file_exists($fsUrl)){
+        if ($class == 'FeaturedMedia')
+            $images = array_merge($images, $this->em->getRepository(FeaturedMedia::class)->findAll());
+        if ($class == 'FooterImage')
+            $images = array_merge($images, $this->em->getRepository(FooterImage::class)->findAll());
+        if ($class == 'GalleryMedia')
+            $images = array_merge($images, $this->em->getRepository(GalleryMedia::class)->findAll());
+        if ($class == 'HeaderImage')
+            $images = array_merge($images, $this->em->getRepository(HeaderImage::class)->findAll());
+        if ($class == 'HomeImage')
+            $images = array_merge($images, $this->em->getRepository(HomeImage::class)->findAll());
+        if ($class == 'Logo')
+            $images = array_merge($images, $this->em->getRepository(Logo::class)->findAll());
+        if ($class == 'NewsLetterMedia')
+            $images = array_merge($images, $this->em->getRepository(NewsLetterMedia::class)->findAll());
+        if ($class == 'PostMedia')
+            $images = array_merge($images, $this->em->getRepository(PostMedia::class)->findAll());
+        if ($class == 'PreviewImage')
+            $images = array_merge($images, $this->em->getRepository(PreviewImage::class)->findAll());
+        if ($class == 'QuotationImage')
+            $images = array_merge($images, $this->em->getRepository(QuotationImage::class)->findAll());
+        if ($class == 'RiderMedia')
+            $images = array_merge($images, $this->em->getRepository(RiderMedia::class)->findAll());
+        if ($class == 'TeamStaffImage')
+            $images = array_merge($images, $this->em->getRepository(TeamStaffImage::class)->findAll());
+
+        foreach ($images as $f) {
+
+            if ($f->getProviderMetadata() && $f->getProviderMetadata()['filename']) {
+                $fsUrl = __DIR__ . '/../../../web/uploads/' . $f->getProviderMetadata()['filename'];
+                if (file_exists($fsUrl)){
                     $f->setBinaryContent($fsUrl);
                 }
-           }
+                $output->writeln($fsUrl);
+            }
 
-       }
+        }
 
 
-       $this->em->flush();
+        $this->em->flush();
 
     }
 
@@ -95,7 +107,7 @@ class RegenImagesCommand extends ContainerAwareCommand
         $this->em = $this->getContainer()->get('doctrine')->getManager();
         $this->output = $output;
 
-        $this->regenImages();
+        $this->regenImages($input, $output);
     }
 
 }
