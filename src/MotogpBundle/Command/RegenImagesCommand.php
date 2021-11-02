@@ -85,6 +85,13 @@ class RegenImagesCommand extends ContainerAwareCommand
         if ($class == 'TeamStaffImage')
             $images = array_merge($images, $this->em->getRepository(TeamStaffImage::class)->findAll());
 
+
+
+        $count = 0;
+
+
+        dump(count($images));
+
         foreach ($images as $f) {
 
             if ($f->getProviderMetadata() && $f->getProviderMetadata()['filename']) {
@@ -93,12 +100,12 @@ class RegenImagesCommand extends ContainerAwareCommand
                     $f->setBinaryContent($fsUrl);
                 }
                 $output->writeln($fsUrl);
+
             }
 
         }
 
-
-        $this->em->flush();
+        //$this->em->flush();
 
     }
 
