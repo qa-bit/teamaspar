@@ -45,7 +45,6 @@ class RegenImagesCommand extends ContainerAwareCommand
             ->addArgument('argument', InputArgument::OPTIONAL, 'Argument description')
             ->addArgument('off', InputArgument::OPTIONAL, 'Argument description')
             ->addArgument('to', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option', null, InputOption::VALUE_NONE, 'Option description')
         ;
     }
 
