@@ -54,48 +54,59 @@ class RegenImagesCommand extends ContainerAwareCommand
         // $cacheManager->resolve();
     }
 
-    protected function regenImages($input, $output) {
 
 
-        $class = $argument = $input->getArgument('argument');
-        $off = (int) $argument = $input->getArgument('off');
-        $to = (int) $argument = $input->getArgument('to');
+    protected function getCount() {
+
 
         $images = [];
 
-        if ($class == 'FeaturedMedia')
-            $images = array_merge($images, $this->em->getRepository(FeaturedMedia::class)->findAll());
-        if ($class == 'FooterImage')
-            $images = array_merge($images, $this->em->getRepository(FooterImage::class)->findAll());
-        if ($class == 'GalleryMedia')
-            $images = array_merge($images, $this->em->getRepository(GalleryMedia::class)->findAll());
-        if ($class == 'HeaderImage')
-            $images = array_merge($images, $this->em->getRepository(HeaderImage::class)->findAll());
-        if ($class == 'HomeImage')
-            $images = array_merge($images, $this->em->getRepository(HomeImage::class)->findAll());
-        if ($class == 'Logo')
-            $images = array_merge($images, $this->em->getRepository(Logo::class)->findAll());
-        if ($class == 'NewsLetterMedia')
-            $images = array_merge($images, $this->em->getRepository(NewsLetterMedia::class)->findAll());
-        if ($class == 'PostMedia')
-            $images = array_merge($images, $this->em->getRepository(PostMedia::class)->findAll());
-        if ($class == 'PreviewImage')
-            $images = array_merge($images, $this->em->getRepository(PreviewImage::class)->findAll());
-        if ($class == 'QuotationImage')
-            $images = array_merge($images, $this->em->getRepository(QuotationImage::class)->findAll());
-        if ($class == 'RiderMedia')
-            $images = array_merge($images, $this->em->getRepository(RiderMedia::class)->findAll());
-        if ($class == 'TeamStaffImage')
-            $images = array_merge($images, $this->em->getRepository(TeamStaffImage::class)->findAll());
+
+        $images = array_merge($images, $this->em->getRepository(FeaturedMedia::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(FooterImage::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(GalleryMedia::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(HeaderImage::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(HomeImage::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(Logo::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(NewsLetterMedia::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(PostMedia::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(PreviewImage::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(QuotationImage::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(RiderMedia::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(TeamStaffImage::class)->findAll());
+
+        return count($images);
+
+    }
+
+    protected function regenImages($input, OutputInterface $output, $off, $to) {
+
+
+        $class = $argument = $input->getArgument('argument');
+
+
+        $images = [];
+
+
+        $images = array_merge($images, $this->em->getRepository(FeaturedMedia::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(FooterImage::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(GalleryMedia::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(HeaderImage::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(HomeImage::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(Logo::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(NewsLetterMedia::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(PostMedia::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(PreviewImage::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(QuotationImage::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(RiderMedia::class)->findAll());
+        $images = array_merge($images, $this->em->getRepository(TeamStaffImage::class)->findAll());
 
 
 
         $count = 0;
 
 
-        dump(count($images));
-        dump($off);
-        dump($to);
+        $output->writeln("{$off} -> {$to}");
 
         for ($i=$off; $i<$to;$i++) {
 
@@ -106,10 +117,6 @@ class RegenImagesCommand extends ContainerAwareCommand
                 if (file_exists($fsUrl)){
                     $f->setBinaryContent($fsUrl);
                 }
-                $output->writeln($fsUrl);
-
-                $count++;
-
             }
 
         }
@@ -123,7 +130,19 @@ class RegenImagesCommand extends ContainerAwareCommand
         $this->em = $this->getContainer()->get('doctrine')->getManager();
         $this->output = $output;
 
-        $this->regenImages($input, $output);
+
+        $count = $this->getCount();
+
+
+        $off = 0;
+
+
+        for ($i=0; $i < $count; $i+=50) {
+            $off = $i;
+            $to = $i+50;
+            $this->regenImages($input, $output, $off, $to);
+
+        }
     }
 
 }
