@@ -15,7 +15,7 @@
                                 class="swiper-slide dark lazy cover"
                         >
 
-                            <img style="width: 100%" src="{% path m, 'xlarge' %}" alt="{{ locale == 'es' ? m.description : m.descriptionEN}}">
+                            <img style="width: 100%" src="{% path m, 'reference' %}" alt="{{ locale == 'es' ? m.description : m.descriptionEN}}">
                             <div class="slider-caption">
                                 {% if m.title %}
                                     {% set url = (locale == 'es' ? m.url : m.urlEN) %}
