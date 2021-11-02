@@ -58,8 +58,8 @@ class RegenImagesCommand extends ContainerAwareCommand
 
 
         $class = $argument = $input->getArgument('argument');
-        $off = $argument = $input->getArgument('off');
-        $to = $argument = $input->getArgument('to');
+        $off = (int) $argument = $input->getArgument('off');
+        $to = (int) $argument = $input->getArgument('to');
 
         $images = [];
 
@@ -94,10 +94,12 @@ class RegenImagesCommand extends ContainerAwareCommand
 
 
         dump(count($images));
-        dump(count($off));
-        dump(count($to));
+        dump($off);
+        dump($to);
 
-        foreach ($images as $f) {
+        for ($i=$off; $i<$to;$i++) {
+
+            $f = $images[$i];
 
             if ($f->getProviderMetadata() && $f->getProviderMetadata()['filename']) {
                 $fsUrl = __DIR__ . '/../../../web/uploads/' . $f->getProviderMetadata()['filename'];
@@ -112,7 +114,7 @@ class RegenImagesCommand extends ContainerAwareCommand
 
         }
 
-        //$this->em->flush();
+        $this->em->flush();
 
     }
 
