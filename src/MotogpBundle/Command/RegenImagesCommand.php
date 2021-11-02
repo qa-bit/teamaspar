@@ -43,6 +43,8 @@ class RegenImagesCommand extends ContainerAwareCommand
             ->setName('motogp:regen:images')
             ->setDescription('regen-images')
             ->addArgument('argument', InputArgument::OPTIONAL, 'Argument description')
+            ->addArgument('off', InputArgument::OPTIONAL, 'Argument description')
+            ->addArgument('to', InputArgument::OPTIONAL, 'Argument description')
             ->addOption('option', null, InputOption::VALUE_NONE, 'Option description')
         ;
     }
@@ -57,6 +59,8 @@ class RegenImagesCommand extends ContainerAwareCommand
 
 
         $class = $argument = $input->getArgument('argument');
+        $off = $argument = $input->getArgument('off');
+        $to = $argument = $input->getArgument('to');
 
         $images = [];
 
@@ -91,6 +95,8 @@ class RegenImagesCommand extends ContainerAwareCommand
 
 
         dump(count($images));
+        dump(count($off));
+        dump(count($to));
 
         foreach ($images as $f) {
 
@@ -100,6 +106,8 @@ class RegenImagesCommand extends ContainerAwareCommand
                     $f->setBinaryContent($fsUrl);
                 }
                 $output->writeln($fsUrl);
+
+                $count++;
 
             }
 
