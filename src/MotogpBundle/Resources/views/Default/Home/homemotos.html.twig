@@ -1,15 +1,16 @@
-{% set mdata = {'moto-2' : 'BOSCOSCURO MOTO2', 'moto-3' : 'GASGAS RC250GP', 'junior' : '', 'moto-e' : 'EGO CORSA'} %}
+{% set mdata = {'moto-2' : 'GASGAS MOTO2', 'moto-3' : 'GASGAS RC250GP', 'junior' : '', 'moto-e' : 'EGO CORSA'} %}
 <div class="homemotos">
     <div class="homemoto-img relative">
         {% if modality.slug != 'junior' %}
+            {% if modality.slug != 'moto-2' %}
             <label class="golden-text only-desktop lleft">
                 {{ mdata[modality.slug] }}
             </label>
             <label class="golden-text only-desktop rright">
                 {{ mdata[modality.slug] }}
             </label>
+            {% endif %}
             <img style="width:100%" class="img img-responsive" src="{{ asset('/bundles/motogp/img/assets/motos_home_' ~ modality.slug ~ 'c.png') }}?v={{ "now" | date('dmyhij') }}" />
-
         {% endif %}
     </div>
 

@@ -1,16 +1,18 @@
 {% extends "MotogpBundle:Default:base.html.twig" %}
-{% set mdata = {'moto-2' : 'BOSCOSCURO MOTO2', 'moto-3' : 'GASGAS RC250GP', 'junior' : '', 'moto-e' : 'EGO CORSA'} %}
+{% set mdata = {'moto-2' : 'GASGAS MOTO 2', 'moto-3' : 'GASGAS RC250GP', 'junior' : '', 'moto-e' : 'EGO CORSA'} %}
 {% block title %}{{ "owner" | trans }} - {{ modality.slug | capitalize }} - {{ 'motos' | trans  }}{% endblock %}
 {% block body %}
     {{ parent() }}
     <section id="slider-motos" class="clearfix top-slider">
         <div id="swiper-inicio" class="swiper-container" style="width:100%;height:49vw" auto-height="true">
-            <label class="golden-text only-desktop lleft">
-                {{ mdata[modality.slug] }}
-            </label>
-            <label class="golden-text only-desktop rright">
-                {{ mdata[modality.slug] }}
-            </label>
+            {% if modality.slug != 'moto-2' %}
+                <label class="golden-text only-desktop lleft">
+                    {{ mdata[modality.slug] }}
+                </label>
+                <label class="golden-text only-desktop rright">
+                    {{ mdata[modality.slug] }}
+                </label>
+            {% endif %}
             <div class="swiper-wrapper">
 
                 <div
@@ -37,7 +39,7 @@
 
     <div class="relative">
         <div class="moto-bg moto-bg-motos">
-{#            <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral_' ~ modality.slug ~ '.png') }}" />#}
+            {#            <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral_' ~ modality.slug ~ '.png') }}" />#}
         </div>
     </div>
 

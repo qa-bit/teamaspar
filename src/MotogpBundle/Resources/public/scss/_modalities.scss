@@ -1,4 +1,4 @@
-html[modality="moto-3"], html[modality="junior"] {
+html[modality="moto-2"], html[modality="moto-3"], html[modality="junior"] {
   #header {
     box-shadow: 0 0 16px rgb(0 0 0 / 80%);
     background: #ff0000;
@@ -9,10 +9,18 @@ html[modality="moto-3"], html[modality="junior"] {
     position: relative;
     z-index: 9999;
     border-radius: 0 !important;
+
+  }
+
+
+  .navbar-nav .nav-item .dropdown-item {
+
+    color: black !important;
   }
 
   .navbar-nav li a {
     color: white !important;
+
   }
 
   .navbar-nav li:not(:last-child) a {
@@ -31,5 +39,7 @@ html[modality="moto-3"], html[modality="junior"] {
   .dropdown-menu li a.dropdown-item {
     color : black !important;
   }
+
+
 
 }
