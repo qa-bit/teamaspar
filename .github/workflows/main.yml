@@ -1,0 +1,42 @@
+name: TeamAspar
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Deploy in EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+          HOSTNAME : ${{ secrets.HOSTNAME  }}
+          USER_NAME : ${{ secrets.USER_NAME  }}
+
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          
+            #Now we have got the access of EC2 and we will start the deploy .
+            cd /var/www/teamaspar/ &&
+            git checkout main &&
+            git fetch --all &&
+            git reset --hard origin/main &&
+            git pull origin main &&
+            php bin/console doctrine:migrations:migrate --no-interaction &&
+            php bin/console cache:clear --env=prod &&
+            php bin/console cache:clear --env=dev &&
+            php bin/console cache:warmup --env=prod &&
+            chmod -R 777 var/cache &&
+            chmod -R 777 var/logs &&
+            chmod -R 777 web/uploads/ &&
+            chmod -R 777 web/media &&
+            chmod -R 777 var/spool &&
+            cd src/MotogpBundle/Resources/public/vendor/ &&
+            yarn install &&
+            sudo systemctl restart php7.2-fpm'
