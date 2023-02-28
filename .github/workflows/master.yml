@@ -31,11 +31,11 @@ jobs:
             php7.2 bin/console cache:clear --env=prod &&
             php7.2 bin/console cache:clear --env=dev &&
             php7.2 bin/console cache:warmup --env=prod &&
-            chmod -R 777 var/cache &&
-            chmod -R 777 var/logs &&
-            chmod -R 777 web/uploads/ &&
-            chmod -R 777 web/media &&
-            chmod -R 777 var/spool &&
+            sudo chmod -R 777 var/cache &&
+            sudo chmod -R 777 var/logs &&
+            sudo chmod -R 777 web/uploads/ &&
+            sudo chmod -R 777 web/media &&
+            sudo chmod -R 777 var/spool &&
             cd src/MotogpBundle/Resources/public/vendor/ &&
             yarn install &&
             sudo systemctl restart php7.2-fpm'
