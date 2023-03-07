@@ -109,6 +109,11 @@ class Modality
      */
     private $showInfo;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     /**
      * @return string
      */

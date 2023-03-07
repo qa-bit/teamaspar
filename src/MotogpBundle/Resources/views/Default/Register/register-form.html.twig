@@ -7,16 +7,21 @@
 
     <div class="w100 register-nav">
         <ul class="nav nav-tabs">
-            <li class="{{ mode == 'fan' ? 'active' : null }}">
+            <li class="register-title">
+                {{ 'register_as' | trans }}:
+            </li>
+        </ul>
+        <ul class="nav nav-tabs">
+            <li class="{{ mode == 'fan' ? 'active fan' : null }}">
                 <a href="{{ url('public_register', {'modality' : modality.slug}) }}">FAN</a>
             </li>
-            <li class="{{ mode == 'media' ? 'active' : null }}">
+            <li class="{{ mode == 'media' ? 'active media' : null }}">
                 <a href="{{ url('public_register_media', {'modality' : modality.slug}) }}">MEDIA</a>
             </li>
-            <li class="{{ mode == 'partner' ? 'active' : null }}">
+            <li class="{{ mode == 'partner' ? 'active partner' : null }}">
                 <a href="{{ url('public_register_partner', {'modality' : modality.slug}) }}">PARTNER</a>
             </li>
-            <li class="{{ mode == 'gp_guest' ? 'active' : null }}">
+            <li class="{{ mode == 'gp_guest' ? 'active gpguest' : null }}">
                 <a href="{{ url('public_register_gpguest', {'modality' : modality.slug}) }}">GP GUEST</a>
             </li>
         </ul>

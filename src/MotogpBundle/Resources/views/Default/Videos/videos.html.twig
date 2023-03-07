@@ -1,4 +1,5 @@
 {% extends "MotogpBundle:Default:base.html.twig" %}
+{% trans_default_domain 'messages' %}
 {% block title %}{{ "owner" | trans }} - {{ modality.slug | capitalize }} - {{ "videos" | trans }} {% endblock %}
 {% block body %}
     {{ parent() }}
@@ -15,6 +16,24 @@
     </script>
 
     <div class="smoke-background">
+        <form method="post">
+            <div class="tab-content">
+                {{ form_start(form) }}
+
+                <div class="col-xs-12 col-md-12 tcenter">
+                    <div class="col-xs-12 col-md-6" style="display: grid">
+                        <fieldset class="form-group">
+                            <label class="w100">{{ 'select_modality' | trans }}:{#{{ 'media_type' | trans | capitalize}}#}</label>
+                            {{ form_widget(form.modalities, {'attr' : {'class' : 'form-control'}}) }}
+                            {{ form_errors(form.modalities) }}
+                        </fieldset>
+                        <button class="btn btn-info" type="submit">{{ 'search' | trans }}</button>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </form>
         <div class="standard-background">
             <div class="video-gallery">
                 {% for v in videos %}
