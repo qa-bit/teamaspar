@@ -18,8 +18,67 @@ html[modality="moto-e"] {
 
   .register-nav {
     background : $menu-black;
-    li a {
-      color : white !important;
+    .nav.nav-tabs {
+      display: table;
+      border-bottom: none;
+      margin : auto;
+
+      li {
+        font-size : 2em;
+        padding : 0 2em;
+        a {
+          color : rgba(255, 0, 73, 0.47);
+          border : none;
+          transition : all .33s;
+          font-weight: lighter;
+          cursor: pointer;
+        }
+
+        &.active {
+          border : none;
+          background: transparent;
+          color : white;
+          font-weight: 800;
+        }
+
+        &.active::after {
+          content: "";
+          position: absolute;
+          width: 150px;
+          height: 100px;
+          border-left: 75px solid transparent;
+          border-right: 75px solid transparent;
+          border-top: 75px solid $menu-black;
+          bottom: -140px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        &.active a, a:hover {
+          border : none;
+          color : white;
+          font-weight: 800;
+          transform: scale(1.1);
+          transition : all .33s;
+          background-color: transparent !important;
+        }
+      }
+
+    }
+
+    @media (max-width: 1023px) {
+      &.register-nav::after {
+        content: "";
+        position: absolute;
+        width: 150px;
+        height: 100px;
+        border-left: 75px solid transparent;
+        border-right: 75px solid transparent;
+        border-top: 75px solid $menu-black;
+        top: 148%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   }
 

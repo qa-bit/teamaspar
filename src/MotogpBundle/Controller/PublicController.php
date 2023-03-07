@@ -7,6 +7,7 @@ use Application\Sonata\MediaBundle\Entity\Media;
 use MotogpBundle\Entity\GeneralConfiguration;
 use MotogpBundle\Entity\ModalityClassification;
 use MotogpBundle\Entity\Newsletter;
+use MotogpBundle\Form\ModalityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MotogpBundle\Entity\Gallery;
@@ -509,7 +510,7 @@ class PublicController extends Controller
     }
 
     /**
-     * @Route("/videos")
+     * @Route("/videos", methods={"POST"})
      */
     public function videosAction(Request $request)
     {
@@ -525,11 +526,18 @@ class PublicController extends Controller
 
         $gallery  = $em->getRepository(Gallery::class)->findOneBySlug('videos_'.str_replace('-', '_',  $modalitySlug));
 
-        $videos = $em->getRepository(Video::class)->getAllInModality($modality);
+        $form = $this->createForm('MotogpBundle\Form\ModalityType');
+
+        $data = $request->get('motogpbundle_modality');
+
+        if ($data && $data['modalities']) {
+            $videos = $em->getRepository(Video::class)->findBy(['modality' => $data['modalities']]);
+        } else {
+            $videos = $em->getRepository(Video::class)->getAllInModality($modality);
+        }
 
         $homeRiders = $em->getRepository(Rider::class)->getHomeRidersInModality($modality);
         $sponsors = $this->getSponsors($modality);
-
 
         return $this->render(
             'MotogpBundle:Default:Videos/videos.html.twig',
@@ -539,7 +547,8 @@ class PublicController extends Controller
                 'riders' => $homeRiders,
                 'sponsors' => $sponsors,
                 'modality' => $modality,
-                'team' => $this->getMainTeam()
+                'team' => $this->getMainTeam(),
+                'form' => $form->createView()
             ]
         );
 

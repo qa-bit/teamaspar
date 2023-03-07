@@ -6,6 +6,7 @@ email: Email
 phone: Phone
 message: Message
 send: Send
+register_as: Register as
 register_success_text1: Your request is waiting for approval by the Aspar Team.
 register_success_text2: We will contact you as soon as possible to confirm it.
 accept: I agree to receive newsletters periodically.
