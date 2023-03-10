@@ -1,5 +1,5 @@
 {% trans_default_domain 'topmenu' %}
-{% set imagesYears = modality | modality_years_with_images %}
+{% set imagesYears = modality | modality_years_with_news %}
 {% if imagesYears | length  < 2 %}
     <li>
         <a class="{{ (route == 'images' or route == 'image') ? 'active' : '' }} nav-link dropdown-toggle" href="{{ url('images', {'modality': modality.slug}) }}">{{ "images" | trans }}</a>

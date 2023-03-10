@@ -216,14 +216,169 @@ class NewslettersController extends Controller
 
     }
 
+    public function fetchFormAction(Request $request)
+    {
+
+        $modalitySlug = $request->get('mode');
+
+        switch ($modalitySlug) {
+            case 'media' : {
+                $mode = 'media';
+                break;
+            }
+            case 'partner' : {
+                $mode = 'partner';
+                break;
+            }
+            case 'gpguest' : {
+                $mode = 'gp_guest';
+                break;
+            }
+            default: {
+                $mode = 'fan';
+                break;
+            }
+        }
+
+        $locale = $request->get('_locale');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $modalitySlug = $request->get('modality');
+
+        $modality = $em->getRepository(Modality::class)->findOneBySlug($modalitySlug);
+
+        $customer = new Customer();
+        $customer->setModality($modality);
+
+        $customer->setLocale($locale);
+        $customer->setCountry(strtoupper($locale));
+
+        if ($locale == 'en') {
+            $customer->setCountry('GB');
+        }
+
+        $customer->setType(self::MODES[$mode]);
+
+        $form = $this->createForm('MotogpBundle\Form\RegisterType', $customer);
+        $form->handleRequest($request);
+
+        $user = null;
+
+        if ($form->isSubmitted()) {
+            if ($customer->getType() == 'gpguest') {
+                $customer->setModality($modality);
+                $this->checkUser($form);
+                $this->checkGpGuest($form);
+                $user = new User();
+
+                $user->setUsername($form['username']->getData());
+                $user->setEmail($customer->getEmail());
+                $user->setPassword($this->get('security.password_encoder')->encodePassword($user, $form->get('password')->getData()));
+                $user->setRoles(['ROLE_PUBLIC_DOCUMENTS']);
+                $user->setEnabled(false);
+                $user->setPass($form->get('password')->getData());
+                $user->setCustomer($customer);
+                $user->setPlainPassword($form->get('password')->getData());
+            }
+        }
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($customer->getType() == 'public') {
+                $customer->setMediaType(null);
+                $customer->setAdminConfirmed(true);
+            }
+
+
+            $hashString = $customer->getEmail();
+
+            $hash = password_hash($hashString, PASSWORD_DEFAULT);
+
+            $customer->setActivationHash($hash);
+
+            $url = $this->generateUrl(
+                'public_register_confirmation',
+                array(
+                    'modality' => $modalitySlug
+                ),
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
+
+            $password = null ;
+
+            try {
+                $password = $form->get('password');
+            } catch (\Exception $e) {
+
+            }
+
+            $data = array(
+                'name' => $customer->getName(),
+                'url' => $url . '?cc=' . $hash,
+                'password' => $password
+            );
+
+
+            $mail = $this->getParameter('general_mailing');
+            $from = $this->getParameter('mailer_user');
+
+
+            $mailModality = $modalitySlug  == 'moto-e'
+                ? self::MAIL_SUBJECT_PREFIX_MOTO_E
+                : self::MAIL_SUBJECT_PREFIX
+            ;
+
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject($mailModality.' - '.self::MAIL_CONFIRMATION_SUBJECT)
+                ->setFrom($from)
+                ->setTo($customer->getEmail())
+                ->setReplyTo($from)
+                ->setContentType("text/html")
+                ->setBody($this->renderView('MotogpBundle:Default:Register/confirmation-email.html.twig', $data, 'text/html'))
+            ;
+
+
+            $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
+            $this->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
+
+            $result = $this->get('mailer')->send($message);
+
+            $spool = $this->get('mailer')->getTransport()->getSpool();
+            $transport = $this->get('swiftmailer.transport.real');
+
+            $spool->flushQueue($transport);
+
+            $em->persist($customer);
+
+
+            if ($user) {
+                $customer->setUser($user);
+                $em->persist($user);
+            }
+
+            $em->flush();
+
+            return $this->redirectToRoute('public_register_success', ['modality' => $modalitySlug, 'locale' => $locale]);
+        }
+
+
+        return $this->render('MotogpBundle:Default/Register:register-form-'. $mode .'.html.twig', array(
+            'form' => $form->createView(),
+            'mode' => $mode,
+            'locale' => $locale,
+            'modality' => $modality
+        ));
+    }
+
     public function registerFormAction(Request $request)
     {
 
         $modalitySlug = $request->get('modality');
 
         $modality = $this->getModality($modalitySlug);
-
-        $mode = 'fan';
 
         switch ($request->attributes->get('_route')) {
             case 'public_register_media' : {
@@ -236,6 +391,10 @@ class NewslettersController extends Controller
             }
             case 'public_register_gpguest' : {
                 $mode = 'gp_guest';
+                break;
+            }
+            default: {
+                $mode = 'fan';
                 break;
             }
         }
@@ -369,19 +528,19 @@ class NewslettersController extends Controller
 
             $em->flush();
 
-            return $this->redirectToRoute('public_register_success', ['modality' => $modalitySlug]);
+            return $this->redirectToRoute('public_register_success', ['modality' => $modalitySlug, 'locale' => $locale]);
         }
 
 
         return $this->render('MotogpBundle:Default/Register:register-form.html.twig', array(
-
             'form' => $form->createView(),
             'riders' => $homeRiders,
             'gallery' => $gallery,
             'modality' => $modality,
             'sponsors' => $sponsors,
             'team' => $this->getMainTeam(),
-            'mode' => $mode
+            'mode' => $mode,
+            'locale' => $locale
         ));
     }
 

@@ -15,25 +15,29 @@
         }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <div class="smoke-background">
-        <form method="post">
-            <div class="tab-content">
-                {{ form_start(form) }}
-
-                <div class="col-xs-12 col-md-12 tcenter">
-                    <div class="col-xs-12 col-md-6" style="display: grid">
-                        <fieldset class="form-group">
-                            <label class="w100">{{ 'select_modality' | trans }}:{#{{ 'media_type' | trans | capitalize}}#}</label>
-                            {{ form_widget(form.modalities, {'attr' : {'class' : 'form-control'}}) }}
-                            {{ form_errors(form.modalities) }}
-                        </fieldset>
-                        <button class="btn btn-info" type="submit">{{ 'search' | trans }}</button>
+    <div class="w100 register-nav">
+        <ul class="nav nav-tabs select-modality">
+            <li class="register-title text-center px-0">
+                <form method="post">
+                    <div class="tab-content">
+                        <div class="col-xs-12 col-md-12 tcenter">
+                            <div class="col-xs-12 col-md-12" style="display: grid">
+                                {{ form_start(form) }}
+                                <fieldset class="form-group">
+                                    <label class="w100">{{ 'select_modality' | trans }}:</label>
+                                    {{ form_widget(form.modalities, {'attr' : {'class' : 'form-control'}}) }}
+                                    {{ form_errors(form.modalities) }}
+                                </fieldset>
+                                <button class="btn btn-info" type="submit">{{ 'search' | trans }}</button>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                {{ form_end(form) }}
-            </div>
-        </form>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <div class="smoke-background">
         <div class="standard-background">
             <div class="video-gallery">
                 {% for v in videos %}
@@ -56,5 +60,18 @@
 {#            <img src="{{ asset('/bundles/motogp/img/assets/moto_lateral_' ~ modality.slug ~ '.png') }}" style="position:absolute !important"/>#}
         </div>
     </div>
+
+    <style>
+        .select-modality {
+            display: flex !important;
+            border-bottom: none !important;
+            margin: auto !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            align-content: center !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+    </style>
 
 {% endblock %}
