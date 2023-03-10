@@ -6,39 +6,24 @@
     {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}
 
     <div class="w100 register-nav">
-        <ul class="nav nav-tabs">
-            <li class="register-title">
+        <ul class="nav nav-tabs container">
+            <li class="register-title text-center px-0">
                 {{ 'register_as' | trans }}:
             </li>
-        </ul>
-        <ul class="nav nav-tabs">
-            <li class="{{ mode == 'fan' ? 'active fan' : null }}">
-                <a href="{{ url('public_register', {'modality' : modality.slug}) }}">FAN</a>
-            </li>
-            <li class="{{ mode == 'media' ? 'active media' : null }}">
-                <a href="{{ url('public_register_media', {'modality' : modality.slug}) }}">MEDIA</a>
-            </li>
-            <li class="{{ mode == 'partner' ? 'active partner' : null }}">
-                <a href="{{ url('public_register_partner', {'modality' : modality.slug}) }}">PARTNER</a>
-            </li>
-            <li class="{{ mode == 'gp_guest' ? 'active gpguest' : null }}">
-                <a href="{{ url('public_register_gpguest', {'modality' : modality.slug}) }}">GP GUEST</a>
+            <li class="text-center px-0">
+                <div class="form-group mb-0 w100">
+                    <select id="form-selector" class="form-control">
+                        <option value="empty">-----</option>
+                        <option value="fan">Fan</option>
+                        <option value="partner">Partner</option>
+                        <option value="media">Media</option>
+                        <option value="gp_guest">GP Guest</option>
+                    </select>
+                </div>
             </li>
         </ul>
     </div>
-    <div class="w100">
-
-        <div class="smoke-background">
-
-            <section class="golden-text register-wrapper flock section">
-                <div class="w100">
-                    <br><br>
-                    <div class="col-xs-12 col-md-11 tcenter section text-center">
-                        {% include "MotogpBundle:Default:Register/register-form-" ~ mode ~ ".html.twig" %}
-                    </div>
-                </div>
-            </section>
-        </div>
+    <div class="w100" id="form-content">
     </div>
     <style>
         .pad5 {
@@ -48,6 +33,71 @@
         .g-recaptcha {
             padding: 1em;
         }
+
+        .px-0 {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .container {
+            display: flex !important;
+            border-bottom: none !important;
+            margin: auto !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            align-content: center !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        li {
+            margin: 10px;
+        }
+
+        .mb-0 {
+            margin-bottom: 0 !important;
+        }
     </style>
     {% include 'MotogpBundle:Default:footer.html.twig' %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            $('#form-selector').on('change', function() {
+                const selected = $(this).val();
+                $('#form-content').html(''); // Limpiar el contenido anterior
+
+                if (selected !== 'empty') {
+                    $.ajax({
+                        url: '{{ path('public_fetch_register_form.' ~ locale, {'modality': modality.slug()}) }}',
+                        type: 'POST',
+                        data: { 'mode': selected },
+                        beforeSend: function() {
+                            // Agregar el mensaje de carga
+                            $('#form-content').html(
+                                '<div class="smoke-background"><section class="golden-text register-wrapper flock section"><div class="w100"><br><br><div class="col-xs-12 col-md-11 tcenter section text-center"><div id="form-content"><div id="loading"><img src="https://i.stack.imgur.com/FhHRx.gif" alt="Cargando...">'
+                                +'</div></div></div></div></section></div>'
+                            );
+                        },
+                        success: function(response) {
+                            $('#form-content').html(
+                                '<div class="smoke-background"><section class="golden-text register-wrapper flock section"><div class="w100"><br><br><div class="col-xs-12 col-md-11 tcenter section text-center"><div id="form-content">'
+                                   + response +
+                                '</div></div></div></section></div>'
+                            );
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 {% endblock %}

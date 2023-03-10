@@ -16,11 +16,11 @@ motogp_public_index:
 
 images:
     locales: { "es": "/es/{modality}/imagenes", "en": "/en/{modality}/images" }
-    defaults: { _controller: MotogpBundle:Public:images }
+    defaults: { _controller: MotogpBundle:Public:posts }
 
 images_by_year:
     locales: { "es": "/es/{modality}/{year}/imagenes", "en": "/en/{modality}/{year}images" }
-    defaults: { _controller: MotogpBundle:Public:imagesByYear }
+    defaults: { _controller: MotogpBundle:Public:postsByYear }
 
 docs:
     locales: { "es": "/es/{modality}/documentos", "en": "/en/{modality}/docs" }
@@ -81,6 +81,10 @@ public_contact:
 public_register:
     locales: { "en": "/en/{modality}/register", "es": "/es/{modality}/registro" }
     defaults: { _controller: MotogpBundle:Newsletters:registerForm}
+
+public_fetch_register_form:
+    locales: { "en": "/en/{modality}/register/fetch/form", "es": "/es/{modality}/register/fetch/form" }
+    defaults: { _controller: MotogpBundle:Newsletters:fetchForm }
 
 public_register_fan:
     locales: { "en": "/en/{modality}/register/fan", "es": "/es/{modality}/registro/fan" }
