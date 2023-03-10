@@ -6,11 +6,11 @@
     {% include "MotogpBundle:Default:Blocks/top-slider.html.twig" with {'gallery' : gallery} %}
 
     <div class="w100 register-nav">
-        <ul class="nav nav-tabs container">
+        <ul class="nav nav-tabs select-modality">
             <li class="register-title text-center px-0">
                 {{ 'register_as' | trans }}:
             </li>
-            <li class="text-center px-0">
+            <li class="text-center px-0 ml-2 px-4">
                 <div class="form-group mb-0 w100">
                     <select id="form-selector" class="form-control">
                         <option value="empty">-----</option>
@@ -39,27 +39,32 @@
             padding-right: 0 !important;
         }
 
-        .container {
-            display: flex !important;
-            border-bottom: none !important;
-            margin: auto !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            align-content: center !important;
-            justify-content: center !important;
-            align-items: center !important;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .select-modality {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            border-bottom: none;
+            margin: auto;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
             justify-content: center;
+            align-items: center;
         }
-        li {
-            margin: 10px;
+
+        @media (max-width: 1023px) {
+            .select-modality {
+                display: block !important;
+            }
+            .ml-2 {
+                margin-left: 0 !important;
+            }
+            .px-4 {
+                padding-right: 25px !important;
+                padding-left: 25px !important;
+            }
+        }
+
+        .ml-2 {
+            margin-left: 10px;
         }
 
         .mb-0 {
