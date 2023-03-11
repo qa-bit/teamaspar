@@ -11,36 +11,42 @@
     {% endif %}
 {% endfor %}
 
+{% set current_path = app.request.get('_route') %}
+
 {% if posts | length %}
     <div class="circuit-gallery col-xs-12 col-sm-6 col-md-4">
         <div class="circuit-gallery-inner">
             <div class="w100 circuit-gallery-featured" style="background:url('{% path circuit.featuredMedia, 'big' %}');">
             </div>
-            <div class="col-xs-12 col-sm-6 circuit-gallery-description">
-                <h6>{{ ( locale == 'es' ? circuit.name : circuit.nameEN ) | truncate(80, true, '...') }}</h6>
-                <div class="sep"></div>
-                <div class="trow">
-                    <h3>{{ locale == 'es' ? circuit.subtitle : circuit.subtitleEN }}</h3>
+            {% if current_path == "posts_by_year" %}
+                <div class="col-xs-12 col-sm-6 circuit-gallery-description">
+                    <h6>{{ ( locale == 'es' ? circuit.name : circuit.nameEN ) | truncate(80, true, '...') }}</h6>
+                    <div class="sep"></div>
+                    <div class="trow">
+                        <h3>{{ locale == 'es' ? circuit.subtitle : circuit.subtitleEN }}</h3>
+                    </div>
+                    <div class="toggle-galleries">
+                        <div class="toggler closed"></div>
+                    </div>
                 </div>
-                <div class="toggle-galleries">
-                    <div class="toggler closed"></div>
-                </div>
+            {% endif %}
+        </div>
+        {% if current_path == "posts_by_year" %}
+            <div class="circuit-galleries-list">
+                <ul>
+                    {% for p in posts %}
+                        {% if p.publishedAt | date('Y') == year %}
+                            <li>
+                                <a title="{{ p.publishedAt | date('d/m/y') }}" href="{{ url('post', {'slug' : locale == 'es' ? p.slug : p.slugEN, 'modality' : modality.slug }) }}">
+                                    {% spaceless %}
+                                        {{ locale == 'es' ? (p.category ? p.category.name : p.name)  : (p.category ? p.category.nameEN : p.nameEN) }}
+                                    {% endspaceless %}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
-        <div class="circuit-galleries-list">
-            <ul>
-                {% for p in posts %}
-                    {% if p.publishedAt | date('Y') == year %}
-                        <li>
-                            <a title="{{ p.publishedAt | date('d/m/y') }}" href="{{ url('post', {'slug' : locale == 'es' ? p.slug : p.slugEN, 'modality' : modality.slug }) }}">
-                                {% spaceless %}
-                                    {{ locale == 'es' ? (p.category ? p.category.name : p.name)  : (p.category ? p.category.nameEN : p.nameEN) }}
-                                {% endspaceless %}
-                            </a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
+        {% endif %}
     </div>
 {% endif %}
