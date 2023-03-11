@@ -40,7 +40,7 @@
                 <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-3'}) }}"><img {% if modality.slug == 'moto-3' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/moto3.png?v=11')}}" alt="" /></a></li>
                 <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'moto-e'}) }}"><img {% if modality.slug == 'moto-e' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/motoe.png?v=11')}}" alt="" /></a></li>
                 <li><a href="{{ url('index', {'locale' : locale, 'modality' : 'junior'}) }}"><img junior {% if modality.slug == 'junior' %}class="current"{% endif %}src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/fim_jr.png?v=11')}}" alt="" /></a></li>
-                <li><a href="https://asparteamesports.com" target="_blank" style="font-size: 20px; font-weight: bold; color: white; font-family: 'Mark'"><img src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/e-sports.png?v=11')}}" alt="" /></a></li>
+                <li><a href="https://asparteamesports.com" target="_blank"><img style="filter: inset(100%)" src="{{ asset('/bundles/motogp/img/' ~ assetPrefix ~ 'assets/e-sports.png?v=11')}}" alt="" /></a></li>
             </ul>
             <ul class="nav navbar-nav only-desktop">
                 {% include blocksPath ~ 'header_posts.html.twig' %}
