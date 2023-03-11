@@ -39,22 +39,17 @@
     </div>#}
     <div class="w100 register-nav">
         <ul class="nav nav-tabs">
-            <li class="register-title">
-                {{ 'register_as' | trans }}:
-            </li>
-        </ul>
-        <ul class="nav nav-tabs">
             <li class="{{ modality.slug == 'moto-2' ? 'active' : null }}">
-                <a href="{{ url('videos', {'modality' : 'moto-2'}) }}">FAN</a>
+                <a href="{{ url('videos', {'modality' : 'moto-2'}) }}">MOTO 2</a>
             </li>
             <li class="{{ modality.slug == 'moto-3' ? 'active' : null }}">
-                <a href="{{ url('videos', {'modality' : 'moto-3'}) }}">MEDIA</a>
+                <a href="{{ url('videos', {'modality' : 'moto-3'}) }}">MOTO 3</a>
             </li>
             <li class="{{ modality.slug == 'moto-e' ? 'active' : null }}">
-                <a href="{{ url('videos', {'modality' : 'moto-e'}) }}">PARTNER</a>
+                <a href="{{ url('videos', {'modality' : 'moto-e'}) }}">MOTO E</a>
             </li>
             <li class="{{ modality.slug == 'junior' ? 'active' : null }}">
-                <a href="{{ url('videos', {'modality' : 'junior'}) }}">GP GUEST</a>
+                <a href="{{ url('videos', {'modality' : 'junior'}) }}">JUNIOR</a>
             </li>
         </ul>
     </div>
