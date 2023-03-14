@@ -15,10 +15,9 @@
         }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    {{ form_start(form) }}
-        <div class="team-staff-menu">
-            <form method="post" class="form-modality">
-
+    <form method="post" class="form-modality">
+        {{ form_start(form) }}
+            <div class="team-staff-menu">
                 <ul>
                     <li>
 
@@ -29,13 +28,12 @@
 
                     </li>
                 </ul>
-
-            </form>
-        </div>
-        <div style="display: flex; justify-content: center; align-items: center; align-content: center; padding: 20px 0 !important;">
-            <button class="btn btn-info" type="submit">{{ 'search' | trans }}</button>
-        </div>
-    {{ form_end(form) }}
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center; align-content: center; padding: 20px 0 !important;">
+                <button class="btn btn-info" type="submit">{{ 'search' | trans }}</button>
+            </div>
+        {{ form_end(form) }}
+    </form>
     {#<div class="w100 register-nav">
         <form id="videoCheckbox">
             <ul class="nav nav-tabs">
