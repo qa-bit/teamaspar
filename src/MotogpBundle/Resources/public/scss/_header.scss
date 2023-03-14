@@ -34,9 +34,9 @@
     img {
       margin-top : .33em;
       height : 1.5em;
-      filter: saturate(0) brightness(2);
+      filter: saturate(0) invert(1) brightness(2) !important;
       &:hover {
-        filter: saturate(1) brightness(1);
+        filter: saturate(0) invert(1) brightness(2) !important;
       }
     }
   }
