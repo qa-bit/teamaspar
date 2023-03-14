@@ -26,7 +26,8 @@ html[modality="moto-2"], html[modality="moto-3"], html[modality="junior"] {
   .navbar-nav li:not(:last-child) a {
     border-right-color: white !important;
   }
- .modality-list img {
+
+  .modality-list img {
     filter: saturate(0) invert(1) brightness(2);
   }
 

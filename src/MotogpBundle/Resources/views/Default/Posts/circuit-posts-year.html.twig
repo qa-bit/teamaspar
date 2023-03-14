@@ -16,7 +16,11 @@
 {% if posts | length %}
     <div class="circuit-gallery col-xs-12 col-sm-6 col-md-4">
         <div class="circuit-gallery-inner">
-            <div class="w100 circuit-gallery-featured" style="background:url('{% path circuit.featuredMedia, 'big' %}');">
+            {% if current_path == "posts_by_year" %}
+                <div class="w100 circuit-gallery-featured" style="background:url('{% path circuit.featuredMedia, 'big' %}');">
+            {% else %}
+                <div class="w100 circuit-gallery-featured" style="background:url('https://teamaspar.com/uploads/media/featured/0001/05/thumb_4934_featured_big.jpeg');">
+            {% endif %}
             </div>
             {% if current_path == "posts_by_year" %}
                 <div class="col-xs-12 col-sm-6 circuit-gallery-description">

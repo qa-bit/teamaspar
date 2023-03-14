@@ -15,44 +15,57 @@
         }(document, 'script', 'facebook-jssdk'));
     </script>
 
+    {{ form_start(form) }}
+        <div class="team-staff-menu">
+            <form method="post" class="form-modality">
+
+                <ul>
+                    <li>
+
+                        <fieldset class="text-uppercase form-check form-check-inline">
+                            {{ form_widget(form.modalities, {'attr' : {'class' : 'form-check uppercase'}}) }}
+                            {{ form_errors(form.modalities) }}
+                        </fieldset>
+
+                    </li>
+                </ul>
+
+            </form>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; align-content: center; padding: 20px 0 !important;">
+            <button class="btn btn-info" type="submit">{{ 'search' | trans }}</button>
+        </div>
+    {{ form_end(form) }}
     {#<div class="w100 register-nav">
-        <ul class="nav nav-tabs select-modality">
-            <li class="register-title text-center px-0">
-                <form method="post">
-                    <div class="tab-content">
-                        <div class="col-xs-12 col-md-12 tcenter">
-                            <div class="col-xs-12 col-md-12" style="display: grid">
-                                {{ form_start(form) }}
-                                <fieldset class="form-group">
-                                    <label class="w100">{{ 'select_modality' | trans }}:</label>
-                                    {{ form_widget(form.modalities, {'attr' : {'class' : 'form-control'}}) }}
-                                    {{ form_errors(form.modalities) }}
-                                </fieldset>
-                                <button class="btn btn-info" type="submit">{{ 'search' | trans }}</button>
-                                {{ form_end(form) }}
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </li>
-        </ul>
+        <form id="videoCheckbox">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <label>
+                        <input type="checkbox" name="opciones[]" value="moto-2"> MOTO 2
+                    </label>
+                    #}{#<a href="{{ url('videos', {'modality' : 'moto-2'}) }}">MOTO 2</a>#}{#
+                </li>
+                <li class="active">
+                    <label>
+                        <input type="checkbox" name="opciones[]" value="moto-3"> MOTO 3
+                    </label>
+                    #}{#<a href="{{ url('videos', {'modality' : 'moto-3'}) }}">MOTO 3</a>#}{#
+                </li>
+                <li class="active">
+                    <label>
+                        <input type="checkbox" name="opciones[]" value="moto-e"> MOTO E
+                    </label>
+                    #}{#<a href="{{ url('videos', {'modality' : 'moto-e'}) }}">MOTO E</a>#}{#
+                </li>
+                <li class="active">
+                    <label>
+                        <input type="checkbox" name="opciones[]" value="junior"> JUNIOR
+                    </label>
+                    #}{#<a href="{{ url('videos', {'modality' : 'junior'}) }}">JUNIOR</a>#}{#
+                </li>
+            </ul>
+        </form>
     </div>#}
-    <div class="w100 register-nav">
-        <ul class="nav nav-tabs">
-            <li class="{{ modality.slug == 'moto-2' ? 'active' : null }}">
-                <a href="{{ url('videos', {'modality' : 'moto-2'}) }}">MOTO 2</a>
-            </li>
-            <li class="{{ modality.slug == 'moto-3' ? 'active' : null }}">
-                <a href="{{ url('videos', {'modality' : 'moto-3'}) }}">MOTO 3</a>
-            </li>
-            <li class="{{ modality.slug == 'moto-e' ? 'active' : null }}">
-                <a href="{{ url('videos', {'modality' : 'moto-e'}) }}">MOTO E</a>
-            </li>
-            <li class="{{ modality.slug == 'junior' ? 'active' : null }}">
-                <a href="{{ url('videos', {'modality' : 'junior'}) }}">JUNIOR</a>
-            </li>
-        </ul>
-    </div>
     <div class="smoke-background">
         <div class="standard-background">
             <div class="video-gallery">
@@ -78,6 +91,41 @@
     </div>
 
     <style>
+        .team-staff-menu {
+            border-top: none !important;
+            background: rgba(189, 188, 188, 0.88);
+            box-shadow: 0 0 1em rgb(0 0 0 / 65%);
+            z-index: 99999999;
+            width: 100%;
+        }
+        .form-modality {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+        .team-staff-menu ul {
+            display: table;
+            margin: auto;
+            float: none;
+            list-style-type: none;
+        }
+        .team-staff-menu ul li {
+            display: inline;
+        }
+        .team-staff-menu ul li a {
+            color: white;
+            transition: all 0.33s;
+            border-bottom: 1px solid white;
+            text-decoration: none;
+            font-size: 0.7em;
+            font-weight: bolder;
+            text-transform: uppercase;
+        }
+        label {
+            padding: 0 20px 0 5px !important; !important;
+        }
         .select-modality {
             display: flex !important;
             border-bottom: none !important;

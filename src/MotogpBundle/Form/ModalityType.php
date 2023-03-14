@@ -29,8 +29,12 @@ class ModalityType extends AbstractType
         $builder
             ->add('modalities', EntityType::class, [
                 'class' => 'MotogpBundle\Entity\Modality',
+                'expanded' => true,
                 'choice_label' => 'name',
-                'multiple' => true
+                'multiple' => true,
+                'attr' => [
+                    'class' => 'modalities-checkboxes',
+                ],
             ])
         ;
 
