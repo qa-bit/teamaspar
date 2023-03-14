@@ -1,13 +1,13 @@
 #header {
-  box-shadow : 0 0 16px rgba(0, 0, 0, 0.8);
-  background: $menu-black;
-  border-top : 2px solid $menu-black;
-  border-right : 2px solid $menu-black;
-  border-left : 2px solid $menu-black;
-  border-bottom : 2px solid $menu-golden;
-  position:relative;
-  z-index : 9999;
-  border-radius : 0 !important;
+  box-shadow: 0 0 16px rgb(0 0 0 / 80%);
+  background: #ff0000;
+  border-top: 2px solid #ff0000;
+  border-right: 2px solid #ff0000;
+  border-left: 2px solid #ff0000;
+  border-bottom: 2px solid #ff0000;
+  position: relative;
+  z-index: 9999;
+  border-radius: 0 !important;
 }
 
 .header-options {
@@ -141,20 +141,20 @@
     padding: .5em .33em;
     vertical-align: bottom;
     transition : filter .33s;
-    filter: saturate(.8);
+    //filter: saturate(.8);
     //opacity : 0.8;
     //top : .66em;
 
-    &:hover {
+    /*&:hover {
       filter : saturate(2);
       //opacity : 1;
       transition : filter .33s;
-    }
+    }*/
 
-    &.current {
+    /*&.current {
       filter: saturate(2);
       //opacity : 1;
       transition : filter .33s;
-    }
+    }*/
   }
 }

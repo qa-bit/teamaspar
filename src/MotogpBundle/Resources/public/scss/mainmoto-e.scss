@@ -1,4 +1,4 @@
-@import "variables_moto-e";
+@import "variables";
 @import "common";
 @import "sliders";
 @import "header";
@@ -13,205 +13,49 @@
 @import "mediaqueries";
 @import "bootstrapXL";
 @import "register";
+@import "modalities";
 
-html[modality="moto-e"] {
+html[modality="moto-e"]  {
+  #header {
+    box-shadow: 0 0 16px rgb(0 0 0 / 80%);
+    background: #ff0000;
+    border-top: 2px solid #ff0000;
+    border-right: 2px solid #ff0000;
+    border-left: 2px solid #ff0000;
+    border-bottom: 2px solid #ff0000;
+    position: relative;
+    z-index: 9999;
+    border-radius: 0 !important;
 
-  .register-nav {
-    background : $menu-black;
-    li a {
-      color : white !important;
-    }
-  }
-
-  .register-wrapper h4 {
-    color : $menu-black;
-  }
-
-  .modality-list img:hover {
-    transition : all .33s;
-    opacity : 0.6;
   }
 
 
-  .select-link {
-    background: white;
+  .navbar-nav .nav-item .dropdown-item {
+
+    color: black !important;
   }
 
-  .register-wrapper {
-    .btn { color: white; }
-  }
-
-  .rider-wrapper {
-    background: white;
-    color: $menu-black;
-  }
-
-  .staff-tabs .rider-name {
-    color : $menu-black;
-  }
-
-  .rider-description  {
-    color : $menu-blue;
-    h2 {
-      b {color : $menu-black !important;}
-    }
-  }
-
-  .staff-tabs .golden-text {
-    color : $menu-blue;
-  }
-
-  .rider-biografy h3, .rider-description span.title {
-    color : $menu-black;
-  }
-
-
-  .homeblock, .smoke-background {
-    background: white !important;
-  }
-
-  .navbar-nav .only-desktop li a {
+  .navbar-nav li a {
     color: white !important;
-    &:hover {
-      color: $menu-golden !important;
-    }
-    border-right: none !important;
 
   }
 
-  .dropdown-menu a.dropdown-item {
-    color : $menu-golden !important;
+  .navbar-nav li:not(:last-child) a {
+    border-right-color: white !important;
   }
 
-  .homeblock .homeposts .homepost:nth-child(1) .homepost-content, .homeblock .homeposts .homepost .homepost-content {
-    background: $menu-black !important;
+  .modality__moto-e img {
+    filter: saturate(0) invert(1) brightness(2) !important;
   }
 
-  .post-content {
-    color: white !important;
+  .header-options .social-links img {
+    margin-top: 0.33em;
+    height: 1.5em;
+    filter: saturate(0) brightness(4);
   }
 
-  .homeposts h4 {
-    color : $menu-golden !important;
-  }
-
-  .circuit-galleries .circuit-gallery .circuit-gallery-description {
-    background: $menu-black !important;
-  }
-
-  .circuit-galleries .circuit-gallery-description h3 {
-    color: white !important;
-  }
-
-  .homeblock .homeposts .homepost:nth-child(1) .sep, .homeblock .homeposts .homepost:nth-child(3) .sep {
-    border-color: $menu-golden !important;
-  }
-
-  .homeblock .homeresults .homeresult > div {
-    border: 1px solid transparent;
-    box-shadow: $box-shadow;
-    background-position: 0 40% !important;
-    height: 18em;
-    background: white !important;
-    font-weight: bolder;
-
-    border-top: 4px solid $menu-black;
-
-    .sep {
-      display: none;
-    }
-
-    .title {
-      color: $menu-black;
-    }
-  }
-
-  .circuit-gallery {
-    padding: 0 !important;
-    margin: .33em;
-    box-shadow: $box-shadow;
-    min-height: 26em;
-  }
-
-  .home-riders .home-rider-info .surname {
-    color: $menu-golden
-  }
-
-  .home-riders .home-rider-info-left {
-    background: linear-gradient(to right, rgba(94, 72, 35, 0) 0%, rgba(94, 72, 35, 0.01) 1%, rgb(0, 43, 69) 100%);
-  }
-
-  .social-rider .link {
-    filter: saturate(0) !important;
-  }
-
-  .score-circuit {
-    color: $menu-black !important;
-  }
-
-  .home-riders .circle {
-    display: none !important;
-  }
-
-  .score-score {
-    color: $menu-black !important;
-  }
-
-  .score-index {
-    color: $menu-black !important;
-  }
-
-  .sponsors-block-wrapper {
-    background: white !important;
-  }
-
-
-  .moto-description h5 {
-    color : $menu-golden;
-
-    &.golden-text {
-      font-weight: bolder;
-      color : $menu-golden;
-      text-transform: uppercase;
-    }
-  }
-
-  .moto-description p {
-    color : $menu-black;
-  }
-
-
-  .motos-gallery {
-    background: white;
-  }
-
-  .post h4 {
-    color :$menu-golden;
-  }
-
-  .post h6 {
-    color : $menu-blue !important;
-  }
-
-
-  .footer-bottom {
-    background : #002b45;
-  }
-
-
-  .modality-description {
-    display: table;
-    margin: auto;
-    padding-top : 3em;
-    h1, h2, h3, h4, h5, h6 {
-      color : $menu-golden;
-      margin-bottom : 1em;
-      width: 100%;
-    }
-    p {
-      text-align: justify;
-      color : $menu-black;
-    }
+  .dropdown-menu li a.dropdown-item {
+    color : black !important;
   }
 
 }
