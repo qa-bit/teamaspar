@@ -157,4 +157,8 @@
       transition : filter .33s;
     }*/
   }
+
+  .modality__all img {
+    filter: saturate(0) invert(1) brightness(2) !important;
+  }
 }
